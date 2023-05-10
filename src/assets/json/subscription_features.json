@@ -1,0 +1,232 @@
+[
+    {
+        "group": "People",
+        "list": [
+            {
+                "text": "Members & Families",
+                "sprout": true,
+                "blossom": true,
+                "garden": true
+            },
+            {
+                "text": "First Timers (Automated Guest Follow-up)",
+                "sprout": false,
+                "blossom": true,
+                "garden": true
+            },
+            {
+                "text": "Departments",
+                "sprout": true,
+                "blossom": true,
+                "garden": true
+            },
+            {
+                "text": "Groups",
+                "sprout": true,
+                "blossom": true,
+                "garden": true
+            },
+            {
+                "text": "Prayer Requests",
+                "sprout": false,
+                "blossom": false,
+                "garden": true
+            },
+            {
+                "text": "Testimony",
+                "sprout": false,
+                "blossom": false,
+                "garden": true
+            }
+        ]
+    },
+    {
+        "group": "Messaging",
+        "list": [
+            {
+                "text": "Email",
+                "sprout": true,
+                "blossom": true,
+                "garden": true
+            },
+            {
+                "text": "SMS",
+                "sprout": false,
+                "blossom": true,
+                "garden": true
+            },
+            {
+                "text": "Whatsapp",
+                "sprout": false,
+                "blossom": true,
+                "garden": true
+            }
+        ]
+    },
+    {
+        "group": "Event",
+        "list": [
+            {
+                "text": "Service Scheduling",
+                "sprout": true,
+                "blossom": true,
+                "garden": true
+            },
+            {
+                "text": "Events Management",
+                "sprout": false,
+                "blossom": true,
+                "garden": true
+            }
+        ]
+    },
+    {
+        "group": "Resources",
+        "list": [
+            {
+                "text": "Materials",
+                "sprout": false,
+                "blossom": true,
+                "garden": true
+            },
+            {
+                "text": "Document Library",
+                "sprout": false,
+                "blossom": false,
+                "garden": true
+            },
+            {
+                "text": "Daily Devotional",
+                "sprout": false,
+                "blossom": true,
+                "garden": true
+            },
+            {
+                "text": "Stream to Social Media Platforms",
+                "sprout": false,
+                "blossom": true,
+                "garden": true
+            }
+        ]
+    },
+    {
+        "group": "Giving",
+        "list": [
+            {
+                "text": "Accept online Donations from multiple platforms",
+                "sprout": false,
+                "blossom": true,
+                "garden": true
+            },
+            {
+                "text": "Track giving for every member (Offering, Tithe, Seed)",
+                "sprout": false,
+                "blossom": true,
+                "garden": true
+            }
+        ]
+    },
+    {
+        "group": "Attendance",
+        "list": [
+            {
+                "text": "Manage Member Attendance",
+                "sprout": false,
+                "blossom": true,
+                "garden": true
+            },
+            {
+                "text": "Manage First Timer Attendance",
+                "sprout": false,
+                "blossom": true,
+                "garden": true
+            }
+        ]
+    },
+    {
+        "group": "Reporting",
+        "list": [
+            {
+                "text": "Weekly/Monthly Attendance Report",
+                "sprout": false,
+                "blossom": false,
+                "garden": true
+            },
+            {
+                "text": "Celebration (Birthdays/Wedding Anniversary)",
+                "sprout": false,
+                "blossom": false,
+                "garden": true
+            },
+            {
+                "text": "Members",
+                "sprout": false,
+                "blossom": false,
+                "garden": true
+            },
+            {
+                "text": "Givings",
+                "sprout": false,
+                "blossom": false,
+                "garden": true
+            },
+            {
+                "text": "Document Library",
+                "sprout": false,
+                "blossom": false,
+                "garden": true
+            }
+        ]
+    },
+    {
+        "group": "Accounting",
+        "list": [
+            {
+                "text": "Income",
+                "sprout": false,
+                "blossom": false,
+                "garden": true
+            },
+            {
+                "text": "Expenses",
+                "sprout": false,
+                "blossom": false,
+                "garden": true
+            },
+            {
+                "text": "Ledger",
+                "sprout": false,
+                "blossom": false,
+                "garden": true
+            }
+        ]
+    },
+    {
+        "group": "Control Panel",
+        "list": [
+            {
+                "text": "User Control Access",
+                "sprout": true,
+                "blossom": true,
+                "garden": true
+            }
+        ]
+    },
+    {
+        "group": "Support",
+        "list": [
+            {
+                "text": "Priority Support",
+                "sprout": true,
+                "blossom": true,
+                "garden": true
+            },
+            {
+                "text": "Free Import/Backup",
+                "sprout": true,
+                "blossom": true,
+                "garden": true
+            }
+        ]
+    }
+]

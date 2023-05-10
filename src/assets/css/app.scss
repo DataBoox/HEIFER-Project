@@ -1,0 +1,70 @@
+.navbar-scrolled {
+    background-color: rgb(14, 14, 40, 0.7);
+}
+.card-section-1 {
+    border-radius: 20px;
+    background: url('../images/soccer-bg-1.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 472px;
+
+}
+
+.section-entrance {
+    background: url('../images/entrance-img.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    // background-color: #260F38;
+    // border-radius: 24px;
+    padding: 35px 25px;
+    background-position-x: -60px;
+    background-position-y: -10px;
+}
+
+.section-game_on {
+    background: url('../images/game-on-background.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-color: #260F38;
+    border-radius: 24px;
+    padding: 30px 25px;
+}
+
+.section-container-1 {
+    background: url('../images/grid-background-lines.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.card-section-1-gradient {
+    // background: url('../images/gradient-1.png');
+    background: linear-gradient(97.83deg, rgb(83, 197, 207, 0.3) -53.91%, rgb(123, 152, 215, 0.3) 6.47%, rgba(79, 48, 106, 0.6) 73.8%, rgba(66, 16, 73, 0.6) 135.13%);
+    border-radius: 20px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-blend-mode: overlay;
+
+}
+
+.footer-quick_actions {
+    div {
+        margin-bottom: 25px;
+
+        b {
+            padding-bottom: 10px;
+        }
+    }
+}
+
+.navbar-nav {
+    .nav-link {
+        padding-right: 1.5rem !important;
+        padding-left: 1.5rem !important;
+        color: "#fff";
+    }
+}
