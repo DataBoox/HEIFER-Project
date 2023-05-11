@@ -7,7 +7,7 @@ import { useAuth } from 'store/auth/hooks';
 
 import { AdminMenuLinkItem, NavHeader, SidebarMenu as DashboardSidebarMenu } from './components';
 
-export const HomeScreen = () => {
+export const DashboardBaseViewContainer = () => {
     const { user } = useAuth();
     const navigate = useNavigate();
     const { isOpen, onOpen, onClose } = useDisclosure();
@@ -26,7 +26,7 @@ export const HomeScreen = () => {
     });
 
     return (
-      <Box minH="100vh" bg={"#F4F5F6"}>
+      <Box minH="100vh" bg={"#f3f3f9"}>
         <NavHeader
           onOpen={onOpen}
           onToggleSideBar={() => (isOpen ? onClose() : onOpen())}
@@ -66,14 +66,17 @@ export const HomeScreen = () => {
           {isLoading ? <PrimaryLoader height={"90vh"} /> : <Outlet />}
         </div>
 
-        <footer className="footer" style={{color: "#1E1E1E",
-              backgroundColor: "#F4F5F6",
-              border: "1px solid #D4D9DD", }} >
+        <footer className="footer bg-white">
           <div className="container-fluid">
             <div className="row">
               <div className="col-sm-6">
                 <script>document.write(new Date().getFullYear())</script>2023 ©
-                Heifer
+                BethelApp.
+              </div>
+              <div className="col-sm-6">
+                <div className="text-sm-end d-none d-sm-block">
+                  Designed &amp; Developed by TAYLORFIELD TECH
+                </div>
               </div>
             </div>
           </div>
