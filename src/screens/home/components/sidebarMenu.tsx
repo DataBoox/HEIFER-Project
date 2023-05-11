@@ -53,6 +53,7 @@ export const SidebarMenu: React.FC<SidebarMenuProps> = ({
             >
               {link.name}
             </NavItem>
+            
           ))}
         </Box>
       </Box>
