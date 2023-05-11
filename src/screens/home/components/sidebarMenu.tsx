@@ -23,7 +23,7 @@ export const SidebarMenu: React.FC<SidebarMenuProps> = ({
 
     return (
       <Box className="app-menu navbar-menu" {...rest}>
-        <Box style={{ backgroundColor: "#2A4153", height: "100px" }}>
+        <Box style={{  height: "100px" }}>
           <Image src={Heiferlogo} alt="Heifer" width="100%" maxHeight="100%" />
         </Box>
         <Box style={{ overflowY: "auto", height: "calc(100% - 100px)" }}>
@@ -119,7 +119,7 @@ const NavItem = ({
             p="4"
             cursor="pointer"
             bg={isView ? "#F2FAFC" : "transparent"}
-            color={isView ? "white" : "#2A4153"}
+            color={isView ? "white" : "#7F8C9F"}
             _hover={{
               boxSizing: "border-box",
               display: "flex",
@@ -127,6 +127,7 @@ const NavItem = ({
               alignItems: "center",
               gap: "16px",
               background: "#F2FAFC",
+              color: "#2A4153",
               borderRight: "2px solid #2A4153",
             }}
             style={{ transition: "all 0.6s ease-out" }}
@@ -194,7 +195,6 @@ const NavItem = ({
                   borderRight: "2px solid #2A4153",
                 }}
               >
-              
                 {link.icon && (
                   <Icon
                     mr="4"

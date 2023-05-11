@@ -108,6 +108,7 @@ export const NavHeader: React.FC<NavHeaderProps> = ({
                           className="mt-3"
                         >
                           {/* {formatName(user?.username ?? "").normal} */}
+                          Clara
                         </Text>
                       </VStack>
                       <Box display={{ base: "none", md: "flex" }}>
