@@ -14,7 +14,7 @@
     box-shadow: 0 1px 2px rgba(56, 65, 74, .15);
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
     #page-topbar {
         left: 250px;
     }
@@ -22,7 +22,7 @@
 
 
 .page-content {
-    padding: calc(70px + 1.5rem) calc(1.5rem * .5) 60px calc(1.5rem * .5);
+    padding: calc(70px + 3.5rem) calc(1.5rem * .5) 60px calc(1.5rem * .5);
 }
 
 .navbar-header {
@@ -185,12 +185,158 @@
 .footer {
     bottom: 0;
     padding: 20px calc(1.5rem * .5);
-    position: absolute;
+    position: fixed;
     right: 0;
     color: #98a6ad;
     left: 250px;
     height: 60px;
     background-color: var(--background);
+}
+// .auth-bg-cover {
+//     background: linear-gradient(-45deg, #053378 50%, #194387);
+// }
+
+// .auth-page-wrapper .auth-page-content {
+//     padding-bottom: 60px;
+//     position: relative;
+//     z-index: 2;
+//     width: 100%;
+// }
+
+// .auth-bg-cover .bg-overlay {
+//     background-image: url(../../assets/images/cover-pattern.png);
+//     background-position: center;
+//     background-size: cover;
+//     opacity: 1;
+//     background-color: transparent;
+// }
+
+// .auth-one-bg .bg-overlay {
+//     background: -webkit-gradient(linear, left top, right top, from(#364574), to(#405189));
+//     background: linear-gradient(to right, #364574, #405189);
+//     opacity: .7;
+// }
+
+.bg-overlay {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    top: 0;
+    opacity: .7;
+    // background-color: #000;
+}
+
+.fst-italic {
+    color: white;
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+.auth-bg-cover .footer {
+    color: rgba(255, 255, 255, .5);
+}
+
+.auth-page-wrapper .footer {
+    left: 0;
+    background-color: transparent;
+    color: var(--vz-body-color);
+}
+
+
+// .auth-one-bg {
+//     background-image: url(../../assets/images/auth-one-bg.jpg);
+//     background-position: center;
+//     background-size: cover;
+// }
+
+.card {
+    margin-bottom: 1.5rem;
+    -webkit-box-shadow: 0 1px 2px rgb(56 65 74 / 15%);
+    box-shadow: 0 1px 2px rgb(56 65 74 / 15%);
+    border: 0
+}
+
+.card-animate {
+    -webkit-transition: all .4s;
+    transition: all .4s;
+}
+
+.card-animate:hover {
+    -webkit-transform: translateY(calc(-1.5rem / 5));
+    transform: translateY(calc(-1.5rem / 5));
+    -webkit-box-shadow: 0 5px 10px rgb(30 32 37 / 12%);
+    box-shadow: 0 5px 10px rgb(30 32 37 / 12%);
+}
+
+.animate {
+    -webkit-transition: all .4s;
+    transition: all .4s;
+}
+
+.animate:hover {
+    -webkit-transform: translateY(calc(-1.5rem / 5));
+    transform: translateY(calc(-1.5rem / 5));
+    -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.auth-form-section {
+    z-index: 9;
+    background: #fff;
+}
+
+.auth-bg-cover .footer {
+    color: rgba(255, 255, 255, .5);
+}
+
+.auth-success-svg {
+    height: 9rem;
+}
+
+/* Hide the default scrollbar */
+::-webkit-scrollbar {
+    width: 0.3rem;
+}
+
+/* Style the thumb */
+::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 10px;
+}
+
+/* Style the track */
+::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+}
+
+::-webkit-scrollbar-corner {
+    background-color: transparent;
+}
+
+@media (min-width: 1200px) {
+
+    .container,
+    .container-lg,
+    .container-md,
+    .container-sm,
+    .container-xl {
+        max-width: 1140px;
+    }
+}
+@media (max-width: 768px) {
+.footer {
+        bottom: 0;
+        padding: 20px 0.75rem;
+        position: fixed;
+        right: 0;
+        color: #98a6ad;
+        left: 0;
+        height: 10%;
+        background-color: var(--background);
+    }
 }
 
 .add-transition {

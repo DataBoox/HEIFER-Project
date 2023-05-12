@@ -23,9 +23,21 @@ import { LogoutAlertDialog } from "../../../components";
 import { formatName } from '../../../utilities/formatting';
 import { useNavigate } from "react-router-dom";
 
+const SidebarOverlay = ({  onToggleSideBar }: {  onToggleSideBar: () => void }) => {
+  return (
+    <Box
+      position="fixed"
+      top={0}
+      left={0}
+      right={0}
+      bottom={0}
+      onClick={ onToggleSideBar}
+    />
+  );
+};
 interface NavHeaderProps extends FlexProps {
     onOpen: () => void;
-    onToggleSideBar?: () => void;
+    onToggleSideBar: () => void;
 }
 export const NavHeader: React.FC<NavHeaderProps> = ({
     onOpen,
@@ -36,7 +48,9 @@ export const NavHeader: React.FC<NavHeaderProps> = ({
     const [show, setShow] = useState({ logout: false });
     const navigate = useNavigate();
     
-    return (
+  return (
+    <>
+      <SidebarOverlay onToggleSideBar={onToggleSideBar} /> 
       <div id="page-topbar" className="topbar-shadow">
         <div id="layout-wrapper">
           <div
@@ -148,5 +162,6 @@ export const NavHeader: React.FC<NavHeaderProps> = ({
           />
         </div>
       </div>
-    );
+    </>
+  );
 };
