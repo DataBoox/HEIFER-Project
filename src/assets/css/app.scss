@@ -87,57 +87,8 @@ $body-bg: #fff;
     -webkit-tap-highlight-color: transparent;
 }
 
-:root {
-    --vz-vertical-menu-bg: #fff;
-    --vz-vertical-menu-item-color: #6d7080;
-    --vz-vertical-menu-item-hover-color: #405189;
-    --vz-vertical-menu-item-active-color: #405189;
-    --vz-vertical-menu-sub-item-color: #7c7f90;
-    --vz-vertical-menu-sub-item-hover-color: #405189;
-    --vz-vertical-menu-sub-item-active-color: #405189;
-    --vz-vertical-menu-title-color: #919da9;
-    --vz-vertical-menu-bg-dark: #405189;
-    --vz-vertical-menu-item-color-dark: #abb9e8;
-    --vz-vertical-menu-item-hover-color-dark: #fff;
-    --vz-vertical-menu-item-active-color-dark: #fff;
-    --vz-vertical-menu-sub-item-color-dark: #abb9e8;
-    --vz-vertical-menu-sub-item-hover-color-dark: #fff;
-    --vz-vertical-menu-sub-item-active-color-dark: #fff;
-    --vz-vertical-menu-title-color-dark: #838fb9;
-    --vz-header-bg: #fff;
-    --vz-header-item-color: #e9ecef;
-    --vz-header-bg-dark: #405189;
-    --vz-header-item-color-dark: #b0c4d9;
-    --vz-topbar-search-bg: #f3f3f9;
-    --vz-topbar-user-bg: #f3f3f9;
-    --vz-topbar-user-bg-dark: #52639c;
-    --vz-footer-bg: #fff;
-    --vz-footer-color: #98a6ad;
-    --vz-topnav-bg: #fff;
-    --vz-topnav-item-color: #6d7080;
-    --vz-topnav-item-color-active: #405189;
-    --vz-twocolumn-menu-iconview-bg: #fff;
-    --vz-twocolumn-menu-bg: #fff;
-    --vz-twocolumn-menu-iconview-bg-dark: var(--vz-vertical-menu-bg-dark);
-    --vz-twocolumn-menu-bg-dark: #435590;
-    --vz-twocolumn-menu-item-color-dark: var(--vz-vertical-menu-item-color-dark);
-    --vz-twocolumn-menu-item-active-color-dark: #fff;
-    --vz-twocolumn-menu-item-active-bg-dark: rgba(255, 255, 255, 0.15);
-    --vz-boxed-body-bg: #e5e5f2;
-    --vz-heading-color: #495057;
-    --vz-link-color: #405189;
-    --vz-link-hover-color: #405189;
-    --vz-border-color: #e9ebec;
-    --vz-card-bg-custom: #fff;
-    --vz-card-logo-dark: block;
-    --vz-card-logo-light: none;
-    --vz-list-group-hover-bg: #f3f6f9;
-    --vz-input-bg: #fff;
-    --vz-input-border: #ced4da;
-    --vz-input-focus-border: #a0a8c4;
-    --vz-input-disabled-bg: #eff2f7;
-    --vz-input-group-addon-bg: #eff2f7;
-    --vz-input-check-border: var(--vz-input-border);
+p {
+    color: #7F8C9F;
 }
 
 #seyi {
@@ -164,6 +115,7 @@ h6 {
     margin-bottom: .5rem;
     line-height: 1.2;
     font-family: 'Montserrat' !important;
+    color: #2A4153;
 }
 
 h4 {

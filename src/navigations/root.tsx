@@ -1,7 +1,7 @@
 // import { AuthBoxedContainer, DashboardBaseViewContainer } from 'containers';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { HomeScreen, LoginScreen } from 'screens';
-import { DashboardScreen, RegisterFarmers } from 'screens/heiferScreens';
+import { DashboardScreen, ProjectScreen, RegisterFarmers } from 'screens/heiferScreens';
 
 
 
@@ -26,6 +26,7 @@ export const RootNavigator = () => {
         <Route path="/" element={<HomeScreen />} >
           <Route index element={<DashboardScreen />} />
            <Route path="register" element={<RegisterFarmers />} />
+           <Route path="projects" element={<ProjectScreen />} />
           </Route>
       </Routes>
     </BrowserRouter>

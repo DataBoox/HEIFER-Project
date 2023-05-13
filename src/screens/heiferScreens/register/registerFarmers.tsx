@@ -17,24 +17,25 @@ export const RegisterFarmers = () => {
 const surveyFormCode = `
   <iframe
     src="https://heifer.surveycto.com/collect/naija_unlock_actual_income_assessment?appearance=min"
-    height="500"
+    height="600"
     width="100%"
     allow-same-origin
   ></iframe>
 `;
-
+//  src =
+//    "https://example.surveycto.com/collect/apiToken/formApiKey?appearance=minimal";
     return (
       <ContentBodyContainer
         title="Register Farmer"
         routesRule={"registerFarmers"}
       >
-        <div
-          className="col-xl-12"
-        >
+        <div className="col-xl-12">
           <DashboardCardContainer
-            cardHeaderTitle={"Participant Details"}
+            // cardHeaderTitle={"Participant Details"}
             bodyClassName={"p-4 m-3"}
           >
+            <h1 className="fw-bold" style={{ textAlign: "center" }}>Register Farmers</h1>
+            <p style={{ textAlign: "center" }}>Kindly provide farmer's information</p>
             <div dangerouslySetInnerHTML={{ __html: surveyFormCode }} />
           </DashboardCardContainer>
         </div>
