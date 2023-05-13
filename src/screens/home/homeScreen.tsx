@@ -15,15 +15,15 @@ export const HomeScreen = () => {
     const windowWidth = useWindowWidth()
     let sidebarMenu = AdminMenuLinkItem;
 
-    useEffect(() => {
-        let redirectTo: string | null = null;
-        setTimeout(() => {
-            if (user && !user?.email_verification) redirectTo = "/verify/email";
-            if (!user) redirectTo = "/login";
-            if (redirectTo) navigate(redirectTo)
-            setIsLoading(false);
-        }, 2000)
-    });
+    // useEffect(() => {
+    //     let redirectTo: string | null = null;
+    //     setTimeout(() => {
+    //         if (user && !user?.email_verification) redirectTo = "/verify/email";
+    //         if (!user) redirectTo = "/login";
+    //         if (redirectTo) navigate(redirectTo)
+    //         setIsLoading(false);
+    //     }, 2000)
+    // });
 
     return (
       <Box minH="100vh" bg={"#F4F5F6"}>
