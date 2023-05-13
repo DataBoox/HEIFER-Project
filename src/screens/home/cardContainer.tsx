@@ -1,28 +1,35 @@
-import React from "react";
-import { Card, Col, ColProps } from "react-bootstrap"
-import { Divider } from 'components/styled';
-
-interface Properties extends ColProps{
-    title?: string;
-    divder?: boolean;
-    children?: React.ReactNode;
-};
-
-export const CardContainer: React.FC<Properties> = ({
-    title,
-    divder,
-    children,
-    ...rest
-}) => {
-    return (
-        <Col className="pb-4" {...rest}>
-            <Card>
-                <Card.Header>
-                    <Card.Title >{title}</Card.Title>
-                </Card.Header>
-                { divder ?? <Divider/> }
-                <Card.Body>{children}</Card.Body>
-            </Card>
-        </Col>
-    )
+interface CardContainerProps {
+  cardHeaderTitle?: string;
+  cardHeaderProps?: React.DetailedHTMLProps<
+    React.HTMLAttributes<HTMLHeadingElement>,
+    HTMLHeadingElement
+  >;
+  leftCardHeaderComponent?: React.ReactNode;
+  rightCardHeaderComponent?: React.ReactNode;
+  bodyClassName?: string;
+  children?: React.ReactNode;
 }
+export const DashboardCardContainer: React.FC<CardContainerProps> = ({
+  cardHeaderTitle,
+  cardHeaderProps,
+  leftCardHeaderComponent,
+  rightCardHeaderComponent,
+  bodyClassName,
+  children,
+}) => {
+  return (
+    <div className="card custom-card">
+      <div className="card-header align-items-center d-flex">
+        {leftCardHeaderComponent}
+        <h4
+          className="card-title mb-0 flex-grow-1 fw-bold"
+          {...cardHeaderProps}
+        >
+          {cardHeaderTitle}
+        </h4>
+        {rightCardHeaderComponent}
+      </div>
+      <div className={`card-body ${bodyClassName}`}>{children}</div>
+    </div>
+  );
+};

@@ -14,6 +14,19 @@ interface SidebarMenuProps extends BoxProps {
     menuLinkItem: Array<LinkItemProps>;
 }
 
+const SidebarOverlay = ({ onClose }: { onClose: () => void }) => {
+  return (
+    <Box
+      position="fixed"
+      top={0}
+      left={0}
+      right={0}
+      bottom={0}
+      onClick={onClose}
+    />
+  );
+};
+
 export const SidebarMenu: React.FC<SidebarMenuProps> = ({
     onClose,
     menuLinkItem,
@@ -22,11 +35,13 @@ export const SidebarMenu: React.FC<SidebarMenuProps> = ({
     const [selected, setSelected] = useState<LinkItemProps>();
 
     return (
+      <>
+        <SidebarOverlay onClose={onClose} /> 
       <Box className="app-menu navbar-menu" {...rest}>
-        <Box style={{  height: "100px" }}>
+        <Box style={{ height: "100px" }}>
           <Image src={Heiferlogo} alt="Heifer" width="100%" maxHeight="100%" />
         </Box>
-        <Box style={{ overflowY: "auto", height: "calc(100% - 100px)" }}>
+        <Box style={{ overflowY: "auto", height: "calc(100% - 80px)" }}>
           <Flex
             alignItems="center"
             mx={{ base: "6", md: "8" }}
@@ -34,7 +49,7 @@ export const SidebarMenu: React.FC<SidebarMenuProps> = ({
           >
             <CloseButton
               color="#fff"
-              display={{ base: "flex", md: "none" }}
+              display={{ base: "flex", md: "none"}}
               onClick={onClose}
             />
           </Flex>
@@ -55,7 +70,8 @@ export const SidebarMenu: React.FC<SidebarMenuProps> = ({
             </NavItem>
           ))}
         </Box>
-      </Box>
+        </Box>
+      </>
     );
 };
 
