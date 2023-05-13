@@ -24,7 +24,7 @@ export const Breadcrumb:React.FC<BreadcrumbProps> = ({
     
     return (
       <div className="row">
-        <div className="col-12 p-3">
+        <div className="col-12 m-4">
           <div className="d-flex align-items-lg-center flex-lg-row flex-column">
             <div className="flex-grow-1">
               <h4

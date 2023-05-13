@@ -41,7 +41,7 @@ export const SidebarMenu: React.FC<SidebarMenuProps> = ({
         <Box style={{ height: "100px" }}>
           <Image src={Heiferlogo} alt="Heifer" width="100%" maxHeight="100%" />
         </Box>
-        <Box style={{ overflowY: "auto", height: "calc(100% - 80px)" }}>
+        <Box className="mt-4 p-3" style={{ overflowY: "auto", height: "calc(100% - 80px)" }}>
           <Flex
             alignItems="center"
             mx={{ base: "6", md: "8" }}
