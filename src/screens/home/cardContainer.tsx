@@ -23,6 +23,9 @@ export const DashboardCardContainer: React.FC<CardContainerProps> = ({
         {leftCardHeaderComponent}
         <h4
           className="card-title mb-0 flex-grow-1 fw-bold"
+          style={{
+            color: "#2A4153",
+          }}
           {...cardHeaderProps}
         >
           {cardHeaderTitle}
