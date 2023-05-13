@@ -1,4 +1,4 @@
-import { ContentBodyContainer, DashboardCardContainer } from "../home";
+import { ContentBodyContainer } from "../home";
 import { useNavigate } from "react-router-dom";
 import { FaStore, FaShapes } from "react-icons/fa";
 import {
@@ -84,10 +84,7 @@ export const DashboardScreen = () => {
                   {" "}
                   Register Participants
                 </p>
-                <h4 className="fs-1 fw-bold text-dark mb-4">10</h4>
-                <p className=" badge mb-0 " style={{ color: "#fff" }}>
-                  3,700
-                </p>
+                <h4 className="fs-1 fw-bold text-dark mb-5">10</h4>
               </div>
             </div>
             {/* end card body */}
@@ -121,10 +118,8 @@ export const DashboardScreen = () => {
                   {" "}
                   States Covered
                 </p>
-                <h4 className="fs-1 fw-bold text-dark mb-4">5</h4>
-                <p className=" badge mb-0 " style={{ color: "#fff" }}>
-                  View net earnings
-                </p>
+                <h4 className="fs-1 fw-bold text-dark mb-5">5</h4>
+                
               </div>
             </div>
             {/* end card body */}
@@ -158,10 +153,8 @@ export const DashboardScreen = () => {
                   {" "}
                   LGAs Covered
                 </p>
-                <h4 className="fs-1 fw-bold text-dark mb-4">48</h4>
-                <p className=" badge mb-0 " style={{ color: "#fff" }}>
-                  View net earnings
-                </p>
+                <h4 className="fs-1 fw-bold text-dark mb-5">48</h4>
+                
               </div>
             </div>
             {/* end card body */}
@@ -195,10 +188,8 @@ export const DashboardScreen = () => {
                   {" "}
                   Communities Covered
                 </p>
-                <h4 className="fs-1 fw-bold text-dark mb-4">209</h4>
-                <p className=" badge mb-0 " style={{ color: "#fff" }}>
-                  View net earnings
-                </p>
+                <h4 className="fs-1 fw-bold text-dark mb-5">209</h4>
+                
               </div>
             </div>
             {/* end card body */}
@@ -232,10 +223,8 @@ export const DashboardScreen = () => {
                   {" "}
                   No. of SH Groups
                 </p>
-                <h4 className="fs-1 fw-bold text-dark mb-4">50</h4>
-                <p className=" badge mb-0 " style={{ color: "#fff" }}>
-                  View net earnings
-                </p>
+                <h4 className="fs-1 fw-bold text-dark mb-5">50</h4>
+                
               </div>
             </div>
             {/* end card body */}
@@ -269,10 +258,8 @@ export const DashboardScreen = () => {
                   {" "}
                   Intervention Administered
                 </p>
-                <h4 className="fs-1 fw-bold text-dark mb-4">30,700</h4>
-                <p className=" badge mb-0 " style={{ color: "#fff" }}>
-                  View net earnings
-                </p>
+                <h4 className="fs-1 fw-bold text-dark mb-5">30,700</h4>
+                
               </div>
             </div>
             {/* end card body */}
@@ -306,10 +293,8 @@ export const DashboardScreen = () => {
                   {" "}
                   Team Members
                 </p>
-                <h4 className="fs-1 fw-bold text-dark mb-4">25</h4>
-                <p className=" badge mb-0 " style={{ color: "#fff" }}>
-                  View net earnings
-                </p>
+                <h4 className="fs-1 fw-bold text-dark mb-5">25</h4>
+                
               </div>
             </div>
             {/* end card body */}
@@ -343,7 +328,7 @@ export const DashboardScreen = () => {
                   {" "}
                   Annual Income
                 </p>
-                <h4 className="fs-1 fw-bold text-dark mb-4">73,276,931.28</h4>
+                <h4 className="fs-1 fw-bold text-dark mb-5">73,276,931.28</h4>
                 <p
                   className="badge bg-light mb-0 fw-light fs-5"
                   style={{ color: "#0BB508" }}
@@ -383,7 +368,7 @@ export const DashboardScreen = () => {
                   {" "}
                   Living Income Benchmark
                 </p>
-                <h4 className="fs-1 fw-bold text-dark mb-4">3,214,628.45</h4>
+                <h4 className="fs-1 fw-bold text-dark mb-5">3,214,628.45</h4>
                 <p
                   className="badge bg-light mb-0 fw-light fs-5"
                   style={{ color: "#0BB508" }}
