@@ -32,7 +32,7 @@ export const LogoutAlertDialog: React.FC<LogoutAlertDialogProps> = ({
                 leastDestructiveRef={cancelRef}
                 onClose={onClose}
             >
-                <AlertDialogOverlay>
+                <AlertDialogOverlay className="text-dark">
                     <AlertDialogContent>
                         <AlertDialogHeader fontSize='lg' fontWeight='bold'>
                             Sign Out

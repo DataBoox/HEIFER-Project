@@ -145,7 +145,7 @@ export const NavHeader: React.FC<NavHeaderProps> = ({
                     <MenuDivider />
                     <MenuItem
                       onClick={() =>
-                        setShow((prev) => ({ ...prev, logout: true }))
+                        setShow((prev) => ({ ...prev, logout: true}))
                       }
                     >
                       Sign out
