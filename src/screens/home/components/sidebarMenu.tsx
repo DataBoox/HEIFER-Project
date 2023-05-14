@@ -124,10 +124,13 @@ const NavItem = ({
     return (
       <Stack style={{ cursor: "pointer" }} className="add-transition" mb={1}>
         <Link
-          href={"#"}
+          href="#"
           style={{ textDecoration: "none" }}
           _focus={{ boxShadow: "none" }}
-          onClick={() => navAction(path, dropdownItems)}
+          onClick={(e) => {
+            e.preventDefault();
+            navAction(path, dropdownItems);
+          }}
           className="add-transition"
         >
           <Flex
@@ -204,7 +207,7 @@ const NavItem = ({
                 bg={
                   link.path && selPath === link.path ? "#F2FAFC" : "transparent"
                 }
-                color={link.path && selPath === link.path ? "navy" : "#2A4153"}
+                color={link.path && selPath === link.path ? "#2A4153" : "white"}
                 _hover={{
                   bg: "#F2FAFC",
                   color: "#2A4153",
