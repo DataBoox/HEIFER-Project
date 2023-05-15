@@ -138,7 +138,7 @@ const NavItem = ({
             p="4"
             cursor="pointer"
             bg={isView ? "#F2FAFC" : "transparent"}
-            color={isView ? "white" : "#7F8C9F"}
+            color={isView ? "#2A4153" : "#2A4153"}
             _hover={{
               boxSizing: "border-box",
               display: "flex",
