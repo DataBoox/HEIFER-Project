@@ -15,22 +15,20 @@ import { ExportToCsv } from "export-to-csv";
 import { Button } from "@mui/material";
 import { FaArchive, FaFileImport, FaTrash, FaUsers } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import { BaseMaterialTableProps } from "./interface";
 import { Project } from "@store/projects";
 
-interface AllProjectsTableProps {
-  data?: Project[];
-  rowTotal?: number;
-  isLoading?: boolean;
-  tableRef?: React.MutableRefObject<MRT_TableInstance<Project> | null>;
-  handleDeleteSelected?: (rows: MRT_Row<Project>[]) => void;
+type TableData = Project;
+
+interface AllProjectsTableProps extends BaseMaterialTableProps {
+    data?: TableData[],
 }
+
 
 export const ThemeTable: React.FC<AllProjectsTableProps> = ({
   data = [],
   rowTotal,
-  tableRef,
   isLoading = false,
-  handleDeleteSelected = () => {},
 }) => {
   const navigate = useNavigate();
   const columns = useAllProjectsColumn();
@@ -59,7 +57,7 @@ export const ThemeTable: React.FC<AllProjectsTableProps> = ({
 
   return (
     <MaterialReactTable
-      tableInstanceRef={tableRef}
+      // tableInstanceRef={tableRef}
       columns={columns}
       data={data}
       enableRowSelection
@@ -72,7 +70,7 @@ export const ThemeTable: React.FC<AllProjectsTableProps> = ({
       onPaginationChange={setPagination}
       onSortingChange={setSorting}
       rowCount={rowTotal}
-      muiTableBodyCellProps={{ sx: { border: "0.8px solid #e3eaef" } }}
+      // muiTableBodyCellProps={{ sx: { border: "0.8px solid #e3eaef" } }}
       state={{
         sorting,
         columnFilters,
@@ -80,6 +78,8 @@ export const ThemeTable: React.FC<AllProjectsTableProps> = ({
         isLoading,
         pagination,
       }}
+      enableRowActions
+      positionActionsColumn="last"
       renderTopToolbarCustomActions={({ table }) => (
         <TableActionButtons
           table={table}
@@ -95,51 +95,7 @@ export const ThemeTable: React.FC<AllProjectsTableProps> = ({
           handleExportSelectedRows={() =>
             handleExportRows(table.getSelectedRowModel().rows)
           }
-          handleDeleteSelected={() =>
-            handleDeleteSelected(table.getSelectedRowModel().rows)
-          }
           handleExportAllData={handleExportData}
-          deleteText={"Archive Selected"}
-          deleteButtonProps={{ startIcon: <FaArchive size={12} /> }}
-          afterDeleteComponents={
-            Boolean(
-              table.getIsSomeRowsSelected() || table.getIsAllRowsSelected()
-            ) ? (
-              <Button
-                color="error"
-                variant="contained"
-                onClick={() =>
-                  handleDeleteSelected(table.getSelectedRowModel().rows)
-                }
-                startIcon={<FaTrash size={12} color={"#fff"} />}
-                className={"fw-bold"}
-              >
-                Delete Records
-              </Button>
-            ) : null
-          }
-          extraComponents={
-            <>
-              <Button
-                color="primary"
-                variant="contained"
-                onClick={() => {}}
-                startIcon={<FaFileImport size={12} />}
-                className={"fw-bold"}
-              >
-                Import Records
-              </Button>
-              <Button
-                color="info"
-                variant="contained"
-                onClick={() => navigate("/church/archived")}
-                startIcon={<FaUsers size={12} />}
-                className={"fw-bold"}
-              >
-                Archived Members
-              </Button>
-            </>
-          }
         />
       )}
       icons={{

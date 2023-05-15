@@ -24,7 +24,7 @@ export const ProjectScreen = () => {
           bodyClassName={"p-4 m-3"}
         >
           {/* <div style={{ height: 400, width: "100%" }}></div> */}
-           <ThemeTable/>
+           <ThemeTable />
         </DashboardCardContainer>
       </div>
     </ContentBodyContainer>
