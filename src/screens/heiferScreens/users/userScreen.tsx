@@ -28,36 +28,35 @@ export const UserScreen = () => {
     validationSchema: AddUserScheme(),
     onSubmit: () => initRequest(),
   });
-    
-    const initRequest = () => {
-      request(values)
-        .unwrap()
-        .then((res) => {
-          // console.log(res);
-          toast({
-            title: "User Added",
-            description: res?.response,
-            status: "success",
-          });
-          resetForm({}); // reset form
-          initOnClose();
-        })
-        .catch((error) => {
-          // console.log(error);
-          toast({
-            title: "Request Failed",
-            description: resolveApiError(error),
-            status: "error",
-          });
-        });
-    };
 
-    const initOnClose = () => {
-      setShow(false);
-      onClose();
-    };
-  //  src =
-  //    "https://example.surveycto.com/collect/apiToken/formApiKey?appearance=minimal";
+  const initRequest = () => {
+    // request(values)
+    //   .unwrap()
+    //   .then((res) => {
+    //     // console.log(res);
+    //     toast({
+    //       title: "User Added",
+    //       description: res?.response,
+    //       status: "success",
+    //     });
+    //     resetForm({}); // reset form
+    //     initOnClose();
+    //   })
+    //   .catch((error) => {
+    //     // console.log(error);
+    //     toast({
+    //       title: "Request Failed",
+    //       description: resolveApiError(error),
+    //       status: "error",
+    //     });
+    //   });
+  };
+
+  const initOnClose = () => {
+    // setShow(false);
+    // onClose();
+  };
+
   return (
     <ContentBodyContainer
       title="Register User"
@@ -69,12 +68,12 @@ export const UserScreen = () => {
           bodyClassName={"p-4 m-3"}
         >
           <h1 className="fw-bold" style={{ textAlign: "center" }}>
-            Create a new Commuinity Facilitator
+            Create a new Community Facilitator
           </h1>
           <p style={{ textAlign: "center" }}>
             Kindly provide information
           </p>
-          <div dangerouslySetInnerHTML={{ __html: surveyFormCode }} />
+          {/* <div dangerouslySetInnerHTML={{ __html: surveyFormCode }} /> */}
         </DashboardCardContainer>
       </div>
     </ContentBodyContainer>
