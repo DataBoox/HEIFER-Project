@@ -16,7 +16,7 @@ export const RegisterFarmers = () => {
     const navigate = useNavigate();
 const surveyFormCode = `
   <iframe
-    src="https://heifer.surveycto.com/collect/naija_unlock_actual_income_assessment?appearance=min"
+    src="https://heifer.surveycto.com/collect/farmers_household_registration_form?appearance=min"
     height="600"
     width="100%"
     allow-same-origin

@@ -34,7 +34,7 @@ export const AdminMenuLinkItem: Array<LinkItemProps> = [
   { name: "Farmers", icon: GiFarmer, path: "farmers" },
   { name: "Groups", icon: BsGridFill, path: "groups" },
   { name: "Interventions", icon: BsFillPatchCheckFill, path: "interventions" },
-  { name: "Teams", icon: FaUser, path: "teams" },
+  { name: "Users", icon: FaUser, path: "users" },
   { name: "Schedule", icon: BiCalendar, path: "schedule" },
   { name: "Communication", icon: HiMail, path: "communication" },
   { name: "Reports", icon: HiDocument, path: "reports" },
