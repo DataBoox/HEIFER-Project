@@ -17,7 +17,12 @@ import { toast } from "react-toastify";
 
 
 export const UserScreen = () => {
+<<<<<<< HEAD
    const navigate = useNavigate();
+=======
+  const [request, { isLoading }] = useAddUserMutation();
+  const toast = useToast({ position: "top-right" });
+>>>>>>> 7dcbb64f2d7d0f58aae444203b74fbaf6224a790
   const {
     values,
     errors,
@@ -38,17 +43,20 @@ export const UserScreen = () => {
     validationSchema: AddUserScheme(),
     onSubmit: async () => initRequest(),
   });
-    
-    const initRequest = () => {
-        const payload: any = {
-            ...values,
-        };
+
+  const initRequest = () => {
+    const payload: any = {
+      ...values,
     };
+<<<<<<< HEAD
 const [request, { isLoading }] = useAddUserMutation();
    const toast = useToast({ position: "top-right" });
   function onSearch(value: string): void {
     throw new Error("Search failed.");
   }
+=======
+  };
+>>>>>>> 7dcbb64f2d7d0f58aae444203b74fbaf6224a790
 
   return (
     <ContentBodyContainer
@@ -94,7 +102,33 @@ const [request, { isLoading }] = useAddUserMutation();
         <DashboardCardContainer
           // cardHeaderTitle={"Participant Details"}
           bodyClassName={"p-4 m-3"}
+<<<<<<< HEAD
         ></DashboardCardContainer>
+=======
+        >
+          <h1 className="fw-bold" style={{ textAlign: "center" }}>
+            Create a new Community Facilitator
+          </h1>
+          <p style={{ textAlign: "center" }}>
+            Kindly provide information
+          </p>
+          <div className="row gy-4">
+            <div className="col-xxl-4 col-md-6">
+              <PrimaryInput
+                isRequired
+                name="lname"
+                label="Last Name"
+                placeholder="Enter your last name"
+                value={values.lname}
+                error={Boolean(touched.lname && errors.lname)}
+                bottomText={errors.lname}
+                onChange={handleChange}
+                isDisabled={isLoading}
+              />
+            </div>
+          </div>
+        </DashboardCardContainer>
+>>>>>>> 7dcbb64f2d7d0f58aae444203b74fbaf6224a790
       </div>
     </ContentBodyContainer>
   );
