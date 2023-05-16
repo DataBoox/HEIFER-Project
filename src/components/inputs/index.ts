@@ -3,6 +3,8 @@ export * from './select';
 export * from './phone'
 export * from './textarea'
 export * from './multiSelect'
+export * from './nigerianStateSelect'
+export * from './nigerianLgaSelect'
 export * from './checkbox'
 export * from './inputWrapper'
 export * from './dropzone'

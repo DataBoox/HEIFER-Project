@@ -34,47 +34,59 @@ export const ChakraAlertDialog: React.FC<ChakraAlertDialogProps> = ({
     const cancelRef = React.useRef<any>()
 
     return (
-        <>
-            <AlertDialog
-                {...rest}
-                isOpen={isOpen}
-                leastDestructiveRef={cancelRef}
-                onClose={onClose}
-            >
-                <AlertDialogOverlay>
-                    <AlertDialogContent>
-                        <AlertDialogHeader fontSize='lg' fontWeight='bold' {...headerProps}>
-                            {title}
-                        </AlertDialogHeader>
+      <>
+        <AlertDialog
+          {...rest}
+          isOpen={isOpen}
+          leastDestructiveRef={cancelRef}
+          onClose={onClose}
+        >
+          <AlertDialogOverlay>
+            <AlertDialogContent mx="auto">
+              <AlertDialogHeader
+                style={{ padding: "1rem" }}
+                fontSize="lg"
+                fontWeight="bold"
+                {...headerProps}
+              >
+                {title}
+              </AlertDialogHeader>
 
-                        <AlertDialogBody>
-                            {children}
-                        </AlertDialogBody>
+              <AlertDialogBody>{children}</AlertDialogBody>
 
-                        <AlertDialogFooter>
-                            <Button
-                                ref={cancelRef}
-                                onClick={onClose}
-                                isLoading={isCancelling}
-                                {...closeButtonProps}
-                            >
-                                {cancelButtonDefaultChild}
-                            </Button>
-                            <Button
-                                colorScheme='red'
-                                onClick={onProceed}
-                                ml={3}
-                                isLoading={isProceeding}
-                                {...proceedButtonProps}
-                            >
-                                {proceedButtonDefaultChild}
-                            </Button>
-                        </AlertDialogFooter>
-                    </AlertDialogContent>
-                </AlertDialogOverlay>
-            </AlertDialog>
-        </>
-    )
+              <AlertDialogFooter justifyContent="center">
+                <Button
+                  ref={cancelRef}
+                  onClick={onClose}
+                  isLoading={isCancelling}
+                  {...closeButtonProps}
+                  padding="16px 20px"
+                  bgColor="transparent"
+                  border="1px solid #2A4153"
+                  borderRadius={0}
+                  _hover={{ bgColor: "transparent", borderColor: "#2A4153" }}
+                >
+                  {cancelButtonDefaultChild}
+                </Button>
+
+                <Button
+                  onClick={onProceed}
+                  ml={3}
+                  isLoading={isProceeding}
+                  {...proceedButtonProps}
+                  padding="16px 20px"
+                  bgColor="#2A4153"
+                  borderRadius={0}
+                  _hover={{ bgColor: "#2A4153" }}
+                >
+                  {proceedButtonDefaultChild}
+                </Button>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialogOverlay>
+        </AlertDialog>
+      </>
+    );
 }
 
 export const BasicAlertDialog = ChakraAlertDialog;
