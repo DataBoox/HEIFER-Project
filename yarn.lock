@@ -8042,6 +8042,11 @@ mz@^2.7.0:
     object-assign "^4.0.1"
     thenify-all "^1.0.0"
 
+naija-state-local-government@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/naija-state-local-government/-/naija-state-local-government-1.1.2.tgz#c88194155d62a147e6b3efb2438558b4ff22e717"
+  integrity sha512-6ZHWKQ5FuKzphGs1axmKte33s9smipIpTa4q3crNYM8nLjiOjMpZhd0XCeGq8S2z0vJ3y+JdU0FXYNay0aSUJA==
+
 nanoid@^3.3.6:
   version "3.3.6"
   resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-3.3.6.tgz#443380c856d6e9f9824267d960b4236ad583ea4c"
@@ -8066,6 +8071,11 @@ neo-async@^2.6.2:
   version "2.6.2"
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.2.tgz#b4aafb93e3aeb2d8174ca53cf163ab7d7308305f"
   integrity sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==
+
+nigeria-states-lgas@^0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/nigeria-states-lgas/-/nigeria-states-lgas-0.0.2.tgz#4341e735d902ba3aa5a854ea0b78548c81e46af9"
+  integrity sha512-VzuqdoRsm1Dd+Rz3D8k2zsit7g66vKec3bTwHbAooKT3jiKwoaP3p1F7SvZeKYO1UbFQ0xx0KxgZvNJsX45R0A==
 
 no-case@^3.0.4:
   version "3.0.4"
