@@ -3,6 +3,7 @@ import authReducer from './auth/slice';
 import { authApi } from './auth/api';
 import { userApi } from "./user/api"
 import { uploadApi } from './uploads';
+import { projectApi } from './projects';
 
 
 export const store = configureStore({
@@ -10,6 +11,7 @@ export const store = configureStore({
         [authApi.reducerPath]: authApi.reducer,
         [userApi.reducerPath]: userApi.reducer,
         [uploadApi.reducerPath]: uploadApi.reducer,
+        [projectApi.reducerPath]: projectApi.reducer,
         auth: authReducer,
     },
     middleware: (getDefaultMiddleware) =>
@@ -20,6 +22,7 @@ export const store = configureStore({
             authApi.middleware,
             userApi.middleware,
             uploadApi.middleware,
+            projectApi.middleware,
         )
 });
 
