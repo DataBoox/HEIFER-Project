@@ -4,34 +4,29 @@ import {
   SortingState,
 } from "@tanstack/react-table";
 import MaterialReactTable, {
-  MRT_Row,
-  MRT_TableInstance,
+  MRT_ColumnDef,
+  MRT_Row
 } from "material-react-table";
 import { useState } from "react";
 import { FiArrowDown } from "react-icons/fi";
-import { useAllProjectsColumn } from "./columns";
 import { TableActionButtons } from "./components/actionButtons";
 import { ExportToCsv } from "export-to-csv";
-import { Button } from "@mui/material";
-import { FaArchive, FaFileImport, FaTrash, FaUsers } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
 import { BaseMaterialTableProps } from "./interface";
-import { Project } from "@store/projects";
 
-type TableData = Project;
+type TableData = any;
 
 interface AllProjectsTableProps extends BaseMaterialTableProps {
     data?: TableData[],
+    columns?: MRT_ColumnDef<TableData>[]
 }
 
 
 export const ThemeTable: React.FC<AllProjectsTableProps> = ({
   data = [],
+  columns = [], 
   rowTotal,
   isLoading = false,
 }) => {
-  const navigate = useNavigate();
-  const columns = useAllProjectsColumn();
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [globalFilter, setGlobalFilter] = useState("");
   const [sorting, setSorting] = useState<SortingState>([]);
@@ -49,7 +44,7 @@ export const ThemeTable: React.FC<AllProjectsTableProps> = ({
     headers: columns.map((c) => c.header),
   });
 
-  const handleExportRows = (rows: MRT_Row<Project>[]) => {
+  const handleExportRows = (rows: MRT_Row<any>[]) => {
     csvExporter.generateCsv(rows.map((row) => row.original));
   };
 
@@ -70,7 +65,7 @@ export const ThemeTable: React.FC<AllProjectsTableProps> = ({
       onPaginationChange={setPagination}
       onSortingChange={setSorting}
       rowCount={rowTotal}
-      // muiTableBodyCellProps={{ sx: { border: "0.8px solid #e3eaef" } }}
+      muiTableBodyCellProps={{ sx: { border: "0.8px solid #e3eaef" } }}
       state={{
         sorting,
         columnFilters,

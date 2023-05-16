@@ -5,10 +5,16 @@ import { PrimaryButton, PrimaryInput } from "components";
 import { useNavigate } from "react-router-dom";
 import { ContentBodyContainer, DashboardCardContainer } from "../../home";
 import { useFormik } from "formik";
-import { resolveApiError } from "utilities";
+import { resolveApiError, validationError } from "utilities";
 import { AddUserScheme } from "validations";
+import { useAddUserMutation } from "store/user";
+import { request } from "http";
+import _ from "lodash";
+import { toast } from "react-toastify";
 
 export const UserScreen = () => {
+  const [request, { isLoading }] = useAddUserMutation();
+  const toast = useToast({ position: "top-right" });
   const {
     values,
     errors,
@@ -21,43 +27,21 @@ export const UserScreen = () => {
   } = useFormik({
     initialValues: {
       surname: "",
-      firstName: "",
+      fname: "",
+      lname: "",
       mobileNumber: "",
       email: "",
     },
     validationSchema: AddUserScheme(),
-    onSubmit: () => initRequest(),
+    onSubmit: async () => initRequest(),
   });
-    
-    const initRequest = () => {
-      request(values)
-        .unwrap()
-        .then((res) => {
-          // console.log(res);
-          toast({
-            title: "User Added",
-            description: res?.response,
-            status: "success",
-          });
-          resetForm({}); // reset form
-          initOnClose();
-        })
-        .catch((error) => {
-          // console.log(error);
-          toast({
-            title: "Request Failed",
-            description: resolveApiError(error),
-            status: "error",
-          });
-        });
-    };
 
-    const initOnClose = () => {
-      setShow(false);
-      onClose();
+  const initRequest = () => {
+    const payload: any = {
+      ...values,
     };
-  //  src =
-  //    "https://example.surveycto.com/collect/apiToken/formApiKey?appearance=minimal";
+  };
+
   return (
     <ContentBodyContainer
       title="Register User"
@@ -69,12 +53,26 @@ export const UserScreen = () => {
           bodyClassName={"p-4 m-3"}
         >
           <h1 className="fw-bold" style={{ textAlign: "center" }}>
-            Create a new Commuinity Facilitator
+            Create a new Community Facilitator
           </h1>
           <p style={{ textAlign: "center" }}>
             Kindly provide information
           </p>
-          <div dangerouslySetInnerHTML={{ __html: surveyFormCode }} />
+          <div className="row gy-4">
+            <div className="col-xxl-4 col-md-6">
+              <PrimaryInput
+                isRequired
+                name="lname"
+                label="Last Name"
+                placeholder="Enter your last name"
+                value={values.lname}
+                error={Boolean(touched.lname && errors.lname)}
+                bottomText={errors.lname}
+                onChange={handleChange}
+                isDisabled={isLoading}
+              />
+            </div>
+          </div>
         </DashboardCardContainer>
       </div>
     </ContentBodyContainer>
