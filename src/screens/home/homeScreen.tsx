@@ -19,8 +19,8 @@ export const HomeScreen = () => {
     let redirectTo: string | null = null;
     setTimeout(() => {
       // if (user && !user?.email_verification) redirectTo = "/verify/email";
-      // if (!user) redirectTo = "/login";
-      // if (redirectTo) navigate(redirectTo)
+      if (!user) redirectTo = "/login";
+      if (redirectTo) navigate(redirectTo)
       setIsLoading(false);
     }, 2000)
   });

@@ -1,12 +1,12 @@
 import { useToast } from "@chakra-ui/react";
-import { CustomPasswordInput, PrimaryInput } from "components";
+import { CustomPasswordInput, PrimaryButton, PrimaryInput } from "components";
 import { useFormik } from "formik";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { LoginValidationSchema } from "validations";
 import logoImage from "../../assets/images/heifer nigeria.jpg";
-import { useLoginMutation } from "../../store/auth/api";
 import { resolveApiError } from "utilities";
+import { setCredential, useLoginMutation } from "store/auth";
 
 export const LoginScreen = () => {
     const dispatch = useDispatch();
@@ -21,6 +21,8 @@ export const LoginScreen = () => {
 
     const initRequest = () => {
         request(values).unwrap().then((res) => {
+            dispatch(setCredential({ user: res.data.data, access_token: res.data.authorization.token }))
+
             toast({
                 title: "Success",
                 description: "Login Successful",
@@ -31,6 +33,7 @@ export const LoginScreen = () => {
 
             navigate("/")
         }).catch((err) => {
+            console.log(err)
             toast({
                 title: "Error",
                 description: resolveApiError(err),
@@ -97,13 +100,13 @@ export const LoginScreen = () => {
                                     />
 
                                     <div className="col-md-9 col-lg-8">
-                                        <button
-                                            className="btn btn-primary mb-3"
-                                            type="submit"
-                                            onClick={() => handleSubmit()}
-                                        >
-                                            Sign In
-                                        </button>
+                                        <PrimaryButton 
+                                         className="btn btn-primary mb-3"
+                                         type="submit"
+                                         onClick={() => handleSubmit()}
+                                         isLoading={isLoading}
+                                        > Sign In</PrimaryButton>
+                                       
                                         <p className="text-muted">
                                             Don't have an account? <Link to="/signup">Sign Up</Link>
                                         </p>

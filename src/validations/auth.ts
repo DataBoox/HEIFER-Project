@@ -2,7 +2,7 @@ import { number, object, string } from "yup";
 
 export const LoginValidationSchema = () => {
     return object({
-        email: string().required("Email or Username is required"),
+        auth: string().required("Email or Username is required"),
         password: string().required('Password is required'),
     });
 }
