@@ -30,13 +30,15 @@ export const LoginScreen = () => {
     <div className="App">
       <div className="container-fluid ps-md-0">
         <div className="row g-0">
-          <div className="d-none d-md-flex col-md-4 col-lg-7 bg-image rounded-left"></div>
-          <div className="col-md-8 col-lg-5 bg-white rounded-right">
+          <div className="d-none d-md-flex col-md-7 col-lg-7 bg-image rounded-left"></div>
+          <div className="col-md-5 col-lg-5 bg-white rounded-right">
             <div className="login d-flex align-items-center py-5">
               <div className="container">
                 <div className="row g-4">
                   <div className="col-md-9 col-lg-8">
-                    <h3 className="login-heading fs-1 fw-bold mb-4">Welcome Back!</h3>
+                    <h3 className="login-heading fs-1 fw-bold mb-4">
+                      Welcome Back!
+                    </h3>
                   </div>
                   <PrimaryInput
                     name={"email"}
@@ -72,12 +74,13 @@ export const LoginScreen = () => {
                     }}
                   />
 
-                  <div>
-                    <div className="float-end">
-                      <Link to="/forgot" className="text-muted">
-                        Forgot password?
-                      </Link>
-                    </div>
+                  <div className="col-md-9 col-lg-8">
+                    <button className="btn btn-primary mb-3" type="submit">
+                      Sign In
+                    </button>
+                    <p className="text-muted">
+                      Don't have an account? <Link to="/signup">Sign Up</Link>
+                    </p>
                   </div>
                 </div>
               </div>
