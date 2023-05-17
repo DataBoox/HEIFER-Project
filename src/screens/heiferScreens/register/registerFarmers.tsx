@@ -32,10 +32,15 @@ const surveyFormCode = `
         <div className="col-xl-12">
           <DashboardCardContainer
             // cardHeaderTitle={"Participant Details"}
+            title={""}
             bodyClassName={"p-4 m-3"}
           >
-            <h1 className="fw-bold" style={{ textAlign: "center" }}>Register Farmers</h1>
-            <p style={{ textAlign: "center" }}>Kindly provide farmer's information</p>
+            <h1 className="fw-bold" style={{ textAlign: "center" }}>
+              Register Farmers
+            </h1>
+            <p style={{ textAlign: "center" }}>
+              Kindly provide farmer's information
+            </p>
             <div dangerouslySetInnerHTML={{ __html: surveyFormCode }} />
           </DashboardCardContainer>
         </div>

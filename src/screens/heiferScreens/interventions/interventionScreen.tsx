@@ -90,6 +90,7 @@ export const InterventionScreen = () => {
       <div className="col-xl-12">
         <DashboardCardContainer
           // cardHeaderTitle={"Participant Details"}
+          title={""}
           bodyClassName={"p-4 m-3"}
         ></DashboardCardContainer>
       </div>

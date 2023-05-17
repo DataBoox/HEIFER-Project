@@ -21,7 +21,7 @@ export const ProjectScreen = () => {
   return (
     <ContentBodyContainer
       title="Projects"
-      routesRule={"createProjects"}
+      routesRule={"projects"}
       rightCardHeaderComponent={
         <div className="row g-3 mb-0 align-items-center">
           <div className="col-auto">
@@ -43,13 +43,15 @@ export const ProjectScreen = () => {
             <Button
               colorScheme="teal"
               onClick={() => navigate("/projects/add")}
-              leftIcon={<MdOutlineAddCircleOutline className="svg-dark" size={12} />}
+              leftIcon={
+                <MdOutlineAddCircleOutline className="svg-dark" size={12} />
+              }
               className={"fw-bold"}
               fontSize={"sm"}
-              backgroundColor= {"#7AD0E2"}
-                color= {"#000000"}
-                borderRadius= {0}
-                padding= {"12px, 20px, 12px, 20px"}
+              backgroundColor={"#7AD0E2"}
+              color={"#000000"}
+              borderRadius={0}
+              padding={"12px, 20px, 12px, 20px"}
             >
               Create Project
             </Button>
@@ -60,10 +62,9 @@ export const ProjectScreen = () => {
       <div className="col-xl-12">
         <DashboardCardContainer
           // cardHeaderTitle={"Participant Details"}
+          title={""}
           bodyClassName={"p-4 m-3"}
-        >
-
-        </DashboardCardContainer>
+        ></DashboardCardContainer>
       </div>
     </ContentBodyContainer>
   );

@@ -90,8 +90,7 @@ export const GroupScreen = () => {
       <div className="col-xl-12">
         <DashboardCardContainer
           // cardHeaderTitle={"Participant Details"}
-          bodyClassName={"p-4 m-3"}
-        ></DashboardCardContainer>
+          bodyClassName={"p-4 m-3"} title={""}        ></DashboardCardContainer>
       </div>
     </ContentBodyContainer>
   );
