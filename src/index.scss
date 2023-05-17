@@ -25,9 +25,13 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background-color: #0E0E28 !important;
+}
+svg{
+    color: #fff;
+}
+.svg-dark{
     color: #2A4153 !important;
 }
-
 :root {
     /*--forbg:#1f2128;*/
     --background: #fff;

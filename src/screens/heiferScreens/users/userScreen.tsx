@@ -1,8 +1,8 @@
 // import { Devotional, DevotionalProps} from "./components/devotionalComponent";
 import { MdOutlineAddCircleOutline } from "react-icons/md";
 import { FaSearch } from "react-icons/fa";
-import { Button, useToast, ButtonProps } from "@chakra-ui/react";
-import { PrimaryButton, PrimaryInput } from "components";
+import {useToast, } from "@chakra-ui/react";
+import { PrimaryInput } from "components";
 import { useNavigate } from "react-router-dom";
 import { ContentBodyContainer, DashboardCardContainer } from "../../home";
 import { useFormik } from "formik";
@@ -72,16 +72,18 @@ export const UserScreen = () => {
             <AddUserDialog
               useButton={true}
               buttonProps={{
-                leftIcon: <MdOutlineAddCircleOutline size={12} />,
+                leftIcon: (
+                  <MdOutlineAddCircleOutline className="svg-dark" size={12} />
+                ),
                 fontSize: "sm",
                 className: "fw-bold",
                 backgroundColor: "#7AD0E2",
                 color: "#000000",
                 borderRadius: 0,
                 padding: "12px, 20px, 12px, 20px",
-              }} 
+              }}
             >
-              Add Facilitator
+              Add User
             </AddUserDialog>
           </div>
         </div>
