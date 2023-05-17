@@ -9,14 +9,18 @@ export const CustomPasswordInput = ({
     const [showPassword, setShowPassword] = useState(false);
 
     return (
-        <PrimaryInput
-            type={showPassword ? "text" : "password"}
-            rightComponent={
-                <div onClick={() => setShowPassword(!showPassword)}>
-                    {showPassword ? <HiEyeSlash /> : <HiEye/>}
-                </div>
-            }
-            {...rest}
-        />
-    )
+      <PrimaryInput
+        type={showPassword ? "text" : "password"}
+        rightComponent={
+          <div onClick={() => setShowPassword(!showPassword)}>
+            {showPassword ? (
+              <HiEyeSlash className="svg-dark" />
+            ) : (
+              <HiEye className="svg-dark" />
+            )}
+          </div>
+        }
+        {...rest}
+      />
+    );
 }

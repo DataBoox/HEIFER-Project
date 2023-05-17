@@ -4,8 +4,10 @@ import { HomeScreen, LoginScreen } from 'screens';
 import {
   DashboardScreen,
   ProjectScreen,
+  AddProject,
   RegisterFarmers,
   UserScreen,
+  InterventionScreen,
 } from "screens/heiferScreens";
 
 
@@ -28,12 +30,14 @@ export const RootNavigator = () => {
           <Route path="login" element={<LoginScreen />} />
         </Route>
 
-        <Route path="/" element={<HomeScreen />} >
+        <Route path="/" element={<HomeScreen />}>
           <Route index element={<DashboardScreen />} />
-           <Route path="register" element={<RegisterFarmers />} />
-           <Route path="projects" element={<ProjectScreen />} />
-           <Route path="users" element={<UserScreen />} />
-          </Route>
+          <Route path="register" element={<RegisterFarmers />} />
+          <Route path="projects" element={<ProjectScreen />} />
+          <Route path="projects/add" element={<AddProject />} />
+          <Route path="users" element={<UserScreen />} />
+          <Route path="interventions" element={<InterventionScreen />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );

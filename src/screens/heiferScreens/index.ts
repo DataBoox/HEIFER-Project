@@ -1,4 +1,7 @@
 export * from './dashboardScreen'
 export * from './register/registerFarmers'
 export * from './projects/projectScreen'
+export * from './projects/addProject'
+export * from './groups/groupScreen'
 export * from './users/userScreen'
+export * from './interventions/interventionScreen'
