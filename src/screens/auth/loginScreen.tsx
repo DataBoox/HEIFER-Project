@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { resolveApiError } from "utilities";
 import { LoginValidationSchema } from "validations";
+import logoImage from "../../assets/images/heifer nigeria.jpg";
 
 import { setCredential } from "../../store/auth";
 import { useLoginMutation } from "../../store/auth/api";
@@ -36,6 +37,14 @@ export const LoginScreen = () => {
               <div className="container">
                 <div className="row g-4">
                   <div className="col-md-9 col-lg-8">
+                    <img
+                      src={logoImage}
+                      alt="Logo"
+                      className="mb-4"
+                      style={{
+                        width: "100px",
+                      }}
+                    />
                     <h3 className="login-heading fs-1 fw-bold mb-4">
                       Welcome Back!
                     </h3>
