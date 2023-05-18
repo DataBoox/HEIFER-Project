@@ -99,7 +99,7 @@ export const NavHeader: React.FC<NavHeaderProps> = ({
                 size="lg"
                 variant="ghost"
                 aria-label="open menu"
-                icon={<FaBell />}
+                icon={<FaBell className="svg-dark" />}
               />
               <Flex alignItems={"center"}>
                 <Menu>

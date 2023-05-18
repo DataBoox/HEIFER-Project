@@ -216,7 +216,38 @@ label {
 .small-button .MuiButton-root {
     min-width: 40px;
 }
+.login {
+    min-height: 100vh;
+}
+.rounded-left {
+    border-top-left-radius: 0.25rem;
+    border-bottom-left-radius: 0.25rem;
+}
 
+.rounded-right {
+    border-top-right-radius: 0.25rem;
+    border-bottom-right-radius: 0.25rem;
+}
+.bg-image {
+    background-image: url('../images/heifer-login.png');
+    background-size: cover;
+    background-position: center;
+}
+.App {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.btn-login {
+    font-size: 0.9rem;
+    letter-spacing: 0.05rem;
+    padding: 0.75rem 1rem;
+}
+
+.invalid {
+    border-color: red !important;
+}
 // .checked{
 //     background-color: #106363;
 // }

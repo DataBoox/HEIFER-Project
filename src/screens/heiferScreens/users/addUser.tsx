@@ -68,7 +68,7 @@ export const AddUserDialog: React.FC<AddUserDialogProps> = ({
       .then((res) => {
         // console.log(res);
         toast({
-          title: "Facilitator Added",
+          title: "User Added",
           description: res?.response,
           status: "success",
         });
@@ -98,7 +98,7 @@ export const AddUserDialog: React.FC<AddUserDialogProps> = ({
         </Button>
       )}
       <ChakraAlertDialog
-        title={"Add Facilitator"}
+        title={"Add User"}
         size={"xl"}
         proceedButtonProps={{ colorScheme: "teal" }}
         proceedButtonDefaultChild={"Create"}
@@ -164,7 +164,7 @@ export const AddUserDialog: React.FC<AddUserDialogProps> = ({
               }}
             />
           </div>
-          <div className="col-12">
+          {/* <div className="col-12">
             <NigerianStateSelect
               isRequired
               name="state"
@@ -174,7 +174,7 @@ export const AddUserDialog: React.FC<AddUserDialogProps> = ({
               onChange={handleChange}
               isDisabled={isLoading}
             />
-          </div>
+          </div> */}
         </div>
       </ChakraAlertDialog>
     </ChakraProviderLoader>
