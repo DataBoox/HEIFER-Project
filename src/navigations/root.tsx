@@ -5,8 +5,10 @@ import {
   DashboardScreen,
   ProjectScreen,
   AddProject,
+  AddGroup,
   RegisterFarmers,
   UserScreen,
+  GroupScreen,
   InterventionScreen,
 } from "screens/heiferScreens";
 
@@ -35,7 +37,9 @@ export const RootNavigator = () => {
           <Route path="register" element={<RegisterFarmers />} />
           <Route path="projects" element={<ProjectScreen />} />
           <Route path="projects/add" element={<AddProject />} />
+          <Route path="groups/add" element={<AddGroup />} />
           <Route path="users" element={<UserScreen />} />
+          <Route path="groups" element={<GroupScreen />} />
           <Route path="interventions" element={<InterventionScreen />} />
         </Route>
       </Routes>

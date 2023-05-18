@@ -1,36 +1,19 @@
 import { Button, ButtonProps, useToast } from "@chakra-ui/react";
+import { MdOutlineAddCircleOutline } from "react-icons/md";
 import { AddGroupScheme } from "validations";
-import {
-  ChakraAlertDialog,
-  ChakraAlertDialogProps,
-  PrimaryInput,
-  NigerianStateSelect,
-  PrimaryTextarea,
-} from "components";
+import { PrimaryInput, PrimaryTextarea } from "components";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { DashboardCardContainer } from "../../home";
 import { useFormik } from "formik";
 import { resolveApiError } from "utilities";
-import { useEffect, useState } from "react";
-import { ChakraProviderLoader } from "providers";
+import { useState } from "react";
 import { useAddGroupMutation } from "store/group";
-import { Group } from "@store/group";
 
-export interface AddGroupDialogProps extends ChakraAlertDialogProps {
-  useButton?: boolean;
-  group?: Group;
-  children?: string | React.ReactElement;
-  buttonProps?: ButtonProps;
-}
-
-export const AddGroupDialog: React.FC<AddGroupDialogProps> = ({
-  group,
-  useButton = false,
-  children,
-  buttonProps,
-  onClose = () => {},
-  ...rest
-}) => {
+export const AddGroup = () => {
   const [show, setShow] = useState(false);
   const toast = useToast({ position: "top-right" });
+  const navigate = useNavigate();
   const [request, { isLoading }] = useAddGroupMutation();
   const {
     values,
@@ -42,22 +25,15 @@ export const AddGroupDialog: React.FC<AddGroupDialogProps> = ({
     touched,
   } = useFormik({
     initialValues: {
-      surname: "",
-      fname: "",
-      lname: "",
-      mobileNumber: "",
-      email: "",
-      state: "",
-      community: "",
-      lga: "",
+      address: "",
+      description: "",
+      pname: "",
+      plead: "",
+      tmembers: "",
     },
     validationSchema: AddGroupScheme(),
     onSubmit: () => initRequest(),
   });
-
-  useEffect(() => {
-    if (group) setFieldValue("group_id", group?.id);
-  }, [group]);
 
   const payload: any = {
     ...values,
@@ -73,7 +49,6 @@ export const AddGroupDialog: React.FC<AddGroupDialogProps> = ({
           status: "success",
         });
         resetForm({}); // reset form
-        initOnClose();
       })
       .catch((error) => {
         // console.log(error);
@@ -85,98 +60,94 @@ export const AddGroupDialog: React.FC<AddGroupDialogProps> = ({
       });
   };
 
-  const initOnClose = () => {
-    setShow(false);
-    onClose();
-  };
-
   return (
-    <ChakraProviderLoader>
-      {useButton && (
-        <Button onClick={() => setShow(true)} {...buttonProps}>
-          {children}
-        </Button>
-      )}
-      <ChakraAlertDialog
-        title={"Add Group"}
-        size={"xl"}
-        proceedButtonProps={{ colorScheme: "teal" }}
-        proceedButtonDefaultChild={"Create"}
-        isOpen={rest?.isOpen ? rest?.isOpen : show}
-        onProceed={handleSubmit}
-        onClose={initOnClose}
-        isProceeding={isLoading}
-        {...rest}
-      >
-        <div className="row g-2">
-          <div className="col-6">
-            <PrimaryInput
-              isRequired
-              name="lname"
-              label="Last Name"
-              placeholder="Enter your last name"
-              value={values.lname}
-              error={Boolean(touched.lname && errors.lname)}
-              bottomText={errors.lname}
-              onChange={handleChange}
-              isDisabled={isLoading}
-              style={{
-                backgroundColor: "#F2FAFC",
-                borderRadius: 0,
-                borderColor: "#CAECF3",
-              }}
-            />
-          </div>
+    <div className="page-content">
+      <div className="container-fluid">
+        <div className="row">
+          <div className="col-xl-12">
+            <DashboardCardContainer
+              title="Create a Group"
+              routesRule={"createGroups"}
+              bodyClassName={"p-0"}
+            >
+              <div className="row g-2">
+                <div className="col-lg-3 col-md-12 d-flex justify-content-center">
+                  <div className="sidebar">
+                    <Link to="/page1" className="sidebar-link text-muted">
+                      <input type="radio" name="sidebar" />
+                      <span className="sidebar-text">Group Details</span>
+                    </Link>
+                    <Link to="/page2" className="sidebar-link text-muted">
+                      <input type="radio" name="sidebar" />
+                      <span className="sidebar-text">Add Farmers</span>
+                    </Link>
+                    <Link to="/page3" className="sidebar-link text-muted">
+                      <input type="radio" name="sidebar" />
+                      <span className="sidebar-text">Assign Interventions</span>
+                    </Link>
+                  </div>
+                </div>
+                <div className="col-lg-6 col-md-12">
+                  <div className="col-auto mb-4">
+                    <PrimaryInput
+                      isRequired
+                      name="pname"
+                      label="Group Name"
+                      placeholder="Enter your project name"
+                      value={values.pname}
+                      error={Boolean(touched.pname && errors.pname)}
+                      bottomText={errors.pname}
+                      onChange={handleChange}
+                      isDisabled={isLoading}
+                      style={{
+                        backgroundColor: "#F2FAFC",
+                        borderRadius: 0,
+                        borderColor: "#CAECF3",
+                      }}
+                    />
+                  </div>
 
-          <div className="col-6">
-            <PrimaryInput
-              isRequired
-              name="fname"
-              label="First Name"
-              placeholder="Enter your first name"
-              value={values.fname}
-              error={Boolean(touched.fname && errors.fname)}
-              bottomText={errors.fname}
-              onChange={handleChange}
-              isDisabled={isLoading}
-              style={{
-                backgroundColor: "#F2FAFC",
-                borderRadius: 0,
-                borderColor: "#CAECF3",
-              }}
-            />
+                  <div className="col-auto mb-4">
+                    <PrimaryTextarea
+                      isRequired
+                      name="description"
+                      label={"Group Description"}
+                      placeholder="About your group"
+                      size={"lg"}
+                      rows={7}
+                      value={values.description}
+                      error={Boolean(touched.description && errors.description)}
+                      bottomText={errors.description}
+                      onChange={handleChange}
+                      isDisabled={isLoading}
+                      style={{
+                        backgroundColor: "#F2FAFC",
+                        borderRadius: 0,
+                        borderColor: "#CAECF3",
+                      }}
+                    />
+                  </div>
+
+                  <div className="col-auto text-end mb-4">
+                    <Button
+                      colorScheme="teal"
+                      onClick={() => navigate("/projects/add")}
+                      className={"fw-light"}
+                      fontSize={"sm"}
+                      backgroundColor={"#2A4153"}
+                      color={"#ffffff"}
+                      borderRadius={0}
+                      padding={"16px, 48px, 16px, 48px"}
+                    >
+                      Continue
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            </DashboardCardContainer>
           </div>
-          <div className="col-12">
-            <PrimaryInput
-              isRequired
-              name="email"
-              label="Email Address"
-              placeholder="Enter email address"
-              value={values.email}
-              error={Boolean(touched.email && errors.email)}
-              bottomText={errors.email}
-              onChange={handleChange}
-              isDisabled={isLoading}
-              style={{
-                backgroundColor: "#F2FAFC",
-                borderRadius: 0,
-                borderColor: "#CAECF3",
-              }}
-            />
-          </div>
-          {/* <div className="col-12">
-            <NigerianStateSelect
-              isRequired
-              name="state"
-              value={values.state}
-              error={Boolean(touched.state && errors.state)}
-              bottomText={errors.state}
-              onChange={handleChange}
-              isDisabled={isLoading}
-            />
-          </div> */}
         </div>
-      </ChakraAlertDialog>
-    </ChakraProviderLoader>
+      </div>
+    </div>
   );
 };
