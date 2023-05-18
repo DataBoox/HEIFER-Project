@@ -1,8 +1,11 @@
 import { Button, ButtonProps, useToast } from "@chakra-ui/react";
+import { MdOutlineAddCircleOutline } from "react-icons/md";
 import { AddProjectScheme } from "validations";
 import {
   PrimaryInput, PrimaryTextarea
 } from "components";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { DashboardCardContainer } from "../../home";
 import { useFormik } from "formik";
 import { resolveApiError } from "utilities";
@@ -13,6 +16,7 @@ import { useAddProjectMutation } from "store/projects";
 export const AddProject = () => {
   const [show, setShow] = useState(false);
   const toast = useToast({ position: "top-right" });
+  const navigate = useNavigate();
   const [request, { isLoading }] = useAddProjectMutation();
   const {
     values,
@@ -75,9 +79,27 @@ export const AddProject = () => {
                 bodyClassName={"p-0"}
               >
                 <div className="row g-2">
-                  <div className="col-4"></div>
-
-                  <div className="col-8">
+                  <div className="col-lg-3 col-md-12 d-flex justify-content-center">
+                    <div className="sidebar">
+                      <Link to="/page1" className="sidebar-link text-muted">
+                        <input type="radio" name="sidebar" />
+                        <span className="sidebar-text">Project Details</span>
+                      </Link>
+                      <Link to="/page2" className="sidebar-link text-muted">
+                        <input type="radio" name="sidebar" />
+                        <span className="sidebar-text">Project Indicator</span>
+                      </Link>
+                      <Link to="/page3" className="sidebar-link text-muted">
+                        <input type="radio" name="sidebar" />
+                        <span className="sidebar-text">Create Survey</span>
+                      </Link>
+                      <Link to="/page4" className="sidebar-link text-muted">
+                        <input type="radio" name="sidebar" />
+                        <span className="sidebar-text">Add Farmers</span>
+                      </Link>
+                    </div>
+                  </div>
+                  <div className="col-lg-6 col-md-12">
                     <div className="col-auto mb-4">
                       <PrimaryInput
                         isRequired
@@ -173,6 +195,21 @@ export const AddProject = () => {
                           borderColor: "#CAECF3",
                         }}
                       />
+                    </div>
+
+                    <div className="col-auto text-end mb-4">
+                      <Button
+                        colorScheme="teal"
+                        onClick={() => navigate("/projects/add")}
+                        className={"fw-light"}
+                        fontSize={"sm"}
+                        backgroundColor={"#2A4153"}
+                        color={"#ffffff"}
+                        borderRadius={0}
+                        padding={"16px, 48px, 16px, 48px"}
+                      >
+                        Continue
+                      </Button>
                     </div>
                   </div>
                 </div>

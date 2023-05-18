@@ -1,4 +1,4 @@
-// import { Devotional, DevotionalProps} from "./components/devotionalComponent";
+
 import { MdOutlineAddCircleOutline } from "react-icons/md";
 import { FaSearch } from "react-icons/fa";
 import { Button, useToast } from "@chakra-ui/react";
