@@ -8,7 +8,6 @@ import { ContentBodyContainer, DashboardCardContainer } from "../../home";
 import { useFormik } from "formik";
 import { resolveApiError, validationError } from "utilities";
 import { AddGroupScheme } from "validations";
-import { AddGroupDialog } from "./addGroup";
 import { useAddGroupMutation } from "store/group";
 import { request } from "http";
 import _ from "lodash";
@@ -67,22 +66,21 @@ export const GroupScreen = () => {
             />
           </div>
           <div className="col-auto">
-            <AddGroupDialog
-              useButton={true}
-              buttonProps={{
-                leftIcon: (
-                  <MdOutlineAddCircleOutline className="svg-dark" size={12} />
-                ),
-                fontSize: "sm",
-                className: "fw-bold",
-                backgroundColor: "#7AD0E2",
-                color: "#000000",
-                borderRadius: 0,
-                padding: "12px, 20px, 12px, 20px",
-              }}
+            <Button
+              colorScheme="teal"
+              onClick={() => navigate("/groups/add")}
+              leftIcon={
+                <MdOutlineAddCircleOutline className="svg-dark" size={12} />
+              }
+              className={"fw-bold"}
+              fontSize={"sm"}
+              backgroundColor={"#7AD0E2"}
+              color={"#000000"}
+              borderRadius={0}
+              padding={"12px, 20px, 12px, 20px"}
             >
-              Add Group
-            </AddGroupDialog>
+              Create Group
+            </Button>
           </div>
         </div>
       }
@@ -90,7 +88,9 @@ export const GroupScreen = () => {
       <div className="col-xl-12">
         <DashboardCardContainer
           // cardHeaderTitle={"Participant Details"}
-          bodyClassName={"p-4 m-3"} title={""}        ></DashboardCardContainer>
+          bodyClassName={"p-4 m-3"}
+          title={""}
+        ></DashboardCardContainer>
       </div>
     </ContentBodyContainer>
   );

@@ -253,6 +253,22 @@ label {
     display: block;
     padding: 1rem;
 }
+.sidebar-link.active {
+    color: #2A4153;
+}
+@media (max-width: 768px) {
+    .sidebar {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
+@media (max-width: 400px) {
+    .sidebar {
+        flex-direction: column;
+        justify-content: space-between;
+    }
+}
+
 .btn-login {
     font-size: 0.9rem;
     letter-spacing: 0.05rem;
