@@ -44,7 +44,7 @@ export const StateLGAInput: React.FC<{
                     setSelArea(findArea)
                 }
             }
-        }, [state])
+        }, [state, lga])
 
         return (
             <>

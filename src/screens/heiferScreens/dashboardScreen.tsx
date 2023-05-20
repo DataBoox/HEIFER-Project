@@ -1,5 +1,4 @@
 import { ContentBodyContainer } from "../home";
-import { useNavigate } from "react-router-dom";
 import { FaStore, FaShapes } from "react-icons/fa";
 import {
   BsFillPersonCheckFill,
@@ -9,9 +8,6 @@ import {
 import { MdLocationOn, MdPersonAddAlt1 } from "react-icons/md";
 
 export const DashboardScreen = () => {
-
-  const navigate = useNavigate();
-
 
   // console.log(data)
 

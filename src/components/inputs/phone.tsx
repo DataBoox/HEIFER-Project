@@ -1,7 +1,7 @@
 import './styles.scss';
-import 'react-phone-number-input/style.css'
-import { FormControl, FormControlProps, FormErrorMessage, FormErrorMessageProps, FormHelperText, FormLabel, FormLabelProps, FormHelperTextProps, Select, InputElementProps, InputGroup, InputLeftElement, SelectProps, InputRightElement, InputLeftAddon, InputRightAddon, InputAddonProps } from "@chakra-ui/react"
-import PhoneInput, { DefaultInputComponentProps } from 'react-phone-number-input'
+import 'react-phone-number-input/style.css';
+import { FormControl, FormControlProps, FormErrorMessage, FormErrorMessageProps, FormHelperText, FormLabel, FormLabelProps, FormHelperTextProps, InputElementProps, InputGroup, InputLeftElement, InputRightElement, InputLeftAddon, InputRightAddon, InputAddonProps } from "@chakra-ui/react";
+import PhoneInput, { DefaultInputComponentProps } from 'react-phone-number-input';
 
 
 export interface PrimaryPhoneProp extends DefaultInputComponentProps {

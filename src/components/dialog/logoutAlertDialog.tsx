@@ -1,7 +1,5 @@
-import { AlertDialog, AlertDialogBody, AlertDialogContent, AlertDialogFooter, AlertDialogHeader, AlertDialogOverlay, Button, useDisclosure } from "@chakra-ui/react"
-import { siteUrl } from "utilities";
+import { AlertDialog, AlertDialogBody, AlertDialogContent, AlertDialogFooter, AlertDialogHeader, AlertDialogOverlay, Button } from "@chakra-ui/react";
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import { useLogout } from "store/auth/hooks";
 
 interface LogoutAlertDialogProps {

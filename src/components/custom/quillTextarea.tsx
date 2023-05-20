@@ -69,7 +69,7 @@ export const CustomQuillTextarea: React.FC<CustomQuillTextareaProps> = ({
                 onChange(quill.root.innerHTML);
             });
         }
-    }, [quill]);
+    }, [quill, onChange]);
 
     return (
         <PrimaryInputWrapper {...rest}>

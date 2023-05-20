@@ -1,4 +1,4 @@
-import { FormControl, FormControlProps, FormErrorMessage, FormErrorMessageProps, FormHelperText, FormLabel, FormLabelProps, FormHelperTextProps, Input, InputElementProps, InputGroup, InputLeftElement, InputProps, InputRightElement, InputAddonProps, InputLeftAddon, InputRightAddon, Checkbox, CheckboxProps, Stack, StackProps, InputGroupProps } from "@chakra-ui/react"
+import { FormControl, FormControlProps, FormErrorMessage, FormErrorMessageProps, FormHelperText, FormLabel, FormLabelProps, FormHelperTextProps, InputElementProps, InputGroup, InputLeftElement, InputRightElement, InputAddonProps, InputLeftAddon, InputRightAddon, Checkbox, CheckboxProps, Stack, StackProps, InputGroupProps } from "@chakra-ui/react";
 
 export interface ExtraCheckboxes extends CheckboxProps {
     inlineText?: string

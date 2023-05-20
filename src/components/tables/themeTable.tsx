@@ -3,10 +3,7 @@ import {
   PaginationState,
   SortingState,
 } from "@tanstack/react-table";
-import MaterialReactTable, {
-  MRT_ColumnDef,
-  MRT_Row
-} from "material-react-table";
+import MaterialReactTable from "material-react-table";
 import { useState } from "react";
 import { FiArrowDown } from "react-icons/fi";
 import { TableActionButtons } from "./components/actionButtons";

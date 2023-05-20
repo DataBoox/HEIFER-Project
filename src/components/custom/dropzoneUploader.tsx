@@ -2,14 +2,14 @@ import { Spinner, TagRightIcon, useToast } from "@chakra-ui/react";
 import { BaseUpload, useAddUploadMutation, useDeleteUploadMutation } from "store/uploads";
 import { resolveApiError } from "utilities";
 import { PrimaryDropzone, PrimaryDropzoneProp, PrimaryDropzoneFile, PrimaryDropzoneItemProps, DropzoneFile } from "components/inputs"
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { MdUpload } from "react-icons/md";
 
 export interface DropzoneBaseUpload extends BaseUpload {
     index: number;
     name: string;
     file: File;
-    
+
 }
 export interface DropzoneUploaderItemProps extends PrimaryDropzoneItemProps {
     isUploaded?: boolean;
@@ -32,7 +32,7 @@ export const DropzoneUploader: React.FC<DropzoneUploaderProps> = ({
 
     useEffect(() => {
         onUploadChange(uploaded);
-    }, [uploaded])
+    }, [uploaded, onUploadChange])
 
 
     const onRemoveFile = (index: number, file: DropzoneFile, remove: (file: DropzoneFile) => void = () => { }) => {
@@ -77,16 +77,7 @@ export const DropzoneUploaderItem: React.FC<DropzoneUploaderItemProps> = ({
     const [requestUpload, { isLoading: isUploading, error }] = useAddUploadMutation();
     const [requestDelete, { isLoading: isDeleting }] = useDeleteUploadMutation();
 
-    useEffect(() => {
-        if (isUploaded || error) return;
-        initUpload();
-    }, [file])
-
-    useEffect(() => {
-        onUpdateFile({...file, isUploading, isDeleting});
-    }, [isUploading, isDeleting]);
-
-    const initUpload = () => {
+    const initUpload = useCallback(() => {
         const form = new FormData();
         form.append('folder', uploadFolder ?? '');
         form.append('uploads[]', file.data)
@@ -107,7 +98,7 @@ export const DropzoneUploaderItem: React.FC<DropzoneUploaderItemProps> = ({
                 status: "error"
             })
         });
-    }
+    }, [file, index, onUpload, requestUpload, toast, uploadFolder]);
 
     const initDelete = () => {
         if (!isUploaded) return onRemoveFile(file);
@@ -124,13 +115,23 @@ export const DropzoneUploaderItem: React.FC<DropzoneUploaderItemProps> = ({
     }
 
 
+    useEffect(() => {
+        if (isUploaded || error) return;
+        initUpload();
+    }, [file, error, initUpload, isUploaded])
+
+    useEffect(() => {
+        onUpdateFile({ ...file, isUploading, isDeleting });
+    }, [isUploading, isDeleting, file, onUpdateFile]);
+
+
     return (
         <PrimaryDropzoneFile
             {...rest}
             file={file}
             onRemoveFile={initDelete}
             canEditFileName={(!isUploading && !isDeleting) && rest.canEditFileName}
-            closeButtonProps={{ as: (isDeleting) ? Spinner : undefined, isDisabled: isDeleting}}
+            closeButtonProps={{ as: (isDeleting) ? Spinner : undefined, isDisabled: isDeleting }}
             extraActionComponent={
                 <>
                     {(!isUploaded) && (

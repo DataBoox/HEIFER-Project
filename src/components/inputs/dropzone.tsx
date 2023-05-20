@@ -3,7 +3,6 @@ import { FormControl, FormControlProps, FormErrorMessage, FormErrorMessageProps,
 import { DropzoneOptions, useDropzone } from "react-dropzone";
 import _ from "lodash";
 import { MdCheck, MdEdit } from "react-icons/md";
-import DocumentPlaceholder from "../../assets/images/file-placeholders/document.png";
 
 export interface DropzoneFile {
     name: string,
@@ -65,14 +64,14 @@ export const PrimaryDropzone: React.FC<PrimaryDropzoneProp> = ({
     ...rest
 }) => {
     const [files, setFiles] = useState<DropzoneFile[]>([]);
-    const { acceptedFiles, getRootProps, getInputProps } = useDropzone({
+    const { getRootProps, getInputProps } = useDropzone({
         onDrop: (new_files) => addFiles(new_files),
         ...dropzoneOptions
     });
 
     useEffect(() => {
         onChange(files);
-    }, [files]);
+    }, [files, onChange]);
 
     const addFiles = (new_files: File[]) => {
         const addedFiles = new_files.map((file) => ({ name: file.name, data: file }));
@@ -168,7 +167,7 @@ export const PrimaryDropzoneFile: React.FC<PrimaryDropzoneFileProps> = ({
 
     useEffect(() => {
         onUpdateFile({...file, isEditing});
-    }, [editFile]);
+    }, [editFile,file, isEditing, onUpdateFile]);
 
     const initUpdateFile = () => {
         onUpdateFile({...editFile, isEditing: false});
