@@ -5,13 +5,18 @@ export interface RequiresUserID {
     users: (number | string)[],
 }
 
-export interface User {
-  fname: string;
-  lname: string;
-   id: number;
-    user_id: number;
+export interface UserInfo {
+    fname: string;
+    lname: string;
+    state: string;
+    lga: string;
+    community: string;
+    gender: string;
+    phone: string;
+    id: number;
+    uid: number;
     contact_mode: string[];
-    User: User;
+    user: User;
     status: number;
     updated_at: string;
     created_at: string;
@@ -37,12 +42,8 @@ export interface FetchUsersPayload extends PaginatedPayload {
 
 export interface BaseUser {
     id: number;
-    church_id: number;
+    email: string;
     ref: string;
-    provider: string;
-    url: string;
-    meta: { type: string, size: number, name: string, extension: string, name_on_disk: string }
-    // creator?: UserWithMember;
     created_by: number;
     updated_at: string;
     created_at: string;

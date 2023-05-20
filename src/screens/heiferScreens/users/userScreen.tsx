@@ -1,51 +1,25 @@
 // import { Devotional, DevotionalProps} from "./components/devotionalComponent";
 import { MdOutlineAddCircleOutline } from "react-icons/md";
-import { FaSearch } from "react-icons/fa";
-import {useToast, } from "@chakra-ui/react";
-import { PrimaryInput } from "components";
+import { FaEye, FaPen, FaSearch, FaTrash } from "react-icons/fa";
+import { useToast, } from "@chakra-ui/react";
+import { PrimaryInput, ThemeTable } from "components";
 import { useNavigate } from "react-router-dom";
 import { ContentBodyContainer, DashboardCardContainer } from "../../home";
 import { useFormik } from "formik";
-import { resolveApiError, validationError } from "utilities";
 import { AddUserScheme } from "validations";
 import { AddUserDialog } from "./addUser";
-import { useAddUserMutation } from "store/user";
-import { request } from "http";
-import _ from "lodash";
-import { toast } from "react-toastify";
+import { useAddUserMutation, useGetUsersQuery } from "store/user";
+import { useAllUsersColumn } from "./components";
 
 
 
 export const UserScreen = () => {
   const navigate = useNavigate();
-  const [request, { isLoading }] = useAddUserMutation();
+  const columns = useAllUsersColumn()
+  const { data, isLoading, refetch } = useGetUsersQuery({ page: 1, query: '' });
   const toast = useToast({ position: "top-right" });
-  const {
-    values,
-    errors,
-    handleChange,
-    handleSubmit,
-    setFieldValue,
-    setValues,
-    validateForm,
-    touched,
-  } = useFormik({
-    initialValues: {
-      surname: "",
-      fname: "",
-      lname: "",
-      mobileNumber: "",
-      email: "",
-    },
-    validationSchema: AddUserScheme(),
-    onSubmit: async () => initRequest(),
-  });
 
-  const initRequest = () => {
-    const payload: any = {
-      ...values,
-    };
-  };
+  console.log(data)
 
   return (
     <ContentBodyContainer
@@ -82,6 +56,7 @@ export const UserScreen = () => {
                 borderRadius: 0,
                 padding: "12px, 20px, 12px, 20px",
               }}
+              onClose={refetch}
             >
               Add User
             </AddUserDialog>
@@ -91,10 +66,32 @@ export const UserScreen = () => {
     >
       <div className="col-xl-12">
         <DashboardCardContainer
-          // cardHeaderTitle={"Participant Details"}
+          cardHeaderTitle={"Participant Details"}
           title={""}
-          bodyClassName={"p-4 m-3"}
-        ></DashboardCardContainer>
+          bodyClassName={""}
+        >
+          <ThemeTable
+            data={data?.data?.data ?? []}
+            columns={columns as any}
+            isLoading={isLoading}
+            onRefetch={refetch}
+            enableRowActions
+            positionActionsColumn="last"
+            renderRowActions={({ row }) => (
+              <div className="d-flex justify-content-evenly">
+                <div className="touchable">
+                  <FaEye size={16} color="#7F8C9F" />
+                </div>
+                <div className="touchable">
+                  <FaPen size={16} color="#7F8C9F" />
+                </div>
+                <div className="touchable">
+                  <FaTrash size={16} color="red" />
+                </div>
+              </div>
+            )}
+          />
+        </DashboardCardContainer>
       </div>
     </ContentBodyContainer>
   );

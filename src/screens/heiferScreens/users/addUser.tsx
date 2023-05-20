@@ -3,9 +3,8 @@ import { AddUserScheme } from "validations";
 import {
   ChakraAlertDialog,
   ChakraAlertDialogProps,
-  PrimaryInput,
-  NigerianStateSelect,
-  PrimaryTextarea,
+  GenderSelect,
+  PrimaryInput
 } from "components";
 import { useFormik } from "formik";
 import { resolveApiError } from "utilities";
@@ -13,6 +12,7 @@ import { useEffect, useState } from "react";
 import { ChakraProviderLoader } from "providers";
 import { useAddUserMutation } from "store/user";
 import { User } from "@store/user";
+import { StateLGAInput } from "custom";
 
 export interface AddUserDialogProps extends ChakraAlertDialogProps {
   useButton?: boolean;
@@ -26,7 +26,7 @@ export const AddUserDialog: React.FC<AddUserDialogProps> = ({
   useButton = false,
   children,
   buttonProps,
-  onClose = () => {},
+  onClose = () => { },
   ...rest
 }) => {
   const [show, setShow] = useState(false);
@@ -40,16 +40,18 @@ export const AddUserDialog: React.FC<AddUserDialogProps> = ({
     setFieldValue,
     resetForm,
     touched,
+    setValues,
+    setFieldTouched
   } = useFormik({
     initialValues: {
-      surname: "",
       fname: "",
       lname: "",
-      mobileNumber: "",
+      phone: "",
       email: "",
       state: "",
       community: "",
       lga: "",
+      gender: ""
     },
     validationSchema: AddUserScheme(),
     onSubmit: () => initRequest(),
@@ -59,9 +61,9 @@ export const AddUserDialog: React.FC<AddUserDialogProps> = ({
     if (user) setFieldValue("user_id", user?.id);
   }, [user]);
 
-    const payload: any = {
-      ...values,
-    };
+  const payload: any = {
+    ...values,
+  };
   const initRequest = () => {
     request(payload)
       .unwrap()
@@ -76,7 +78,7 @@ export const AddUserDialog: React.FC<AddUserDialogProps> = ({
         initOnClose();
       })
       .catch((error) => {
-        // console.log(error);
+        console.log(error);
         toast({
           title: "Request Failed",
           description: resolveApiError(error),
@@ -164,17 +166,60 @@ export const AddUserDialog: React.FC<AddUserDialogProps> = ({
               }}
             />
           </div>
-          {/* <div className="col-12">
-            <NigerianStateSelect
+          <div className="col-12">
+            <GenderSelect
               isRequired
-              name="state"
-              value={values.state}
-              error={Boolean(touched.state && errors.state)}
-              bottomText={errors.state}
+              name="gender"
+              value={values.gender}
+              error={Boolean(touched.gender && errors.gender)}
+              bottomText={errors.gender}
               onChange={handleChange}
               isDisabled={isLoading}
             />
-          </div> */}
+          </div>
+          <div className="col-12">
+            <div className="row">
+              <StateLGAInput
+                state={values.state}
+                lga={values.lga}
+                errors={errors}
+                touched={touched}
+                stateInputProps={{
+                  label: "State",
+                  isDisabled: isLoading,
+                }}
+                areaInputProps={{
+                  label: "Local Government Area",
+                  isDisabled: isLoading,
+                }}
+                stateContainerProps={{
+                  className: "col-12 mb-3"
+                }}
+                areaContainerProps={{
+                  className: "col-12 mb-3"
+                }}
+                onChange={({ lga, state }) => {
+                  setFieldTouched("state", true)
+                  setFieldTouched("lga", true)
+                  setValues({ ...values, lga, state })
+                }}
+              />
+            </div>
+          </div>
+          <div className="col-12">
+            <PrimaryInput
+              isRequired
+              name="community"
+              label="Community"
+              placeholder="Enter resident community"
+              value={values.community}
+              error={Boolean(touched.community && errors.community)}
+              bottomText={errors.community}
+              onChange={handleChange}
+              isDisabled={isLoading}
+            />
+          </div>
+
         </div>
       </ChakraAlertDialog>
     </ChakraProviderLoader>

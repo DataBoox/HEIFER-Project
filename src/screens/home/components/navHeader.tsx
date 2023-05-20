@@ -50,7 +50,7 @@ export const NavHeader: React.FC<NavHeaderProps> = ({
     
   return (
     <>
-      <SidebarOverlay onToggleSideBar={onToggleSideBar} /> 
+      <SidebarOverlay onToggleSideBar={onToggleSideBar} />
       <div id="page-topbar" className="topbar-shadow">
         <div id="layout-wrapper">
           <div
@@ -127,7 +127,7 @@ export const NavHeader: React.FC<NavHeaderProps> = ({
                       </VStack>
                       <Box display={{ base: "none", md: "flex" }}>
                         {" "}
-                        <FiChevronDown />{" "}
+                        <FiChevronDown className="svg-dark"/>{" "}
                       </Box>
                     </HStack>
                   </MenuButton>
@@ -145,7 +145,7 @@ export const NavHeader: React.FC<NavHeaderProps> = ({
                     <MenuDivider />
                     <MenuItem
                       onClick={() =>
-                        setShow((prev) => ({ ...prev, logout: true}))
+                        setShow((prev) => ({ ...prev, logout: true }))
                       }
                     >
                       Sign out

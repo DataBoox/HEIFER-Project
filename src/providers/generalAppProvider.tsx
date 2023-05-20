@@ -1,6 +1,4 @@
-import { useTheme } from "@chakra-ui/react";
 import { createContext, useContext, useState } from "react";
-import { useLogout } from "store/auth/hooks";
 import Loading from "react-fullscreen-loading";
 
 type GeneralAppProviderProv = {
@@ -16,9 +14,6 @@ export const GeneralAppProviderContext = createContext<GeneralAppProviderProv>({
 export const GeneralAppProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const [fullScreenLoading, setFullScreenLoading] = useState(false);
     const [transparentScreenLoading, setTransparentScreenLoading] = useState(false);
-    const logout = useLogout();
-    const { colors } = useTheme();
-
 
 
     return (

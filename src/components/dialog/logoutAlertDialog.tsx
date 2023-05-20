@@ -12,7 +12,6 @@ export const LogoutAlertDialog: React.FC<LogoutAlertDialogProps> = ({
     isOpen = false,
     onClose = () => {} 
 })  => {
-    const navigate = useNavigate();
     const logout = useLogout();
     const cancelRef = React.useRef<any>()
 
@@ -20,8 +19,7 @@ export const LogoutAlertDialog: React.FC<LogoutAlertDialogProps> = ({
         logout()
         onClose();
         setTimeout(() => {
-            // navigate("/");
-            window.location.replace('/');
+            window.location.replace('/auth/login');
         }, 1000)
     }
 
