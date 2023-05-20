@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import { reactLocalStorage } from 'reactjs-localstorage';
 import { RootState } from '..';
 import { Auth, User } from './interface';

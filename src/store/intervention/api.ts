@@ -1,10 +1,9 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
-import { PaginatedPayload } from '@store/interface';
 import { convertObjectToURLParams } from 'utilities/general';
 import { axiosBaseQuery } from '../../utilities/axiosQuery/axiosBaseQuery';
 import { baseUrl } from '../../utilities/requests';
 import { IResponse } from '../auth/interface';
-import { AddInterventionPayload, ChurchInterventionsResponse, DeleteInterventionsPayload, EditInterventionPayload, FetchInterventionsPayload, RequiresInterventionID, InterventionInfoResponse, InterventionSuccessResponse } from './interface';
+import { AddInterventionPayload, ChurchInterventionsResponse, DeleteInterventionsPayload, EditInterventionPayload, FetchInterventionsPayload, RequiresInterventionID, InterventionSuccessResponse } from './interface';
 
 
 export const interventionApi = createApi({

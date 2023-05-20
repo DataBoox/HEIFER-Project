@@ -1,6 +1,5 @@
 import { BaseQueryFn } from '@reduxjs/toolkit/query';
-import axios, { AxiosRequestConfig, AxiosError, AxiosRequestHeaders } from 'axios';
-import { baseUrl as appDefaultBaseUrl } from 'utilities';
+import axios, { AxiosRequestConfig, AxiosError } from 'axios';
 
 
 export const axiosBaseQuery =

@@ -71,7 +71,8 @@ export const convertObjectToURLParams = (data: any) => {
         if(rc !== undefined && rc !== null){
             return `${key}=${encodeURIComponent(rc)}`;
         }
+        return '';
     }).join('&');
-    console.log(params)
+    // console.log(params)
     return params;
 }

@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Card, Button } from "react-bootstrap"
+import { Button } from "react-bootstrap";
 
 export const SearchButton = styled(Button)`
   display: grid;

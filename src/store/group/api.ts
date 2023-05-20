@@ -1,10 +1,9 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
-import { PaginatedPayload } from '@store/interface';
 import { convertObjectToURLParams } from 'utilities/general';
 import { axiosBaseQuery } from '../../utilities/axiosQuery/axiosBaseQuery';
 import { baseUrl } from '../../utilities/requests';
 import { IResponse } from '../auth/interface';
-import { AddGroupPayload, ChurchGroupsResponse, DeleteGroupsPayload, EditGroupPayload, FetchGroupsPayload, RequiresGroupID, GroupInfoResponse, GroupSuccessResponse } from './interface';
+import { AddGroupPayload, ChurchGroupsResponse, DeleteGroupsPayload, EditGroupPayload, FetchGroupsPayload, RequiresGroupID, GroupSuccessResponse } from './interface';
 
 
 export const groupApi = createApi({
