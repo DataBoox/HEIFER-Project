@@ -32,7 +32,7 @@ export const DashboardScreen = () => {
                     height: "48px",
                   }}
                 >
-                  <FaShapes size={24} />
+                  <FaShapes size={24} className="svg-light" />
                 </div>
               </div>
               <div className="flex-grow-1 overflow-hidden text-end">
@@ -72,7 +72,7 @@ export const DashboardScreen = () => {
                     height: "48px",
                   }}
                 >
-                  <BsFillPersonCheckFill size={24} />
+                  <BsFillPersonCheckFill size={24} className="svg-light" />
                 </div>
               </div>
               <div className="flex-grow-1 overflow-hidden text-end">
@@ -106,7 +106,7 @@ export const DashboardScreen = () => {
                     height: "48px",
                   }}
                 >
-                  <MdLocationOn size={24} />
+                  <MdLocationOn size={24} className="svg-light" />
                 </div>
               </div>
               <div className="flex-grow-1 overflow-hidden text-end">
@@ -115,7 +115,6 @@ export const DashboardScreen = () => {
                   States Covered
                 </p>
                 <h4 className="fs-1 fw-bold text-dark mb-5">5</h4>
-                
               </div>
             </div>
             {/* end card body */}
@@ -141,7 +140,7 @@ export const DashboardScreen = () => {
                     height: "48px",
                   }}
                 >
-                  <MdLocationOn size={24} />
+                  <MdLocationOn size={24} className="svg-light" />
                 </div>
               </div>
               <div className="flex-grow-1 overflow-hidden text-end">
@@ -150,7 +149,6 @@ export const DashboardScreen = () => {
                   LGAs Covered
                 </p>
                 <h4 className="fs-1 fw-bold text-dark mb-5">48</h4>
-                
               </div>
             </div>
             {/* end card body */}
@@ -176,7 +174,7 @@ export const DashboardScreen = () => {
                     height: "48px",
                   }}
                 >
-                  <FaStore size={24} />
+                  <FaStore size={24} className="svg-light" />
                 </div>
               </div>
               <div className="flex-grow-1 overflow-hidden text-end">
@@ -185,7 +183,6 @@ export const DashboardScreen = () => {
                   Communities Covered
                 </p>
                 <h4 className="fs-1 fw-bold text-dark mb-5">209</h4>
-                
               </div>
             </div>
             {/* end card body */}
@@ -211,7 +208,7 @@ export const DashboardScreen = () => {
                     height: "48px",
                   }}
                 >
-                  <MdPersonAddAlt1 size={24} />
+                  <MdPersonAddAlt1 size={24} className="svg-light" />
                 </div>
               </div>
               <div className="flex-grow-1 overflow-hidden text-end">
@@ -220,7 +217,6 @@ export const DashboardScreen = () => {
                   No. of SH Groups
                 </p>
                 <h4 className="fs-1 fw-bold text-dark mb-5">50</h4>
-                
               </div>
             </div>
             {/* end card body */}
@@ -246,7 +242,7 @@ export const DashboardScreen = () => {
                     height: "48px",
                   }}
                 >
-                  <BsFillPatchCheckFill size={24} />
+                  <BsFillPatchCheckFill size={24} className="svg-light" />
                 </div>
               </div>
               <div className="flex-grow-1 overflow-hidden text-end">
@@ -255,7 +251,6 @@ export const DashboardScreen = () => {
                   Intervention Administered
                 </p>
                 <h4 className="fs-1 fw-bold text-dark mb-5">30,700</h4>
-                
               </div>
             </div>
             {/* end card body */}
@@ -281,7 +276,7 @@ export const DashboardScreen = () => {
                     height: "48px",
                   }}
                 >
-                  <FaStore size={24} />
+                  <FaStore size={24} className="svg-light" />
                 </div>
               </div>
               <div className="flex-grow-1 overflow-hidden text-end">
@@ -290,7 +285,6 @@ export const DashboardScreen = () => {
                   Team Members
                 </p>
                 <h4 className="fs-1 fw-bold text-dark mb-5">25</h4>
-                
               </div>
             </div>
             {/* end card body */}
@@ -316,7 +310,7 @@ export const DashboardScreen = () => {
                     height: "48px",
                   }}
                 >
-                  <BsFillWalletFill size={24} />
+                  <BsFillWalletFill size={24} className="svg-light" />
                 </div>
               </div>
               <div className="flex-grow-1 overflow-hidden text-end">
@@ -356,7 +350,7 @@ export const DashboardScreen = () => {
                     height: "48px",
                   }}
                 >
-                  <BsFillWalletFill size={24} />
+                  <BsFillWalletFill size={24} className="svg-light" />
                 </div>
               </div>
               <div className="flex-grow-1 overflow-hidden text-end">

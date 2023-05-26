@@ -7,19 +7,33 @@ import moment from 'moment';
 
 export const useAllUsersColumn = () => {
     return useMemo<MRT_ColumnDef<UserInfo>[]>(() => [
-        {
-            header: 'Full Name',
-            accessorFn: (row) => `${row.fname} ${row.lname}`,
-            Cell: ({ row }) => (
-                <Link
-                    to={'/users/view/' + row.original.id}
-                    state={{ member: row.original }}
-                    className="fw-bold text-decoration-underline"
-                >
-                    {_.startCase(`${row.original.fname} ${row.original.lname}`)}
-                </Link>
-            )
-        },
+    {
+    header: 'First Name',
+    accessorFn: (row) => `${row.fname} ${row.lname}`,
+    Cell: ({ row }) => (
+        <Link
+            to={'/users/view/' + row.original.id}
+            state={{ member: row.original }}
+            className="text-decoration-underline"
+        >
+            {_.startCase(row.original.fname)}
+        </Link>
+    )
+},
+{
+    header: 'Last Name',
+    accessorFn: (row) => `${row.fname} ${row.lname}`,
+    Cell: ({ row }) => (
+        <Link
+            to={'/users/view/' + row.original.id}
+            state={{ member: row.original }}
+            className="text-decoration-underline"
+        >
+            {_.startCase(row.original.lname)}
+        </Link>
+    )
+},
+
         {
             accessorKey: 'user.email',
             header: 'Email  Address.',

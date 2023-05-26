@@ -87,8 +87,9 @@ export const AddInterventionDialog: React.FC<AddInterventionDialogProps> = ({
   return (
     <ChakraProviderLoader>
       {useButton && (
-        <Button onClick={() => setShow(true)} {...buttonProps}>
+        <Button onClick={() => setShow(true)} {...buttonProps} _hover={{ bg: "#bbc7ca", transition: "background-color 0.5s ease-in-out"}}>
           {children}
+          
         </Button>
       )}
       <ChakraAlertDialog
