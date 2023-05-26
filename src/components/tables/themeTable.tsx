@@ -48,7 +48,6 @@ export const ThemeTable: React.FC<ThemeTableProps> = ({
   };
 
   const handleExportData = () => csvExporter.generateCsv(data);
-
   return (
     <MaterialProviderLoader>
       <MaterialReactTable
@@ -65,7 +64,17 @@ export const ThemeTable: React.FC<ThemeTableProps> = ({
         onPaginationChange={setPagination}
         onSortingChange={setSorting}
         rowCount={rowTotal}
-        muiTableBodyCellProps={{ sx: { border: "0.8px solid #e3eaef" } }}
+        muiTableBodyCellProps={{
+          sx: { border: "0.8px solid #e3eaef" },
+        }}
+        muiTableHeadCellProps={{
+          sx: {
+            backgroundColor: "#2A4153",
+            color: "#ffff",
+            fontWeight: "light",
+            textTransform: "capitalize",
+          },
+        }}
         state={{
           sorting,
           columnFilters,
@@ -94,7 +103,9 @@ export const ThemeTable: React.FC<ThemeTableProps> = ({
           />
         )}
         icons={{
-          SortIcon: (props: any) => <FiArrowDown {...props} />,
+          SortIcon: (props: any) => (
+            <FiArrowDown {...props}/>
+          ),
         }}
         {...rest}
       />

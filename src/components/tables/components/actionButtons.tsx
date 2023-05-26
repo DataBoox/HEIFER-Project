@@ -70,6 +70,12 @@ export const TableActionButtons: React.FC<TableActionButtonsProps> = ({
           startIcon={<FaTrash size={12} />}
           className={"fw-bold"}
           {...deleteButtonProps}
+          sx={{
+            "&:hover": {
+              transition: "background-color 0.5s ease-in-out",
+              // Add any other styles for the hover effect
+            },
+          }}
         >
           {deleteText}
         </Button>
@@ -88,6 +94,12 @@ export const TableActionButtons: React.FC<TableActionButtonsProps> = ({
         className={"fw-bold"}
         startIcon={<FaFileExport size={12} />}
         endIcon={<BsChevronDown size={12} />}
+        sx={{
+          "&:hover": {
+            transition: "background-color 0.5s ease-in-out",
+            // Add any other styles for the hover effect
+          },
+        }}
       >
         Export Records
       </Button>

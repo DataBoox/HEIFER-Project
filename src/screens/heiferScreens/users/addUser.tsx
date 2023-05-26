@@ -95,7 +95,11 @@ export const AddUserDialog: React.FC<AddUserDialogProps> = ({
   return (
     <ChakraProviderLoader>
       {useButton && (
-        <Button onClick={() => setShow(true)} {...buttonProps}>
+        <Button
+          onClick={() => setShow(true)}
+          {...buttonProps}
+          _hover={{ bg: "#bbc7ca" }}
+        >
           {children}
         </Button>
       )}
@@ -193,15 +197,15 @@ export const AddUserDialog: React.FC<AddUserDialogProps> = ({
                   isDisabled: isLoading,
                 }}
                 stateContainerProps={{
-                  className: "col-12 mb-3"
+                  className: "col-12 mb-3",
                 }}
                 areaContainerProps={{
-                  className: "col-12 mb-3"
+                  className: "col-12 mb-3",
                 }}
                 onChange={({ lga, state }) => {
-                  setFieldTouched("state", true)
-                  setFieldTouched("lga", true)
-                  setValues({ ...values, lga, state })
+                  setFieldTouched("state", true);
+                  setFieldTouched("lga", true);
+                  setValues({ ...values, lga, state });
                 }}
               />
             </div>
@@ -219,7 +223,6 @@ export const AddUserDialog: React.FC<AddUserDialogProps> = ({
               isDisabled={isLoading}
             />
           </div>
-
         </div>
       </ChakraAlertDialog>
     </ChakraProviderLoader>

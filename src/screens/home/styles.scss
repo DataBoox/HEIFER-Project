@@ -125,7 +125,6 @@
         margin-left: 250px;
     }
 }
-
 .main-content {
     -webkit-transition: all .1s ease-out;
     transition: all .1s ease-out;
@@ -279,7 +278,14 @@
     -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.05);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.05);
 }
-
+.MuiIconButton-root .MuiSvgIcon-root {
+     
+    fill: #97a3ad;
+    
+    .MuiTableSortLabel-icon {
+        fill: #00ff00
+    }
+}
 .auth-form-section {
     z-index: 9;
     background: #fff;

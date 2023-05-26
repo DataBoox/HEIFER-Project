@@ -78,6 +78,8 @@ export const GroupScreen = () => {
               color={"#000000"}
               borderRadius={0}
               padding={"12px, 20px, 12px, 20px"}
+              _hover={{ bg: "#bbc7ca" }}
+              transition={"background-color 0.5s ease-in-out"}
             >
               Create Group
             </Button>

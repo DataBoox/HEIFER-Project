@@ -10,6 +10,7 @@ import { AddUserScheme } from "validations";
 import { AddUserDialog } from "./addUser";
 import { useAddUserMutation, useGetUsersQuery } from "store/user";
 import { useAllUsersColumn } from "./components";
+import { OverlayTrigger, Tooltip } from "react-bootstrap";
 
 
 
@@ -55,6 +56,7 @@ export const UserScreen = () => {
                 color: "#000000",
                 borderRadius: 0,
                 padding: "12px, 20px, 12px, 20px",
+                transition: "background-color 0.5s ease-in-out", // Add transition property
               }}
               onClose={refetch}
             >
@@ -65,33 +67,48 @@ export const UserScreen = () => {
       }
     >
       <div className="col-xl-12">
-        <DashboardCardContainer
-          cardHeaderTitle={"Participant Details"}
-          title={""}
-          bodyClassName={""}
-        >
-          <ThemeTable
-            data={data?.data?.data ?? []}
-            columns={columns as any}
-            isLoading={isLoading}
-            onRefetch={refetch}
-            enableRowActions
-            positionActionsColumn="last"
-            renderRowActions={({ row }) => (
-              <div className="d-flex justify-content-evenly">
-                <div className="touchable">
-                  <FaEye size={16} color="#7F8C9F" />
-                </div>
-                <div className="touchable">
-                  <FaPen size={16} color="#7F8C9F" />
-                </div>
-                <div className="touchable">
-                  <FaTrash size={16} color="red" />
-                </div>
+        <ThemeTable
+          data={data?.data?.data ?? []}
+          columns={columns as any}
+          isLoading={isLoading}
+          onRefetch={refetch}
+          enableRowActions
+          positionActionsColumn="last"
+          renderRowActions={({ row }) => (
+            <div className="d-flex justify-content-evenly">
+              <div className="touchable pe-2">
+                <OverlayTrigger
+                  placement="top"
+                  overlay={<Tooltip id="view-tooltip">View</Tooltip>}
+                >
+                  <div>
+                    <FaEye size={16} color="#7F8C9F" />
+                  </div>
+                </OverlayTrigger>
               </div>
-            )}
-          />
-        </DashboardCardContainer>
+              <div className="touchable pe-2">
+                <OverlayTrigger
+                  placement="top"
+                  overlay={<Tooltip id="edit-tooltip">Edit</Tooltip>}
+                >
+                  <div>
+                    <FaPen size={16} color="#7F8C9F" />
+                  </div>
+                </OverlayTrigger>
+              </div>
+              <div className="touchable">
+                <OverlayTrigger
+                  placement="top"
+                  overlay={<Tooltip id="delete-tooltip">Delete</Tooltip>}
+                >
+                  <div>
+                    <FaTrash size={16} color="red" />
+                  </div>
+                </OverlayTrigger>
+              </div>
+            </div>
+          )}
+        />
       </div>
     </ContentBodyContainer>
   );
