@@ -64,7 +64,7 @@ export const LoginScreen = () => {
                                             }}
                                         />
                                         <h3 className="login-heading fs-1 fw-bold mb-4">
-                                            Welcome Back!
+                                            Welcome!
                                         </h3>
                                     </div>
                                     <PrimaryInput
@@ -107,9 +107,9 @@ export const LoginScreen = () => {
                                          isLoading={isLoading}
                                         > Sign In</PrimaryButton>
                                        
-                                        <p className="text-muted">
+                                        {/* <p className="text-muted">
                                             Don't have an account? <Link to="/signup">Sign Up</Link>
-                                        </p>
+                                        </p> */}
                                     </div>
                                 </div>
                             </div>

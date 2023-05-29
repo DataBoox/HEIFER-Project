@@ -1,7 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
 import authReducer from './auth/slice';
 import { authApi } from './auth/api';
-import { userApi } from "./user/api"
+import { userApi } from "./user/api";
+import { groupApi } from "./group/api";
 import { uploadApi } from './uploads';
 import { projectApi } from './projects';
 import { interventionApi } from './intervention';
@@ -11,6 +12,7 @@ export const store = configureStore({
     reducer: {
         [authApi.reducerPath]: authApi.reducer,
         [userApi.reducerPath]: userApi.reducer,
+        [groupApi.reducerPath]: groupApi.reducer,
         [uploadApi.reducerPath]: uploadApi.reducer,
         [projectApi.reducerPath]: projectApi.reducer,
         [interventionApi.reducerPath]: interventionApi.reducer,
@@ -23,6 +25,7 @@ export const store = configureStore({
         }).concat(
             authApi.middleware,
             userApi.middleware,
+            groupApi.middleware,
             uploadApi.middleware,
             projectApi.middleware,
             interventionApi.middleware,
