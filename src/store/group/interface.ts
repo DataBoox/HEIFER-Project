@@ -5,9 +5,12 @@ export interface RequiresGroupID {
     groups: (number | string)[],
 }
 
-export interface Group {
-  fname: string;
-  lname: string;
+export interface GroupInfo {
+    gname: string;
+    createdby: string;
+    location: string;
+    farmers: string;
+    interventions: string;
    id: number;
     group_id: number;
     contact_mode: string[];

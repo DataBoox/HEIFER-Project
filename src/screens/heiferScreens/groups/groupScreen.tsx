@@ -1,21 +1,23 @@
 // import { Devotional, DevotionalProps} from "./components/devotionalComponent";
 import { MdOutlineAddCircleOutline } from "react-icons/md";
-import { FaSearch } from "react-icons/fa";
 import { Button, useToast, ButtonProps } from "@chakra-ui/react";
-import { PrimaryButton, PrimaryInput } from "components";
+import { PrimaryButton, PrimaryInput, ThemeTable } from "components";
 import { useNavigate } from "react-router-dom";
 import { ContentBodyContainer, DashboardCardContainer } from "../../home";
 import { useFormik } from "formik";
 import { resolveApiError, validationError } from "utilities";
 import { AddGroupScheme } from "validations";
-import { useAddGroupMutation } from "store/group";
-import { request } from "http";
+import { useGetGroupsQuery } from "store/group";
+import { useAllGroupsColumn } from "./components";
+import { FaEye, FaPen, FaSearch, FaTrash, FaPlus } from "react-icons/fa";
+import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import _ from "lodash";
 import { toast } from "react-toastify";
 
 export const GroupScreen = () => {
   const navigate = useNavigate();
-  const [request, { isLoading }] = useAddGroupMutation();
+  const columns = useAllGroupsColumn();
+  const { data, isLoading, refetch } = useGetGroupsQuery({ page: 1, query: "" });
   const toast = useToast({ position: "top-right" });
   const {
     values,
@@ -31,6 +33,7 @@ export const GroupScreen = () => {
       surname: "",
       fname: "",
       lname: "",
+      gname: "",
       mobileNumber: "",
       email: "",
     },
@@ -94,6 +97,60 @@ export const GroupScreen = () => {
           title={""}
         ></DashboardCardContainer>
       </div>
+      {/* <div className="col-xl-12">
+        <ThemeTable
+          data={data?.data?.data ?? []}
+          columns={columns as any}
+          isLoading={isLoading}
+          onRefetch={refetch}
+          enableRowActions
+          positionActionsColumn="last"
+          renderRowActions={({ row }) => (
+            <div className="d-flex justify-content-evenly">
+              <div className="touchable pe-2">
+                <OverlayTrigger
+                  placement="top"
+                  overlay={<Tooltip id="view-tooltip">View</Tooltip>}
+                >
+                  <div>
+                    <FaEye size={16} color="#7F8C9F" />
+                  </div>
+                </OverlayTrigger>
+              </div>
+              <div className="touchable pe-2">
+                <OverlayTrigger
+                  placement="top"
+                  overlay={<Tooltip id="edit-tooltip">Edit</Tooltip>}
+                >
+                  <div>
+                    <FaPen size={16} color="#7F8C9F" />
+                  </div>
+                </OverlayTrigger>
+              </div>
+              <div className="touchable">
+                <OverlayTrigger
+                  placement="top"
+                  overlay={<Tooltip id="Addform-tooltip">Add Form</Tooltip>}
+                >
+                  <div>
+                    <FaPlus size={16} color="red" />
+                  </div>
+                </OverlayTrigger>
+              </div>
+              <div className="touchable">
+                <OverlayTrigger
+                  placement="top"
+                  overlay={<Tooltip id="delete-tooltip">Delete</Tooltip>}
+                >
+                  <div>
+                    <FaTrash size={16} color="red" />
+                  </div>
+                </OverlayTrigger>
+              </div>
+            </div>
+          )}
+        />
+      </div> */}
     </ContentBodyContainer>
   );
 };

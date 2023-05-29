@@ -1,7 +1,7 @@
 import { Button, ButtonProps, useToast } from "@chakra-ui/react";
 import { MdOutlineAddCircleOutline } from "react-icons/md";
 import { AddGroupScheme } from "validations";
-import { PrimaryInput, PrimaryTextarea } from "components";
+import { PrimaryInput, PrimaryTextarea, GroupChairmanSelect, GroupSecretarySelect, GroupVCSelect } from "components";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { DashboardCardContainer } from "../../home";
@@ -30,6 +30,13 @@ export const AddGroup = () => {
       pname: "",
       plead: "",
       tmembers: "",
+      community: "",
+      dateofest: "",
+      gc: "",
+      gvc: "",
+      gsc: "",
+      venue: "",
+      dom: "",
     },
     validationSchema: AddGroupScheme(),
     onSubmit: () => initRequest(),
@@ -71,22 +78,6 @@ export const AddGroup = () => {
               bodyClassName={"p-0"}
             >
               <div className="row g-2">
-                <div className="col-lg-3 col-md-12 d-flex justify-content-center">
-                  <div className="sidebar">
-                    <Link to="/page1" className="sidebar-link text-muted">
-                      <input type="radio" name="sidebar" />
-                      <span className="sidebar-text">Group Details</span>
-                    </Link>
-                    <Link to="/page2" className="sidebar-link text-muted">
-                      <input type="radio" name="sidebar" />
-                      <span className="sidebar-text">Add Farmers</span>
-                    </Link>
-                    <Link to="/page3" className="sidebar-link text-muted">
-                      <input type="radio" name="sidebar" />
-                      <span className="sidebar-text">Assign Interventions</span>
-                    </Link>
-                  </div>
-                </div>
                 <div className="col-lg-6 col-md-12">
                   <div className="col-auto mb-4">
                     <PrimaryInput
@@ -127,7 +118,131 @@ export const AddGroup = () => {
                       }}
                     />
                   </div>
+                  <div className="col-auto mb-4">
+                    <PrimaryInput
+                      isRequired
+                      name="venue of meeting"
+                      label="Venue of Meeting"
+                      placeholder="Enter venue"
+                      value={values.venue}
+                      error={Boolean(touched.venue && errors.venue)}
+                      bottomText={errors.venue}
+                      onChange={handleChange}
+                      isDisabled={isLoading}
+                      style={{
+                        backgroundColor: "#F2FAFC",
+                        borderRadius: 0,
+                        borderColor: "#CAECF3",
+                      }}
+                    />
+                  </div>
+                  <div className="col-auto mb-4">
+                    <PrimaryInput
+                      isRequired
+                      name="days of meeting"
+                      label="Days of Meeting"
+                      placeholder="Enter meeting day"
+                      value={values.dom}
+                      error={Boolean(touched.dom && errors.dom)}
+                      bottomText={errors.dom}
+                      onChange={handleChange}
+                      isDisabled={isLoading}
+                      style={{
+                        backgroundColor: "#F2FAFC",
+                        borderRadius: 0,
+                        borderColor: "#CAECF3",
+                      }}
+                    />
+                  </div>
+                </div>
 
+                <div className="col-lg-6 col-md-12">
+                  <div className="col-auto mb-4">
+                    <PrimaryInput
+                      isRequired
+                      name="community"
+                      label="Community"
+                      placeholder="Enter resident community"
+                      value={values.community}
+                      error={Boolean(touched.community && errors.community)}
+                      bottomText={errors.community}
+                      onChange={handleChange}
+                      isDisabled={isLoading}
+                      style={{
+                        backgroundColor: "#F2FAFC",
+                        borderRadius: 0,
+                        borderColor: "#CAECF3",
+                      }}
+                    />
+                  </div>
+                  <div className="col-auto mb-4">
+                    <PrimaryInput
+                      isRequired
+                      name="date"
+                      label="Date of Establishment"
+                      type="date"
+                      placeholder="Enter date"
+                      value={values.dateofest}
+                      error={Boolean(touched.dateofest && errors.dateofest)}
+                      bottomText={errors.dateofest}
+                      onChange={handleChange}
+                      isDisabled={isLoading}
+                      style={{
+                        backgroundColor: "#F2FAFC",
+                        borderRadius: 0,
+                        borderColor: "#CAECF3",
+                      }}
+                      min={new Date().toISOString().split("T")[0]}
+                    />
+                  </div>
+                  <div className="col-auto mb-4">
+                    <GroupChairmanSelect
+                      isRequired
+                      name="group chairman"
+                      value={values.gc}
+                      error={Boolean(touched.gc && errors.gc)}
+                      bottomText={errors.gc}
+                      onChange={handleChange}
+                      isDisabled={isLoading}
+                      style={{
+                        backgroundColor: "#F2FAFC",
+                        borderRadius: 0,
+                        borderColor: "#CAECF3",
+                      }}
+                    />
+                  </div>
+                  <div className="col-auto mb-4">
+                    <GroupVCSelect
+                      isRequired
+                      name="group vc"
+                      value={values.gvc}
+                      error={Boolean(touched.gvc && errors.gvc)}
+                      bottomText={errors.gvc}
+                      onChange={handleChange}
+                      isDisabled={isLoading}
+                      style={{
+                        backgroundColor: "#F2FAFC",
+                        borderRadius: 0,
+                        borderColor: "#CAECF3",
+                      }}
+                    />
+                  </div>
+                  <div className="col-auto mb-4">
+                    <GroupSecretarySelect
+                      isRequired
+                      name="group secretary"
+                      value={values.gsc}
+                      error={Boolean(touched.gsc && errors.gsc)}
+                      bottomText={errors.gsc}
+                      onChange={handleChange}
+                      isDisabled={isLoading}
+                      style={{
+                        backgroundColor: "#F2FAFC",
+                        borderRadius: 0,
+                        borderColor: "#CAECF3",
+                      }}
+                    />
+                  </div>
                   <div className="col-auto text-end mb-4">
                     <Button
                       colorScheme="teal"
@@ -151,3 +266,21 @@ export const AddGroup = () => {
     </div>
   );
 };
+ {
+   /* <div className="col-lg-3 col-md-12 d-flex justify-content-center">
+                  <div className="sidebar">
+                    <Link to="/page1" className="sidebar-link text-muted">
+                      <input type="radio" name="sidebar" />
+                      <span className="sidebar-text">Group Details</span>
+                    </Link>
+                    <Link to="/page2" className="sidebar-link text-muted">
+                      <input type="radio" name="sidebar" />
+                      <span className="sidebar-text">Add Farmers</span>
+                    </Link>
+                    <Link to="/page3" className="sidebar-link text-muted">
+                      <input type="radio" name="sidebar" />
+                      <span className="sidebar-text">Assign Interventions</span>
+                    </Link>
+                  </div>
+                </div> */
+ }
