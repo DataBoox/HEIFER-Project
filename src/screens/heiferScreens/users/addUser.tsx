@@ -4,6 +4,8 @@ import {
   ChakraAlertDialog,
   ChakraAlertDialogProps,
   GenderSelect,
+  ProjectSelect,
+  RoleSelect,
   PrimaryInput
 } from "components";
 import { useFormik } from "formik";
@@ -50,6 +52,8 @@ export const AddUserDialog: React.FC<AddUserDialogProps> = ({
       email: "",
       state: "",
       community: "",
+      project: "",
+      role: "",
       lga: "",
       gender: ""
     },
@@ -179,6 +183,11 @@ export const AddUserDialog: React.FC<AddUserDialogProps> = ({
               bottomText={errors.gender}
               onChange={handleChange}
               isDisabled={isLoading}
+              style={{
+                backgroundColor: "#F2FAFC",
+                borderRadius: 0,
+                borderColor: "#CAECF3",
+              }}
             />
           </div>
           <div className="col-12">
@@ -221,6 +230,44 @@ export const AddUserDialog: React.FC<AddUserDialogProps> = ({
               bottomText={errors.community}
               onChange={handleChange}
               isDisabled={isLoading}
+              style={{
+                backgroundColor: "#F2FAFC",
+                borderRadius: 0,
+                borderColor: "#CAECF3",
+              }}
+            />
+          </div>
+          <div className="col-12">
+            <ProjectSelect
+              isRequired
+              name="project"
+              value={values.project}
+              error={Boolean(touched.project && errors.project)}
+              bottomText={errors.project}
+              onChange={handleChange}
+              isDisabled={isLoading}
+              style={{
+                backgroundColor: "#F2FAFC",
+                borderRadius: 0,
+                borderColor: "#CAECF3",
+              }}
+            />
+          </div>
+
+          <div className="col-12">
+            <RoleSelect
+              isRequired
+              name="role"
+              value={values.role}
+              error={Boolean(touched.role && errors.role)}
+              bottomText={errors.role}
+              onChange={handleChange}
+              isDisabled={isLoading}
+              style={{
+                backgroundColor: "#F2FAFC",
+                borderRadius: 0,
+                borderColor: "#CAECF3",
+              }}
             />
           </div>
         </div>
