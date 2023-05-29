@@ -90,14 +90,14 @@ export const GroupScreen = () => {
         </div>
       }
     >
-      <div className="col-xl-12">
+      {/* <div className="col-xl-12">
         <DashboardCardContainer
           // cardHeaderTitle={"Participant Details"}
           bodyClassName={"p-4 m-3"}
           title={""}
         ></DashboardCardContainer>
-      </div>
-      {/* <div className="col-xl-12">
+      </div> */}
+      <div className="col-xl-12">
         <ThemeTable
           data={data?.data?.data ?? []}
           columns={columns as any}
@@ -150,7 +150,7 @@ export const GroupScreen = () => {
             </div>
           )}
         />
-      </div> */}
+      </div>
     </ContentBodyContainer>
   );
 };
