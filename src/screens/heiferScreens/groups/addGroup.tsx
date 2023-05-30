@@ -27,7 +27,7 @@ export const AddGroup = () => {
     initialValues: {
       address: "",
       description: "",
-      pname: "",
+      gname: "",
       plead: "",
       tmembers: "",
       community: "",
@@ -82,12 +82,12 @@ export const AddGroup = () => {
                   <div className="col-auto mb-4">
                     <PrimaryInput
                       isRequired
-                      name="pname"
+                      name="gname"
                       label="Group Name"
-                      placeholder="Enter your project name"
-                      value={values.pname}
-                      error={Boolean(touched.pname && errors.pname)}
-                      bottomText={errors.pname}
+                      placeholder="Enter your group name"
+                      value={values.gname}
+                      error={Boolean(touched.gname && errors.gname)}
+                      bottomText={errors.gname}
                       onChange={handleChange}
                       isDisabled={isLoading}
                       style={{

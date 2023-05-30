@@ -31,7 +31,7 @@ export const AdminMenuLinkItem: Array<LinkItemProps> = [
   { name: "Projects", icon: FaShapes, path: "projects" },
   { name: "Create Form", icon: MdNoteAdd, path: "create-form" },
   { name: "Register", icon: HiUserAdd, path: "register" },
-  { name: "Farmers", icon: GiFarmer, path: "farmers" },
+  { name: "Households", icon: GiFarmer, path: "farmers" },
   { name: "Groups", icon: BsGridFill, path: "groups" },
   { name: "Interventions", icon: BsFillPatchCheckFill, path: "interventions" },
   { name: "Users", icon: FaUser, path: "users" },
