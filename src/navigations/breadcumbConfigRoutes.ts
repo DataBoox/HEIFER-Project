@@ -4,6 +4,7 @@ import { RouteDirector } from "./interface";
 export const breadcrumbConfig: { [x: string]: RouteDirector[] } = {
     'heiferDashboard': [{ name: 'Home' }, { name: 'Dashboard' }],
     'registerFarmers': [{ name: 'Dashboard', to: '/' }, { name: 'Register' }],
+    'createFarmers': [{ name: 'Dashboard', to: '/' }, { name: 'Households' }],
     'createUser': [{ name: 'Dashboard', to: '/' }, { name: 'Users' }],
     'createIntervention': [{ name: 'Dashboard', to: '/' }, { name: 'Interventions' }],
     'project': [{ name: 'Dashboard', to: '/' }, { name: 'Projects' }],

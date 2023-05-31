@@ -4,6 +4,7 @@ import { authApi } from './auth/api';
 import { userApi } from "./user/api";
 import { groupApi } from "./group/api";
 import { farmerApi } from "./farmers/api";
+import { farmerformApi } from "./farmerForm/api";
 import { uploadApi } from './uploads';
 import { projectApi } from './projects';
 import { interventionApi } from './intervention';
@@ -18,6 +19,7 @@ export const store = configureStore({
         [projectApi.reducerPath]: projectApi.reducer,
         [interventionApi.reducerPath]: interventionApi.reducer,
         [farmerApi.reducerPath]: farmerApi.reducer,
+        [farmerformApi.reducerPath]: farmerformApi.reducer,
         auth: authReducer,
     },
     middleware: (getDefaultMiddleware) =>
@@ -32,6 +34,7 @@ export const store = configureStore({
             projectApi.middleware,
             interventionApi.middleware,
             farmerApi.middleware,
+            farmerformApi.middleware,
         )
 });
 

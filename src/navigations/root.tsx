@@ -9,6 +9,7 @@ import {
   RegisterFarmers,
   UserScreen,
   GroupScreen,
+  FarmerScreen,
   InterventionScreen,
 } from "screens/heiferScreens";
 
@@ -40,6 +41,7 @@ export const RootNavigator = () => {
           <Route path="groups/add" element={<AddGroup />} />
           <Route path="users" element={<UserScreen />} />
           <Route path="groups" element={<GroupScreen />} />
+          <Route path="farmers" element={<FarmerScreen />} />
           <Route path="interventions" element={<InterventionScreen />} />
         </Route>
       </Routes>

@@ -9,7 +9,7 @@ export const useAllUsersColumn = () => {
     return useMemo<MRT_ColumnDef<UserInfo>[]>(() => [
     {
     header: 'First Name',
-    accessorFn: (row) => `${row.fname} ${row.lname}`,
+    accessorFn: (row) => `${row.fname}`,
     Cell: ({ row }) => (
         <Link
             to={'/users/view/' + row.original.id}
@@ -22,7 +22,7 @@ export const useAllUsersColumn = () => {
 },
 {
     header: 'Last Name',
-    accessorFn: (row) => `${row.fname} ${row.lname}`,
+    accessorFn: (row) => `${row.lname}`,
     Cell: ({ row }) => (
         <Link
             to={'/users/view/' + row.original.id}

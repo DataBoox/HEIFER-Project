@@ -130,19 +130,7 @@ export const GroupScreen = () => {
           </div>
 
           <div className="col-auto">
-            <PrimaryInput
-              name="search3"
-              placeholder="Search 3..."
-              size={"lg"}
-              rightComponent={<FaSearch color={"grey"} />}
-              // onChange={({ target }) => onSearch(target.value)}
-              isDisabled={isLoading}
-              style={{
-                backgroundColor: "#ffff",
-                borderRadius: 0,
-                border: 0,
-              }}
-            />
+            
           </div>
         </div>
       </div>
