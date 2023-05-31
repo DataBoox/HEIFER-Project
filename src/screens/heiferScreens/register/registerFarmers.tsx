@@ -17,13 +17,13 @@ import { DashboardCardContainer } from "../../home";
 import { useFormik } from "formik";
 import { resolveApiError } from "utilities";
 import { useState } from "react";
-import { useAddFarmerMutation } from "store/farmers";
+import { useAddFarmerformMutation } from "store/farmerForm";
 
 export const RegisterFarmers = () => {
   const [show, setShow] = useState(false);
   const toast = useToast({ position: "top-right" });
   const navigate = useNavigate();
-  const [request, { isLoading }] = useAddFarmerMutation();
+  const [request, { isLoading }] = useAddFarmerformMutation();
   const {
     values,
     errors,

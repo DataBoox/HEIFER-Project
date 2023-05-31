@@ -6,11 +6,9 @@ export interface RequiresFarmerID {
 }
 
 export interface FarmerInfo {
-    cluster_name: string,
-      cluster_number: string,
-      cluster_head: string,
+    address: string,
+      email_address: string,
       gender: string,
-      gender_household: string,
       age: number,
       age_category: string,
       phone: number,
@@ -20,7 +18,10 @@ export interface FarmerInfo {
       means_of_id: string,
       id_type: string,
       group_or_ass: string,
-      gname: string,
+      fname: string,
+    id: number;
+      lname: string,
+      created_at: string,
       gtype: string,
 }
 

@@ -28,9 +28,9 @@ export const AdminMenuLinkItem: Array<LinkItemProps> = [
   //         { name: "Testimony", icon: FaHands, path: "testimony" }
   //     ]
   // },
-  { name: "Projects", icon: FaShapes, path: "projects" },
+  // { name: "Projects", icon: FaShapes, path: "projects" },
   { name: "Create Form", icon: MdNoteAdd, path: "create-form" },
-  { name: "Register", icon: HiUserAdd, path: "register" },
+  { name: "Register Household", icon: HiUserAdd, path: "register" },
   { name: "Households", icon: GiFarmer, path: "farmers" },
   { name: "Groups", icon: BsGridFill, path: "groups" },
   { name: "Interventions", icon: BsFillPatchCheckFill, path: "interventions" },
