@@ -55,11 +55,11 @@ const handleModalClose = () => {
                 </div>
               </div>
               <div className="flex-grow-1 overflow-hidden text-end">
-                <p className="fs-6 fw-medium text-dark text-truncate mb-3">
+                <p className="fs-5 fw-medium text-dark text-truncate mb-3">
                   {" "}
                   No. of Projects
                 </p>
-                <h4 className="fs-2 fw-bold text-dark mb-4">3</h4>
+                <h4 className="fs-1 fw-bold text-dark mb-4">3</h4>
                 <p
                   className="badge bg-light mb-0 fw-light text-decoration-underline"
                   style={{ color: "#0BB508", cursor: "pointer" }}
@@ -123,11 +123,11 @@ const handleModalClose = () => {
                 </div>
               </div>
               <div className="flex-grow-1 overflow-hidden text-end">
-                <p className="fs-6 fw-medium text-dark text-truncate mb-3">
+                <p className="fs-5 fw-medium text-dark text-truncate mb-3">
                   {" "}
                   Register Participants
                 </p>
-                <h4 className="fs-2 fw-bold text-dark mb-5">0</h4>
+                <h4 className="fs-1 fw-bold text-dark mb-5">0</h4>
               </div>
             </div>
             {/* end card body */}
@@ -157,11 +157,11 @@ const handleModalClose = () => {
                 </div>
               </div>
               <div className="flex-grow-1 overflow-hidden text-end">
-                <p className="fs-6 fw-medium text-dark text-truncate mb-3">
+                <p className="fs-5 fw-medium text-dark text-truncate mb-3">
                   {" "}
                   States Covered
                 </p>
-                <h4 className="fs-2 fw-bold text-dark mb-5">5</h4>
+                <h4 className="fs-1 fw-bold text-dark mb-5">5</h4>
               </div>
             </div>
             {/* end card body */}
@@ -191,11 +191,11 @@ const handleModalClose = () => {
                 </div>
               </div>
               <div className="flex-grow-1 overflow-hidden text-end">
-                <p className="fs-6 fw-medium text-dark text-truncate mb-3">
+                <p className="fs-5 fw-medium text-dark text-truncate mb-3">
                   {" "}
                   LGAs Covered
                 </p>
-                <h4 className="fs-2 fw-bold text-dark mb-5">...</h4>
+                <h4 className="fs-1 fw-bold text-dark mb-5">...</h4>
               </div>
             </div>
             {/* end card body */}
@@ -225,11 +225,11 @@ const handleModalClose = () => {
                 </div>
               </div>
               <div className="flex-grow-1 overflow-hidden text-end">
-                <p className="fs-6 fw-medium text-dark text-truncate mb-3">
+                <p className="fs-5 fw-medium text-dark text-truncate mb-3">
                   {" "}
                   Communities Covered
                 </p>
-                <h4 className="fs-2 fw-bold text-dark mb-5">209</h4>
+                <h4 className="fs-1 fw-bold text-dark mb-5">209</h4>
               </div>
             </div>
             {/* end card body */}
@@ -259,11 +259,11 @@ const handleModalClose = () => {
                 </div>
               </div>
               <div className="flex-grow-1 overflow-hidden text-end">
-                <p className="fs-6 fw-medium text-dark text-truncate mb-3">
+                <p className="fs-5 fw-medium text-dark text-truncate mb-3">
                   {" "}
                   No. of SH Groups
                 </p>
-                <h4 className="fs-2 fw-bold text-dark mb-5">0</h4>
+                <h4 className="fs-1 fw-bold text-dark mb-5">0</h4>
               </div>
             </div>
             {/* end card body */}
@@ -293,11 +293,11 @@ const handleModalClose = () => {
                 </div>
               </div>
               <div className="flex-grow-1 overflow-hidden text-end">
-                <p className="fs-6 fw-medium text-dark text-truncate mb-3">
+                <p className="fs-5 fw-medium text-dark text-truncate mb-3">
                   {" "}
                   Intervention Administered
                 </p>
-                <h4 className="fs-2 fw-bold text-dark mb-5">30,700</h4>
+                <h4 className="fs-1 fw-bold text-dark mb-5">30,700</h4>
               </div>
             </div>
             {/* end card body */}
@@ -327,11 +327,11 @@ const handleModalClose = () => {
                 </div>
               </div>
               <div className="flex-grow-1 overflow-hidden text-end">
-                <p className="fs-6 fw-medium text-dark text-truncate mb-3">
+                <p className="fs-5 fw-medium text-dark text-truncate mb-3">
                   {" "}
                   Team Members
                 </p>
-                <h4 className="fs-2 fw-bold text-dark mb-5">25</h4>
+                <h4 className="fs-1 fw-bold text-dark mb-5">25</h4>
               </div>
             </div>
             {/* end card body */}
@@ -361,13 +361,13 @@ const handleModalClose = () => {
                 </div>
               </div>
               <div className="flex-grow-1 overflow-hidden text-end">
-                <p className="fs-6 fw-medium text-dark text-truncate mb-3">
+                <p className="fs-5 fw-medium text-dark text-truncate mb-3">
                   {" "}
                   Annual Income
                 </p>
-                <h4 className="fs-2 fw-bold text-dark mb-5">73,276,931.28</h4>
+                <h4 className="fs-1 fw-bold text-dark mb-5">73,276,931.28</h4>
                 <p
-                  className="badge bg-light mb-0 fw-light fs-6"
+                  className="badge bg-light mb-0 fw-light fs-5"
                   style={{ color: "#0BB508" }}
                 >
                   <i className="fa-solid fa-arrow-trend-up"></i> 11.2%
@@ -401,13 +401,13 @@ const handleModalClose = () => {
                 </div>
               </div>
               <div className="flex-grow-1 overflow-hidden text-end">
-                <p className="fs-6 fw-medium text-dark text-truncate mb-3">
+                <p className="fs-5 fw-medium text-dark text-truncate mb-3">
                   {" "}
                   Living Income Benchmark
                 </p>
-                <h4 className="fs-2 fw-bold text-dark mb-5">3,214,628.45</h4>
+                <h4 className="fs-1 fw-bold text-dark mb-5">3,214,628.45</h4>
                 <p
-                  className="badge bg-light mb-0 fw-light fs-6"
+                  className="badge bg-light mb-0 fw-light fs-5"
                   style={{ color: "#0BB508" }}
                 >
                   <i className="fa-solid fa-arrow-trend-up"></i> 11.2%
