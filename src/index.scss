@@ -64,6 +64,12 @@ h6 {
     margin-bottom: 0.5rem !important;
 }
 
-.touchable {
-    cursor: pointer !important
+.touchable div {
+    display: inline-block;
+    margin-right: 5px;
+    /* Adjust this value as needed */
+}
+
+.touchable div:last-child {
+    margin-right: 0;
 }
