@@ -6,9 +6,28 @@ import {
   BsFillWalletFill,
 } from "react-icons/bs";
 import { MdLocationOn, MdPersonAddAlt1 } from "react-icons/md";
+import { useState } from "react";
+import {
+  Button,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  ModalCloseButton,
+} from "@chakra-ui/react";
 
 export const DashboardScreen = () => {
+const [showModal, setShowModal] = useState(false);
 
+const handleModalOpen = () => {
+  setShowModal(true);
+};
+
+const handleModalClose = () => {
+  setShowModal(false);
+};
   // console.log(data)
 
   return (
@@ -43,11 +62,39 @@ export const DashboardScreen = () => {
                 <h4 className="fs-1 fw-bold text-dark mb-4">3</h4>
                 <p
                   className="badge bg-light mb-0 fw-light text-decoration-underline"
-                  style={{ color: "#0BB508" }}
+                  style={{ color: "#0BB508", cursor: "pointer" }}
+                  onClick={handleModalOpen}
                 >
                   View Indicators
                 </p>
               </div>
+              <Modal isOpen={showModal} onClose={handleModalClose} size="xl">
+                <ModalOverlay />
+                <ModalContent>
+                  <ModalHeader>Indicators</ModalHeader>
+                  <ModalCloseButton />
+
+                  <ModalBody style={{ padding: 0 }}>
+                    <div
+                      style={{ position: "relative", paddingBottom: "62.25%" }}
+                    >
+                      <iframe
+                        title="Dashboard"
+                        src="https://app.powerbi.com/view?r=eyJrIjoiZTk3NzkxMmUtZGEyMS00OTEzLWI5NmQtNzMxN2YwYTk0YjE4IiwidCI6IjBlNjYxZTk4LTgzNGUtNDkyMC05YzM5LWIzZTU0MmJiNjY2NSIsImMiOjh9&pageName=ReportSection"
+                        frameBorder="0"
+                        allowFullScreen
+                        style={{
+                          position: "absolute",
+                          top: 0,
+                          left: 0,
+                          width: "100%",
+                          height: "100%",
+                        }}
+                      ></iframe>
+                    </div>
+                  </ModalBody>
+                </ModalContent>
+              </Modal>
             </div>
             {/* end card body */}
           </div>
