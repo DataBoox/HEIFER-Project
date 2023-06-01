@@ -40,7 +40,7 @@ export const DashboardScreen = () => {
                   {" "}
                   No. of Projects
                 </p>
-                <h4 className="fs-1 fw-bold text-dark mb-4">10</h4>
+                <h4 className="fs-1 fw-bold text-dark mb-4">3</h4>
                 <p
                   className="badge bg-light mb-0 fw-light text-decoration-underline"
                   style={{ color: "#0BB508" }}
