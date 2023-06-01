@@ -14,7 +14,7 @@ export const useAuth = () => {
     let SToken: string | null = null;
 
     try{
-        const storedUser = reactLocalStorage.get('@bethel_user');
+        const storedUser = reactLocalStorage.get('@heifer_user');
         const jsonStored = storedUser ? JSON.parse(storedUser) : null;
         SUser = jsonStored ? jsonStored.user : null;
         SToken = jsonStored ? jsonStored.access_token : null;

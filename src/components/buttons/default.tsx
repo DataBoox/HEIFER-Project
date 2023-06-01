@@ -22,12 +22,12 @@ export const PrimaryButton: React.FC<PrimaryButtonProps> = ({
   ...rest
 }) => {
   return (
-    <Button
-      isLoading={rest.isLoading}
-      loadingText="Submitting"
-      colorScheme="teal"
-      {...rest}
-    >
+   <Button
+  isLoading={rest.isLoading}
+  loadingText="Submitting"
+  colorScheme="#2A4153"
+  {...rest}
+>
       {value}
       {children}
     </Button>
