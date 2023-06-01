@@ -121,7 +121,7 @@ export const AddGroup = () => {
                   <div className="col-auto mb-4">
                     <PrimaryInput
                       isRequired
-                      name="venue of meeting"
+                      name="venue"
                       label="Venue of Meeting"
                       placeholder="Enter venue"
                       value={values.venue}
@@ -139,7 +139,7 @@ export const AddGroup = () => {
                   <div className="col-auto mb-4">
                     <PrimaryInput
                       isRequired
-                      name="days of meeting"
+                      name="dom"
                       label="Days of Meeting"
                       placeholder="Enter meeting day"
                       value={values.dom}
@@ -178,7 +178,7 @@ export const AddGroup = () => {
                   <div className="col-auto mb-4">
                     <PrimaryInput
                       isRequired
-                      name="date"
+                      name="dateofest"
                       label="Date of Establishment"
                       type="date"
                       placeholder="Enter date"
@@ -198,7 +198,7 @@ export const AddGroup = () => {
                   <div className="col-auto mb-4">
                     <GroupChairmanSelect
                       isRequired
-                      name="group chairman"
+                      name="gc"
                       value={values.gc}
                       error={Boolean(touched.gc && errors.gc)}
                       bottomText={errors.gc}
@@ -214,7 +214,7 @@ export const AddGroup = () => {
                   <div className="col-auto mb-4">
                     <GroupVCSelect
                       isRequired
-                      name="group vc"
+                      name="gvc"
                       value={values.gvc}
                       error={Boolean(touched.gvc && errors.gvc)}
                       bottomText={errors.gvc}
@@ -230,7 +230,7 @@ export const AddGroup = () => {
                   <div className="col-auto mb-4">
                     <GroupSecretarySelect
                       isRequired
-                      name="group secretary"
+                      name="gsc"
                       value={values.gsc}
                       error={Boolean(touched.gsc && errors.gsc)}
                       bottomText={errors.gsc}
