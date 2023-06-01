@@ -55,7 +55,7 @@ export const LoginScreen = () => {
   return (
     <div className="App">
       <div className="container-fluid ps-md-0">
-        <div className="row g-0">
+        <div className="row g-0 bg-white">
           <div className="d-none d-md-flex col-md-7 col-lg-7 bg-image rounded-left"></div>
           <div className="col-md-5 col-lg-5 bg-image2 rounded-right">
             <div className="login d-flex align-items-center py-5">

@@ -109,7 +109,7 @@ export const RegisterFarmers = () => {
                   <div className="col-auto mb-4">
                     <PrimaryInput
                       isRequired
-                      name="cluster name"
+                      name="cluster_name"
                       label="What is the name of the farmer's cluster?"
                       placeholder="Your answer here..."
                       value={values.cluster_name}
@@ -130,7 +130,7 @@ export const RegisterFarmers = () => {
                   <div className="col-auto mb-4">
                     <PrimaryInput
                       isRequired
-                      name="cluster number"
+                      name="cluster_number"
                       label="What is the cluster number?"
                       placeholder="Your answer here..."
                       value={values.cluster_number}
@@ -150,7 +150,7 @@ export const RegisterFarmers = () => {
                   <div className="col-auto mb-4">
                     <PrimaryInput
                       isRequired
-                      name="cluster head"
+                      name="cluster_head"
                       label="What is the name of the cluster's head?"
                       placeholder="Your answer here..."
                       value={values.cluster_head}
@@ -208,7 +208,7 @@ export const RegisterFarmers = () => {
                   <div className="col-auto mb-4">
                     <AgeCategorySelect
                       isRequired
-                      name="age category"
+                      name="age_category"
                       value={values.age_category}
                       error={Boolean(
                         touched.age_category && errors.age_category
@@ -245,7 +245,7 @@ export const RegisterFarmers = () => {
                   <div className="col-auto mb-4">
                     <HouseholdHeadSelect
                       isRequired
-                      name="household head"
+                      name="household_head"
                       value={values.household_head}
                       error={Boolean(
                         touched.household_head && errors.household_head
@@ -266,7 +266,7 @@ export const RegisterFarmers = () => {
                   <div className="col-auto mb-4">
                     <GenderSelect
                       isRequired
-                      name="gender"
+                      name="gender_household"
                       value={values.gender_household}
                       error={Boolean(
                         touched.gender_household && errors.gender_household
@@ -285,7 +285,7 @@ export const RegisterFarmers = () => {
                   <div className="col-auto mb-4">
                     <MaritalStatusSelect
                       isRequired
-                      name="marital status"
+                      name="marital_status"
                       value={values.marital_status}
                       error={Boolean(
                         touched.marital_status && errors.marital_status
@@ -303,7 +303,7 @@ export const RegisterFarmers = () => {
                   <div className="col-auto mb-4">
                     <EducationLevelSelect
                       isRequired
-                      name="educational level"
+                      name="educational_level"
                       value={values.education_level}
                       error={Boolean(
                         touched.education_level && errors.education_level
@@ -321,7 +321,7 @@ export const RegisterFarmers = () => {
                   <div className="col-auto mb-4">
                     <IdentificationSelect
                       isRequired
-                      name="means of id"
+                      name="means_of_id"
                       value={values.means_of_id}
                       error={Boolean(touched.means_of_id && errors.means_of_id)}
                       bottomText={errors.means_of_id}
@@ -340,7 +340,7 @@ export const RegisterFarmers = () => {
                   <div className="col-auto mb-4">
                     <IdTypeSelect
                       isRequired
-                      name="ID type"
+                      name="id_type"
                       value={values.id_type}
                       error={Boolean(touched.id_type && errors.id_type)}
                       bottomText={errors.id_type}
@@ -357,7 +357,7 @@ export const RegisterFarmers = () => {
                   <div className="col-auto mb-4">
                     <GroupOrAssSelect
                       isRequired
-                      name="group or association?"
+                      name="group_or_association"
                       value={values.group_or_ass}
                       error={Boolean(
                         touched.group_or_ass && errors.group_or_ass
@@ -399,7 +399,7 @@ export const RegisterFarmers = () => {
                   <div className="col-auto mb-4">
                     <GroupTypeSelect
                       isRequired
-                      name="group or association?"
+                      name="group_or_ass"
                       value={values.group_or_ass}
                       error={Boolean(
                         touched.group_or_ass && errors.group_or_ass
