@@ -127,7 +127,7 @@ const handleModalClose = () => {
                   {" "}
                   Register Participants
                 </p>
-                <h4 className="fs-1 fw-bold text-dark mb-5">10</h4>
+                <h4 className="fs-1 fw-bold text-dark mb-5">0</h4>
               </div>
             </div>
             {/* end card body */}
@@ -195,7 +195,7 @@ const handleModalClose = () => {
                   {" "}
                   LGAs Covered
                 </p>
-                <h4 className="fs-1 fw-bold text-dark mb-5">48</h4>
+                <h4 className="fs-1 fw-bold text-dark mb-5">...</h4>
               </div>
             </div>
             {/* end card body */}
@@ -263,7 +263,7 @@ const handleModalClose = () => {
                   {" "}
                   No. of SH Groups
                 </p>
-                <h4 className="fs-1 fw-bold text-dark mb-5">50</h4>
+                <h4 className="fs-1 fw-bold text-dark mb-5">0</h4>
               </div>
             </div>
             {/* end card body */}
