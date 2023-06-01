@@ -13,6 +13,16 @@ import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import _ from "lodash";
 import { toast } from "react-toastify";
 import { StateLGAInput } from "custom";
+import { useState } from "react";
+import {
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  ModalCloseButton,
+} from "@chakra-ui/react";
 
 export const GroupScreen = () => {
   const navigate = useNavigate();
@@ -22,6 +32,15 @@ export const GroupScreen = () => {
     query: "",
   });
   const toast = useToast({ position: "top-right" });
+  const [showModal, setShowModal] = useState(false);
+
+  const handleButtonClick = () => {
+    setShowModal(true);
+  };
+
+  const handleModalClose = () => {
+    setShowModal(false);
+  };
   const {
     values,
     errors,
@@ -129,9 +148,7 @@ export const GroupScreen = () => {
             </div>
           </div>
 
-          <div className="col-auto">
-            
-          </div>
+          <div className="col-auto"></div>
         </div>
       </div>
       <div className="col-xl-12">
@@ -174,6 +191,22 @@ export const GroupScreen = () => {
                   </div>
                 </OverlayTrigger>
               </div>
+
+              <Modal isOpen={showModal} onClose={handleModalClose}>
+                <ModalHeader>
+                  <h2>Selectable Fields</h2>
+                </ModalHeader>
+                <ModalCloseButton />
+                <ModalBody>{/* Add your selectable fields here */}</ModalBody>
+                <ModalFooter>
+                  <Button variant="secondary" onClick={handleModalClose}>
+                    Close
+                  </Button>
+                  <Button variant="primary" onClick={handleModalClose}>
+                    Save Changes
+                  </Button>
+                </ModalFooter>
+              </Modal>
               <div className="touchable">
                 <OverlayTrigger
                   placement="top"
