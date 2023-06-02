@@ -18,8 +18,10 @@ import { useFormik } from "formik";
 import { resolveApiError } from "utilities";
 import { useState } from "react";
 import { useAddFarmerMutation } from "store/farmers";
+import { useProject } from "store/projects";
 
 export const RegisterFarmers = () => {
+  const {project} = useProject();
   const [show, setShow] = useState(false);
   const toast = useToast({ position: "top-right" });
   const navigate = useNavigate();
@@ -47,7 +49,7 @@ export const RegisterFarmers = () => {
       farmer_age: "",
       farmer_age_category: "",
       farmer_phone: "",
-      is_house_head: "",
+      is_house_head: false,
       house_head_gender: "",
       house_head_edu: "",
       marital_status: "",
@@ -56,7 +58,7 @@ export const RegisterFarmers = () => {
       group_or_ass: "",
       group_name: "",
       group_type: "",
-      project_id: "",
+      project_id: project.id,
       farmer_id: "",
     },
     onSubmit: () => initRequest(),
@@ -66,6 +68,7 @@ export const RegisterFarmers = () => {
     ...values,
   };
   const initRequest = () => {
+    
     request(payload)
       .unwrap()
       .then((res) => {
@@ -86,6 +89,10 @@ export const RegisterFarmers = () => {
         });
       });
   };
+
+  console.log(errors)
+
+  
   return (
     <div className="page-content">
       <div className="container-fluid">
@@ -254,12 +261,10 @@ export const RegisterFarmers = () => {
                     <HouseholdHeadSelect
                       isRequired
                       name="is_house_head"
-                      value={values.is_house_head}
-                      error={Boolean(
-                        touched.is_house_head && errors.is_house_head
-                      )}
+                      value={values.is_house_head ? "yes" : "no"}
+                      error={Boolean(touched.is_house_head && errors.is_house_head)}
                       bottomText={errors.is_house_head}
-                      onChange={handleChange}
+                      onChange={({target}) => setFieldValue("is_house_head", Boolean(target.value === "yes"))}
                       isDisabled={isLoading}
                       style={{
                         backgroundColor: "#F2FAFC",

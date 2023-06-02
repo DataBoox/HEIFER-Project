@@ -12,7 +12,7 @@ import { getSubDomain } from '../general';
 export const initInterceptors = () => {
     axios.interceptors.request.use(
         async (config) => {
-            const result = reactLocalStorage.get('@bethel_user');
+            const result = reactLocalStorage.get('@heifer_user');
             const token = result ? (JSON.parse(result) as Auth).access_token : null;
             const deviceJson = (JSON.stringify(getDeviceInfo())).replace("’", "");
             // console.log("intercepting", token)
