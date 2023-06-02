@@ -17,13 +17,13 @@ import { DashboardCardContainer } from "../../home";
 import { useFormik } from "formik";
 import { resolveApiError } from "utilities";
 import { useState } from "react";
-import { useAddFarmerformMutation } from "store/farmerForm";
+import { useAddFarmerMutation } from "store/farmers";
 
 export const RegisterFarmers = () => {
   const [show, setShow] = useState(false);
   const toast = useToast({ position: "top-right" });
   const navigate = useNavigate();
-  const [request, { isLoading }] = useAddFarmerformMutation();
+  const [request, { isLoading }] = useAddFarmerMutation();
   const {
     values,
     errors,
@@ -34,22 +34,30 @@ export const RegisterFarmers = () => {
     touched,
   } = useFormik({
     initialValues: {
+      farmer_address: "",
+      email_address: "",
+      fname: "",
+      lname: "",
+      created_at: "",
       cluster_name: "",
-      cluster_number: "",
-      cluster_head: "",
-      gender: "",
-      gender_household: "",
-      age: "",
-      age_category: "",
-      phone: "",
-      household_head: "",
+      cluster_no: "",
+      cluster_head_name: "",
+      farmer_gender: "",
+      farmer_gender_household: "",
+      farmer_age: "",
+      farmer_age_category: "",
+      farmer_phone: "",
+      is_house_head: "",
+      house_head_gender: "",
+      house_head_edu: "",
       marital_status: "",
-      education_level: "",
-      means_of_id: "",
+      valid_id: "",
       id_type: "",
       group_or_ass: "",
-      gname: "",
-      gtype: "",
+      group_name: "",
+      group_type: "",
+      project_id: "",
+      farmer_id: "",
     },
     onSubmit: () => initRequest(),
   });
@@ -91,7 +99,7 @@ export const RegisterFarmers = () => {
                 <div className="col-auto text-end mb-4">
                   <Button
                     colorScheme="teal"
-                    onClick={() => navigate("/register/add")}
+                    onClick={() => handleSubmit()}
                     className={"fw-light"}
                     fontSize={"sm"}
                     backgroundColor={"#2A4153"}
@@ -130,14 +138,14 @@ export const RegisterFarmers = () => {
                   <div className="col-auto mb-4">
                     <PrimaryInput
                       isRequired
-                      name="cluster_number"
+                      name="cluster_no"
                       label="What is the cluster number?"
                       placeholder="Your answer here..."
-                      value={values.cluster_number}
+                      value={values.cluster_no}
                       error={Boolean(
-                        touched.cluster_number && errors.cluster_number
+                        touched.cluster_no && errors.cluster_no
                       )}
-                      bottomText={errors.cluster_number}
+                      bottomText={errors.cluster_no}
                       onChange={handleChange}
                       isDisabled={isLoading}
                       style={{
@@ -150,14 +158,14 @@ export const RegisterFarmers = () => {
                   <div className="col-auto mb-4">
                     <PrimaryInput
                       isRequired
-                      name="cluster_head"
+                      name="cluster_head_name"
                       label="What is the name of the cluster's head?"
                       placeholder="Your answer here..."
-                      value={values.cluster_head}
+                      value={values.cluster_head_name}
                       error={Boolean(
-                        touched.cluster_head && errors.cluster_head
+                        touched.cluster_head_name && errors.cluster_head_name
                       )}
-                      bottomText={errors.cluster_head}
+                      bottomText={errors.cluster_head_name}
                       onChange={handleChange}
                       isDisabled={isLoading}
                       style={{
@@ -170,10 +178,10 @@ export const RegisterFarmers = () => {
                   <div className="col-auto mb-4">
                     <GenderSelect
                       isRequired
-                      name="gender"
-                      value={values.gender}
-                      error={Boolean(touched.gender && errors.gender)}
-                      bottomText={errors.gender}
+                      name="farmer_gender"
+                      value={values.farmer_gender}
+                      error={Boolean(touched.farmer_gender && errors.farmer_gender)}
+                      bottomText={errors.farmer_gender}
                       onChange={handleChange}
                       isDisabled={isLoading}
                       label="What is the farmer's gender?"
@@ -190,12 +198,12 @@ export const RegisterFarmers = () => {
                   <div className="col-auto mb-4">
                     <PrimaryInput
                       isRequired
-                      name="age"
+                      name="farmer_age"
                       label="What is the farmer's age?"
                       placeholder="Your answer here..."
-                      value={values.age}
-                      error={Boolean(touched.age && errors.age)}
-                      bottomText={errors.age}
+                      value={values.farmer_age}
+                      error={Boolean(touched.farmer_age && errors.farmer_age)}
+                      bottomText={errors.farmer_age}
                       onChange={handleChange}
                       isDisabled={isLoading}
                       style={{
@@ -208,12 +216,12 @@ export const RegisterFarmers = () => {
                   <div className="col-auto mb-4">
                     <AgeCategorySelect
                       isRequired
-                      name="age_category"
-                      value={values.age_category}
+                      name="farmer_age_category"
+                      value={values.farmer_age_category}
                       error={Boolean(
-                        touched.age_category && errors.age_category
+                        touched.farmer_age_category && errors.farmer_age_category
                       )}
-                      bottomText={errors.age_category}
+                      bottomText={errors.farmer_age_category}
                       onChange={handleChange}
                       isDisabled={isLoading}
                       style={{
@@ -226,13 +234,13 @@ export const RegisterFarmers = () => {
                   <div className="col-auto mb-4">
                     <PrimaryInput
                       isRequired
-                      name="phone"
+                      name="farmer_phone"
                       label="What is the farmer's phone number?"
                       type="phone"
                       placeholder="Your answer here..."
-                      value={values.phone}
-                      error={Boolean(touched.phone && errors.phone)}
-                      bottomText={errors.phone}
+                      value={values.farmer_phone}
+                      error={Boolean(touched.farmer_phone && errors.farmer_phone)}
+                      bottomText={errors.farmer_phone}
                       onChange={handleChange}
                       isDisabled={isLoading}
                       style={{
@@ -245,12 +253,12 @@ export const RegisterFarmers = () => {
                   <div className="col-auto mb-4">
                     <HouseholdHeadSelect
                       isRequired
-                      name="household_head"
-                      value={values.household_head}
+                      name="is_house_head"
+                      value={values.is_house_head}
                       error={Boolean(
-                        touched.household_head && errors.household_head
+                        touched.is_house_head && errors.is_house_head
                       )}
-                      bottomText={errors.household_head}
+                      bottomText={errors.is_house_head}
                       onChange={handleChange}
                       isDisabled={isLoading}
                       style={{
@@ -266,12 +274,12 @@ export const RegisterFarmers = () => {
                   <div className="col-auto mb-4">
                     <GenderSelect
                       isRequired
-                      name="gender_household"
-                      value={values.gender_household}
+                      name="house_head_gender"
+                      value={values.house_head_gender}
                       error={Boolean(
-                        touched.gender_household && errors.gender_household
+                        touched.house_head_gender && errors.house_head_gender
                       )}
-                      bottomText={errors.gender_household}
+                      bottomText={errors.house_head_gender}
                       onChange={handleChange}
                       isDisabled={isLoading}
                       label="What is the gender of the household head?"
@@ -303,12 +311,12 @@ export const RegisterFarmers = () => {
                   <div className="col-auto mb-4">
                     <EducationLevelSelect
                       isRequired
-                      name="educational_level"
-                      value={values.education_level}
+                      name="house_head_edu"
+                      value={values.house_head_edu}
                       error={Boolean(
-                        touched.education_level && errors.education_level
+                        touched.house_head_edu && errors.house_head_edu
                       )}
-                      bottomText={errors.education_level}
+                      bottomText={errors.house_head_edu}
                       onChange={handleChange}
                       isDisabled={isLoading}
                       style={{
@@ -321,10 +329,10 @@ export const RegisterFarmers = () => {
                   <div className="col-auto mb-4">
                     <IdentificationSelect
                       isRequired
-                      name="means_of_id"
-                      value={values.means_of_id}
-                      error={Boolean(touched.means_of_id && errors.means_of_id)}
-                      bottomText={errors.means_of_id}
+                      name="valid_id"
+                      value={values.valid_id}
+                      error={Boolean(touched.valid_id && errors.valid_id)}
+                      bottomText={errors.valid_id}
                       onChange={handleChange}
                       isDisabled={isLoading}
                       style={{
@@ -339,7 +347,6 @@ export const RegisterFarmers = () => {
                 <div className="col-lg-3 col-md-12">
                   <div className="col-auto mb-4">
                     <IdTypeSelect
-                      isRequired
                       name="id_type"
                       value={values.id_type}
                       error={Boolean(touched.id_type && errors.id_type)}
@@ -357,7 +364,7 @@ export const RegisterFarmers = () => {
                   <div className="col-auto mb-4">
                     <GroupOrAssSelect
                       isRequired
-                      name="group_or_association"
+                      name="group_or_ass"
                       value={values.group_or_ass}
                       error={Boolean(
                         touched.group_or_ass && errors.group_or_ass
@@ -379,14 +386,13 @@ export const RegisterFarmers = () => {
                   </div>
                   <div className="col-auto mb-4">
                     <PrimaryInput
-                      isRequired
-                      name="gname"
+                      name="group_name"
                       label="what is the name of the group or cooperative or association?"
-                      type="gname"
+                      type="group_name"
                       placeholder="Your answer here..."
-                      value={values.gname}
-                      error={Boolean(touched.gname && errors.gname)}
-                      bottomText={errors.gname}
+                      value={values.group_name}
+                      error={Boolean(touched.group_name && errors.group_name)}
+                      bottomText={errors.group_name}
                       onChange={handleChange}
                       isDisabled={isLoading}
                       style={{
@@ -398,7 +404,6 @@ export const RegisterFarmers = () => {
                   </div>
                   <div className="col-auto mb-4">
                     <GroupTypeSelect
-                      isRequired
                       name="group_or_ass"
                       value={values.group_or_ass}
                       error={Boolean(

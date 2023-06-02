@@ -13,21 +13,21 @@ export const groupApi = createApi({
     endpoints: (builder) => ({
         getGroups: builder.query<ChurchGroupsResponse, FetchGroupsPayload>({
             query: (payload) => ({
-                url: `groups?${convertObjectToURLParams(payload)}`,
+                url: `projects/groups?${convertObjectToURLParams(payload)}`,
                 method: 'GET',
                 body: payload
             }),
         }),
         fetchGroups: builder.mutation<ChurchGroupsResponse, FetchGroupsPayload>({
             query: (payload) => ({
-                url: `groups?${convertObjectToURLParams(payload)}`,
+                url: `projects/groups?${convertObjectToURLParams(payload)}`,
                 method: 'GET',
                 body: payload
             }),
         }),
         addGroup: builder.mutation<GroupSuccessResponse, AddGroupPayload>({
             query: (payload) => ({
-                url: 'groups/create',
+                url: 'projects/groups/create',
                 headers: { 'Content-Type': 'multipart/form-data'},
                 method: 'POST',
                 body: payload
@@ -35,21 +35,21 @@ export const groupApi = createApi({
         }),
         editGroup: builder.mutation<IResponse, EditGroupPayload>({
             query: (payload) => ({
-                url: 'groups/edit',
+                url: 'projects/groups/edit',
                 method: 'POST',
                 body: payload
             }),
         }),
         deleteGroup: builder.mutation<IResponse, DeleteGroupsPayload>({
             query: (payload) => ({
-                url: 'groups/remove',
+                url: 'projects/groups/remove',
                 method: 'POST',
                 body: payload
             }),
         }),
         getGroupInfo: builder.query<IResponse, RequiresGroupID>({
             query: (payload) => ({
-                url: `groups/info?${convertObjectToURLParams(payload)}`,
+                url: `projects/groups/info?${convertObjectToURLParams(payload)}`,
                 method: 'GET',
             }),
         }),

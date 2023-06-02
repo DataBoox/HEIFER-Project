@@ -246,7 +246,7 @@ export const AddGroup = () => {
                   <div className="col-auto text-end mb-4">
                     <Button
                       colorScheme="teal"
-                      onClick={() => navigate("/groups/create")}
+                      onClick={() => handleSubmit()}
                       className={"fw-light"}
                       fontSize={"sm"}
                       backgroundColor={"#2A4153"}

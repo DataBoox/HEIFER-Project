@@ -13,7 +13,7 @@ export const useAllFarmersColumn = () => {
           accessorFn: (row) => `${row.fname}`,
           Cell: ({ row }) => (
             <Link
-              to={"/farmers/view/" + row.original.id}
+              to={"/farmers/view/" + row.original.farmer_id}
               state={{ member: row.original }}
               className="text-decoration-underline"
             >
@@ -26,7 +26,7 @@ export const useAllFarmersColumn = () => {
           accessorFn: (row) => `${row.lname}`,
           Cell: ({ row }) => (
             <Link
-              to={"/farmers/view/" + row.original.id}
+              to={"/farmers/view/" + row.original.farmer_id}
               state={{ member: row.original }}
               className="text-decoration-underline"
             >
@@ -36,15 +36,15 @@ export const useAllFarmersColumn = () => {
         },
         {
           header: "Gender",
-          accessorFn: (row) => `${row.gender}`,
+          accessorFn: (row) => `${row.farmer_gender}`,
         },
         {
           header: "Address",
-          accessorFn: (row) => `${row.address}`,
+          accessorFn: (row) => `${row.farmer_address}`,
         },
         {
           header: "Phone Number",
-          accessorFn: (row) => `${row.phone}`,
+          accessorFn: (row) => `${row.farmer_phone}`,
         },
         {
           header: "Email Address",

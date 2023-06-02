@@ -15,7 +15,7 @@ const authSlice = createSlice({
             { payload: { user, access_token } }
         ) {
             reactLocalStorage.set(
-                '@bethel_user',
+                '@heifer_user',
                 JSON.stringify({ user, access_token })
             );
             state.user = user;

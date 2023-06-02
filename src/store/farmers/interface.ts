@@ -6,23 +6,30 @@ export interface RequiresFarmerID {
 }
 
 export interface FarmerInfo {
-    address: string,
+    farmer_address: string,
       email_address: string,
-      gender: string,
-      age: number,
-      age_category: string,
-      phone: number,
-      household_head: string,
+      fname: string,
+      lname: string,
+    created_at: string,
+    cluster_name: string,
+      cluster_no: string,
+      cluster_head_name: string,
+      farmer_gender: string,
+      farmer_gender_household: string,
+      farmer_age: number,
+      farmer_age_category: string,
+      farmer_phone: number,
+      is_house_head: string,
+      house_head_gender: string,
+      house_head_edu: string,
       marital_status: string,
-      education_level: string,
-      means_of_id: string,
+      valid_id: string,
       id_type: string,
       group_or_ass: string,
-      fname: string,
-    id: number;
-      lname: string,
-      created_at: string,
-      gtype: string,
+      group_name: string,
+    group_type: string,
+    project_id: number,
+    farmer_id: number,
 }
 
 export interface AddFarmerPayload {
@@ -45,7 +52,7 @@ export interface FetchFarmersPayload extends PaginatedPayload {
 
 export interface BaseFarmer{
     id: number;
-    church_id: number;
+    farmer_id: number;
     ref: string;
     provider: string;
     url: string;
