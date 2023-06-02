@@ -64,11 +64,11 @@ export const RegisterFarmers = () => {
     onSubmit: () => initRequest(),
   });
 
-  const payload: any = {
-    ...values,
-  };
+  
   const initRequest = () => {
-    
+    const payload: any = {
+      ...values,
+    };
     request(payload)
       .unwrap()
       .then((res) => {
