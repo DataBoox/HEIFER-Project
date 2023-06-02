@@ -13,21 +13,21 @@ export const farmerApi = createApi({
     endpoints: (builder) => ({
         getFarmers: builder.query<ChurchFarmersResponse, FetchFarmersPayload>({
             query: (payload) => ({
-                url: `farmers?${convertObjectToURLParams(payload)}`,
+                url: `projects/farmers?${convertObjectToURLParams(payload)}`,
                 method: 'GET',
                 body: payload
             }),
         }),
         fetchFarmers: builder.mutation<ChurchFarmersResponse, FetchFarmersPayload>({
             query: (payload) => ({
-                url: `farmers?${convertObjectToURLParams(payload)}`,
+                url: `projects/farmers?${convertObjectToURLParams(payload)}`,
                 method: 'GET',
                 body: payload
             }),
         }),
         addFarmer: builder.mutation<FarmerSuccessResponse, AddFarmerPayload>({
             query: (payload) => ({
-                url: 'farmers/create',
+                url: 'projects/farmers/create',
                 headers: { 'Content-Type': 'multipart/form-data'},
                 method: 'POST',
                 body: payload
@@ -35,21 +35,21 @@ export const farmerApi = createApi({
         }),
         editFarmer: builder.mutation<IResponse, EditFarmerPayload>({
             query: (payload) => ({
-                url: 'farmers/edit',
+                url: 'projects/farmers/edit',
                 method: 'POST',
                 body: payload
             }),
         }),
         deleteFarmer: builder.mutation<IResponse, DeleteFarmersPayload>({
             query: (payload) => ({
-                url: 'farmers/remove',
+                url: 'projects/farmers/remove',
                 method: 'POST',
                 body: payload
             }),
         }),
         getFarmerInfo: builder.query<IResponse, RequiresFarmerID>({
             query: (payload) => ({
-                url: `farmers/info?${convertObjectToURLParams(payload)}`,
+                url: `projects/farmers/info?${convertObjectToURLParams(payload)}`,
                 method: 'GET',
             }),
         }),
