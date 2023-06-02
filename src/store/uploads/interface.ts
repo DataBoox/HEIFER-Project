@@ -7,7 +7,6 @@ export interface RequiresUploadID {
 
 export interface AddUploadPayload {
     uploads: { name: string, file: File }[],
-    member_id?: number | string | null,
 }
 
 export interface EditUploadPayload extends RequiresUploadID {
@@ -19,13 +18,11 @@ export interface DeleteUploadsPayload {
 }
 
 export interface FetchUploadsPayload extends PaginatedPayload {
-    members?: (number | string)[]
 }
 
 
 export interface BaseUpload {
     id: number;
-    church_id: number;
     ref: string;
     provider: string;
     url: string;

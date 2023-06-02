@@ -5,10 +5,12 @@ import React, { useEffect, useState } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { useAuth } from 'store/auth/hooks';
 import { AdminMenuLinkItem, NavHeader, SidebarMenu as DashboardSidebarMenu } from './components';
+import { useProject } from 'store/projects';
 
 
 export const HomeScreen = () => {
   const { user } = useAuth();
+  const {project} = useProject();
   const navigate = useNavigate();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [isLoading, setIsLoading] = useState(true);
@@ -25,6 +27,8 @@ export const HomeScreen = () => {
     }, 2000)
   });
 
+  console.log(project);
+  
   return (
     <Box minH="100vh" bg={"#F4F5F6"}>
       <NavHeader

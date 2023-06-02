@@ -1,20 +1,9 @@
 import { PaginatedPayload } from "@store/interface";
-import { IResponse } from "../auth";
+import { IResponse, User } from "../auth";
+import { Upload } from "@store/uploads";
 
 export interface RequiresProjectID {
     projects: (number | string)[],
-}
-
-export interface Project {
-  fname: string;
-  lname: string;
-   id: number;
-    project_id: number;
-    contact_mode: string[];
-    project: Project;
-    status: number;
-    updated_at: string;
-    created_at: string;
 }
 
 export interface AddProjectPayload {
@@ -36,19 +25,20 @@ export interface FetchProjectsPayload extends PaginatedPayload {
 
 
 export interface BaseProject {
-    id: number;
-    church_id: number;
-    ref: string;
-    provider: string;
-    url: string;
-    meta: { type: string, size: number, name: string, extension: string, name_on_disk: string }
-    // creator?: UserWithMember;
-    created_by: number;
-    updated_at: string;
-    created_at: string;
+    id: number,
+    pid: string,
+    name: string,
+    image_id: number,
+    lead: number,
+    locations: string[]|null,
+    created_by: number,
+    updated_at: string,
+    created_at:string,
+    image: Upload
 }
 
 export interface Project extends BaseProject {
+    creator: User,
 }
 
 

@@ -13,14 +13,14 @@ export const useAllProjectsColumn = () => {
     () => [
       {
         header: "Full Name",
-        accessorFn: (row) => `${row.fname} ${row.lname}`,
+        accessorFn: (row) => `${row.name}`,
         Cell: ({ row }) => (
           <Link
             to={"/church/projects/view/" + row.original.id}
             state={{ project: row.original }}
             className="fw-bold text-decoration-underline"
           >
-            {_.startCase(`${row.original.fname} ${row.original.lname}`)}
+            {_.startCase(`${row.original.name}`)}
           </Link>
         ),
       },

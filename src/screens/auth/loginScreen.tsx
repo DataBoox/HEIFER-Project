@@ -7,10 +7,12 @@ import { LoginValidationSchema } from "validations";
 import logoImage from "../../assets/images/heifer nigeria.jpg";
 import { resolveApiError } from "utilities";
 import { setCredential, useLoginMutation } from "store/auth";
+import { useProject } from "store/projects";
 
 export const LoginScreen = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { setProject } = useProject();
   const toast = useToast({ position: "top-right" });
   const [request, { isLoading }] = useLoginMutation();
   const { values, errors, handleSubmit, setFieldValue, touched } = useFormik({
@@ -23,12 +25,20 @@ export const LoginScreen = () => {
     request(values)
       .unwrap()
       .then((res) => {
+        console.log(res)
+        const loggedInUser = res.data.data;
+
+
         dispatch(
           setCredential({
             user: res.data.data,
             access_token: res.data.authorization.token,
           })
         );
+        
+        if(loggedInUser && loggedInUser.account_type !== "admin"){
+          setProject(loggedInUser.projects[0])
+        }
 
         toast({
           title: "Success",

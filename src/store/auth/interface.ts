@@ -1,3 +1,4 @@
+import { BaseProject } from "store/projects";
 
 export interface IResponse {
     status: boolean;
@@ -17,6 +18,7 @@ export interface User {
     status: boolean;
     updated_at: string;
     username: string;
+    projects: BaseProject[]
 }
 
 // export interface UserWithMember extends User {
