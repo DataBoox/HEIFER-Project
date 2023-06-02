@@ -53,10 +53,11 @@ export const AddInterventionDialog: React.FC<AddInterventionDialogProps> = ({
     if (intervention) setFieldValue("intervention_id", intervention?.id);
   }, [intervention]);
 
-  const payload: any = {
-    ...values,
-  };
+
   const initRequest = () => {
+    const payload: any = {
+      ...values,
+    };
     request(payload)
       .unwrap()
       .then((res) => {

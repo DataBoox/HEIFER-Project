@@ -5,16 +5,13 @@ export interface RequiresInterventionID {
     interventions: (number | string)[],
 }
 
-export interface Intervention {
-  fname: string;
-  lname: string;
-   id: number;
+export interface InterventionInfo {
+  name: string;
+   project_id: number;
     intervention_id: number;
-    contact_mode: string[];
+    description: string[];
     intervention: Intervention;
-    status: number;
-    updated_at: string;
-    created_at: string;
+    created_by: string;
 }
 
 export interface AddInterventionPayload {
@@ -36,16 +33,16 @@ export interface FetchInterventionsPayload extends PaginatedPayload {
 
 
 export interface BaseIntervention{
-    id: number;
-    church_id: number;
     ref: string;
     provider: string;
     url: string;
     meta: { type: string, size: number, name: string, extension: string, name_on_disk: string }
-    // creator?: UserWithMember;
-    created_by: number;
-    updated_at: string;
-    created_at: string;
+    name: string;
+   project_id: number;
+    intervention_id: number;
+    description: string[];
+    intervention: Intervention;
+    created_by: string;
 }
 
 export interface Intervention extends BaseIntervention {

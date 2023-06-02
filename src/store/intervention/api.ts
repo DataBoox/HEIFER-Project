@@ -13,21 +13,21 @@ export const interventionApi = createApi({
     endpoints: (builder) => ({
         getInterventions: builder.query<ChurchInterventionsResponse, FetchInterventionsPayload>({
             query: (payload) => ({
-                url: `interventions?${convertObjectToURLParams(payload)}`,
+                url: `projects/interventions?${convertObjectToURLParams(payload)}`,
                 method: 'GET',
                 body: payload
             }),
         }),
         fetchInterventions: builder.mutation<ChurchInterventionsResponse, FetchInterventionsPayload>({
             query: (payload) => ({
-                url: `interventions?${convertObjectToURLParams(payload)}`,
+                url: `projects/interventions?${convertObjectToURLParams(payload)}`,
                 method: 'GET',
                 body: payload
             }),
         }),
         addIntervention: builder.mutation<InterventionSuccessResponse, AddInterventionPayload>({
             query: (payload) => ({
-                url: 'interventions/create',
+                url: 'projects/interventions/create',
                 headers: { 'Content-Type': 'multipart/form-data'},
                 method: 'POST',
                 body: payload
@@ -35,21 +35,21 @@ export const interventionApi = createApi({
         }),
         editIntervention: builder.mutation<IResponse, EditInterventionPayload>({
             query: (payload) => ({
-                url: 'interventions/edit',
+                url: 'projects/interventions/edit',
                 method: 'POST',
                 body: payload
             }),
         }),
         deleteIntervention: builder.mutation<IResponse, DeleteInterventionsPayload>({
             query: (payload) => ({
-                url: 'interventions/remove',
+                url: 'projects/interventions/remove',
                 method: 'POST',
                 body: payload
             }),
         }),
         getInterventionInfo: builder.query<IResponse, RequiresInterventionID>({
             query: (payload) => ({
-                url: `interventions/info?${convertObjectToURLParams(payload)}`,
+                url: `projects/interventions/info?${convertObjectToURLParams(payload)}`,
                 method: 'GET',
             }),
         }),
