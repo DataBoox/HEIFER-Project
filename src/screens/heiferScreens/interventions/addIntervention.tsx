@@ -4,12 +4,11 @@ import {
   ChakraAlertDialog,
   ChakraAlertDialogProps,
   PrimaryInput,
-  NigerianStateSelect,
   PrimaryTextarea,
 } from "components";
 import { useFormik } from "formik";
 import { resolveApiError } from "utilities";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { ChakraProviderLoader } from "providers";
 import { useAddInterventionMutation } from "store/intervention";
 import { Intervention } from "@store/intervention";
@@ -42,27 +41,26 @@ export const AddInterventionDialog: React.FC<AddInterventionDialogProps> = ({
     touched,
   } = useFormik({
     initialValues: {
-      iname: "",
+      name: "",
       description: "",
+      project_id: "",
     },
     validationSchema: AddInterventionScheme(),
     onSubmit: () => initRequest(),
   });
 
-  useEffect(() => {
-    if (intervention) setFieldValue("intervention_id", intervention?.id);
-  }, [intervention]);
 
-  const payload: any = {
-    ...values,
-  };
+
   const initRequest = () => {
+    const payload: any = {
+      ...values,
+    };
     request(payload)
       .unwrap()
       .then((res) => {
         // console.log(res);
         toast({
-          title: "Invention Added",
+          title: "Intervention Added",
           description: res?.response,
           status: "success",
         });
@@ -70,7 +68,7 @@ export const AddInterventionDialog: React.FC<AddInterventionDialogProps> = ({
         initOnClose();
       })
       .catch((error) => {
-        // console.log(error);
+      console.log(error);
         toast({
           title: "Request Failed",
           description: resolveApiError(error),
@@ -107,12 +105,12 @@ export const AddInterventionDialog: React.FC<AddInterventionDialogProps> = ({
           <div className="col-12">
             <PrimaryInput
               isRequired
-              name="iname"
+              name="name"
               label="Intervention Name"
               placeholder="Enter intervention name"
-              value={values.iname}
-              error={Boolean(touched.iname && errors.iname)}
-              bottomText={errors.iname}
+              value={values.name}
+              error={Boolean(touched.name && errors.name)}
+              bottomText={errors.name}
               onChange={handleChange}
               isDisabled={isLoading}
               style={{

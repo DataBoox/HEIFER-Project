@@ -64,15 +64,15 @@ export const RegisterFarmers = () => {
     onSubmit: () => initRequest(),
   });
 
-  const payload: any = {
-    ...values,
-  };
+  
   const initRequest = () => {
-    
+    const payload: any = {
+      ...values,
+    };
     request(payload)
       .unwrap()
       .then((res) => {
-        // console.log(res);
+        console.log(payload);
         toast({
           title: "Household Registered",
           description: res?.response,
