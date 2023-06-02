@@ -1,22 +1,22 @@
-// import { Devotional, DevotionalProps} from "./components/devotionalComponent";
 import { MdOutlineAddCircleOutline } from "react-icons/md";
-import { FaSearch } from "react-icons/fa";
-import { Button, useToast, ButtonProps } from "@chakra-ui/react";
-import { PrimaryButton, PrimaryInput } from "components";
+import { FaEye, FaPen, FaSearch, FaTrash } from "react-icons/fa";
+import { useToast } from "@chakra-ui/react";
+import { ThemeTable, PrimaryInput } from "components";
 import { useNavigate } from "react-router-dom";
-import { ContentBodyContainer, DashboardCardContainer } from "../../home";
+import { ContentBodyContainer } from "../../home";
 import { useFormik } from "formik";
-import { resolveApiError, validationError } from "utilities";
 import { AddInterventionScheme } from "validations";
 import { AddInterventionDialog } from "./addIntervention";
-import { useAddInterventionMutation } from "store/intervention";
-import { request } from "http";
+import { useGetInterventionsQuery } from "store/intervention";
+import { useAllInterventionsColumn } from "./components";
 import _ from "lodash";
-import { toast } from "react-toastify";
+import { OverlayTrigger, Tooltip } from "react-bootstrap";
+
 
 export const InterventionScreen = () => {
   const navigate = useNavigate();
-  const [request, { isLoading }] = useAddInterventionMutation();
+  const columns = useAllInterventionsColumn();
+  const { data, isLoading, refetch } = useGetInterventionsQuery({ page: 1, query: "" });
   const toast = useToast({ position: "top-right" });
   const {
     values,
@@ -80,6 +80,7 @@ export const InterventionScreen = () => {
                 borderRadius: 0,
                 padding: "12px, 20px, 12px, 20px",
               }}
+              onClose={refetch}
             >
               Add Intervention
             </AddInterventionDialog>
@@ -88,11 +89,48 @@ export const InterventionScreen = () => {
       }
     >
       <div className="col-xl-12">
-        <DashboardCardContainer
-          // cardHeaderTitle={"Participant Details"}
-          title={""}
-          bodyClassName={"p-4 m-3"}
-        ></DashboardCardContainer>
+        <ThemeTable
+          data={data?.data?.data ?? []}
+          columns={columns as any}
+          isLoading={isLoading}
+          onRefetch={refetch}
+          enableRowActions
+          positionActionsColumn="last"
+          renderRowActions={({ row }) => (
+            <div className="d-flex justify-content-evenly">
+              <div className="touchable pe-2">
+                <OverlayTrigger
+                  placement="top"
+                  overlay={<Tooltip id="view-tooltip">View</Tooltip>}
+                >
+                  <div>
+                    <FaEye size={16} color="#7F8C9F" />
+                  </div>
+                </OverlayTrigger>
+              </div>
+              <div className="touchable pe-2">
+                <OverlayTrigger
+                  placement="top"
+                  overlay={<Tooltip id="edit-tooltip">Edit</Tooltip>}
+                >
+                  <div>
+                    <FaPen size={16} color="#7F8C9F" />
+                  </div>
+                </OverlayTrigger>
+              </div>
+              <div className="touchable">
+                <OverlayTrigger
+                  placement="top"
+                  overlay={<Tooltip id="delete-tooltip">Delete</Tooltip>}
+                >
+                  <div>
+                    <FaTrash size={16} color="red" />
+                  </div>
+                </OverlayTrigger>
+              </div>
+            </div>
+          )}
+        />
       </div>
     </ContentBodyContainer>
   );

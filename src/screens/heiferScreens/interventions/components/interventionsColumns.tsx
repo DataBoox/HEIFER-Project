@@ -5,7 +5,7 @@ import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 
-export const useAllUsersColumn = () => {
+export const useAllInterventionsColumn = () => {
     return useMemo<MRT_ColumnDef<InterventionInfo>[]>(
       () => [
         {

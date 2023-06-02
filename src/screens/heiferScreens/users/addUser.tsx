@@ -65,10 +65,11 @@ export const AddUserDialog: React.FC<AddUserDialogProps> = ({
     if (user) setFieldValue("user_id", user?.id);
   }, [user]);
 
-  const payload: any = {
-    ...values,
-  };
+  
   const initRequest = () => {
+    const payload: any = {
+      ...values,
+    };
     request(payload)
       .unwrap()
       .then((res) => {

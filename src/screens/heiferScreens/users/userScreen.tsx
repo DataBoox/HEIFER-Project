@@ -4,7 +4,7 @@ import { FaEye, FaPen, FaSearch, FaTrash } from "react-icons/fa";
 import { useToast, } from "@chakra-ui/react";
 import { PrimaryInput, ThemeTable } from "components";
 import { useNavigate } from "react-router-dom";
-import { ContentBodyContainer, DashboardCardContainer } from "../../home";
+import { ContentBodyContainer} from "../../home";
 import { useFormik } from "formik";
 import { AddUserScheme } from "validations";
 import { AddUserDialog } from "./addUser";
