@@ -12,6 +12,7 @@ import { useState } from "react";
 import { ChakraProviderLoader } from "providers";
 import { useAddInterventionMutation } from "store/intervention";
 import { Intervention } from "@store/intervention";
+import { useProject } from "store/projects";
 
 export interface AddInterventionDialogProps extends ChakraAlertDialogProps {
   useButton?: boolean;
@@ -25,9 +26,10 @@ export const AddInterventionDialog: React.FC<AddInterventionDialogProps> = ({
   useButton = false,
   children,
   buttonProps,
-  onClose = () => {},
+  onClose = () => { },
   ...rest
 }) => {
+  const { project } = useProject();
   const [show, setShow] = useState(false);
   const toast = useToast({ position: "top-right" });
   const [request, { isLoading }] = useAddInterventionMutation();
@@ -43,7 +45,7 @@ export const AddInterventionDialog: React.FC<AddInterventionDialogProps> = ({
     initialValues: {
       name: "",
       description: "",
-      project_id: "",
+      project_id: project ? project.id : 0,
     },
     validationSchema: AddInterventionScheme(),
     onSubmit: () => initRequest(),
@@ -68,7 +70,7 @@ export const AddInterventionDialog: React.FC<AddInterventionDialogProps> = ({
         initOnClose();
       })
       .catch((error) => {
-      console.log(error);
+        console.log(error);
         toast({
           title: "Request Failed",
           description: resolveApiError(error),
@@ -82,12 +84,14 @@ export const AddInterventionDialog: React.FC<AddInterventionDialogProps> = ({
     onClose();
   };
 
+  console.log(errors)
+
   return (
     <ChakraProviderLoader>
       {useButton && (
-        <Button onClick={() => setShow(true)} {...buttonProps} _hover={{ bg: "#bbc7ca", transition: "background-color 0.5s ease-in-out"}}>
+        <Button onClick={() => setShow(true)} {...buttonProps} _hover={{ bg: "#bbc7ca", transition: "background-color 0.5s ease-in-out" }}>
           {children}
-          
+
         </Button>
       )}
       <ChakraAlertDialog

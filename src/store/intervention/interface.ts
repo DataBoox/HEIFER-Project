@@ -1,17 +1,8 @@
 import { PaginatedPayload } from "@store/interface";
-import { IResponse } from "../auth";
+import { IResponse, User } from "../auth";
 
 export interface RequiresInterventionID {
     interventions: (number | string)[],
-}
-
-export interface InterventionInfo {
-  name: string;
-   project_id: number;
-    intervention_id: number;
-    description: string[];
-    intervention: Intervention;
-    created_by: string;
 }
 
 export interface AddInterventionPayload {
@@ -32,20 +23,18 @@ export interface FetchInterventionsPayload extends PaginatedPayload {
 }
 
 
-export interface BaseIntervention{
-    ref: string;
-    provider: string;
-    url: string;
-    meta: { type: string, size: number, name: string, extension: string, name_on_disk: string }
+export interface BaseIntervention {
+    id: number;
     name: string;
-   project_id: number;
+    project_id: number;
     intervention_id: number;
     description: string[];
-    intervention: Intervention;
-    created_by: string;
+    created_at: string;
+    updated_at: string;
 }
 
 export interface Intervention extends BaseIntervention {
+    created_by: User
 }
 
 

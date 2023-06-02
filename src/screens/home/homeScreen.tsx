@@ -27,7 +27,7 @@ export const HomeScreen = () => {
     }, 2000)
   });
 
-  console.log(project);
+  // console.log(project);
   
   return (
     <Box minH="100vh" bg={"#F4F5F6"}>

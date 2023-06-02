@@ -1,4 +1,4 @@
-import { InterventionInfo } from 'store/intervention';
+import { Intervention } from 'store/intervention';
 import _ from 'lodash';
 import { MRT_ColumnDef } from 'material-react-table';
 import { useMemo } from 'react';
@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import moment from 'moment';
 
 export const useAllInterventionsColumn = () => {
-    return useMemo<MRT_ColumnDef<InterventionInfo>[]>(
+    return useMemo<MRT_ColumnDef<Intervention>[]>(
       () => [
         {
           header: "Name",
@@ -30,7 +30,7 @@ export const useAllInterventionsColumn = () => {
         {
           header: "Created by",
           accessorFn: (row) =>
-            `${moment(row.created_by).format("HH:mm a, DD MMM YYYY")}`,
+            `${moment(row.created_at).format("HH:mm a, DD MMM YYYY")}`,
         },
       ],
       []
