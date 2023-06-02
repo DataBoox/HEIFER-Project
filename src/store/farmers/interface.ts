@@ -19,7 +19,7 @@ export interface FarmerInfo {
       farmer_age: number,
       farmer_age_category: string,
       farmer_phone: number,
-      is_house_head: string,
+      is_house_head: boolean,
       house_head_gender: string,
       house_head_edu: string,
       marital_status: string,
