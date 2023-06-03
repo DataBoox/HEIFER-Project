@@ -401,11 +401,12 @@ export const RegisterFarmers = () => {
                     />
                   </div>
                   {Boolean(
-                    (values.group_or_ass.length && values.group_or_ass === "yes") 
+                    values.group_or_ass.length && values.group_or_ass === "yes"
                   ) && (
                     <>
                       <div className="col-auto mb-4">
                         <PrimaryInput
+                          isRequired
                           name="group_name"
                           label="what is the name of the group or cooperative or association?"
                           type="group_name"
@@ -426,6 +427,7 @@ export const RegisterFarmers = () => {
                       </div>
                       <div className="col-auto mb-4">
                         <GroupTypeSelect
+                          isRequired
                           name="group_or_ass"
                           value={values.group_or_ass}
                           error={Boolean(
