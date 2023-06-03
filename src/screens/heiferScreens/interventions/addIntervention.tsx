@@ -38,7 +38,6 @@ export const AddInterventionDialog: React.FC<AddInterventionDialogProps> = ({
     errors,
     handleChange,
     handleSubmit,
-    setFieldValue,
     resetForm,
     touched,
   } = useFormik({
@@ -112,6 +111,9 @@ export const AddInterventionDialog: React.FC<AddInterventionDialogProps> = ({
         {...rest}
       >
         <div className="row g-4">
+          {/* {(values.members ?? []).map((member, index) => {
+             
+           })} */}
           <div className="col-12">
             <PrimaryInput
               isRequired

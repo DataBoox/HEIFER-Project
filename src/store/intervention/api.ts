@@ -12,19 +12,20 @@ export const interventionApi = createApi({
     tagTypes: ['myProfile'],
     endpoints: (builder) => ({
         getInterventions: builder.query<ChurchInterventionsResponse, FetchInterventionsPayload>({
-            query: (payload) => ({
-                url: `projects/interventions?${convertObjectToURLParams(payload)}`,
-                method: 'GET',
-                body: payload
-            }),
-        }),
-        fetchInterventions: builder.mutation<ChurchInterventionsResponse, FetchInterventionsPayload>({
-            query: (payload) => ({
-                url: `projects/interventions?${convertObjectToURLParams(payload)}`,
-                method: 'GET',
-                body: payload
-            }),
-        }),
+  query: (payload) => ({
+    url: `projects/interventions?project_id=${payload.project_id}`,
+    method: 'GET',
+    body: payload
+  }),
+}),
+fetchInterventions: builder.mutation<ChurchInterventionsResponse, FetchInterventionsPayload>({
+  query: (payload) => ({
+    url: `projects/interventions?project_id=${payload.project_id}`,
+    method: 'GET',
+    body: payload
+  }),
+}),
+
         addIntervention: builder.mutation<InterventionSuccessResponse, AddInterventionPayload>({
             query: (payload) => ({
                 url: 'projects/interventions/create',

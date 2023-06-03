@@ -22,6 +22,7 @@ export interface DeleteInterventionsPayload {
 }
 
 export interface FetchInterventionsPayload extends PaginatedPayload {
+    project_id?: number;
     interventions?: (number | string)[]
 }
 
@@ -37,7 +38,6 @@ export interface BaseIntervention {
 }
 
 export interface Intervention extends BaseIntervention {
-    created_by: User
 }
 
 
