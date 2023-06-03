@@ -38,7 +38,6 @@ export const AddInterventionDialog: React.FC<AddInterventionDialogProps> = ({
     errors,
     handleChange,
     handleSubmit,
-    setFieldValue,
     resetForm,
     touched,
   } = useFormik({
@@ -89,9 +88,15 @@ export const AddInterventionDialog: React.FC<AddInterventionDialogProps> = ({
   return (
     <ChakraProviderLoader>
       {useButton && (
-        <Button onClick={() => setShow(true)} {...buttonProps} _hover={{ bg: "#bbc7ca", transition: "background-color 0.5s ease-in-out" }}>
+        <Button
+          onClick={() => setShow(true)}
+          {...buttonProps}
+          _hover={{
+            bg: "#bbc7ca",
+            transition: "background-color 0.5s ease-in-out",
+          }}
+        >
           {children}
-
         </Button>
       )}
       <ChakraAlertDialog
@@ -106,6 +111,9 @@ export const AddInterventionDialog: React.FC<AddInterventionDialogProps> = ({
         {...rest}
       >
         <div className="row g-4">
+          {/* {(values.members ?? []).map((member, index) => {
+             
+           })} */}
           <div className="col-12">
             <PrimaryInput
               isRequired
@@ -115,6 +123,24 @@ export const AddInterventionDialog: React.FC<AddInterventionDialogProps> = ({
               value={values.name}
               error={Boolean(touched.name && errors.name)}
               bottomText={errors.name}
+              onChange={handleChange}
+              isDisabled={isLoading}
+              style={{
+                backgroundColor: "#F2FAFC",
+                borderRadius: 0,
+                borderColor: "#CAECF3",
+              }}
+            />
+          </div>
+
+          <div className="col-12">
+            <PrimaryInput
+              isRequired
+              name="project_id"
+              label="Project ID"
+              placeholder="Enter Project ID"
+              value={values.project_id}
+              error={Boolean(touched.project_id && errors.project_id)}
               onChange={handleChange}
               isDisabled={isLoading}
               style={{
