@@ -26,6 +26,10 @@ export const useAllInterventionsColumn = () => {
           header: "Description",
           accessorFn: (row) => `${row.description}`,
         },
+        {
+          header: "Project ID",
+          accessorFn: (row) => `${row.project_id}`,
+        },
         
         {
           header: "Created by",

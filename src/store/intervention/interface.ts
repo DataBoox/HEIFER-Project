@@ -7,7 +7,10 @@ export interface RequiresInterventionID {
 
 export interface AddInterventionPayload {
     interventions: { name: string, file: File }[],
-    intervention_id?: number | string | null,
+    name: string;
+    intervention_id: number;
+    description: string[];
+    project_id?: number | string | null,
 }
 
 export interface EditInterventionPayload extends RequiresInterventionID {
