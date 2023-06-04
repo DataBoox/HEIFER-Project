@@ -12,7 +12,7 @@ import { FaEye, FaPen, FaSearch, FaTrash, FaPlus } from "react-icons/fa";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import _ from "lodash";
 import { toast } from "react-toastify";
-import { StateLGAInput } from "custom";
+import { StateLGAInput, FilterSystem } from "custom";
 import { useState } from "react";
 import {
   Modal,
@@ -99,58 +99,7 @@ export const GroupScreen = () => {
         </div>
       }
     >
-      <div className="col-xl-12">
-        <div className="row g-3 mb-3">
-          <div className="col-auto">
-            <PrimaryInput
-              name="search"
-              placeholder="Search ..."
-              size={"lg"}
-              rightComponent={<FaSearch color={"grey"} />}
-              // onChange={({ target }) => onSearch(target.value)}
-              isDisabled={isLoading}
-              style={{
-                backgroundColor: "#ffff",
-                borderRadius: 0,
-                border: 0,
-              }}
-            />
-          </div>
-          <div className="col-auto">
-            <div className="row">
-              <StateLGAInput
-                state={values.state}
-                lga={values.lga}
-                errors={errors}
-                touched={touched}
-                stateInputProps={{
-                  label: "",
-                  size: "lg",
-                  isDisabled: isLoading,
-                }}
-                areaInputProps={{
-                  label: "",
-                  size: "lg",
-                  isDisabled: isLoading,
-                }}
-                stateContainerProps={{
-                  className: "col-auto",
-                }}
-                areaContainerProps={{
-                  className: "col-auto",
-                }}
-                onChange={({ lga, state }) => {
-                  setFieldTouched("state", true);
-                  setFieldTouched("lga", true);
-                  setValues({ ...values, lga, state });
-                }}
-              />
-            </div>
-          </div>
-
-          <div className="col-auto"></div>
-        </div>
-      </div>
+      <FilterSystem/>
       <div className="col-xl-12">
         <ThemeTable
           data={data?.data?.data ?? []}
