@@ -31,6 +31,7 @@ export const AddGroup = () => {
       description: "",
       meeting_days: "",
       community: "",
+      venue: "",
       established_at: "",
       chairman: "",
       vice_chairman: "",
@@ -119,12 +120,12 @@ export const AddGroup = () => {
                   <div className="col-auto mb-4">
                     <PrimaryInput
                       isRequired
-                      name="community"
+                      name="venue"
                       label="Venue of Meeting"
                       placeholder="Enter venue"
-                      value={values.community}
-                      error={Boolean(touched.community && errors.community)}
-                      bottomText={errors.community}
+                      value={values.venue}
+                      error={Boolean(touched.venue && errors.venue)}
+                      bottomText={errors.venue}
                       onChange={handleChange}
                       isDisabled={isLoading}
                       style={{

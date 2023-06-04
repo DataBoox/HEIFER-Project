@@ -13,6 +13,7 @@ export interface GroupInfo {
     name: string;
     description: string;
     meeting_days: (number | string)[],
+    venue: string;
     community: string;
     established_at: Date;
     chairman: string;
