@@ -25,18 +25,17 @@ export const AddGroup = () => {
     touched,
   } = useFormik({
     initialValues: {
-      address: "",
+      group_id: "",
+      project_id: "",
+      name: "",
       description: "",
-      gname: "",
-      plead: "",
-      tmembers: "",
+      meeting_days: "",
       community: "",
-      dateofest: "",
-      gc: "",
-      gvc: "",
-      gsc: "",
       venue: "",
-      dom: "",
+      established_at: "",
+      chairman: "",
+      vice_chairman: "",
+      secretary: "",
     },
     validationSchema: AddGroupScheme(),
     onSubmit: () => initRequest(),
@@ -82,12 +81,12 @@ export const AddGroup = () => {
                   <div className="col-auto mb-4">
                     <PrimaryInput
                       isRequired
-                      name="gname"
+                      name="name"
                       label="Group Name"
                       placeholder="Enter your group name"
-                      value={values.gname}
-                      error={Boolean(touched.gname && errors.gname)}
-                      bottomText={errors.gname}
+                      value={values.name}
+                      error={Boolean(touched.name && errors.name)}
+                      bottomText={errors.name}
                       onChange={handleChange}
                       isDisabled={isLoading}
                       style={{
@@ -139,12 +138,12 @@ export const AddGroup = () => {
                   <div className="col-auto mb-4">
                     <PrimaryInput
                       isRequired
-                      name="dom"
+                      name="meeting_days"
                       label="Days of Meeting"
                       placeholder="Enter meeting day"
-                      value={values.dom}
-                      error={Boolean(touched.dom && errors.dom)}
-                      bottomText={errors.dom}
+                      value={values.meeting_days}
+                      error={Boolean(touched.meeting_days && errors.meeting_days)}
+                      bottomText={errors.meeting_days}
                       onChange={handleChange}
                       isDisabled={isLoading}
                       style={{
@@ -178,13 +177,13 @@ export const AddGroup = () => {
                   <div className="col-auto mb-4">
                     <PrimaryInput
                       isRequired
-                      name="dateofest"
+                      name="established_at"
                       label="Date of Establishment"
                       type="date"
                       placeholder="Enter date"
-                      value={values.dateofest}
-                      error={Boolean(touched.dateofest && errors.dateofest)}
-                      bottomText={errors.dateofest}
+                      value={values.established_at}
+                      error={Boolean(touched.established_at && errors.established_at)}
+                      bottomText={errors.established_at}
                       onChange={handleChange}
                       isDisabled={isLoading}
                       style={{
@@ -198,10 +197,10 @@ export const AddGroup = () => {
                   <div className="col-auto mb-4">
                     <GroupChairmanSelect
                       isRequired
-                      name="gc"
-                      value={values.gc}
-                      error={Boolean(touched.gc && errors.gc)}
-                      bottomText={errors.gc}
+                      name="chairman"
+                      value={values.chairman}
+                      error={Boolean(touched.chairman && errors.chairman)}
+                      bottomText={errors.chairman}
                       onChange={handleChange}
                       isDisabled={isLoading}
                       style={{
@@ -214,10 +213,10 @@ export const AddGroup = () => {
                   <div className="col-auto mb-4">
                     <GroupVCSelect
                       isRequired
-                      name="gvc"
-                      value={values.gvc}
-                      error={Boolean(touched.gvc && errors.gvc)}
-                      bottomText={errors.gvc}
+                      name="vice_chairman"
+                      value={values.vice_chairman}
+                      error={Boolean(touched.vice_chairman && errors.vice_chairman)}
+                      bottomText={errors.vice_chairman}
                       onChange={handleChange}
                       isDisabled={isLoading}
                       style={{
@@ -230,10 +229,10 @@ export const AddGroup = () => {
                   <div className="col-auto mb-4">
                     <GroupSecretarySelect
                       isRequired
-                      name="gsc"
-                      value={values.gsc}
-                      error={Boolean(touched.gsc && errors.gsc)}
-                      bottomText={errors.gsc}
+                      name="secretary"
+                      value={values.secretary}
+                      error={Boolean(touched.secretary && errors.secretary)}
+                      bottomText={errors.secretary}
                       onChange={handleChange}
                       isDisabled={isLoading}
                       style={{

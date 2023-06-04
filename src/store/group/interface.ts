@@ -6,23 +6,27 @@ export interface RequiresGroupID {
 }
 
 export interface GroupInfo {
-    gname: string;
-    createdby: string;
-    location: string;
+
+    group_id: number;
+    project_id: number;
+    farmer_id: number,
+    name: string;
+    description: string;
+    meeting_days: (number | string)[],
+    venue: string;
+    community: string;
+    established_at: Date;
+    chairman: string;
+    vice_chairman: string;
+    secretary: string;
     farmers: string;
     interventions: string;
-   id: number;
-    group_id: number;
-    contact_mode: string[];
-    group: Group;
-    status: number;
-    updated_at: string;
-    created_at: string;
 }
 
 export interface AddGroupPayload {
     groups: { name: string, file: File }[],
     group_id?: number | string | null,
+    project_id?: number | string | null,
 }
 
 export interface EditGroupPayload extends RequiresGroupID {

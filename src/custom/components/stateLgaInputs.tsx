@@ -47,41 +47,43 @@ export const StateLGAInput: React.FC<{
         }, [state, lga])
 
         return (
-            <>
-                <div {...stateContainerProps}>
-                    <PrimaryMultiSelect
-                        placeholder={"Select State"}
-                        options={StatesOptions}
-                        value={selState}
-                        error={Boolean(touched?.state && errors?.state)}
-                        bottomText={errors?.state}
-                        onChange={(selected) => {
-                            onChange({ state: selected.label, lga: '' });
-                            // set state 
-                            setSelState(selected)
-                            // fetch new lga areas 
-                        }}
-                        {...stateInputProps}
-                    />
-                </div>
+          <>
+            <div {...stateContainerProps}>
+              <PrimaryMultiSelect
+                placeholder="Select State"
+                options={StatesOptions}
+                value={selState}
+                error={Boolean(touched?.state && errors?.state)}
+                bottomText={errors?.state}
+                onChange={(selected) => {
+                  onChange({ state: selected.label, lga: "" });
+                  // set state
+                  setSelState(selected);
+                  // fetch new lga areas
+                }}
+                {...stateInputProps}
+              />
+            </div>
 
-                {selState && state && areas ? (
-                    <div {...areaContainerProps}>
-                        <PrimaryMultiSelect
-                            placeholder="Select Local Government Area"
-                            options={areas}
-                            value={selArea}
-                            error={Boolean(touched?.lga && errors?.lga)}
-                            bottomText={errors?.lga}
-                            onChange={(selected) => {
-                                setSelArea(selected)
-                                onChange({ state: state, lga: selected.label })
-                            }}
-                            {...areaInputProps}
-                        />
-                    </div>
-                ) : null}
-
-            </>
-        )
+            {selState && state && areas ? (
+              <div
+                {...areaContainerProps}
+                style={{ position: "relative", zIndex: 1 }}
+              >
+                <PrimaryMultiSelect
+                  placeholder="Select Local Government Area"
+                  options={areas}
+                  value={selArea}
+                  error={Boolean(touched?.lga && errors?.lga)}
+                  bottomText={errors?.lga}
+                  onChange={(selected) => {
+                    setSelArea(selected);
+                    onChange({ state: state, lga: selected.label });
+                  }}
+                  {...areaInputProps}
+                />
+              </div>
+            ) : null}
+          </>
+        );
     }

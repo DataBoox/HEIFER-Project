@@ -10,31 +10,27 @@ export const useAllGroupsColumn = () => {
       () => [
         {
           header: "Group Name",
-          accessorFn: (row) => `${row.gname}`,
+          accessorFn: (row) => `${row.name}`,
           Cell: ({ row }) => (
             <Link
-              to={"/groups/view/" + row.original.id}
+              to={"/groups/view/" + row.original.group_id}
               state={{ member: row.original }}
               className="text-decoration-underline"
             >
-              {_.startCase(row.original.gname)}
+              {_.startCase(row.original.name)}
             </Link>
           ),
         },
         {
-          header: "Created By",
-          accessorFn: (row) => `${row.createdby}`,
-        },
-        {
-          header: "Location",
-          accessorFn: (row) => `${row.location}`,
+          header: "Venue",
+          accessorFn: (row) => `${row.venue}`,
         },
         {
           header: "Farmers",
           accessorFn: (row) => `${row.farmers}`,
           Cell: ({ row }) => (
             <Link
-              to={"/farmers/view/" + row.original.id}
+              to={"/farmers/view/" + row.original.farmer_id}
               state={{ member: row.original }}
               className="text-decoration-underline"
             >
@@ -50,7 +46,7 @@ export const useAllGroupsColumn = () => {
         {
           header: "Date Added",
           accessorFn: (row) =>
-            `${moment(row.created_at).format("HH:mm a, DD MMM YYYY")}`,
+            `${moment(row.established_at).format("HH:mm a, DD MMM YYYY")}`,
         },
       ],
       []

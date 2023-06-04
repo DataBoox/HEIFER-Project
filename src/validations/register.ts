@@ -4,8 +4,8 @@ export const AddRegisterFarmerScheme = () => {
     return object({
     
     cluster_name: string().required('Cluster name is required'),
-    cluster_no: string().required('Cluster name is required'),
-    cluster_head_name: string().required('Cluster name is required'),
+    cluster_no: string().required('Cluster number is required'),
+    cluster_head_name: string().required("Cluster's head is required"),
     farmer_gender: string().required('Farmer gender is required'),
     farmer_age: string().required('Farmer age is required'),
     farmer_age_category: string().required('Farmer age category is required'),
