@@ -4,7 +4,6 @@ import { HomeScreen, LoginScreen } from 'screens';
 import {
   DashboardScreen,
   ProjectScreen,
-  AddProject,
   AddGroup,
   RegisterFarmers,
   UserScreen,
@@ -31,13 +30,12 @@ export const RootNavigator = () => {
         <Route path="/auth">
           <Route index element={<LoginScreen />} />
           <Route path="login" element={<LoginScreen />} />
+          <Route path="projects" element={<ProjectScreen />} />
         </Route>
 
         <Route path="/" element={<HomeScreen />}>
           <Route index element={<DashboardScreen />} />
           <Route path="register" element={<RegisterFarmers />} />
-          <Route path="projects" element={<ProjectScreen />} />
-          <Route path="projects/add" element={<AddProject />} />
           <Route path="groups/add" element={<AddGroup />} />
           <Route path="users" element={<UserScreen />} />
           <Route path="groups" element={<GroupScreen />} />
