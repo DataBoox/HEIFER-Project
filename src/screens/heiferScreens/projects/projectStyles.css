@@ -1,0 +1,145 @@
+@import url(https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Rubik:wght@300;400;500;600;700&display=swap);
+@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css);
+
+/* Make images easier to work with */
+img,
+picture {
+	max-width: 100%;
+	display: block;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+	font: inherit;
+}
+.george{
+	 background-image: url(../../../assets/images/Maskgroupbgnew.png);
+}
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+	html:focus-within {
+		scroll-behavior: auto;
+	}
+
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+		scroll-behavior: auto !important;
+	}
+}
+
+/*  __CSS RESET ANDY_BELL https://andy-bell.co.uk/a-modern-css-reset/ __ */
+
+:root {
+	/* colors */
+	--sub-text: #7f8c9f;
+	--cardbg-col: #2a4153;
+	--cardtext-col: white;
+
+	/* font styling */
+	--font-fam: "Montserrat", sans-serif;
+	--font-size: ;
+
+	--size-32: 32px;
+	--size-20: 20px;
+	--size-16: 16px;
+	--size-14: 14px;
+}
+
+/* util classes */
+.flex {
+	display: flex;
+}
+
+.carddy {
+	margin: 32px;
+	padding: 4rem 2rem 4rem 2rem;
+	flex-direction: column;
+	align-items: center;
+	background-color: var(--cardbg-col);
+	color: var(--cardtext-col);
+	text-align: center;
+	cursor:pointer;
+}
+
+.carddy p {
+	font-family: var(--font-fam);
+	font-size: var(--size-16);
+	margin-top: 1.5rem;
+}
+
+.maxwidth {
+	width: 266.666px;
+}
+
+/* util classes */
+
+
+.nav {
+	padding: 1rem;
+	background-color: white;
+	width: 100vw;
+	box-shadow: 0px 5px 4px -6px var(--cardbg-col);
+	align-items: center;
+	justify-content: space-between;
+	font-family: var(--font-fam);
+	font-size: 1rem;
+	color: var(--cardbg-col);
+}
+
+.profile-area ul li {
+	margin-left: 2rem;
+	align-items: center;
+}
+
+.profile-area ul li img {
+	aspect-ratio: 1;
+}
+
+ul li .notifs {
+	width: 16px;
+	height: 16px;
+}
+
+ul li .profile {
+	margin-right: 14px;
+}
+
+.text {
+	margin-top: 8rem;
+	align-items: center;
+	flex-direction: column;
+	font-family: var(--font-fam);
+	font-size: var(--size-32);
+	font-weight: 600;
+	text-align: center;
+	color: black;
+}
+.main-header{
+	color: black;
+}
+.card-text{
+	color: white;
+}
+.sub-header {
+	font-size: 20px;
+	font-weight: 400;
+	color: var(--sub-text);
+}
+
+.card-holder {
+	justify-content: center;
+}
+
+@media (max-width: 50em) {
+	.card-holder {
+		flex-direction: column;
+		align-items: center;
+	}
+}
