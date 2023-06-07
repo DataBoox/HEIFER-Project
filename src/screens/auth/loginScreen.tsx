@@ -38,17 +38,20 @@ export const LoginScreen = () => {
         
         if(loggedInUser && loggedInUser.account_type !== "admin"){
           setProject(loggedInUser.projects[0])
+          toast({
+            title: "Success",
+            description: "Login Successful",
+            status: "success",
+            duration: 3000,
+            isClosable: true,
+          });
+  
+          navigate("/");
+        } else {
+          navigate("/auth/projects");
         }
 
-        toast({
-          title: "Success",
-          description: "Login Successful",
-          status: "success",
-          duration: 3000,
-          isClosable: true,
-        });
-
-        navigate("/");
+        
       })
       .catch((err) => {
         console.log(err);
