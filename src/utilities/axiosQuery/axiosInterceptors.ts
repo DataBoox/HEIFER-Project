@@ -40,7 +40,7 @@ export const initInterceptors = () => {
             return response;
         },
         async (error) => {
-            const result = reactLocalStorage.get('@bethel_user');
+            const result = reactLocalStorage.get('@heifer_user');
             const token = result ? (JSON.parse(result) as Auth).access_token : null;
             // console.log(error)
             if (ValidateResponseError(error.response, token)) {

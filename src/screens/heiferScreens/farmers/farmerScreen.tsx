@@ -9,16 +9,14 @@ import { useFormik } from "formik";
 import { useAddFarmerMutation, useGetFarmersQuery } from "store/farmers";
 import { useAllFarmersColumn } from "./components";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
-
+import { useProject } from "store/projects";
 
 
 export const FarmerScreen = () => {
   const navigate = useNavigate();
   const columns = useAllFarmersColumn()
-  const { data, isLoading, refetch } = useGetFarmersQuery({ page: 1, query: '' });
-  const toast = useToast({ position: "top-right" });
-
-  console.log(data)
+  const projectId: number = useProject().getProject()?.id;
+  const { data, isLoading, refetch } = useGetFarmersQuery({ page: 1, query: '', project_id: projectId });
 
   return (
     <ContentBodyContainer
