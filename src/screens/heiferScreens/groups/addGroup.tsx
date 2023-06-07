@@ -19,7 +19,7 @@ export const AddGroup = () => {
   const [request, { isLoading }] = useAddGroupMutation();
   const projectId: number = useProject().getProject()?.id;
   const { data, refetch } = useGetFarmersQuery({ page: 1, query: '', project_id: projectId });
-  const farmerNames = data?.data.data.map((data) => { return data.cluster_name })
+  const farmerNames = data?.data.data.map((data) => { return { text: data.cluster_name } })
 
   const {
     values,
@@ -34,14 +34,14 @@ export const AddGroup = () => {
       group_id: "",
       project_id: "",
       name: "",
-      description: "",
+      description: "", 
       meeting_days: "",
       community: "",
       venue: "",
       established_at: "",
       chairman: farmerNames,
-      vice_chairman: "",
-      secretary: "",
+      vice_chairman: farmerNames,
+      secretary: farmerNames,
     },
     validationSchema: AddGroupScheme(),
     onSubmit: () => initRequest(),
@@ -206,7 +206,7 @@ export const AddGroup = () => {
                       name="chairman"
                       label="Group Chairman"
                       placeholder="Select chairman"
-                      // options={values.chairman}
+                      options={values.chairman}
                       error={Boolean(touched.chairman && errors.chairman)}
                       bottomText={errors.chairman}
                       onChange={handleChange}
@@ -219,36 +219,40 @@ export const AddGroup = () => {
                     />
                   </div>
                   <div className="col-auto mb-4">
-                    <GroupVCSelect
-                      isRequired
-                      name="vice_chairman"
-                      value={values.vice_chairman}
-                      error={Boolean(touched.vice_chairman && errors.vice_chairman)}
-                      bottomText={errors.vice_chairman}
-                      onChange={handleChange}
-                      isDisabled={isLoading}
-                      style={{
-                        backgroundColor: "#F2FAFC",
-                        borderRadius: 0,
-                        borderColor: "#CAECF3",
-                      }}
-                    />
+                    <PrimarySelect 
+                        isRequired
+                        name="vice_chairman"
+                        label="Group Vice Chairman"
+                        placeholder="Select vice chairman"
+                        options={values.vice_chairman}
+                        error={Boolean(touched.vice_chairman && errors.vice_chairman)}
+                        bottomText={errors.vice_chairman}
+                        onChange={handleChange}
+                        isDisabled={isLoading}
+                        style={{
+                          backgroundColor: "#F2FAFC",
+                          borderRadius: 0,
+                          borderColor: "#CAECF3",
+                        }}
+                      />
                   </div>
                   <div className="col-auto mb-4">
-                    <GroupSecretarySelect
-                      isRequired
-                      name="secretary"
-                      value={values.secretary}
-                      error={Boolean(touched.secretary && errors.secretary)}
-                      bottomText={errors.secretary}
-                      onChange={handleChange}
-                      isDisabled={isLoading}
-                      style={{
-                        backgroundColor: "#F2FAFC",
-                        borderRadius: 0,
-                        borderColor: "#CAECF3",
-                      }}
-                    />
+                    <PrimarySelect 
+                        isRequired
+                        name="secretary"
+                        label="Group Secretary"
+                        placeholder="Select secretary"
+                        options={values.secretary}
+                        error={Boolean(touched.secretary && errors.secretary)}
+                        bottomText={errors.secretary}
+                        onChange={handleChange}
+                        isDisabled={isLoading}
+                        style={{
+                          backgroundColor: "#F2FAFC",
+                          borderRadius: 0,
+                          borderColor: "#CAECF3",
+                        }}
+                      />
                   </div>
                   <div className="col-auto text-end mb-4">
                     <Button
