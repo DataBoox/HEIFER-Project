@@ -13,14 +13,7 @@ export const farmerApi = createApi({
     endpoints: (builder) => ({
         getFarmers: builder.query<ChurchFarmersResponse, FetchFarmersPayload>({
             query: (payload) => ({
-                url: `projects/farmers?${convertObjectToURLParams(payload)}`,
-                method: 'GET',
-                body: payload
-            }),
-        }),
-        fetchFarmers: builder.mutation<ChurchFarmersResponse, FetchFarmersPayload>({
-            query: (payload) => ({
-                url: `projects/farmers?${convertObjectToURLParams(payload)}`,
+                url: `projects/farmers?project_id=${payload.project_id}`,
                 method: 'GET',
                 body: payload
             }),
@@ -58,7 +51,6 @@ export const farmerApi = createApi({
 
 export const {
     useGetFarmersQuery,
-    useFetchFarmersMutation,
     useAddFarmerMutation,
     useEditFarmerMutation,
     useDeleteFarmerMutation,

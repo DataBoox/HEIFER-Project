@@ -1,7 +1,7 @@
 import { Button, ButtonProps, useToast } from "@chakra-ui/react";
 import { MdOutlineAddCircleOutline } from "react-icons/md";
 import { AddGroupScheme } from "validations";
-import { PrimaryInput, PrimaryTextarea, GroupChairmanSelect, GroupSecretarySelect, GroupVCSelect } from "components";
+import { PrimaryInput, PrimaryTextarea, GroupChairmanSelect, GroupSecretarySelect, GroupVCSelect, PrimarySelect } from "components";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { DashboardCardContainer } from "../../home";
@@ -9,12 +9,18 @@ import { useFormik } from "formik";
 import { resolveApiError } from "utilities";
 import { useState } from "react";
 import { useAddGroupMutation } from "store/group";
+import { useGetFarmersQuery } from "store/farmers";
+import { useProject } from "store/projects";
 
 export const AddGroup = () => {
   const [show, setShow] = useState(false);
   const toast = useToast({ position: "top-right" });
   const navigate = useNavigate();
   const [request, { isLoading }] = useAddGroupMutation();
+  const projectId: number = useProject().getProject()?.id;
+  const { data, refetch } = useGetFarmersQuery({ page: 1, query: '', project_id: projectId });
+  const farmerNames = data?.data.data.map((data) => { return data.cluster_name })
+
   const {
     values,
     errors,
@@ -33,7 +39,7 @@ export const AddGroup = () => {
       community: "",
       venue: "",
       established_at: "",
-      chairman: "",
+      chairman: farmerNames,
       vice_chairman: "",
       secretary: "",
     },
@@ -195,10 +201,12 @@ export const AddGroup = () => {
                     />
                   </div>
                   <div className="col-auto mb-4">
-                    <GroupChairmanSelect
+                    <PrimarySelect 
                       isRequired
                       name="chairman"
-                      value={values.chairman}
+                      label="Group Chairman"
+                      placeholder="Select chairman"
+                      // options={values.chairman}
                       error={Boolean(touched.chairman && errors.chairman)}
                       bottomText={errors.chairman}
                       onChange={handleChange}

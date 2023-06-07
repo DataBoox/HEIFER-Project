@@ -46,6 +46,7 @@ export interface DeleteFarmersPayload {
 }
 
 export interface FetchFarmersPayload extends PaginatedPayload {
+    project_id?: number;
     farmers?: (number | string)[]
 }
 
@@ -63,7 +64,7 @@ export interface BaseFarmer {
     created_at: string;
 }
 
-export interface Farmer extends BaseFarmer {
+export interface Farmer extends FarmerInfo {
 }
 
 

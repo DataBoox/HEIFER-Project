@@ -11,39 +11,14 @@ import { useGetInterventionsQuery } from "store/intervention";
 import { useAllInterventionsColumn } from "./components";
 import _ from "lodash";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
-
+import { useProject } from "store/projects";
 
 export const InterventionScreen = () => {
   const navigate = useNavigate();
   const columns = useAllInterventionsColumn();
-  const { data, isLoading, refetch } = useGetInterventionsQuery({ page: 1, query: "" });
+  const projectId: number = useProject().getProject()?.id;
+  const { data, isLoading, refetch } = useGetInterventionsQuery({ page: 1, query: "", project_id: projectId });
   const toast = useToast({ position: "top-right" });
-  const {
-    values,
-    errors,
-    handleChange,
-    handleSubmit,
-    setFieldValue,
-    setValues,
-    validateForm,
-    touched,
-  } = useFormik({
-    initialValues: {
-      surname: "",
-      fname: "",
-      lname: "",
-      mobileNumber: "",
-      email: "",
-    },
-    validationSchema: AddInterventionScheme(),
-    onSubmit: async () => initRequest(),
-  });
-
-  const initRequest = () => {
-    const payload: any = {
-      ...values,
-    };
-  };
 
   return (
     <ContentBodyContainer
