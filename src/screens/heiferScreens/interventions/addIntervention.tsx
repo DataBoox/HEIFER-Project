@@ -44,7 +44,7 @@ export const AddInterventionDialog: React.FC<AddInterventionDialogProps> = ({
     initialValues: {
       name: "",
       description: "",
-      project_id: project ? project.id : 0,
+      // project_id: project ? project.id : 0,
     },
     validationSchema: AddInterventionScheme(),
     onSubmit: () => initRequest(),
@@ -133,7 +133,7 @@ export const AddInterventionDialog: React.FC<AddInterventionDialogProps> = ({
             />
           </div>
 
-          <div className="col-12">
+          {/* <div className="col-12">
             <PrimaryInput
               isRequired
               name="project_id"
@@ -149,7 +149,7 @@ export const AddInterventionDialog: React.FC<AddInterventionDialogProps> = ({
                 borderColor: "#CAECF3",
               }}
             />
-          </div>
+          </div> */}
 
           <div className="col-12">
             <PrimaryTextarea

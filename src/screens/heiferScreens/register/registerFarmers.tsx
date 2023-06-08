@@ -126,6 +126,42 @@ export const RegisterFarmers = () => {
                   <div className="col-auto mb-4">
                     <PrimaryInput
                       isRequired
+                      name="fname"
+                      label="First Name"
+                      placeholder="Enter first name..."
+                      value={values.fname}
+                      error={Boolean(touched.fname && errors.fname)}
+                      bottomText={errors.fname}
+                      onChange={handleChange}
+                      isDisabled={isLoading}
+                      style={{
+                        backgroundColor: "#F2FAFC",
+                        borderRadius: 0,
+                        borderColor: "#CAECF3",
+                      }}
+                    />
+                  </div>
+                  <div className="col-auto mb-4">
+                    <PrimaryInput
+                      isRequired
+                      name="lname"
+                      label="Last Name"
+                      placeholder="Enter last name..."
+                      value={values.lname}
+                      error={Boolean(touched.lname && errors.lname)}
+                      bottomText={errors.lname}
+                      onChange={handleChange}
+                      isDisabled={isLoading}
+                      style={{
+                        backgroundColor: "#F2FAFC",
+                        borderRadius: 0,
+                        borderColor: "#CAECF3",
+                      }}
+                    />
+                  </div>
+                  <div className="col-auto mb-4">
+                    <PrimaryInput
+                      isRequired
                       name="cluster_name"
                       label="What is the name of the farmer's cluster?"
                       placeholder="Your answer here..."
@@ -162,6 +198,9 @@ export const RegisterFarmers = () => {
                       }}
                     />
                   </div>
+                </div>
+
+                <div className="col-lg-3 col-md-12">
                   <div className="col-auto mb-4">
                     <PrimaryInput
                       isRequired
@@ -201,9 +240,6 @@ export const RegisterFarmers = () => {
                       }}
                     />
                   </div>
-                </div>
-
-                <div className="col-lg-3 col-md-12">
                   <div className="col-auto mb-4">
                     <PrimaryInput
                       isRequired
@@ -241,6 +277,9 @@ export const RegisterFarmers = () => {
                       }}
                     />
                   </div>
+                </div>
+
+                <div className="col-lg-3 col-md-12">
                   <div className="col-auto mb-4">
                     <PrimaryInput
                       isRequired
@@ -285,9 +324,6 @@ export const RegisterFarmers = () => {
                       }}
                     />
                   </div>
-                </div>
-
-                <div className="col-lg-3 col-md-12">
                   <div className="col-auto mb-4">
                     <GenderSelect
                       isRequired
@@ -325,6 +361,9 @@ export const RegisterFarmers = () => {
                       }}
                     />
                   </div>
+                </div>
+
+                <div className="col-lg-3 col-md-12">
                   <div className="col-auto mb-4">
                     <EducationLevelSelect
                       isRequired
@@ -343,9 +382,6 @@ export const RegisterFarmers = () => {
                       }}
                     />
                   </div>
-                </div>
-
-                <div className="col-lg-3 col-md-12">
                   <div className="col-auto mb-4">
                     <IdentificationSelect
                       isRequired
