@@ -83,7 +83,7 @@ export const NavHeader: React.FC<NavHeaderProps> = ({
               className="m-3"
               ml={{ base: "-1.5rem", sm: "-2rem", md: "1rem" }}
             >
-              Naija Unlock Signature Program
+              Naija Unlock Signature Program (Rice Value Chain)
             </Text>
             <Text
               display={{ base: "flex", md: "none" }}
