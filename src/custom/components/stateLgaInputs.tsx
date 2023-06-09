@@ -68,7 +68,6 @@ export const StateLGAInput: React.FC<{
             {selState && state && areas ? (
               <div
                 {...areaContainerProps}
-                style={{ position: "relative", zIndex: 1 }}
               >
                 <PrimaryMultiSelect
                   placeholder="Select Local Government Area"

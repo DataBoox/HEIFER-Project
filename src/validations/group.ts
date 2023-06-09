@@ -10,9 +10,9 @@ export const AddGroupScheme = () => {
      venue: string().required('Venue is required'),
       community: string().required('Community is required'),
       established_at: date().required('Date of establishment is required'),
-      chairman: string().required('Group Chairman is required'),
-      vice_chairman: string().required('Group Vice Chairman name is required'),
-      secretary: string().required('Group Secretary is required'),
+      // chairman: string().required('Group Chairman is required'),
+      // vice_chairman: string().required('Group Vice Chairman name is required'),
+      // secretary: string().required('Group Secretary is required'),
     });
 }
 

@@ -40,7 +40,7 @@ export const FarmerScreen = () => {
               _hover={{ bg: "#bbc7ca" }}
               transition={"background-color 0.5s ease-in-out"}
             >
-              Add Household
+              Register Household
             </Button>
           </div>
         </div>
