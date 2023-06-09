@@ -67,7 +67,9 @@ export interface Farmer extends FarmerInfo {
 
 
 export interface ChurchFarmersResponse extends IResponse {
+    total: any;
     data: {
+        map: any;
         data: Farmer[],
         next: number;
         total: number;
