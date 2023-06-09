@@ -1,7 +1,6 @@
-import { Button, ButtonProps, useToast } from "@chakra-ui/react";
-import { MdOutlineAddCircleOutline } from "react-icons/md";
+import { Button, useToast } from "@chakra-ui/react";
 import { AddGroupScheme } from "validations";
-import { PrimaryInput, PrimaryTextarea, GroupChairmanSelect, GroupSecretarySelect, GroupVCSelect, PrimarySelect } from "components";
+import { PrimaryInput, PrimaryTextarea, SelectFarmersInput, GroupSecretarySelect, GroupVCSelect, PrimarySelect } from "components";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { DashboardCardContainer } from "../../home";
@@ -201,57 +200,54 @@ export const AddGroup = () => {
                     />
                   </div>
                   <div className="col-auto mb-4">
-                    <PrimarySelect 
+                    <SelectFarmersInput 
                       isRequired
                       name="chairman"
                       label="Group Chairman"
                       placeholder="Select chairman"
-                      options={values.chairman}
                       error={Boolean(touched.chairman && errors.chairman)}
                       bottomText={errors.chairman}
                       onChange={handleChange}
                       isDisabled={isLoading}
-                      style={{
-                        backgroundColor: "#F2FAFC",
-                        borderRadius: 0,
-                        borderColor: "#CAECF3",
-                      }}
+                      // style={{
+                      //   backgroundColor: "#F2FAFC",
+                      //   borderRadius: 0,
+                      //   borderColor: "#CAECF3",
+                      // }}
                     />
                   </div>
                   <div className="col-auto mb-4">
-                    <PrimarySelect 
+                    <SelectFarmersInput 
                         isRequired
                         name="vice_chairman"
                         label="Group Vice Chairman"
                         placeholder="Select vice chairman"
-                        options={values.vice_chairman}
                         error={Boolean(touched.vice_chairman && errors.vice_chairman)}
                         bottomText={errors.vice_chairman}
                         onChange={handleChange}
                         isDisabled={isLoading}
-                        style={{
-                          backgroundColor: "#F2FAFC",
-                          borderRadius: 0,
-                          borderColor: "#CAECF3",
-                        }}
+                        // style={{
+                        //   backgroundColor: "#F2FAFC",
+                        //   borderRadius: 0,
+                        //   borderColor: "#CAECF3",
+                        // }}
                       />
                   </div>
                   <div className="col-auto mb-4">
-                    <PrimarySelect 
+                    <SelectFarmersInput 
                         isRequired
                         name="secretary"
                         label="Group Secretary"
                         placeholder="Select secretary"
-                        options={values.secretary}
                         error={Boolean(touched.secretary && errors.secretary)}
                         bottomText={errors.secretary}
                         onChange={handleChange}
                         isDisabled={isLoading}
-                        style={{
-                          backgroundColor: "#F2FAFC",
-                          borderRadius: 0,
-                          borderColor: "#CAECF3",
-                        }}
+                        // style={{
+                        //   backgroundColor: "#F2FAFC",
+                        //   borderRadius: 0,
+                        //   borderColor: "#CAECF3",
+                        // }}
                       />
                   </div>
                   <div className="col-auto text-end mb-4">

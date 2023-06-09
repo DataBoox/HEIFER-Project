@@ -18,6 +18,13 @@ export const farmerApi = createApi({
                 body: payload
             }),
         }),
+        fetchFarmers: builder.mutation<ChurchFarmersResponse, FetchFarmersPayload>({
+            query: (payload) => ({
+                url: `projects/farmers?project_id=${payload.project_id}`,
+                method: 'GET',
+                body: payload
+            }),
+        }),
         addFarmer: builder.mutation<FarmerSuccessResponse, AddFarmerPayload>({
             query: (payload) => ({
                 url: 'projects/farmers/create',
@@ -50,6 +57,7 @@ export const farmerApi = createApi({
 
 export const {
     useGetFarmersQuery,
+    useFetchFarmersMutation,
     useAddFarmerMutation,
     useEditFarmerMutation,
     useDeleteFarmerMutation,
