@@ -7,7 +7,6 @@ export interface RequiresFarmerID {
 
 export interface FarmerInfo {
     farmer_address: string,
-    email_address: string,
     first_name: string,
     last_name: string,
     created_at: string,
@@ -25,7 +24,6 @@ export interface FarmerInfo {
     marital_status: string,
     valid_id: string,
     id_type: string,
-    group_or_ass: string,
     group_name: string,
     group_type: string,
     project_id: number,

@@ -21,7 +21,6 @@ export const farmerApi = createApi({
         addFarmer: builder.mutation<FarmerSuccessResponse, AddFarmerPayload>({
             query: (payload) => ({
                 url: 'projects/farmers/create',
-                headers: { 'Content-Type': 'multipart/form-data'},
                 method: 'POST',
                 body: payload
             }),
