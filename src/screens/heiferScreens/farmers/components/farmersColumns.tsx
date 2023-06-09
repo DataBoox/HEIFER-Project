@@ -10,27 +10,27 @@ export const useAllFarmersColumn = () => {
       () => [
         {
           header: "First Name",
-          accessorFn: (row) => `${row.fname}`,
+          accessorFn: (row) => `${row.first_name}`,
           Cell: ({ row }) => (
             <Link
               to={"/farmers/view/" + row.original.farmer_id}
               state={{ member: row.original }}
               className="text-decoration-underline"
             >
-              {_.startCase(row.original.fname)}
+              {_.startCase(row.original.first_name)}
             </Link>
           ),
         },
         {
           header: "Last Name",
-          accessorFn: (row) => `${row.lname}`,
+          accessorFn: (row) => `${row.last_name}`,
           Cell: ({ row }) => (
             <Link
               to={"/farmers/view/" + row.original.farmer_id}
               state={{ member: row.original }}
               className="text-decoration-underline"
             >
-              {_.startCase(row.original.lname)}
+              {_.startCase(row.original.last_name)}
             </Link>
           ),
         },
@@ -45,10 +45,6 @@ export const useAllFarmersColumn = () => {
         {
           header: "Phone Number",
           accessorFn: (row) => `${row.farmer_phone}`,
-        },
-        {
-          header: "Email Address",
-          accessorFn: (row) => `${row.email_address}`,
         },
         {
           header: "Date Added",

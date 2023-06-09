@@ -6,7 +6,7 @@ export const AgeCategorySelect: React.FC<AgeCategorySelectProps> = ({
 }) => {
   return (
     <PrimarySelect
-      label="What is the farmer's age category?"
+      label="Farmer's Age Category?"
       placeholder="Select age category"
       {...rest}
     >

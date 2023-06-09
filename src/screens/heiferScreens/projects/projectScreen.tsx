@@ -32,7 +32,7 @@ export const ProjectScreen = () => {
                 </div>
             </nav>
             <div className="text flex">
-                <p className="main-header">Welcome back, Clara</p>
+                <p className="main-header">Welcome Clara!</p>
                 <p className="sub-header">What would you like to work on today?</p>
             </div>
             <div className="card-holder flex">
