@@ -8,8 +8,8 @@ export interface RequiresFarmerID {
 export interface FarmerInfo {
     farmer_address: string,
     email_address: string,
-    fname: string,
-    lname: string,
+    first_name: string,
+    last_name: string,
     created_at: string,
     cluster_name: string,
     cluster_no: string,

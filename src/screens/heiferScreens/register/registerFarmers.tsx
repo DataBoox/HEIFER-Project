@@ -39,8 +39,8 @@ export const RegisterFarmers = () => {
     initialValues: {
       farmer_address: "",
       email_address: "",
-      fname: "",
-      lname: "",
+      first_name: "",
+      last_name: "",
       created_at: "",
       cluster_name: "",
       cluster_no: "",
@@ -129,12 +129,12 @@ export const RegisterFarmers = () => {
                   {/* <div className="col-auto mb-4">
                     <PrimaryInput
                       isRequired
-                      name="fname"
+                      name="first_name"
                       label="First Name"
                       placeholder="Enter first name..."
-                      value={values.fname}
-                      error={Boolean(touched.fname && errors.fname)}
-                      bottomText={errors.fname}
+                      value={values.first_name}
+                      error={Boolean(touched.first_name && errors.first_name)}
+                      bottomText={errors.first_name}
                       onChange={handleChange}
                       isDisabled={isLoading}
                       style={{
@@ -147,12 +147,12 @@ export const RegisterFarmers = () => {
                   <div className="col-auto mb-4">
                     <PrimaryInput
                       isRequired
-                      name="lname"
+                      name="last_name"
                       label="Last Name"
                       placeholder="Enter last name..."
-                      value={values.lname}
-                      error={Boolean(touched.lname && errors.lname)}
-                      bottomText={errors.lname}
+                      value={values.last_name}
+                      error={Boolean(touched.last_name && errors.last_name)}
+                      bottomText={errors.last_name}
                       onChange={handleChange}
                       isDisabled={isLoading}
                       style={{
