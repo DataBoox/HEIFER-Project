@@ -32,7 +32,7 @@ export const useAllInterventionsColumn = () => {
         // },
         
         {
-          header: "Created by",
+          header: "Date Created",
           accessorFn: (row) =>
             `${moment(row.created_at).format("HH:mm a, DD MMM YYYY")}`,
         },

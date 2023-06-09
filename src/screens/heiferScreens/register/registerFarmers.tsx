@@ -90,6 +90,9 @@ export const RegisterFarmers = () => {
           status: "error",
         });
       });
+
+    // navigate to farmers after clicking register
+    navigate("/farmers");
   };
 
   console.log(errors)
@@ -123,7 +126,7 @@ export const RegisterFarmers = () => {
             >
               <div className="row g-2">
                 <div className="col-lg-3 col-md-12">
-                  <div className="col-auto mb-4">
+                  {/* <div className="col-auto mb-4">
                     <PrimaryInput
                       isRequired
                       name="fname"
@@ -158,7 +161,7 @@ export const RegisterFarmers = () => {
                         borderColor: "#CAECF3",
                       }}
                     />
-                  </div>
+                  </div> */}
                   <div className="col-auto mb-4">
                     <PrimaryInput
                       isRequired
@@ -464,12 +467,12 @@ export const RegisterFarmers = () => {
                       <div className="col-auto mb-4">
                         <GroupTypeSelect
                           isRequired
-                          name="group_or_ass"
-                          value={values.group_or_ass}
+                          name="group_type"
+                          value={values.group_type}
                           error={Boolean(
-                            touched.group_or_ass && errors.group_or_ass
+                            touched.group_type && errors.group_type
                           )}
-                          bottomText={errors.group_or_ass}
+                          bottomText={errors.group_type}
                           onChange={handleChange}
                           isDisabled={isLoading}
                           style={{

@@ -33,7 +33,6 @@ const handleModalClose = () => {
   return (
     <ContentBodyContainer title="">
       {/*end col*/}
-
       <div className="col-xl-3 col-md-6">
         {/* card */}
         <div className="card card-animate">
@@ -59,16 +58,16 @@ const handleModalClose = () => {
                   {" "}
                   No. of Projects
                 </p>
-                <h4 className="fs-1 fw-bold text-dark mb-4">3</h4>
-                <p
-                  className="badge bg-light mb-0 fw-light text-decoration-underline"
-                  style={{ color: "#0BB508", cursor: "pointer" }}
-                  onClick={handleModalOpen}
-                >
-                  View Indicators
-                </p>
+                <h4 className="fs-1 fw-bold text-dark mb-5">0</h4>
               </div>
-              <Modal isOpen={showModal} onClose={handleModalClose} size="xl">
+            </div>
+            {/* end card body */}
+          </div>
+          {/* end card */}
+        </div>
+      </div>
+
+      {/* <Modal isOpen={showModal} onClose={handleModalClose} size="xl">
                 <ModalOverlay />
                 <ModalContent>
                   <ModalHeader>Indicators</ModalHeader>
@@ -94,13 +93,7 @@ const handleModalClose = () => {
                     </div>
                   </ModalBody>
                 </ModalContent>
-              </Modal>
-            </div>
-            {/* end card body */}
-          </div>
-          {/* end card */}
-        </div>
-      </div>
+              </Modal> */}
 
       <div className="col-xl-3 col-md-6">
         {/* card */}
@@ -125,7 +118,7 @@ const handleModalClose = () => {
               <div className="flex-grow-1 overflow-hidden text-end">
                 <p className="fs-5 fw-medium text-dark text-truncate mb-3">
                   {" "}
-                  Register Participants
+                  Registered Participants
                 </p>
                 <h4 className="fs-1 fw-bold text-dark mb-5">0</h4>
               </div>
@@ -388,7 +381,7 @@ const handleModalClose = () => {
               <div className="avatar-sm flex-shrink-0 mt-5">
                 <div
                   style={{
-                    backgroundColor: "#12274F",
+                    backgroundColor: "#6274F",
                     borderRadius: "50%",
                     display: "inline-flex",
                     alignItems: "center",
@@ -417,6 +410,60 @@ const handleModalClose = () => {
             {/* end card body */}
           </div>
           {/* end card */}
+        </div>
+      </div>
+
+      <div className="col-xl-12 col-md-12 mb-4">
+        <div
+          className="animate"
+          style={{
+            position: "relative",
+            paddingBottom: "56.25%",
+            height: 0,
+            overflow: "hidden",
+            borderRadius: "10px",
+          }}
+        >
+          <iframe
+            title="Report Section"
+            src="https://app.powerbi.com/view?r=eyJrIjoiYWEwZjhlYTEtMzk3MC00MTM4LWEwY2UtM2JjMDE2OTk1MmY1IiwidCI6IjBlNjYxZTk4LTgzNGUtNDkyMC05YzM5LWIzZTU0MmJiNjY2NSIsImMiOjh9&pageName=ReportSection"
+            allowFullScreen
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: "100%",
+              height: "100%",
+              border: "none",
+            }}
+          ></iframe>
+        </div>
+      </div>
+
+      <div className="col-xl-12 col-md-12">
+        <div
+          className="animate"
+          style={{
+            position: "relative",
+            paddingBottom: "56.25%",
+            height: 0,
+            overflow: "hidden",
+            borderRadius: "10px",
+          }}
+        >
+          <iframe
+            title="Report Section"
+            src="https://app.powerbi.com/view?r=eyJrIjoiZTUwZDE5NjktZjNkYi00NThiLTkyYTMtNDMwNWU0ODkzNTY2IiwidCI6IjBlNjYxZTk4LTgzNGUtNDkyMC05YzM5LWIzZTU0MmJiNjY2NSIsImMiOjh9&pageName=ReportSection1a922c658522ddc7359b"
+            allowFullScreen
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: "100%",
+              height: "100%",
+              border: "none",
+            }}
+          ></iframe>
         </div>
       </div>
     </ContentBodyContainer>
