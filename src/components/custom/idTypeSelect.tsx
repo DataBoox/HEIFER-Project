@@ -11,7 +11,7 @@ export const IdTypeSelect: React.FC<IdTypeSelectProps> = ({
       {...rest}
     >
       <option value="voters card">Voters card</option>
-      <option value="drivers license">Drivers cicense</option>
+      <option value="drivers license">Driver's License</option>
       <option value="national id card/slip">National ID card/Slip</option>
       <option value="international passport">International passport</option>
     </PrimarySelect>
