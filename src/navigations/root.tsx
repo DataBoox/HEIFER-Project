@@ -6,6 +6,7 @@ import {
   ProjectScreen,
   AddGroup,
   RegisterFarmers,
+  ViewFarmers,
   UserScreen,
   GroupScreen,
   FarmerScreen,
@@ -40,6 +41,7 @@ export const RootNavigator = () => {
           <Route path="users" element={<UserScreen />} />
           <Route path="groups" element={<GroupScreen />} />
           <Route path="farmers" element={<FarmerScreen />} />
+          <Route path="farmers/view" element={<ViewFarmers />} />
           <Route path="interventions" element={<InterventionScreen />} />
         </Route>
       </Routes>

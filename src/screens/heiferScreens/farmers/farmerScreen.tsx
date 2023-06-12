@@ -1,12 +1,11 @@
 
 import { MdOutlineAddCircleOutline } from "react-icons/md";
-import { FaEye, FaPen, FaSearch, FaTrash } from "react-icons/fa";
-import { useToast, Button} from "@chakra-ui/react";
-import { PrimaryInput, ThemeTable } from "components";
+import { FaEye, FaPen, FaTrash } from "react-icons/fa";
+import { Button} from "@chakra-ui/react";
+import { ThemeTable } from "components";
 import { useNavigate } from "react-router-dom";
-import { ContentBodyContainer, DashboardCardContainer } from "../../home";
-import { useFormik } from "formik";
-import { useAddFarmerMutation, useGetFarmersQuery } from "store/farmers";
+import { ContentBodyContainer} from "../../home";
+import { useGetFarmersQuery } from "store/farmers";
 import { useAllFarmersColumn } from "./components";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import { useProject } from "store/projects";
@@ -61,9 +60,9 @@ export const FarmerScreen = () => {
                   placement="top"
                   overlay={<Tooltip id="view-tooltip">View</Tooltip>}
                 >
-                  <div>
+                  <Button onClick={() => navigate("/farmers/view")}>
                     <FaEye size={16} color="#7F8C9F" />
-                  </div>
+                  </Button>
                 </OverlayTrigger>
               </div>
               <div className="touchable pe-2">
