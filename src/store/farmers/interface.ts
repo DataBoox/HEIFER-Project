@@ -6,6 +6,7 @@ export interface RequiresFarmerID {
 }
 
 export interface FarmerInfo {
+    id: number,
     farmer_address: string,
     first_name: string,
     last_name: string,

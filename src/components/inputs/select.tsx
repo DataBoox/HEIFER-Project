@@ -76,7 +76,7 @@ export const PrimarySelect: React.FC<PrimarySelectProp> = ({
                 )}
 
                 <Select {...rest} className={`${leftAddonClass} ${rightAddonClass}`}>
-                    {(placeholder && placeholder.length) && <option value="" disabled>{placeholder}</option>}
+                    {(placeholder && placeholder.length) && <option value="" selected disabled>{placeholder}</option>}
                     {(options).map((item, index) => (
                         <option key={index} {...item.props}>{item.text}</option>
                     ))}
