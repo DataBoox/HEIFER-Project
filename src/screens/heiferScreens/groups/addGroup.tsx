@@ -252,7 +252,7 @@ export const AddGroup = () => {
                           borderRadius: 0,
                           borderColor: "#CAECF3",
                         }}
-                      ></PrimarySelect>
+                      />
                   </div>
                   <div className="col-auto text-end mb-4">
                     <Button
