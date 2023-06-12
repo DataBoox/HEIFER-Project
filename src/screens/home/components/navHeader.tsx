@@ -22,6 +22,7 @@ import { FaBell} from "react-icons/fa";
 import { LogoutAlertDialog } from "../../../components";
 import { formatName } from '../../../utilities/formatting';
 import { useNavigate } from "react-router-dom";
+import { useProject } from "store/projects";
 
 const SidebarOverlay = ({  onToggleSideBar }: {  onToggleSideBar: () => void }) => {
   return (
@@ -47,6 +48,8 @@ export const NavHeader: React.FC<NavHeaderProps> = ({
     const { user } = useAuth()
     const [show, setShow] = useState({ logout: false });
     const navigate = useNavigate();
+    const projectName: number = useProject().project?.name;
+
     
   return (
     <>
@@ -83,7 +86,7 @@ export const NavHeader: React.FC<NavHeaderProps> = ({
               className="m-3"
               ml={{ base: "-1.5rem", sm: "-2rem", md: "1rem" }}
             >
-              Naija Unlock Signature Program (Rice Value Chain)
+              Naija Unlock Signature Program ({ projectName })
             </Text>
             <Text
               display={{ base: "flex", md: "none" }}
