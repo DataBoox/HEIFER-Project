@@ -6,7 +6,7 @@ import {
   GenderSelect,
   ProjectSelect,
   RoleSelect,
-  PrimaryInput
+  PrimaryInput,
 } from "components";
 import { useFormik } from "formik";
 import { resolveApiError } from "utilities";
@@ -28,7 +28,7 @@ export const AddUserDialog: React.FC<AddUserDialogProps> = ({
   useButton = false,
   children,
   buttonProps,
-  onClose = () => { },
+  onClose = () => {},
   ...rest
 }) => {
   const [show, setShow] = useState(false);
@@ -43,7 +43,7 @@ export const AddUserDialog: React.FC<AddUserDialogProps> = ({
     resetForm,
     touched,
     setValues,
-    setFieldTouched
+    setFieldTouched,
   } = useFormik({
     initialValues: {
       fname: "",
@@ -55,7 +55,7 @@ export const AddUserDialog: React.FC<AddUserDialogProps> = ({
       project: "",
       role: "",
       lga: "",
-      gender: ""
+      gender: "",
     },
     validationSchema: AddUserScheme(),
     onSubmit: () => initRequest(),
@@ -66,6 +66,7 @@ export const AddUserDialog: React.FC<AddUserDialogProps> = ({
   }, [user]);
 
   
+
   const initRequest = () => {
     const payload: any = {
       ...values,

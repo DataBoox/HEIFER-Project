@@ -28,6 +28,8 @@ export interface FarmerInfo {
     group_type: string,
     project_id: number,
     farmer_id: number,
+    latitude: number,
+    longitude: number,
 }
 
 export interface AddFarmerPayload {

@@ -73,7 +73,7 @@ export const ViewFarmers = () => {
                       <td className="fw-bold" style={{ minWidth: "150px" }}>
                         Event Name
                       </td>
-                      {/* <td className="p-2">{ev?.title}</td> */}
+                    <td className="p-2">Buckle my shoes</td> 
                     </tr>
                     <tr>
                       <td className="fw-bold">Description</td>
