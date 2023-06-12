@@ -1,7 +1,6 @@
 import { Button, useToast } from "@chakra-ui/react";
 import { AddGroupScheme } from "validations";
 import { PrimaryInput, PrimaryTextarea, SelectFarmersInput, GroupSecretarySelect, GroupVCSelect, PrimarySelect } from "components";
-import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { DashboardCardContainer } from "../../home";
 import { useFormik } from "formik";
@@ -16,9 +15,11 @@ export const AddGroup = () => {
   const toast = useToast({ position: "top-right" });
   const navigate = useNavigate();
   const [request, { isLoading }] = useAddGroupMutation();
-  const projectId: number = useProject().getProject()?.id;
-  const { data, refetch } = useGetFarmersQuery({ page: 1, query: '', project_id: projectId });
-  const farmerNames = data?.data.data.map((data) => { return { text: `${data.first_name} ${data.last_name}` } })
+  const projectId: number = useProject().project.id;
+  const { data: farmers } = useGetFarmersQuery({ project_id: projectId });
+  const farmerNames = farmers?.data.data.map((data) => {
+    return { text: `${data.first_name} ${data.last_name}` } 
+  })
 
   const {
     values,
@@ -38,9 +39,9 @@ export const AddGroup = () => {
       community: "",
       venue: "",
       established_at: "",
-      chairman: farmerNames,
-      vice_chairman: farmerNames,
-      secretary: farmerNames,
+      chairman: "",
+      vice_chairman: "",
+      secretary: "",
     },
     validationSchema: AddGroupScheme(),
     onSubmit: () => initRequest(),
@@ -205,7 +206,7 @@ export const AddGroup = () => {
                       name="chairman"
                       label="Group Chairman"
                       placeholder="Select chairman"
-                      options={values.chairman}
+                      options={farmerNames}
                       error={Boolean(touched.chairman && errors.chairman)}
                       bottomText={errors.chairman}
                       onChange={handleChange}
@@ -223,7 +224,7 @@ export const AddGroup = () => {
                         name="vice_chairman"
                         label="Group Vice Chairman"
                         placeholder="Select vice chairman"
-                        options={values.vice_chairman}
+                        options={farmerNames}
                         error={Boolean(touched.vice_chairman && errors.vice_chairman)}
                         bottomText={errors.vice_chairman}
                         onChange={handleChange}
@@ -241,7 +242,7 @@ export const AddGroup = () => {
                         name="secretary"
                         label="Group Secretary"
                         placeholder="Select secretary"
-                        options={values.secretary}
+                        options={farmerNames}
                         error={Boolean(touched.secretary && errors.secretary)}
                         bottomText={errors.secretary}
                         onChange={handleChange}
