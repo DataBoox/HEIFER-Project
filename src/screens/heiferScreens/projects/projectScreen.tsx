@@ -12,7 +12,7 @@ export const ProjectScreen = () => {
     const navigate = useNavigate();
 
     const redirect = (project: BaseProject) => {
-        // setProject(project)
+        setProject(project)
         navigate("/"); // navigate
     }
     
