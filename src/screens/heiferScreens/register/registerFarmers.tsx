@@ -34,6 +34,8 @@ export const RegisterFarmers = () => {
     handleSubmit,
     setFieldValue,
     resetForm,
+    setValues,
+    setFieldTouched,
     touched,
   } = useFormik({
     initialValues: {
@@ -60,12 +62,42 @@ export const RegisterFarmers = () => {
       group_type: "",
       project_id: project.id,
       farmer_id: "",
+      latitude: "",
+      longitude: "",
     },
     validationSchema: AddRegisterFarmerScheme(),
     onSubmit: () => initRequest(),
   });
 
-  
+  const getLocation = () => {
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude } = position.coords;
+          setValues({
+            ...values,
+            latitude: latitude.toString(),
+            longitude: longitude.toString(),
+          });
+        },
+        (error) => {
+          console.log(error);
+          toast({
+            title: "Location Error",
+            description: "Failed to retrieve your location.",
+            status: "error",
+          });
+        }
+      );
+    } else {
+      toast({
+        title: "Geolocation Error",
+        description: "Geolocation is not supported by your browser.",
+        status: "error",
+      });
+    }
+  };
+
   const initRequest = () => {
     const payload: any = {
       ...values,
@@ -246,7 +278,50 @@ export const RegisterFarmers = () => {
                       }}
                     />
                   </div>
-
+                  <div className="col-auto mb-4">
+                    <Button
+                      onClick={getLocation}
+                      isLoading={isLoading}
+                      isDisabled={isLoading}
+                      colorScheme="teal"
+                      size="sm"
+                      mb={4}
+                    >
+                      Use My Location
+                    </Button>
+                    <PrimaryInput
+                      name="latitude"
+                      label="Latitude"
+                      placeholder="Latitude"
+                      value={values.latitude}
+                      error={Boolean(touched.latitude && errors.latitude)}
+                      bottomText={errors.latitude}
+                      onChange={handleChange}
+                      isDisabled={isLoading}
+                      style={{
+                        backgroundColor: "#F2FAFC",
+                        borderRadius: 0,
+                        borderColor: "#CAECF3",
+                      }}
+                    />
+                  </div>
+                  <div className="col-auto mb-4">
+                    <PrimaryInput
+                      name="longitude"
+                      label="Longitude"
+                      placeholder="Longitude"
+                      value={values.longitude}
+                      error={Boolean(touched.longitude && errors.longitude)}
+                      bottomText={errors.longitude}
+                      onChange={handleChange}
+                      isDisabled={isLoading}
+                      style={{
+                        backgroundColor: "#F2FAFC",
+                        borderRadius: 0,
+                        borderColor: "#CAECF3",
+                      }}
+                    />
+                  </div>
                   <div className="col-auto mb-4">
                     <GenderSelect
                       isRequired
@@ -255,7 +330,6 @@ export const RegisterFarmers = () => {
                       error={Boolean(
                         touched.farmer_gender && errors.farmer_gender
                       )}
-                      bottomText={errors.farmer_gender}
                       onChange={handleChange}
                       isDisabled={isLoading}
                       label="Farmer's gender?"
@@ -284,6 +358,9 @@ export const RegisterFarmers = () => {
                       }}
                     />
                   </div>
+                </div>
+
+                <div className="col-lg-3 col-md-12">
                   <div className="col-auto mb-4">
                     <AgeCategorySelect
                       isRequired
@@ -293,7 +370,7 @@ export const RegisterFarmers = () => {
                         touched.farmer_age_category &&
                           errors.farmer_age_category
                       )}
-                      bottomText={errors.farmer_age_category}
+                     
                       onChange={handleChange}
                       isDisabled={isLoading}
                       style={{
@@ -324,9 +401,6 @@ export const RegisterFarmers = () => {
                       }}
                     />
                   </div>
-                </div>
-
-                <div className="col-lg-3 col-md-12">
                   <div className="col-auto mb-4">
                     <HouseholdHeadSelect
                       isRequired
@@ -358,10 +432,9 @@ export const RegisterFarmers = () => {
                       error={Boolean(
                         touched.house_head_gender && errors.house_head_gender
                       )}
-                      bottomText={errors.house_head_gender}
                       onChange={handleChange}
                       isDisabled={isLoading}
-                      label="gender of the household head?"
+                      label="Gender of the household head"
                       style={{
                         backgroundColor: "#F2FAFC",
                         borderRadius: 0,
@@ -369,6 +442,9 @@ export const RegisterFarmers = () => {
                       }}
                     />
                   </div>
+                </div>
+
+                <div className="col-lg-3 col-md-12">
                   <div className="col-auto mb-4">
                     <MaritalStatusSelect
                       isRequired
@@ -377,7 +453,6 @@ export const RegisterFarmers = () => {
                       error={Boolean(
                         touched.marital_status && errors.marital_status
                       )}
-                      bottomText={errors.marital_status}
                       onChange={handleChange}
                       isDisabled={isLoading}
                       style={{
@@ -395,7 +470,6 @@ export const RegisterFarmers = () => {
                       error={Boolean(
                         touched.house_head_edu && errors.house_head_edu
                       )}
-                      bottomText={errors.house_head_edu}
                       onChange={handleChange}
                       isDisabled={isLoading}
                       style={{
@@ -405,16 +479,12 @@ export const RegisterFarmers = () => {
                       }}
                     />
                   </div>
-                </div>
-
-                <div className="col-lg-3 col-md-12">
                   <div className="col-auto mb-4">
                     <IdentificationSelect
                       isRequired
                       name="valid_id"
                       value={values.valid_id}
                       error={Boolean(touched.valid_id && errors.valid_id)}
-                      bottomText={errors.valid_id}
                       onChange={handleChange}
                       isDisabled={isLoading}
                       style={{
