@@ -1,6 +1,6 @@
 import { Button, useToast } from "@chakra-ui/react";
 import { AddGroupScheme } from "validations";
-import { PrimaryInput, PrimaryTextarea, SelectFarmersInput, GroupSecretarySelect, GroupVCSelect, PrimarySelect } from "components";
+import { PrimaryInput, PrimaryTextarea, PrimarySelect } from "components";
 import { useNavigate } from "react-router-dom";
 import { DashboardCardContainer } from "../../home";
 import { useFormik } from "formik";
@@ -18,58 +18,30 @@ export const AddGroup = () => {
   const projectId: number = useProject().project.id;
   const { data: farmers } = useGetFarmersQuery({ project_id: projectId });
   const farmerNames = farmers?.data.data.map((data) => {
-    return { text: `${data.first_name} ${data.last_name}` } 
+    return { text: `${data.first_name} ${data.last_name}`, props: { value: data.id  }}
   })
 
   const {
-    values,
-    errors,
-    handleChange,
-    handleSubmit,
-    setFieldValue,
-    resetForm,
-    touched,
+    values, errors, handleChange, handleSubmit, resetForm, touched
   } = useFormik({
     initialValues: {
-      group_id: "",
-      project_id: "",
-      name: "",
-      description: "", 
-      meeting_days: "",
-      community: "",
-      venue: "",
-      established_at: "",
-      chairman: "",
-      vice_chairman: "",
-      secretary: "",
+      project_id: projectId, name: "", description: "", 
+      meeting_days: "", community: "", venue: "", 
+      established_at: "", chairman: "", vice_chairman: "", secretary: "",
     },
-    validationSchema: AddGroupScheme(),
-    onSubmit: () => initRequest(),
+    validationSchema: AddGroupScheme(), onSubmit: () => initRequest(),
   });
 
   const payload: any = {
     ...values,
   };
   const initRequest = () => {
-    request(payload)
-      .unwrap()
-      .then((res) => {
-        // console.log(res);
-        toast({
-          title: "Group Added",
-          description: res?.response,
-          status: "success",
-        });
+    request(payload).unwrap().then((res) => {
+        toast({ title: "Group Added", description: res?.response, status: "success" });
         resetForm({}); // reset form
-      })
-      .catch((error) => {
-        // console.log(error);
-        toast({
-          title: "Request Failed",
-          description: resolveApiError(error),
-          status: "error",
-        });
-      });
+    }).catch((error) => {
+        toast({ title: "Request Failed", description: resolveApiError(error), status: "error" });
+    });
   };
 
   return (
@@ -257,7 +229,7 @@ export const AddGroup = () => {
                   <div className="col-auto text-end mb-4">
                     <Button
                       colorScheme="teal"
-                      onClick={() => handleSubmit()}
+                      onClick={() => initRequest()}
                       className={"fw-light"}
                       fontSize={"sm"}
                       backgroundColor={"#2A4153"}
