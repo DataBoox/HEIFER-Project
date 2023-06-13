@@ -7,28 +7,12 @@ import {
 } from "react-icons/bs";
 import { MdLocationOn, MdPersonAddAlt1 } from "react-icons/md";
 import { useState } from "react";
-import {
-  Button,
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
-  ModalCloseButton,
-} from "@chakra-ui/react";
-
+// import { currencyFormatter } from "utilities";
+// import { useGetDashboardStatisticsQuery } from "store/dashboard";
 export const DashboardScreen = () => {
-const [showModal, setShowModal] = useState(false);
 
-const handleModalOpen = () => {
-  setShowModal(true);
-};
+// const { data } = useGetDashboardStatisticsQuery();
 
-const handleModalClose = () => {
-  setShowModal(false);
-};
-  // console.log(data)
 
   return (
     <ContentBodyContainer title="">
@@ -58,7 +42,9 @@ const handleModalClose = () => {
                   {" "}
                   No. of Projects
                 </p>
-                <h4 className="fs-1 fw-bold text-dark mb-5">0</h4>
+                <h4 className="fs-1 fw-bold text-dark mb-5">
+                  {/* {currencyFormatter(data?.data.projects ?? 0)} */} 3
+                </h4>
               </div>
             </div>
             {/* end card body */}
@@ -118,9 +104,9 @@ const handleModalClose = () => {
               <div className="flex-grow-1 overflow-hidden text-end">
                 <p className="fs-5 fw-medium text-dark text-truncate mb-3">
                   {" "}
-                  Registered Participants
+                  Registered Households
                 </p>
-                <h4 className="fs-1 fw-bold text-dark mb-5">0</h4>
+                <h4 className="fs-1 fw-bold text-dark mb-5">9</h4>
               </div>
             </div>
             {/* end card body */}
@@ -154,7 +140,7 @@ const handleModalClose = () => {
                   {" "}
                   States Covered
                 </p>
-                <h4 className="fs-1 fw-bold text-dark mb-5">5</h4>
+                <h4 className="fs-1 fw-bold text-dark mb-5">4</h4>
               </div>
             </div>
             {/* end card body */}
@@ -222,7 +208,7 @@ const handleModalClose = () => {
                   {" "}
                   Communities Covered
                 </p>
-                <h4 className="fs-1 fw-bold text-dark mb-5">209</h4>
+                <h4 className="fs-1 fw-bold text-dark mb-5">...</h4>
               </div>
             </div>
             {/* end card body */}
@@ -256,7 +242,7 @@ const handleModalClose = () => {
                   {" "}
                   No. of SH Groups
                 </p>
-                <h4 className="fs-1 fw-bold text-dark mb-5">0</h4>
+                <h4 className="fs-1 fw-bold text-dark mb-5">3</h4>
               </div>
             </div>
             {/* end card body */}
@@ -290,7 +276,7 @@ const handleModalClose = () => {
                   {" "}
                   Intervention Administered
                 </p>
-                <h4 className="fs-1 fw-bold text-dark mb-5">30,700</h4>
+                <h4 className="fs-1 fw-bold text-dark mb-5">0</h4>
               </div>
             </div>
             {/* end card body */}
@@ -324,7 +310,7 @@ const handleModalClose = () => {
                   {" "}
                   Team Members
                 </p>
-                <h4 className="fs-1 fw-bold text-dark mb-5">25</h4>
+                <h4 className="fs-1 fw-bold text-dark mb-5">9</h4>
               </div>
             </div>
             {/* end card body */}
@@ -358,12 +344,12 @@ const handleModalClose = () => {
                   {" "}
                   Annual Income
                 </p>
-                <h4 className="fs-1 fw-bold text-dark mb-5">73,276,931.28</h4>
+                <h4 className="fs-1 fw-bold text-dark mb-5">$1.25</h4>
                 <p
                   className="badge bg-light mb-0 fw-light fs-5"
                   style={{ color: "#0BB508" }}
                 >
-                  <i className="fa-solid fa-arrow-trend-up"></i> 11.2%
+                  <i className="fa-solid fa-arrow-trend-up"></i> 0%
                 </p>
               </div>
             </div>
@@ -398,12 +384,12 @@ const handleModalClose = () => {
                   {" "}
                   Living Income Benchmark
                 </p>
-                <h4 className="fs-1 fw-bold text-dark mb-5">3,214,628.45</h4>
+                <h4 className="fs-1 fw-bold text-dark mb-5">$2.34</h4>
                 <p
                   className="badge bg-light mb-0 fw-light fs-5"
                   style={{ color: "#0BB508" }}
                 >
-                  <i className="fa-solid fa-arrow-trend-up"></i> 11.2%
+                  <i className="fa-solid fa-arrow-trend-up"></i> 0%
                 </p>
               </div>
             </div>
