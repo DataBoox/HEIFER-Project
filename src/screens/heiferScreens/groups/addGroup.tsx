@@ -17,7 +17,7 @@ export const AddGroup = () => {
   const [request, { isLoading }] = useAddGroupMutation();
   const projectId: number = useProject().project.id;
   const { data: farmers } = useGetFarmersQuery({ project_id: projectId });
-  const farmerNames = farmers?.data.data.map((data) => {
+  const farmerNames = farmers?.data.data.map((data: { first_name: any; last_name: any; id: any; }) => {
     return { text: `${data.first_name} ${data.last_name}`, props: { value: data.id  }}
   })
 
