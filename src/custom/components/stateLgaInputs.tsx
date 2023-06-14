@@ -1,7 +1,8 @@
 import { PrimaryMultiSelect, PrimaryMultiSelectProp } from "components";
 import { StateOption, StatesOptions, getStateLocals } from "utilities";
 import React, { useEffect, useState } from "react";
-
+import city from "assets/json/state.cities.json";
+import NaijaStates from 'naija-state-local-government';
 
 export const StateLGAInput: React.FC<{
     state?: string;
@@ -27,22 +28,19 @@ export const StateLGAInput: React.FC<{
         const [selState, setSelState] = useState<StateOption>()
         const [selArea, setSelArea] = useState<StateOption>()
         const [areas, setAreas] = useState<StateOption[]>([]);
+        const cities: any = city;
 
         useEffect(() => {
             if (state) {
-                const findState = StatesOptions.find((s) => (s.label === state))
-                setSelState(findState)
+                
+              const findState = setAreas(cities[state as typeof cities])
+              const stateAreas = getStateLocals(Number(findState));
+              let findArea: StateOption|undefined = stateAreas[0];
 
-                const stateAreas = getStateLocals(Number(findState?.value));
-                setAreas(stateAreas); // set areas
-                let findArea: StateOption|undefined = stateAreas[0];
-
-                // console.log(lga, lga?.length,  findArea)
-
-                if (lga && lga.length) {
-                    onChange({ state: state, lga: findArea.label })
-                    setSelArea(findArea)
-                }
+              if (lga && lga.length) {
+                  onChange({ state: state, lga: findArea.label })
+                  setSelArea(findArea)
+              }
             }
         }, [state, lga])
 
@@ -51,7 +49,7 @@ export const StateLGAInput: React.FC<{
             <div {...stateContainerProps}>
               <PrimaryMultiSelect
                 placeholder="Select State"
-                options={StatesOptions}
+                options={NaijaStates.states()}
                 value={selState}
                 error={Boolean(touched?.state && errors?.state)}
                 bottomText={errors?.state}

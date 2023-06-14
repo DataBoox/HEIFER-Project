@@ -23,53 +23,18 @@ import {
   ModalFooter,
   ModalCloseButton,
 } from "@chakra-ui/react";
+import { useProject } from "store/projects";
 
 export const GroupScreen = () => {
   const navigate = useNavigate();
   const columns = useAllGroupsColumn();
-  const { data, isLoading, refetch } = useGetGroupsQuery({
-    page: 1,
-    query: "",
-  });
+  const projectId: number = useProject().project?.id;
+  const { data, isLoading, refetch } = useGetGroupsQuery({ page: 1, query: "", project_id: projectId });
   const toast = useToast({ position: "top-right" });
   const [showModal, setShowModal] = useState(false);
+  const handleButtonClick = () => setShowModal(true);
+  const handleModalClose = () => setShowModal(false);
 
-  const handleButtonClick = () => {
-    setShowModal(true);
-  };
-
-  const handleModalClose = () => {
-    setShowModal(false);
-  };
-  const {
-    values,
-    errors,
-    handleChange,
-    handleSubmit,
-    setFieldValue,
-    setValues,
-    setFieldTouched,
-    validateForm,
-    touched,
-  } = useFormik({
-    initialValues: {
-      gname: "",
-      createdby: "",
-      lga: "",
-      location: "",
-      state: "",
-      farmers: "",
-      intervention: "",
-    },
-    validationSchema: AddGroupScheme(),
-    onSubmit: async () => initRequest(),
-  });
-
-  const initRequest = () => {
-    const payload: any = {
-      ...values,
-    };
-  };
 
   return (
     <ContentBodyContainer

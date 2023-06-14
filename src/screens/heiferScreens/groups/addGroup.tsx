@@ -38,7 +38,7 @@ export const AddGroup = () => {
   const initRequest = () => {
     request(payload).unwrap().then((res) => {
         toast({ title: "Group Added", description: res?.response, status: "success" });
-        resetForm({}); // reset form
+        navigate("/groups")
     }).catch((error) => {
         toast({ title: "Request Failed", description: resolveApiError(error), status: "error" });
     });
