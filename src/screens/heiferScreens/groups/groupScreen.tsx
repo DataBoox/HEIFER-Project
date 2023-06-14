@@ -25,7 +25,6 @@ import {
 } from "@chakra-ui/react";
 import { useProject } from "store/projects";
 
-
 export const GroupScreen = () => {
   const navigate = useNavigate();
   const columns = useAllGroupsColumn();
@@ -36,7 +35,6 @@ export const GroupScreen = () => {
   const handleButtonClick = () => setShowModal(true);
   const handleModalClose = () => setShowModal(false);
 
-  console.log(data)
 
   return (
     <ContentBodyContainer

@@ -27,7 +27,8 @@
       "@containers/*": ["containers/*"],
       "@providers/*": ["providers/*"],
       "@store/*": ["store/*"],
-      "@tables/*": ["tables/*"]
+      "@tables/*": ["tables/*"],
+      "@assets/*": ["assets/*"],
     }
   },
   "include": [
