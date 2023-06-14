@@ -79,7 +79,7 @@ export const MapsScreen = () => {
               //     },
               //   ],
               ["visualClicked", () => console.log("visual clicked")],
-              ["pageChanged", (event) => console.log(event)],
+              ["pageChanged", (event: any) => console.log(event)],
             ])
           }
           cssClassName={"reportClass"}
