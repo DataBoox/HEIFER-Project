@@ -49,12 +49,18 @@ export const ViewFarmers = () => {
       <div className="row g-2">
         <div className="col-lg-6">
           <div className="card custom-card">
-            <div className="card-header align-items-center d-flex">
+            <div className="px-3 pt-3 align-items-center d-flex border-bottom">
               {/* {leftCardHeaderComponent} */}
               <div className="mb-0 flex-grow-1 ">
-                <p>Household Information</p>
+                <p
+                  className="fs-5 fw-bold"
+                  style={{
+                    color: "#2A4153",
+                  }}
+                >
+                  Household Information
+                </p>
               </div>
-
               <h4
                 className="card-title mb-0 flex-grow-1 fw-bold"
                 style={{
@@ -66,58 +72,58 @@ export const ViewFarmers = () => {
               </h4>
               {/* {rightCardHeaderComponent} */}
             </div>
-              <div className="pt-1">
-                <table>
-                  <tbody>
-                    <tr>
-                      <td className="fw-bold" style={{ minWidth: "150px" }}>
-                        Event Name
-                      </td>
-                    <td className="p-2">Buckle my shoes</td> 
-                    </tr>
-                    <tr>
-                      <td className="fw-bold">Description</td>
-                      <td className="p-2">
-                        {/* {_.truncate(ev?.description.replace(/<[^>]*>?/gm, ""), {
+            <div className="mx-4 pt-1">
+              <table>
+                <tbody>
+                  <tr>
+                    <td className="fw-bold" style={{ minWidth: "150px" }}>
+                      Event Name
+                    </td>
+                    <td className="p-2">Buckle my shoes</td>
+                  </tr>
+                  <tr>
+                    <td className="fw-bold">Description</td>
+                    <td className="p-2">
+                      Buckle my shoes
+                      {/* {_.truncate(ev?.description.replace(/<[^>]*>?/gm, ""), {
                           length: 40,
                         })} */}
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="fw-bold">Start Date</td>
-                      <td className="p-2">
-                        {/* {moment(ev?.starts_at).format(
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="fw-bold">Start Date</td>
+                    <td className="p-2">
+                      Buckle my shoes
+                      {/* {moment(ev?.starts_at).format(
                           "dddd, MMMM Do YYYY, h:mm:ss a"
                         )}{" "} */}
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="fw-bold">End Date</td>
-                      <td className="p-2">
-                        {/* {moment(ev?.ends_at).format(
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="fw-bold">End Date</td>
+                    <td className="p-2">
+                      Buckle my shoes
+                      {/* {moment(ev?.ends_at).format(
                           "dddd, MMMM Do YYYY, h:mm:ss a"
                         )}{" "} */}
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="fw-bold">Created</td>
-                      <td className="p-2">
-                        {/* {moment(ev?.created_at).format(
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="fw-bold">Created</td>
+                    <td className="p-2">
+                      Buckle my shoes
+                      {/* {moment(ev?.created_at).format(
                           "ddd, MMMM Do YYYY, h:mm:ss a"
                         )} */}
-                      </td>
-                    </tr>
-                    {/* <tr>
-                      <td className="fw-bold">Link</td>
-                      <td className="p-2 text-underline">
-                        <a href={ev?.upload.url} className="" target="_blank" rel="noreferrer">
-                          Click to view
-                        </a>
-                      </td>
-                    </tr> */}
-                  </tbody>
-                </table>
-              </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="fw-bold">Link</td>
+                    <td className="p-2 ">Buckle my shoes</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
