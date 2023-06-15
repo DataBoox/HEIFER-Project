@@ -412,7 +412,7 @@ export const DashboardScreen = () => {
         >
           <iframe
             title="Report Section"
-            src="https://app.powerbi.com/view?r=eyJrIjoiYWEwZjhlYTEtMzk3MC00MTM4LWEwY2UtM2JjMDE2OTk1MmY1IiwidCI6IjBlNjYxZTk4LTgzNGUtNDkyMC05YzM5LWIzZTU0MmJiNjY2NSIsImMiOjh9&pageName=ReportSection"
+            src="https://app.powerbi.com/reportEmbed?reportId=e398eb99-de8f-4ee6-84a3-4051cfb453df&autoAuth=true&ctid=da6a69e3-3bcd-4f44-a340-aead0cfda08f"
             allowFullScreen
             style={{
               position: "absolute",
@@ -439,7 +439,34 @@ export const DashboardScreen = () => {
         >
           <iframe
             title="Report Section"
-            src="https://app.powerbi.com/view?r=eyJrIjoiZTUwZDE5NjktZjNkYi00NThiLTkyYTMtNDMwNWU0ODkzNTY2IiwidCI6IjBlNjYxZTk4LTgzNGUtNDkyMC05YzM5LWIzZTU0MmJiNjY2NSIsImMiOjh9&pageName=ReportSection1a922c658522ddc7359b"
+            src="https://app.powerbi.com/reportEmbed?reportId=29c0c26d-1a34-4965-ac98-0c172fe0f13b&autoAuth=true&ctid=da6a69e3-3bcd-4f44-a340-aead0cfda08f"
+            allowFullScreen
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: "100%",
+              height: "100%",
+              border: "none",
+            }}
+          ></iframe>
+        </div>
+      </div>
+
+      <div className="col-xl-12 col-md-12">
+        <div
+          className="animate"
+          style={{
+            position: "relative",
+            paddingBottom: "56.25%",
+            height: 0,
+            overflow: "hidden",
+            borderRadius: "10px",
+          }}
+        >
+          <iframe
+            title="Report Section"
+            src="https://app.powerbi.com/reportEmbed?reportId=1105b657-a9f1-4de2-9ae8-2f1a346b1127&autoAuth=true&ctid=da6a69e3-3bcd-4f44-a340-aead0cfda08f"
             allowFullScreen
             style={{
               position: "absolute",
