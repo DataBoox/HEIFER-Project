@@ -6,6 +6,7 @@ export const breadcrumbConfig: { [x: string]: RouteDirector[] } = {
     'registerFarmers': [{ name: 'Dashboard', to: '/' }, { name: 'Households', to: '/farmers' }, { name: 'Register' }],
     'createFarmers': [{ name: 'Dashboard', to: '/' }, { name: 'Households' }],
     'viewFarmers': [{ name: 'Dashboard', to: '/' }, { name: 'Households', to: '/farmers' }, { name: 'View Household' }],
+    'viewUsers': [{ name: 'Dashboard', to: '/' }, { name: 'Users', to: '/users' }, { name: 'View User' }],
     'createUser': [{ name: 'Dashboard', to: '/' }, { name: 'Users' }],
     'createIntervention': [{ name: 'Dashboard', to: '/' }, { name: 'Interventions' }],
     'project': [{ name: 'Dashboard', to: '/' }, { name: 'Projects' }],

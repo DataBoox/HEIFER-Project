@@ -1,12 +1,11 @@
 // import { Devotional, DevotionalProps} from "./components/devotionalComponent";
 import { MdOutlineAddCircleOutline } from "react-icons/md";
+import { Button} from "@chakra-ui/react";
 import { FaEye, FaPen, FaSearch, FaTrash } from "react-icons/fa";
 import { useToast, } from "@chakra-ui/react";
 import { PrimaryInput, ThemeTable } from "components";
 import { useNavigate } from "react-router-dom";
 import { ContentBodyContainer} from "../../home";
-import { useFormik } from "formik";
-import { AddUserScheme } from "validations";
 import { AddUserDialog } from "./addUser";
 import { useAddUserMutation, useGetUsersQuery } from "store/user";
 import { useAllUsersColumn } from "./components";
@@ -81,9 +80,9 @@ export const UserScreen = () => {
                   placement="top"
                   overlay={<Tooltip id="view-tooltip">View</Tooltip>}
                 >
-                  <div>
+                  <Button onClick={() => navigate("/users/view")}>
                     <FaEye size={16} color="#7F8C9F" />
-                  </div>
+                  </Button>
                 </OverlayTrigger>
               </div>
               <div className="touchable pe-2">
