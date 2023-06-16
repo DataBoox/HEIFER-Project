@@ -37,7 +37,7 @@ export const MapsScreen = () => {
       //   }
     >
       <DashboardCardContainer title="" bodyClassName="p-3">
-        <PowerBIEmbed
+        {/* <PowerBIEmbed
           embedConfig={{
             type: "report",
             id: "249e81c8-dd4f-4018-bf18-556f9f254df9",
@@ -83,7 +83,33 @@ export const MapsScreen = () => {
             ])
           }
           cssClassName={"reportClass"}
-        />
+        /> */}
+         <div className="col-xl-12 col-md-12">
+        <div
+          className="animate"
+          style={{
+            position: "relative",
+            paddingBottom: "56.25%",
+            height: 0,
+            overflow: "hidden",
+            borderRadius: "10px",
+          }}
+        >
+          <iframe
+            title="Map_DB"
+            src="https://app.powerbi.com/reportEmbed?reportId=4ea03f94-adb2-4c9f-ba7b-886e5fc56285&autoAuth=true&ctid=da6a69e3-3bcd-4f44-a340-aead0cfda08f"
+            allowFullScreen
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: "100%",
+              height: "100%",
+              border: "none",
+            }}
+          ></iframe>
+        </div>
+      </div>
       </DashboardCardContainer>
     </ContentBodyContainer>
   );
