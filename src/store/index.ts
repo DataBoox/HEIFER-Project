@@ -3,6 +3,8 @@ import authReducer from './auth/slice';
 import { authApi } from './auth/api';
 import { userApi } from "./user/api";
 import { groupApi } from "./group/api";
+import { shgApi } from "./shg/api";
+import { historyApi } from "./interventionHistory/api";
 import { farmerApi } from "./farmers/api";
 import { uploadApi } from './uploads';
 import { projectApi } from './projects';
@@ -14,6 +16,8 @@ export const store = configureStore({
         [authApi.reducerPath]: authApi.reducer,
         [userApi.reducerPath]: userApi.reducer,
         [groupApi.reducerPath]: groupApi.reducer,
+        [shgApi.reducerPath]: shgApi.reducer,
+        [historyApi.reducerPath]: historyApi.reducer,
         [uploadApi.reducerPath]: uploadApi.reducer,
         [projectApi.reducerPath]: projectApi.reducer,
         [interventionApi.reducerPath]: interventionApi.reducer,
@@ -28,7 +32,9 @@ export const store = configureStore({
             authApi.middleware,
             userApi.middleware,
             groupApi.middleware,
+            shgApi.middleware,
             uploadApi.middleware,
+            historyApi.middleware,
             projectApi.middleware,
             interventionApi.middleware,
             farmerApi.middleware,
