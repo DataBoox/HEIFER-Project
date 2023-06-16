@@ -411,7 +411,7 @@ export const DashboardScreen = () => {
           }}
         >
           <iframe
-            title="Report Section"
+            title="Indicators"
             src="https://app.powerbi.com/reportEmbed?reportId=e398eb99-de8f-4ee6-84a3-4051cfb453df&autoAuth=true&ctid=da6a69e3-3bcd-4f44-a340-aead0cfda08f"
             allowFullScreen
             style={{
@@ -438,7 +438,7 @@ export const DashboardScreen = () => {
           }}
         >
           <iframe
-            title="Report Section"
+            title="Dashboard_1"
             src="https://app.powerbi.com/reportEmbed?reportId=29c0c26d-1a34-4965-ac98-0c172fe0f13b&autoAuth=true&ctid=da6a69e3-3bcd-4f44-a340-aead0cfda08f"
             allowFullScreen
             style={{
@@ -465,7 +465,7 @@ export const DashboardScreen = () => {
           }}
         >
           <iframe
-            title="Report Section"
+            title="Dashboard_2"
             src="https://app.powerbi.com/reportEmbed?reportId=1105b657-a9f1-4de2-9ae8-2f1a346b1127&autoAuth=true&ctid=da6a69e3-3bcd-4f44-a340-aead0cfda08f"
             allowFullScreen
             style={{
