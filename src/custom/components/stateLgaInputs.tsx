@@ -7,6 +7,7 @@ import NaijaStates from 'naija-state-local-government';
 export const StateLGAInput: React.FC<{
     state?: string;
     lga?: string;
+    style?: React.CSSProperties; 
     errors?: { state?: string; lga?: string },
     touched?: { state?: boolean; lga?: boolean },
     onChange?: (values: { state: string, lga: string }) => void
@@ -17,6 +18,7 @@ export const StateLGAInput: React.FC<{
 }> = ({
     state,
     lga,
+    style,
     errors,
     touched,
     onChange = () => { },

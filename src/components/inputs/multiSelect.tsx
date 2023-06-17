@@ -17,6 +17,7 @@ export interface PrimaryMultiSelectProp {
     formControlProps?: FormControlProps;
     name?: string;
     error?: boolean;
+    style?: React.CSSProperties;
     options?: PrimaryMultiSelectOption[];
     bottomText?: string | React.ReactElement;
     setValue?: (value: string) => void;
@@ -59,6 +60,7 @@ export const PrimaryMultiSelect: React.FC<PrimaryMultiSelectProp> = ({
     setValue,
     options = [],
     error,
+    style,
     bottomText,
     leftComponent,
     rightComponent,
