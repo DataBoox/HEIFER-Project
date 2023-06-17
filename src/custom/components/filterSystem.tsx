@@ -1,12 +1,19 @@
-import { PrimaryInput } from "components/inputs";
+import { PrimaryInput, PrimarySelect } from "components/inputs";
 import { FaSearch } from "react-icons/fa";
 import { StateLGAInput } from "./stateLgaInputs";
 import { useGetGroupsQuery } from "store/group";
+import { useGetInterventionsQuery } from "store/intervention";
 import { AddGroupScheme } from "validations/group";
 import { useFormik } from "formik";
+import { useProject } from "store/projects";
 
 
 export const FilterSystem = () => {
+  const projectId: number = useProject().project.id;
+  const { data: interventions } = useGetInterventionsQuery({ project_id: projectId });
+  const interventionNames = interventions?.data.data.map((data: { name: any; id: any; }) => {
+    return { text: `${data.name}`, props: { value: data.id  }}
+  })
     const { isLoading } = useGetGroupsQuery({
         page: 1,
         query: "",
@@ -20,6 +27,7 @@ export const FilterSystem = () => {
         values,
         errors,
         setValues,
+        handleChange,
         setFieldTouched,
         touched,
     } = useFormik({
@@ -85,9 +93,41 @@ export const FilterSystem = () => {
             </div>
           </div>
           <div className="col-3">
-            <PrimaryInput
+            <PrimarySelect
               name="Community"
               placeholder="Enter community"
+              options={interventionNames}
+              onChange={handleChange}
+              size={"lg"}
+              isDisabled={isLoading}
+              style={{
+                backgroundColor: "#ffff",
+                borderRadius: 0,
+                border: 0,
+              }}
+            />
+          </div>
+          <div className="col-3">
+            <PrimarySelect
+              name="Intervention"
+              placeholder="Select intervention"
+              options={interventionNames}
+              onChange={handleChange}
+              size={"lg"}
+              isDisabled={isLoading}
+              style={{
+                backgroundColor: "#ffff",
+                borderRadius: 0,
+                border: 0,
+              }}
+            />
+          </div>
+          <div className="col-3">
+            <PrimarySelect
+              name="Intervention"
+              placeholder="Select intervention"
+              options={interventionNames}
+              onChange={handleChange}
               size={"lg"}
               isDisabled={isLoading}
               style={{
