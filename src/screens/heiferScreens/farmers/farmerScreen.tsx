@@ -8,6 +8,7 @@ import { ContentBodyContainer} from "../../home";
 import { useGetFarmersQuery } from "store/farmers";
 import { useAllFarmersColumn } from "./components";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
+import { HouseholdFilterSystem } from "custom";
 import { useProject } from "store/projects";
 
 
@@ -45,6 +46,7 @@ export const FarmerScreen = () => {
         </div>
       }
     >
+      <HouseholdFilterSystem />
       <div className="col-xl-12">
         <ThemeTable
           data={data?.data?.data ?? []}

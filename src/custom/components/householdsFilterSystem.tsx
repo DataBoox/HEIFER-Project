@@ -8,7 +8,7 @@ import { useFormik } from "formik";
 import { useProject } from "store/projects";
 
 
-export const FilterSystem = () => {
+export const HouseholdFilterSystem = () => {
   const projectId: number = useProject().project.id;
   const { data: interventions } = useGetInterventionsQuery({ project_id: projectId });
   const interventionNames = interventions?.data.data.map((data: { name: any; id: any; }) => {
@@ -95,7 +95,7 @@ export const FilterSystem = () => {
           <div className="col-3">
             <PrimarySelect
               name="Community"
-              placeholder="Enter community"
+              placeholder="Select Community"
               options={interventionNames}
               onChange={handleChange}
               size={"lg"}
@@ -107,6 +107,40 @@ export const FilterSystem = () => {
               }}
             />
           </div>
+
+          <div className="col-3">
+            <PrimarySelect
+              name="All Age Groups"
+              placeholder="Select Age Group"
+              options={interventionNames}
+              onChange={handleChange}
+              size={"lg"}
+              isDisabled={isLoading}
+              style={{
+                backgroundColor: "#ffff",
+                borderRadius: 0,
+                border: 0,
+              }}
+            />
+          </div>
+
+          <div className="col-3">
+            <PrimarySelect
+              name="All Gender"
+              placeholder="Select All Gender"
+              options={interventionNames}
+              onChange={handleChange}
+              size={"lg"}
+              isDisabled={isLoading}
+              style={{
+                backgroundColor: "#ffff",
+                borderRadius: 0,
+                border: 0,
+              }}
+            />
+          </div>
+
+
           <div className="col-3">
             <PrimarySelect
               name="Intervention"

@@ -11,6 +11,7 @@ import {
   GroupOrAssSelect,
   GroupTypeSelect,
 } from "components";
+import { StateLGAInput } from "../../../custom/components";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { DashboardCardContainer } from "../../home";
@@ -64,6 +65,8 @@ export const RegisterFarmers = () => {
       farmer_id: "",
       latitude: "",
       longitude: "",
+      state: "",
+      lga: "",
     },
     validationSchema: AddRegisterFarmerScheme(),
     onSubmit: () => initRequest(),
@@ -279,6 +282,51 @@ export const RegisterFarmers = () => {
                     />
                   </div>
                   <div className="col-auto mb-4">
+                  <StateLGAInput
+  state={values.state}
+  lga={values.lga}
+  errors={errors}
+  touched={touched}
+  style={{
+    backgroundColor: "#F2FAFC",
+    borderRadius: 0,
+    borderColor: "#CAECF3",
+  }}
+  stateInputProps={{
+    label: "",
+    size: "lg",
+    isDisabled: isLoading,
+    style: {
+      backgroundColor: "#F2FAFC",
+                        borderRadius: 0,
+                        borderColor: "#CAECF3",
+    },
+  }}
+  areaInputProps={{
+    label: "",
+    size: "lg",
+    isDisabled: isLoading,
+    style: {
+      backgroundColor: "#F2FAFC",
+                        borderRadius: 0,
+                        borderColor: "#CAECF3",
+    },
+  }}
+  stateContainerProps={{
+    className: "col-auto",
+  }}
+  areaContainerProps={{
+    className: "col-auto",
+  }}
+  onChange={({ lga, state }) => {
+    setFieldTouched("state", true);
+    setFieldTouched("lga", true);
+    setValues({ ...values, lga, state });
+  }}
+/>
+
+            </div>
+                  <div className="col-auto mb-4">
                     <Button
                       onClick={getLocation}
                       isLoading={isLoading}
@@ -322,7 +370,11 @@ export const RegisterFarmers = () => {
                       }}
                     />
                   </div>
-                  <div className="col-auto mb-4">
+                 
+                </div>
+
+                <div className="col-lg-3 col-md-12">
+                <div className="col-auto mb-4">
                     <GenderSelect
                       isRequired
                       name="farmer_gender"
@@ -358,9 +410,6 @@ export const RegisterFarmers = () => {
                       }}
                     />
                   </div>
-                </div>
-
-                <div className="col-lg-3 col-md-12">
                   <div className="col-auto mb-4">
                     <AgeCategorySelect
                       isRequired
