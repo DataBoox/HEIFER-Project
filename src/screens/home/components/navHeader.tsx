@@ -112,7 +112,19 @@ export const NavHeader: React.FC<NavHeaderProps> = ({
                     _focus={{ boxShadow: "none" }}
                   >
                     <HStack>
-                      <Avatar size={"sm"} src="" />
+                    <Box
+        width="30px"
+        height="30px"
+        borderRadius="50%"
+        bg="gray.200"
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+        fontSize="sm"
+        fontWeight="bold"
+      >
+        {user?.username ? user.username.charAt(0).toUpperCase() : ''}
+      </Box>
                       <VStack
                         display={{ base: "none", md: "flex" }}
                         alignItems="flex-start"
