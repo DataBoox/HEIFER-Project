@@ -6,9 +6,11 @@ import { useGetInterventionsQuery } from "store/intervention";
 import { AddGroupScheme } from "validations/group";
 import { useFormik } from "formik";
 import { useProject } from "store/projects";
-
+import { states, localGov, stateLgaCommunities } from "utilities";
 
 export const FilterSystem = () => {
+  // console.log(stateLgaCommunities(1, 2))
+
   const projectId: number = useProject().project.id;
   const { data: interventions } = useGetInterventionsQuery({ project_id: projectId });
   const interventionNames = interventions?.data.data.map((data: { name: any; id: any; }) => {
