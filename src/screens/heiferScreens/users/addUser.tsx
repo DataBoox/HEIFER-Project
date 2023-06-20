@@ -7,6 +7,7 @@ import {
   ProjectSelect,
   RoleSelect,
   PrimaryInput,
+  PrimarySelect,
 } from "components";
 import { useFormik } from "formik";
 import { resolveApiError } from "utilities";
@@ -14,7 +15,7 @@ import { useEffect, useState } from "react";
 import { ChakraProviderLoader } from "providers";
 import { useAddUserMutation } from "store/user";
 import { User } from "@store/user";
-import { StateLGAInput } from "custom";
+import { states, localGov, communities } from "utilities";
 
 export interface AddUserDialogProps extends ChakraAlertDialogProps {
   useButton?: boolean;
@@ -176,7 +177,7 @@ export const AddUserDialog: React.FC<AddUserDialogProps> = ({
               }}
             />
           </div>
-          <div className="col-12">
+          <div className="col-12 mb-3">
             <GenderSelect
               isRequired
               name="gender"
@@ -192,45 +193,13 @@ export const AddUserDialog: React.FC<AddUserDialogProps> = ({
               }}
             />
           </div>
-          <div className="col-12">
-            <div className="row">
-              <StateLGAInput
-                state={values.state}
-                lga={values.lga}
-                errors={errors}
-                touched={touched}
-                stateInputProps={{
-                  label: "State",
-                  isDisabled: isLoading,
-                }}
-                areaInputProps={{
-                  label: "Local Government Area",
-                  isDisabled: isLoading,
-                }}
-                stateContainerProps={{
-                  className: "col-12 mb-3",
-                }}
-                areaContainerProps={{
-                  className: "col-12 mb-3",
-                }}
-                onChange={({ lga, state }) => {
-                  setFieldTouched("state", true);
-                  setFieldTouched("lga", true);
-                  setValues({ ...values, lga, state });
-                }}
-              />
-            </div>
-          </div>
-          <div className="col-12">
-            <PrimaryInput
-              isRequired
-              name="community"
-              label="Community"
-              placeholder="Enter resident community"
-              value={values.community}
-              error={Boolean(touched.community && errors.community)}
-              bottomText={errors.community}
+          <div className="col-12 mb-4">
+            <PrimarySelect 
+              name="state"
+              placeholder="Select State"
+              options={ states }
               onChange={handleChange}
+              size={"md"}
               isDisabled={isLoading}
               style={{
                 backgroundColor: "#F2FAFC",
@@ -239,6 +208,39 @@ export const AddUserDialog: React.FC<AddUserDialogProps> = ({
               }}
             />
           </div>
+          {(values.state.length ? 
+            <div className="col-12 mb-4">
+              <PrimarySelect 
+                name="lga"
+                placeholder="Select Local Gov"
+                options={ localGov(Number(values.state)) }
+                onChange={handleChange}
+                size={"md"}
+                isDisabled={isLoading}
+                style={{
+                backgroundColor: "#F2FAFC",
+                borderRadius: 0,
+                borderColor: "#CAECF3",
+              }}
+              />
+            </div> : <></> )}
+
+            {(values.state.length && values.lga.length ? 
+              <div className="col-12 mb-3">
+                <PrimarySelect
+                  name="community"
+                  placeholder="Select Community"
+                  options={ communities(Number(values.state), Number(values.lga)) }
+                  onChange={handleChange}
+                  size={"md"}
+                  isDisabled={isLoading}
+                  style={{
+                    backgroundColor: "#F2FAFC",
+                    borderRadius: 0,
+                    borderColor: "#CAECF3",
+                  }}
+                />
+              </div> : <></> )}
           <div className="col-12">
             <ProjectSelect
               isRequired
