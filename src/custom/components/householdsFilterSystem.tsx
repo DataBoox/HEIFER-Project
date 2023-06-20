@@ -1,12 +1,11 @@
 import { PrimaryInput, PrimarySelect } from "components/inputs";
-import { FaSearch } from "react-icons/fa";
-import { StateLGAInput } from "./stateLgaInputs";
+import { FaSearch, FaPlus } from "react-icons/fa";
 import { useGetGroupsQuery } from "store/group";
 import { useGetInterventionsQuery } from "store/intervention";
 import { AddGroupScheme } from "validations/group";
 import { useFormik } from "formik";
 import { useProject } from "store/projects";
-
+import { states, localGov, communities } from "utilities";
 
 export const HouseholdFilterSystem = () => {
   const projectId: number = useProject().project.id;
@@ -62,51 +61,41 @@ export const HouseholdFilterSystem = () => {
             />
           </div>
           <div className="col-auto">
-            <div className="row">
-              <StateLGAInput
-                state={values.state}
-                lga={values.lga}
-                errors={errors}
-                touched={touched}
-                stateInputProps={{
-                  label: "",
-                  size: "lg",
-                  isDisabled: isLoading,
-                }}
-                areaInputProps={{
-                  label: "",
-                  size: "lg",
-                  isDisabled: isLoading,
-                }}
-                stateContainerProps={{
-                  className: "col-auto",
-                }}
-                areaContainerProps={{
-                  className: "col-auto",
-                }}
-                onChange={({ lga, state }) => {
-                  setFieldTouched("state", true);
-                  setFieldTouched("lga", true);
-                  setValues({ ...values, lga, state });
-                }}
-              />
-            </div>
-          </div>
-          <div className="col-3">
-            <PrimarySelect
-              name="Community"
-              placeholder="Select Community"
-              options={interventionNames}
+            <PrimarySelect 
+              name="state"
+              placeholder="Select State"
+              options={ states }
               onChange={handleChange}
               size={"lg"}
               isDisabled={isLoading}
-              style={{
-                backgroundColor: "#ffff",
-                borderRadius: 0,
-                border: 0,
-              }}
+              style={{ backgroundColor: "#fff", border: "none", borderRadius: 0 }}
             />
           </div>
+          {(values.state.length ? 
+            <div className="col-auto">
+              <PrimarySelect 
+                name="lga"
+                placeholder="Select Local Gov"
+                options={ localGov(Number(values.state)) }
+                onChange={handleChange}
+                size={"lg"}
+                isDisabled={isLoading}
+                style={{ backgroundColor: "#fff", border: "none", borderRadius: 0 }}
+              />
+            </div> : <></> )}
+
+            {(values.state.length && values.lga.length ? 
+              <div className="col-auto">
+                <PrimarySelect
+                  name="community"
+                  placeholder="Select Community"
+                  options={ communities(Number(values.state), Number(values.lga)) }
+                  onChange={handleChange}
+                  size={"lg"}
+                  isDisabled={isLoading}
+                  style={{ backgroundColor: "#fff", borderRadius: 0, border: 0 }}
+                />
+              </div> : <></> )}
 
           <div className="col-3">
             <PrimarySelect
@@ -147,6 +136,22 @@ export const HouseholdFilterSystem = () => {
               placeholder="Select Intervention"
               options={interventionNames}
               onChange={handleChange}
+              size={"lg"}
+              isDisabled={isLoading}
+              style={{
+                backgroundColor: "#ffff",
+                borderRadius: 0,
+                border: 0,
+              }}
+            />
+          </div>
+
+          <div className="col-3">
+            <PrimaryInput
+              name="Income"
+              placeholder="Income, ₦"
+              onChange={handleChange}
+              rightComponent={<FaPlus color={"grey"} />}
               size={"lg"}
               isDisabled={isLoading}
               style={{

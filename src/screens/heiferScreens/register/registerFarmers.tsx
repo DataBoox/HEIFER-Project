@@ -10,8 +10,8 @@ import {
   IdTypeSelect,
   GroupOrAssSelect,
   GroupTypeSelect,
+  PrimarySelect,
 } from "components";
-import { StateLGAInput } from "../../../custom/components";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { DashboardCardContainer } from "../../home";
@@ -19,6 +19,7 @@ import { useFormik } from "formik";
 import { AddRegisterFarmerScheme } from "validations";
 import { resolveApiError } from "utilities";
 import { useState } from "react";
+import { states, localGov, communities } from "utilities";
 import { useAddFarmerMutation } from "store/farmers";
 import { useProject } from "store/projects";
 
@@ -282,50 +283,53 @@ export const RegisterFarmers = () => {
                     />
                   </div>
                   <div className="col-auto mb-4">
-                  <StateLGAInput
-  state={values.state}
-  lga={values.lga}
-  errors={errors}
-  touched={touched}
-  style={{
-    backgroundColor: "#F2FAFC",
-    borderRadius: 0,
-    borderColor: "#CAECF3",
-  }}
-  stateInputProps={{
-    label: "",
-    size: "lg",
-    isDisabled: isLoading,
-    style: {
-      backgroundColor: "#F2FAFC",
+            <PrimarySelect 
+              name="state"
+              placeholder="Select State"
+              options={ states }
+              onChange={handleChange}
+              size={"md"}
+              isDisabled={isLoading}
+              style={{
+                        backgroundColor: "#F2FAFC",
                         borderRadius: 0,
                         borderColor: "#CAECF3",
-    },
-  }}
-  areaInputProps={{
-    label: "",
-    size: "lg",
-    isDisabled: isLoading,
-    style: {
-      backgroundColor: "#F2FAFC",
+                      }}
+            />
+          </div>
+          {(values.state.length ? 
+            <div className="col-auto mb-4">
+              <PrimarySelect 
+                name="lga"
+                placeholder="Select Local Gov"
+                options={ localGov(Number(values.state)) }
+                onChange={handleChange}
+                size={"md"}
+                isDisabled={isLoading}
+                style={{
+                        backgroundColor: "#F2FAFC",
                         borderRadius: 0,
                         borderColor: "#CAECF3",
-    },
-  }}
-  stateContainerProps={{
-    className: "col-auto",
-  }}
-  areaContainerProps={{
-    className: "col-auto",
-  }}
-  onChange={({ lga, state }) => {
-    setFieldTouched("state", true);
-    setFieldTouched("lga", true);
-    setValues({ ...values, lga, state });
-  }}
-/>
+                      }}
+              />
+            </div> : <></> )}
 
-            </div>
+            {(values.state.length && values.lga.length ? 
+              <div className="col-auto mb-4">
+                <PrimarySelect
+                  name="community"
+                  placeholder="Select Community"
+                  options={ communities(Number(values.state), Number(values.lga)) }
+                  onChange={handleChange}
+                  size={"md"}
+                  isDisabled={isLoading}
+                  style={{
+                    backgroundColor: "#F2FAFC",
+                    borderRadius: 0,
+                    borderColor: "#CAECF3",
+                  }}
+                />
+              </div> : <></> )}
                   <div className="col-auto mb-4">
                     <Button
                       onClick={getLocation}

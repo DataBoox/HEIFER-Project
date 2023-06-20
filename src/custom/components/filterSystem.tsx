@@ -1,6 +1,5 @@
 import { PrimaryInput, PrimarySelect } from "components/inputs";
 import { FaSearch } from "react-icons/fa";
-import { StateLGAInput } from "./stateLgaInputs";
 import { useGetGroupsQuery } from "store/group";
 import { useGetInterventionsQuery } from "store/intervention";
 import { AddGroupScheme } from "validations/group";
