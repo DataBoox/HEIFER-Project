@@ -6,7 +6,7 @@ import { useGetInterventionsQuery } from "store/intervention";
 import { AddGroupScheme } from "validations/group";
 import { useFormik } from "formik";
 import { useProject } from "store/projects";
-import { states, localGov, stateLgaCommunities } from "utilities";
+import { states, localGov, communities } from "utilities";
 import { useEffect, useState } from "react";
 
 export const FilterSystem = () => {
@@ -74,7 +74,7 @@ export const FilterSystem = () => {
                 <PrimarySelect
                   name="community"
                   placeholder="Select Community"
-                  options={ stateLgaCommunities(Number(values.state), Number(values.lga)) }
+                  options={ communities(Number(values.state), Number(values.lga)) }
                   onChange={handleChange}
                   size={"lg"}
                   isDisabled={isLoading}

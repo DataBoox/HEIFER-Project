@@ -76,7 +76,7 @@ export const localGov = (id: number)  => {
     return (states[0].state.locals).map((data) => ({ text: data.name, props: { value: data.id }} ));
 }
 
-export const stateLgaCommunities = (state: number, lga: number) => {
+export const communities = (state: number, lga: number) => {
     const states = NigeriaStates.filter((data) => data.state.id === state);
     const localGov = states[0].state.locals.filter((data) => data.id === lga);
     return (localGov[0].communities).map((data) => ({text: data.name, props: { value: data.name }} ));
