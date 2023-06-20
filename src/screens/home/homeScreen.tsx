@@ -4,7 +4,7 @@ import { PrimaryLoader } from 'components';
 import React, { useEffect, useState } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { useAuth } from 'store/auth/hooks';
-import { AdminMenuLinkItem, NavHeader, SidebarMenu as DashboardSidebarMenu } from './components';
+import { AdminMenuLinkItem, FacilitatorCoordinator, ProjectManager, NavHeader, SidebarMenu as DashboardSidebarMenu } from './components';
 import { useProject } from 'store/projects';
 
 
@@ -16,6 +16,9 @@ export const HomeScreen = () => {
   const [isLoading, setIsLoading] = useState(true);
   const windowWidth = useWindowWidth()
   let sidebarMenu = AdminMenuLinkItem;
+  if (user?.account_type == "project_manager") sidebarMenu = ProjectManager
+  if (user?.account_type == "state_coordinator") sidebarMenu = FacilitatorCoordinator
+  if (user?.account_type == "community_facilitator") sidebarMenu = FacilitatorCoordinator
 
   useEffect(() => {
     let redirectTo: string | null = null;
