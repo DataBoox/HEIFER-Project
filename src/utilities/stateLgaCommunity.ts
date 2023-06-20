@@ -1,8 +1,3 @@
-
-interface StateOption {
-    label: string;
-    value: string;
-}
 const NigeriaStates = [
     { "state": { "name": "Benue State", "id" :1, "locals": [
         { "name": "Agatu", "id" :1, "communities": [{ "name": "Obagaji"},{ "name": "Ichogologwu"}] },
@@ -72,17 +67,17 @@ const NigeriaStates = [
     }
 ]
 
-export const states: StateOption[] = NigeriaStates.map((data) => ({ 
-    label: data.state.name, value: `${data.state.id}` 
+export const states = NigeriaStates.map((data) => ({ 
+    text: data.state.name, props: { value: data.state.id }
 }));
 
-export const localGov = (id: number): StateOption[] => {
+export const localGov = (id: number)  => {
     const states = NigeriaStates.filter((data) => data.state.id === id);
-    return (states[0].state.locals).map((data) => ({label: data.name, value: data.name}));
+    return (states[0].state.locals).map((data) => ({ text: data.name, props: { value: data.id }} ));
 }
 
 export const stateLgaCommunities = (state: number, lga: number) => {
     const states = NigeriaStates.filter((data) => data.state.id === state);
     const localGov = states[0].state.locals.filter((data) => data.id === lga);
-    return (localGov[0].communities).map((data) => ({label: data.name, value: data.name}));
+    return (localGov[0].communities).map((data) => ({text: data.name, props: { value: data.name }} ));
 }
