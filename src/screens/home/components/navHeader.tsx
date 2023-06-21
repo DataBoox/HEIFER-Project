@@ -136,8 +136,7 @@ export const NavHeader: React.FC<NavHeaderProps> = ({
                           textTransform={"capitalize"}
                           className="mt-3"
                         >
-                          {/* {formatName(user?.username ?? "").normal} */}
-                          Clara
+                          { user?.user_info.fname }
                         </Text>
                       </VStack>
                       <Box display={{ base: "none", md: "flex" }}>
