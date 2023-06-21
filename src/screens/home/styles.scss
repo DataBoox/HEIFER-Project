@@ -97,7 +97,23 @@
     -ms-flex-align: center;
     align-items: center;
 }
-
+.avatar {
+    width: 40px;
+    height: 40px;
+    background-color: #f2f2f2;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 18px;
+    color: #333333;
+  }
+  
+  .initials {
+    text-transform: uppercase;
+  }
+  
 @media (min-width: 768px) {
     .topbar-user {
         background-color: var(--vz-topbar-user-bg);

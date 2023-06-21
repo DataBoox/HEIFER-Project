@@ -25,12 +25,17 @@ export const ProjectScreen = () => {
                     <img src={vectorLogo} alt="heifer logo" />
                 </div>
                 <div className="profile-area">
-                    <ul role="list" className="flex">
-                        <li className="flex">
-                        <img className="profile" src={Photodp} alt="lady" />
-                        { user?.user_info.fname }
-                        </li>
-                    </ul>
+                <ul role="list" className="flex">
+  <li className="flex">
+    <div className="avatar mx-2">
+      {user && (
+        <span className="initials">{user.user_info.fname.charAt(0)}</span>
+      )}
+    </div>
+    {user?.user_info.fname}
+  </li>
+</ul>
+
                 </div>
             </nav>
             <div className="text flex">
