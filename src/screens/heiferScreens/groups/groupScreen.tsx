@@ -20,6 +20,8 @@ import {
   ModalCloseButton,
 } from "@chakra-ui/react";
 import { useProject } from "store/projects";
+import { useDeleteGroupMutation } from "store/group";
+import { resolveApiError } from "utilities";
 
 export const GroupScreen = () => {
   const navigate = useNavigate();
@@ -34,6 +36,19 @@ export const GroupScreen = () => {
   const [showModal, setShowModal] = useState(false);
   const handleButtonClick = () => setShowModal(true);
   const handleModalClose = () => setShowModal(false);
+  const [deleteGroup, { isLoading: isDeleting }] = useDeleteGroupMutation();
+
+  const initDelete = (group: number) => {
+    let payload = { project_id: projectId, groups: [group]}
+    deleteGroup(payload).unwrap().then((response) => {
+      let msg = "Group has been deleted successfully"
+      toast({ title: "Group Deleted", description: msg, status: "success" })
+      refetch();
+    }).catch((error) => {
+      let msg = resolveApiError(error?.data?.response)
+      toast({ title: "Request Failed", description: msg, status: "error"})
+    });
+  }
 
 
   return (
