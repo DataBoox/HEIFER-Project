@@ -123,7 +123,7 @@ export const NavHeader: React.FC<NavHeaderProps> = ({
         fontSize="sm"
         fontWeight="bold"
       >
-        {user?.username ? user.username.charAt(0).toUpperCase() : ''}
+        {user?.user_info.fname ? user.user_info.fname.charAt(0).toUpperCase() : ''}
       </Box>
                       <VStack
                         display={{ base: "none", md: "flex" }}

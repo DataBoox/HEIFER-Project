@@ -17,8 +17,22 @@ export interface User {
     meta_data: string | null;
     status: boolean;
     updated_at: string;
-    username: string;
+    user_info: UserInfo;
     projects: BaseProject[]
+}
+
+export interface UserInfo {
+    id: number;
+    uid: number;
+    fname: string;
+    lname: string;
+    gender: string
+    phone: string | null;
+    state: string | null;
+    lga: string | null;
+    community: string | null;
+    marital_status:string | null;
+    created_by: number,
 }
 
 // export interface UserWithMember extends User {
