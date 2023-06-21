@@ -5,9 +5,11 @@ import "./projectStyles.css";
 import { BaseProject, useGetProjectsQuery } from "store/projects";
 import { PrimaryLoader } from "components";
 import { useProject } from "store/projects";
+import { useAuth } from "store/auth";
 
 export const ProjectScreen = () => {
     const { setProject } = useProject()
+    const { user } = useAuth()
     const { data: projects, isLoading } = useGetProjectsQuery({ page: 1, query: ""});
     const navigate = useNavigate();
 
@@ -26,13 +28,13 @@ export const ProjectScreen = () => {
                     <ul role="list" className="flex">
                         <li className="flex">
                         <img className="profile" src={Photodp} alt="lady" />
-                        Clara
+                        { user?.user_info.fname }
                         </li>
                     </ul>
                 </div>
             </nav>
             <div className="text flex">
-                <p className="main-header">Welcome Clara!</p>
+                <p className="main-header">Welcome { user?.user_info.fname }!</p>
                 <p className="sub-header">What would you like to work on today?</p>
             </div>
             <div className="card-holder flex">
