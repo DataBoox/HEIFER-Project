@@ -80,9 +80,9 @@ export const GroupScreen = () => {
                   placement="top"
                   overlay={<Tooltip id="view-tooltip">View</Tooltip>}
                 >
-                  <div>
+                  <Button onClick={() => navigate("/groups/view")}>
                     <FaEye size={16} color="#7F8C9F" />
-                  </div>
+                  </Button>
                 </OverlayTrigger>
               </div>
               <div className="touchable pe-2">
@@ -90,9 +90,9 @@ export const GroupScreen = () => {
                   placement="top"
                   overlay={<Tooltip id="edit-tooltip">Edit</Tooltip>}
                 >
-                  <div>
+                  <Button onClick={() => navigate("/groups/edit")}>
                     <FaPen size={16} color="#7F8C9F" />
-                  </div>
+                  </Button>
                 </OverlayTrigger>
               </div>
               <div className="touchable pe-2" onClick={handleButtonClick}>

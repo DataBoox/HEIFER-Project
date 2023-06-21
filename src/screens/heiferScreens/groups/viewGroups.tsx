@@ -1,17 +1,22 @@
 import { MdOutlineAddCircleOutline } from "react-icons/md";
-import { FaPen, FaTrash } from "react-icons/fa";
-import { Button, useToast } from "@chakra-ui/react";
+import { FaPen, FaTrash, FaEye } from "react-icons/fa";
+import { BsFillPersonCheckFill } from "react-icons/bs";
+import { MdPersonAddAlt1 } from "react-icons/md";
+import { Button, useToast, ButtonProps } from "@chakra-ui/react";
+import { PrimaryButton, PrimaryInput, ThemeTable } from "components";
 import { useNavigate } from "react-router-dom";
-import { ContentBodyContainer } from "../../home";
-import { useGetUsersQuery } from "store/user";
+import { ContentBodyContainer, DashboardCardContainer } from "../../home";
+import { useAllFarmersColumn} from "../farmers/components";
+import { useGetGroupsQuery } from "store/group";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import _ from "lodash";
 import { toast } from "react-toastify";
 import { useState } from "react";
 
-export const ViewUsers = () => {
+export const ViewGroups = () => {
   const navigate = useNavigate();
-  const { data, isLoading, refetch } = useGetUsersQuery({
+  const columns = useAllFarmersColumn();
+  const { data, isLoading, refetch } = useGetGroupsQuery({
     page: 1,
     query: "",
   });
@@ -19,14 +24,14 @@ export const ViewUsers = () => {
 
   return (
     <ContentBodyContainer
-      title="View Users"
-      routesRule={"viewUsers"}
+      title="View Groups"
+      routesRule={"viewGroups"}
       rightCardHeaderComponent={
         <div className="row g-3 mb-0 align-items-center">
           <div className="col-auto">
-            <Button
+          <Button
               colorScheme="teal"
-              onClick={() => navigate("/users/delete")}
+              onClick={() => navigate("/farmers/edit")}
               leftIcon={
                 <FaTrash size={12} />
               }
@@ -39,13 +44,12 @@ export const ViewUsers = () => {
               _hover={{ bg: "#bbc7ca" }}
               transition={"background-color 0.5s ease-in-out"}
             >
-              Delete User
+              Delete Group
             </Button>
           </div>
         </div>
       }
     >
-      <div className="row g-2">
         <div className="col-lg-6">
           <div className="card custom-card">
             <div className="px-3 pt-3 align-items-center d-flex border-bottom">
@@ -57,7 +61,7 @@ export const ViewUsers = () => {
                     color: "#2A4153",
                   }}
                 >
-                  User's Information
+                  Group Information
                 </p>
               </div>
               <h4
@@ -76,12 +80,12 @@ export const ViewUsers = () => {
                 <tbody>
                   <tr>
                     <td className="fw-bold" style={{ minWidth: "150px" }}>
-                      Last Name
+                      Name
                     </td>
                     <td className="p-2">Lorem ipsum .......</td>
                   </tr>
                   <tr>
-                    <td className="fw-bold">First Name</td>
+                    <td className="fw-bold">Description</td>
                     <td className="p-2">
                       Lorem ipsum .......
                       {/* {_.truncate(ev?.description.replace(/<[^>]*>?/gm, ""), {
@@ -90,7 +94,7 @@ export const ViewUsers = () => {
                     </td>
                   </tr>
                   <tr>
-                    <td className="fw-bold">Email Address</td>
+                    <td className="fw-bold">State</td>
                     <td className="p-2">
                       Lorem ipsum .......
                       {/* {moment(ev?.starts_at).format(
@@ -99,21 +103,12 @@ export const ViewUsers = () => {
                     </td>
                   </tr>
                   <tr>
-                    <td className="fw-bold">Gender</td>
+                    <td className="fw-bold">LGA</td>
                     <td className="p-2">
                       Lorem ipsum .......
                       {/* {moment(ev?.ends_at).format(
                           "dddd, MMMM Do YYYY, h:mm:ss a"
                         )}{" "} */}
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="fw-bold">State</td>
-                    <td className="p-2">
-                      Lorem ipsum .......
-                      {/* {moment(ev?.created_at).format(
-                          "ddd, MMMM Do YYYY, h:mm:ss a"
-                        )} */}
                     </td>
                   </tr>
                   <tr>
@@ -126,16 +121,7 @@ export const ViewUsers = () => {
                     </td>
                   </tr>
                   <tr>
-                    <td className="fw-bold">Project</td>
-                    <td className="p-2">
-                      Lorem ipsum .......
-                      {/* {moment(ev?.created_at).format(
-                          "ddd, MMMM Do YYYY, h:mm:ss a"
-                        )} */}
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="fw-bold">Role</td>
+                    <td className="fw-bold">Created By</td>
                     <td className="p-2 ">Lorem ipsum .......</td>
                   </tr>
                 </tbody>
@@ -164,7 +150,7 @@ export const ViewUsers = () => {
           <div className="col-auto">
             <Button
               colorScheme="teal"
-              onClick={() => navigate("/farmers/edit")}
+              onClick={() => navigate("/groups/edit")}
               leftIcon={
                 <MdOutlineAddCircleOutline size={12} />
               }
@@ -177,14 +163,14 @@ export const ViewUsers = () => {
               _hover={{ bg: "#bbc7ca" }}
               transition={"background-color 0.5s ease-in-out"}
             >
-              Assign to Group
+              Assign a Household
             </Button>
           </div>
 
           <div className="col-auto">
             <Button
               colorScheme="teal"
-              onClick={() => navigate("/farmers/edit")}
+              onClick={() => navigate("/groups/edit")}
               leftIcon={
                 <FaPen size={13} />
               }
@@ -203,7 +189,87 @@ export const ViewUsers = () => {
             </div>
           </div>
         </div>
-</div>
+
+        <div className="col-lg-3">
+        <div className="card card-animate">
+          <div className="card-body">
+            <div className="d-flex align-items-center justify-content-between">
+              <div className="avatar-sm flex-shrink-0 mt-5">
+                <div
+                  style={{
+                    backgroundColor: "#0BB508",
+                    borderRadius: "50%",
+                    display: "inline-flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    width: "48px",
+                    height: "48px",
+                  }}
+                >
+                  <BsFillPersonCheckFill size={24} className="svg-light" />
+                </div>
+              </div>
+              <div className="flex-grow-1 overflow-hidden text-end">
+                <p className="fs-5 fw-medium text-dark text-truncate mb-3">
+                  {" "}
+                  Total Households
+                </p>
+                <h4 className="fs-1 fw-bold text-dark mb-5">
+                  {/* {currencyFormatter(data?.data.projects ?? 0)} */} 3
+                </h4>
+              </div>
+            </div>
+            {/* end card body */}
+          </div>
+          {/* end card */}
+        </div>
+        </div>
+
+        <div className="col-lg-3">
+        <div className="card card-animate">
+          <div className="card-body">
+            <div className="d-flex align-items-center justify-content-between">
+              <div className="avatar-sm flex-shrink-0 mt-5">
+                <div
+                  style={{
+                    backgroundColor: "#FFD914",
+                    borderRadius: "50%",
+                    display: "inline-flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    width: "48px",
+                    height: "48px",
+                  }}
+                >
+                  <MdPersonAddAlt1 size={24} className="svg-light" />
+                </div>
+              </div>
+              <div className="flex-grow-1 overflow-hidden text-end">
+                <p className="fs-5 fw-medium text-dark text-truncate mb-3">
+                  {" "}
+                  Total SH Groups
+                </p>
+                <h4 className="fs-1 fw-bold text-dark mb-5">
+                  {/* {currencyFormatter(data?.data.projects ?? 0)} */} 3
+                </h4>
+              </div>
+            </div>
+            {/* end card body */}
+          </div>
+          {/* end card */}
+        </div>
+        </div>
+
+
+      <div className="col-xl-12">
+      <h2 className="mt-3 mb-3 fw-bold" style={{color: "rgb(41, 41, 42)"}}>Household History</h2>
+        <ThemeTable
+          data={data?.data?.data ?? []}
+          columns={columns as any}
+          isLoading={isLoading}
+          onRefetch={refetch}
+        />
+      </div>
     </ContentBodyContainer>
   );
 };

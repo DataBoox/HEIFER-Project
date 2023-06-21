@@ -31,24 +31,23 @@ export const ViewFarmers = () => {
               colorScheme="teal"
               onClick={() => navigate("/farmers/edit")}
               leftIcon={
-                <MdOutlineAddCircleOutline size={12} />
+                <FaTrash size={12} />
               }
               className={"fw-bold"}
               fontSize={"sm"}
-              backgroundColor={"#7AD0E2"}
+              backgroundColor={"red"}
               color={"#fff"}
               borderRadius={0}
               padding={"12px, 20px, 12px, 20px"}
               _hover={{ bg: "#bbc7ca" }}
               transition={"background-color 0.5s ease-in-out"}
             >
-              Edit Household
+              Delete Household
             </Button>
           </div>
         </div>
       }
     >
-      <div className="row g-2">
         <div className="col-lg-6">
           <div className="card custom-card">
             <div className="px-3 pt-3 align-items-center d-flex border-bottom">
@@ -199,7 +198,6 @@ export const ViewFarmers = () => {
           isLoading={isLoading}
           onRefetch={refetch}
         />
-      </div>
       </div>
     </ContentBodyContainer>
   );

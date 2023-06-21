@@ -8,6 +8,9 @@ import {
   ShgRecordForm,
   RegisterFarmers,
   ViewFarmers,
+  ViewGroups,
+  ViewUsers,
+  ViewInterventions,
   UserScreen,
   MapsScreen,
   GroupScreen,
@@ -46,6 +49,9 @@ export const RootNavigator = () => {
           <Route path="groups" element={<GroupScreen />} />
           <Route path="farmers" element={<FarmerScreen />} />
           <Route path="farmers/view" element={<ViewFarmers />} />
+          <Route path="groups/view" element={<ViewGroups />} />
+          <Route path="users/view" element={<ViewUsers />} />
+          <Route path="interventions/view" element={<ViewInterventions />} />
           <Route path="interventions" element={<InterventionScreen />} />
         </Route>
       </Routes>

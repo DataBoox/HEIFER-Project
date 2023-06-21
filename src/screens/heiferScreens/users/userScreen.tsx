@@ -90,9 +90,9 @@ export const UserScreen = () => {
                   placement="top"
                   overlay={<Tooltip id="edit-tooltip">Edit</Tooltip>}
                 >
-                  <div>
+                  <Button onClick={() => navigate("/users/edit")}>
                     <FaPen size={16} color="#7F8C9F" />
-                  </div>
+                  </Button>
                 </OverlayTrigger>
               </div>
               <div className="touchable">

@@ -29,12 +29,12 @@ export const FarmerScreen = () => {
               colorScheme="teal"
               onClick={() => navigate("/register")}
               leftIcon={
-                <MdOutlineAddCircleOutline className="svg-dark" size={12} />
+                <MdOutlineAddCircleOutline size={12} />
               }
               className={"fw-bold"}
               fontSize={"sm"}
               backgroundColor={"#7AD0E2"}
-              color={"#000000"}
+              color={"#ffffff"}
               borderRadius={0}
               padding={"12px, 20px, 12px, 20px"}
               _hover={{ bg: "#bbc7ca" }}
@@ -72,9 +72,9 @@ export const FarmerScreen = () => {
                   placement="top"
                   overlay={<Tooltip id="edit-tooltip">Edit</Tooltip>}
                 >
-                  <div>
+                  <Button onClick={() => navigate("/farmers/edit")}>
                     <FaPen size={16} color="#7F8C9F" />
-                  </div>
+                  </Button>
                 </OverlayTrigger>
               </div>
               <div className="touchable">

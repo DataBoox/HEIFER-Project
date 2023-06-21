@@ -1,6 +1,6 @@
 import { MdOutlineAddCircleOutline } from "react-icons/md";
 import { FaEye, FaPen, FaSearch, FaTrash } from "react-icons/fa";
-import { useToast } from "@chakra-ui/react";
+import { Button, useToast } from "@chakra-ui/react";
 import { ThemeTable, PrimaryInput } from "components";
 import { useNavigate } from "react-router-dom";
 import { ContentBodyContainer } from "../../home";
@@ -78,9 +78,9 @@ export const InterventionScreen = () => {
                   placement="top"
                   overlay={<Tooltip id="view-tooltip">View</Tooltip>}
                 >
-                  <div>
+                  <Button onClick={() => navigate("/interventions/view")}>
                     <FaEye size={16} color="#7F8C9F" />
-                  </div>
+                  </Button>
                 </OverlayTrigger>
               </div>
               <div className="touchable pe-2">
@@ -88,9 +88,9 @@ export const InterventionScreen = () => {
                   placement="top"
                   overlay={<Tooltip id="edit-tooltip">Edit</Tooltip>}
                 >
-                  <div>
+                  <Button onClick={() => navigate("/interventions/edit")}>
                     <FaPen size={16} color="#7F8C9F" />
-                  </div>
+                  </Button>
                 </OverlayTrigger>
               </div>
               <div className="touchable">
