@@ -65,13 +65,14 @@ export const ThemeTable: React.FC<ThemeTableProps> = ({
         onSortingChange={setSorting}
         rowCount={rowTotal}
         muiTableBodyCellProps={{
-          sx: { border: "0.8px solid #e3eaef" },
+          sx: { border: "0.8px solid #e3eaef", fontSize: "1rem" },
         }}
         muiTableHeadCellProps={{
           sx: {
             backgroundColor: "#2A4153",
             color: "#ffff",
-            fontWeight: "light",
+            fontWeight: "bold",
+            fontSize: "1rem",
             textTransform: "capitalize",
           },
         }}

@@ -120,7 +120,7 @@ export const NavHeader: React.FC<NavHeaderProps> = ({
         display="flex"
         alignItems="center"
         justifyContent="center"
-        fontSize="sm"
+        fontSize="md"
         fontWeight="bold"
       >
         {user?.user_info.fname ? user.user_info.fname.charAt(0).toUpperCase() : ''}
@@ -132,7 +132,7 @@ export const NavHeader: React.FC<NavHeaderProps> = ({
                         ml="2"
                       >
                         <Text
-                          fontSize="sm"
+                          fontSize="md"
                           textTransform={"capitalize"}
                           className="mt-3"
                         >

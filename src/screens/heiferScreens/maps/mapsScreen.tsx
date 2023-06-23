@@ -84,7 +84,7 @@ export const MapsScreen = () => {
           }
           cssClassName={"reportClass"}
         /> */}
-         <div className="col-xl-12 col-md-12">
+         
         <div
           className="animate"
           style={{
@@ -97,7 +97,7 @@ export const MapsScreen = () => {
         >
           <iframe
             title="Map_DB"
-            src="https://app.powerbi.com/reportEmbed?reportId=4ea03f94-adb2-4c9f-ba7b-886e5fc56285&autoAuth=true&ctid=da6a69e3-3bcd-4f44-a340-aead0cfda08f"
+            src="https://app.powerbi.com/view?r=eyJrIjoiYjNiOTAzOTUtODBjYi00ZmZlLTlmNDItMDFjYjliZDkwZDYyIiwidCI6ImUyYWQ4NzllLTFjYWEtNDZhZS1iOGNkLTRjN2MyZDAyOTJmYSJ9"
             allowFullScreen
             style={{
               position: "absolute",
@@ -106,10 +106,11 @@ export const MapsScreen = () => {
               width: "100%",
               height: "100%",
               border: "none",
+              fontFamily: "Montserrat, sans-serif",
             }}
           ></iframe>
         </div>
-      </div>
+  
       </DashboardCardContainer>
     </ContentBodyContainer>
   );
