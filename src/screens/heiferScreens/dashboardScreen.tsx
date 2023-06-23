@@ -412,7 +412,7 @@ export const DashboardScreen = () => {
         >
           <iframe
             title="Indicators"
-            src="https://app.powerbi.com/reportEmbed?reportId=e398eb99-de8f-4ee6-84a3-4051cfb453df&autoAuth=true&ctid=da6a69e3-3bcd-4f44-a340-aead0cfda08f"
+            src="https://app.powerbi.com/view?r=eyJrIjoiYjhkMjk4ODktZjY2YS00MWZmLWI0NjMtYWI2ZDE1YjMwYmNhIiwidCI6ImUyYWQ4NzllLTFjYWEtNDZhZS1iOGNkLTRjN2MyZDAyOTJmYSJ9"
             allowFullScreen
             style={{
               position: "absolute",
@@ -439,7 +439,7 @@ export const DashboardScreen = () => {
         >
           <iframe
             title="Dashboard_1"
-            src="https://app.powerbi.com/reportEmbed?reportId=29c0c26d-1a34-4965-ac98-0c172fe0f13b&autoAuth=true&ctid=da6a69e3-3bcd-4f44-a340-aead0cfda08f"
+            src="https://app.powerbi.com/view?r=eyJrIjoiM2I2YTI3ZjQtYmI4MS00YzY0LThmZTItNzMyYjA5NDNkMmI4IiwidCI6ImUyYWQ4NzllLTFjYWEtNDZhZS1iOGNkLTRjN2MyZDAyOTJmYSJ9"
             allowFullScreen
             style={{
               position: "absolute",
@@ -466,7 +466,7 @@ export const DashboardScreen = () => {
         >
           <iframe
             title="Dashboard_2"
-            src="https://app.powerbi.com/reportEmbed?reportId=1105b657-a9f1-4de2-9ae8-2f1a346b1127&autoAuth=true&ctid=da6a69e3-3bcd-4f44-a340-aead0cfda08f"
+            src="https://app.powerbi.com/view?r=eyJrIjoiMzJmYWMxM2QtZTNiYy00ODRhLThlMDktZWNjZjc2OTgyNmFkIiwidCI6ImUyYWQ4NzllLTFjYWEtNDZhZS1iOGNkLTRjN2MyZDAyOTJmYSJ9"
             allowFullScreen
             style={{
               position: "absolute",
