@@ -453,7 +453,7 @@ export const DashboardScreen = () => {
         </div>
       </div>
 
-      <div className="col-xl-12 col-md-12">
+      <div className="col-xl-12 col-md-12 mb-4">
         <div
           className="animate"
           style={{
