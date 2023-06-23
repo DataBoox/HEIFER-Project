@@ -54,7 +54,7 @@ export const userApi = createApi({
                 body: payload
             }),
         }),
-        getUserInfo: builder.query<IResponse, RequiresUserID>({
+        getUserInfo: builder.query<IResponse, { uid: string|number }>({
             query: (payload) => ({
                 url: `users/info?${convertObjectToURLParams(payload)}`,
                 method: 'GET',

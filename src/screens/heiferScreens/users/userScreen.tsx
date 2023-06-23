@@ -90,7 +90,7 @@ export const UserScreen = () => {
                   placement="top"
                   overlay={<Tooltip id="view-tooltip">View</Tooltip>}
                 >
-                  <Button onClick={() => navigate("/users/view")}>
+                  <Button onClick={() => navigate(`/users/view/` + (row.original as UserInfo).id)}>
                     <FaEye size={16} color="#7F8C9F" />
                   </Button>
                 </OverlayTrigger>

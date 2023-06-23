@@ -50,7 +50,7 @@ export const RootNavigator = () => {
           <Route path="farmers" element={<FarmerScreen />} />
           <Route path="farmers/view" element={<ViewFarmers />} />
           <Route path="groups/view" element={<ViewGroups />} />
-          <Route path="users/view" element={<ViewUsers />} />
+          <Route path="users/view/:id" element={<ViewUsers />} />
           <Route path="interventions/view" element={<ViewInterventions />} />
           <Route path="interventions" element={<InterventionScreen />} />
         </Route>
