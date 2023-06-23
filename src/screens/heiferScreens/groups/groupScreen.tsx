@@ -3,7 +3,7 @@ import { Button, useToast} from "@chakra-ui/react";
 import { ThemeTable } from "components";
 import { useNavigate } from "react-router-dom";
 import { ContentBodyContainer} from "../../home";
-import { useGetGroupsQuery } from "store/group";
+import { Group, useGetGroupsQuery } from "store/group";
 import { useAllGroupsColumn} from "./components";
 import { FaEye, FaPen, FaTrash, FaPlus } from "react-icons/fa";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
@@ -88,7 +88,7 @@ export const GroupScreen = () => {
           onRefetch={refetch}
           enableRowActions
           positionActionsColumn="last"
-          renderRowActions={({ row }) => (
+          renderRowActions={({row}) => (
             <div className="d-flex justify-content-evenly">
               <div className="touchable pe-2">
                 <OverlayTrigger
@@ -120,10 +120,11 @@ export const GroupScreen = () => {
                   </div>
                 </OverlayTrigger>
               </div>
-              <div className="touchable">
+              <div className="touchable" onClick={() => console.log((row.original as Group).id)}>
                 <OverlayTrigger
                   placement="top"
                   overlay={<Tooltip id="delete-tooltip">Delete</Tooltip>}
+
                 >
                   <div>
                     <FaTrash size={16} color="red" />
