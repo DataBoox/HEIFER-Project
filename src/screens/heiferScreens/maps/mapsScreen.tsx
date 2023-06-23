@@ -97,7 +97,7 @@ export const MapsScreen = () => {
         >
           <iframe
             title="Map_DB"
-            src=""
+            src="https://app.powerbi.com/view?r=eyJrIjoiYjNiOTAzOTUtODBjYi00ZmZlLTlmNDItMDFjYjliZDkwZDYyIiwidCI6ImUyYWQ4NzllLTFjYWEtNDZhZS1iOGNkLTRjN2MyZDAyOTJmYSJ9"
             allowFullScreen
             style={{
               position: "absolute",
@@ -106,6 +106,7 @@ export const MapsScreen = () => {
               width: "100%",
               height: "100%",
               border: "none",
+              fontFamily: "Montserrat, sans-serif",
             }}
           ></iframe>
         </div>
