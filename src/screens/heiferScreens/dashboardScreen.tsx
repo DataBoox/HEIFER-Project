@@ -455,6 +455,34 @@ export const DashboardScreen = () => {
         </div>
       </div>
 
+               <div className="col-xl-12 col-md-12 mb-4">
+        <div
+          className="animate"
+          style={{
+            position: "relative",
+            paddingBottom: "56.25%",
+            height: 0,
+            overflow: "hidden",
+            borderRadius: "10px",
+          }}
+        >
+          <iframe
+            title="Report_1"
+            src="https://app.powerbi.com/view?r=eyJrIjoiM2I2YTI3ZjQtYmI4MS00YzY0LThmZTItNzMyYjA5NDNkMmI4IiwidCI6ImUyYWQ4NzllLTFjYWEtNDZhZS1iOGNkLTRjN2MyZDAyOTJmYSJ9"
+            allowFullScreen
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: "100%",
+              height: "100%",
+              border: "none",
+              fontFamily: "Montserrat, sans-serif",
+            }}
+          ></iframe>
+        </div>
+      </div>
+
       <div className="col-xl-12 col-md-12 mb-4">
         <div
           className="animate"
