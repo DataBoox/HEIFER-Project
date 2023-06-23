@@ -36,7 +36,7 @@ export const GroupScreen = () => {
   const [showModal, setShowModal] = useState(false);
   const handleButtonClick = () => setShowModal(true);
   const handleModalClose = () => setShowModal(false);
-  const [deleteGroup, { isLoading: isDeleting }] = useDeleteGroupMutation();
+  const [deleteGroup] = useDeleteGroupMutation();
 
   const initDelete = (group: number) => {
     let payload = { project_id: projectId, groups: [group]}
@@ -95,7 +95,7 @@ export const GroupScreen = () => {
                   placement="top"
                   overlay={<Tooltip id="view-tooltip">View</Tooltip>}
                 >
-                  <Button onClick={() => navigate("/groups/view")}>
+                  <Button onClick={() => navigate(`/groups/view/` + (row.original as Group).id)}>
                     <FaEye size={16} color="#7F8C9F" />
                   </Button>
                 </OverlayTrigger>
@@ -120,7 +120,7 @@ export const GroupScreen = () => {
                   </div>
                 </OverlayTrigger>
               </div>
-              <div className="touchable" onClick={() => console.log((row.original as Group).id)}>
+              <div className="touchable" onClick={() => initDelete((row.original as Group).id)}>
                 <OverlayTrigger
                   placement="top"
                   overlay={<Tooltip id="delete-tooltip">Delete</Tooltip>}

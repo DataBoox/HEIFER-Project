@@ -2,25 +2,25 @@ import { MdOutlineAddCircleOutline } from "react-icons/md";
 import { FaPen, FaTrash, FaEye } from "react-icons/fa";
 import { BsFillPersonCheckFill } from "react-icons/bs";
 import { MdPersonAddAlt1 } from "react-icons/md";
-import { Button, useToast, ButtonProps } from "@chakra-ui/react";
-import { PrimaryButton, PrimaryInput, ThemeTable } from "components";
+import { Button, useToast } from "@chakra-ui/react";
+import { ThemeTable } from "components";
 import { useNavigate } from "react-router-dom";
 import { ContentBodyContainer, DashboardCardContainer } from "../../home";
 import { useAllFarmersColumn} from "../farmers/components";
-import { useGetGroupsQuery } from "store/group";
-import { OverlayTrigger, Tooltip } from "react-bootstrap";
+import { useGetGroupInfoQuery, useGetGroupsQuery } from "store/group";
 import _ from "lodash";
-import { toast } from "react-toastify";
-import { useState } from "react";
+import { useLocation } from "react-router-dom";
+import { useProject } from "store/projects";
+import { useGetUserInfoQuery } from "store/user";
 
 export const ViewGroups = () => {
   const navigate = useNavigate();
   const columns = useAllFarmersColumn();
-  const { data, isLoading, refetch } = useGetGroupsQuery({
-    page: 1,
-    query: "",
-  });
-  const toast = useToast({ position: "top-right" });
+  const { data, isLoading, refetch } = useGetGroupsQuery({ page: 1, query: "" });
+  const pathArray: string[] = useLocation().pathname.trim().split("/")
+  const groupId = pathArray[pathArray.length - 1]
+  const projectId: number = useProject().project?.id;
+  const { data: group } = useGetGroupInfoQuery({ project_id: projectId, group_id: groupId  });
 
   return (
     <ContentBodyContainer
@@ -82,47 +82,27 @@ export const ViewGroups = () => {
                     <td className="fw-bold" style={{ minWidth: "150px" }}>
                       Name
                     </td>
-                    <td className="p-2">Lorem ipsum .......</td>
+                    <td className="p-2">{group?.data.name}</td>
                   </tr>
                   <tr>
                     <td className="fw-bold">Description</td>
-                    <td className="p-2">
-                      Lorem ipsum .......
-                      {/* {_.truncate(ev?.description.replace(/<[^>]*>?/gm, ""), {
-                          length: 40,
-                        })} */}
-                    </td>
+                    <td className="p-2">{group?.data.description}</td>
                   </tr>
                   <tr>
                     <td className="fw-bold">State</td>
-                    <td className="p-2">
-                      Lorem ipsum .......
-                      {/* {moment(ev?.starts_at).format(
-                          "dddd, MMMM Do YYYY, h:mm:ss a"
-                        )}{" "} */}
-                    </td>
+                    <td className="p-2">{group?.data?.state}</td>
                   </tr>
                   <tr>
                     <td className="fw-bold">LGA</td>
-                    <td className="p-2">
-                      Lorem ipsum .......
-                      {/* {moment(ev?.ends_at).format(
-                          "dddd, MMMM Do YYYY, h:mm:ss a"
-                        )}{" "} */}
-                    </td>
+                    <td className="p-2">{group?.data?.state}</td>
                   </tr>
                   <tr>
                     <td className="fw-bold">Community</td>
-                    <td className="p-2">
-                      Lorem ipsum .......
-                      {/* {moment(ev?.created_at).format(
-                          "ddd, MMMM Do YYYY, h:mm:ss a"
-                        )} */}
-                    </td>
+                    <td className="p-2">{group?.data?.community}</td>
                   </tr>
                   <tr>
                     <td className="fw-bold">Created By</td>
-                    <td className="p-2 ">Lorem ipsum .......</td>
+                    <td className="p-2 ">{}</td>
                   </tr>
                 </tbody>
               </table>

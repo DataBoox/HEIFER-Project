@@ -1,21 +1,19 @@
 import { MdOutlineAddCircleOutline } from "react-icons/md";
 import { FaPen, FaTrash } from "react-icons/fa";
-import { Button, useToast } from "@chakra-ui/react";
+import { Button } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { ContentBodyContainer } from "../../home";
-import { useGetUsersQuery } from "store/user";
-import { OverlayTrigger, Tooltip } from "react-bootstrap";
+import { useGetUserInfoQuery } from "store/user";
 import _ from "lodash";
-import { toast } from "react-toastify";
-import { useState } from "react";
+import { useLocation } from "react-router-dom";
 
 export const ViewUsers = () => {
   const navigate = useNavigate();
-  const { data, isLoading, refetch } = useGetUsersQuery({
-    page: 1,
-    query: "",
-  });
-  const toast = useToast({ position: "top-right" });
+  const { pathname } = useLocation();
+  const pathArray: string[] = pathname.trim().split("/")
+  const userId = pathArray[pathArray.length - 1]
+  const { data, isLoading } = useGetUserInfoQuery({ uid: userId });
+
 
   return (
     <ContentBodyContainer
@@ -78,65 +76,35 @@ export const ViewUsers = () => {
                     <td className="fw-bold" style={{ minWidth: "150px" }}>
                       Last Name
                     </td>
-                    <td className="p-2">Lorem ipsum .......</td>
+                    <td className="p-2">{data?.data.lname}</td>
                   </tr>
                   <tr>
                     <td className="fw-bold">First Name</td>
-                    <td className="p-2">
-                      Lorem ipsum .......
-                      {/* {_.truncate(ev?.description.replace(/<[^>]*>?/gm, ""), {
-                          length: 40,
-                        })} */}
-                    </td>
+                    <td className="p-2">Lorem ipsum {data?.data.fname}</td>
                   </tr>
                   <tr>
                     <td className="fw-bold">Email Address</td>
-                    <td className="p-2">
-                      Lorem ipsum .......
-                      {/* {moment(ev?.starts_at).format(
-                          "dddd, MMMM Do YYYY, h:mm:ss a"
-                        )}{" "} */}
-                    </td>
+                    <td className="p-2"> {data?.data.user.email}</td>
                   </tr>
                   <tr>
                     <td className="fw-bold">Gender</td>
-                    <td className="p-2">
-                      Lorem ipsum .......
-                      {/* {moment(ev?.ends_at).format(
-                          "dddd, MMMM Do YYYY, h:mm:ss a"
-                        )}{" "} */}
-                    </td>
+                    <td className="p-2">{data?.data.gender}</td>
                   </tr>
                   <tr>
                     <td className="fw-bold">State</td>
-                    <td className="p-2">
-                      Lorem ipsum .......
-                      {/* {moment(ev?.created_at).format(
-                          "ddd, MMMM Do YYYY, h:mm:ss a"
-                        )} */}
-                    </td>
+                    <td className="p-2">{data?.data.state}</td>
                   </tr>
                   <tr>
                     <td className="fw-bold">Community</td>
-                    <td className="p-2">
-                      Lorem ipsum .......
-                      {/* {moment(ev?.created_at).format(
-                          "ddd, MMMM Do YYYY, h:mm:ss a"
-                        )} */}
-                    </td>
+                    <td className="p-2">{data?.data.community}</td>
                   </tr>
                   <tr>
                     <td className="fw-bold">Project</td>
-                    <td className="p-2">
-                      Lorem ipsum .......
-                      {/* {moment(ev?.created_at).format(
-                          "ddd, MMMM Do YYYY, h:mm:ss a"
-                        )} */}
-                    </td>
+                    <td className="p-2"></td>
                   </tr>
                   <tr>
                     <td className="fw-bold">Role</td>
-                    <td className="p-2 ">Lorem ipsum .......</td>
+                    <td className="p-2 ">{data?.data.user.account_type.replace('_', ' ').toUpperCase()}</td>
                   </tr>
                 </tbody>
               </table>

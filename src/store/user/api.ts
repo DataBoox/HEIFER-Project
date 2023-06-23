@@ -47,7 +47,14 @@ export const userApi = createApi({
                 body: payload
             }),
         }),
-        getUserInfo: builder.query<IResponse, RequiresUserID>({
+        disableUser: builder.mutation<IResponse, DeleteUsersPayload>({
+            query: (payload) => ({
+                url: 'users/disable',
+                method: 'POST',
+                body: payload
+            }),
+        }),
+        getUserInfo: builder.query<IResponse, { uid: string|number }>({
             query: (payload) => ({
                 url: `users/info?${convertObjectToURLParams(payload)}`,
                 method: 'GET',
@@ -63,5 +70,6 @@ export const {
     useEditUserMutation,
     useDeleteUserMutation,
     useGetUserInfoQuery,
+    useDisableUserMutation,
 } = userApi;
 

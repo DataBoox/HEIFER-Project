@@ -47,7 +47,7 @@ export const groupApi = createApi({
                 body: payload
             }),
         }),
-        getGroupInfo: builder.query<IResponse, RequiresGroupID>({
+        getGroupInfo: builder.query<IResponse, { project_id: number, group_id: number|string }>({
             query: (payload) => ({
                 url: `projects/groups/info?${convertObjectToURLParams(payload)}`,
                 method: 'GET',
