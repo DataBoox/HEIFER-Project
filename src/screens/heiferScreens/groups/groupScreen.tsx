@@ -95,7 +95,7 @@ export const GroupScreen = () => {
                   placement="top"
                   overlay={<Tooltip id="view-tooltip">View</Tooltip>}
                 >
-                  <Button onClick={() => navigate("/groups/view")}>
+                  <Button onClick={() => navigate(`/groups/view/` + (row.original as Group).id)}>
                     <FaEye size={16} color="#7F8C9F" />
                   </Button>
                 </OverlayTrigger>

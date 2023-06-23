@@ -1,6 +1,6 @@
 import { MdOutlineAddCircleOutline } from "react-icons/md";
 import { FaPen, FaTrash } from "react-icons/fa";
-import { Button, useToast } from "@chakra-ui/react";
+import { Button } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { ContentBodyContainer } from "../../home";
 import { useGetUserInfoQuery } from "store/user";
@@ -9,7 +9,6 @@ import { useLocation } from "react-router-dom";
 
 export const ViewUsers = () => {
   const navigate = useNavigate();
-  const toast = useToast({ position: "top-right" });
   const { pathname } = useLocation();
   const pathArray: string[] = pathname.trim().split("/")
   const userId = pathArray[pathArray.length - 1]
