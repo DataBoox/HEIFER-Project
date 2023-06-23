@@ -421,6 +421,7 @@ export const DashboardScreen = () => {
               width: "100%",
               height: "100%",
               border: "none",
+              fontFamily: "Montserrat, sans-serif",
             }}
           ></iframe>
         </div>
@@ -448,6 +449,7 @@ export const DashboardScreen = () => {
               width: "100%",
               height: "100%",
               border: "none",
+              fontFamily: "Montserrat, sans-serif",
             }}
           ></iframe>
         </div>
@@ -475,6 +477,7 @@ export const DashboardScreen = () => {
               width: "100%",
               height: "100%",
               border: "none",
+              fontFamily: "Montserrat, sans-serif",
             }}
           ></iframe>
         </div>
