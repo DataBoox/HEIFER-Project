@@ -1,25 +1,35 @@
 // import { Devotional, DevotionalProps} from "./components/devotionalComponent";
 import { MdOutlineAddCircleOutline } from "react-icons/md";
 import { Button} from "@chakra-ui/react";
-import { FaEye, FaPen, FaSearch, FaTrash } from "react-icons/fa";
+import { FaEye, FaPen, FaSearch, FaTrash, FaUserSlash } from "react-icons/fa";
 import { useToast, } from "@chakra-ui/react";
 import { PrimaryInput, ThemeTable } from "components";
 import { useNavigate } from "react-router-dom";
 import { ContentBodyContainer} from "../../home";
 import { AddUserDialog } from "./addUser";
-import { useAddUserMutation, useGetUsersQuery } from "store/user";
+import { useAddUserMutation, useDisableUserMutation, useGetUsersQuery } from "store/user";
 import { useAllUsersColumn } from "./components";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
-
-
+import { resolveApiError } from "utilities";
+import { UserInfo } from "@store/user";
 
 export const UserScreen = () => {
   const navigate = useNavigate();
   const columns = useAllUsersColumn()
   const { data, isLoading, refetch } = useGetUsersQuery({ page: 1, query: '' });
   const toast = useToast({ position: "top-right" });
+  const [disableUser] = useDisableUserMutation();
 
-  console.log(data)
+  const initDisable = (user: number) => {
+    disableUser({users: [user]}).unwrap().then((response) => {
+      let msg = "User has been disabled successfully"
+      toast({ title: "User Disabled", description: msg, status: "success" })
+      refetch();
+    }).catch((error) => {
+      let msg = resolveApiError(error?.data?.response)
+      toast({ title: "Request Failed", description: msg, status: "error"})
+    });
+  }
 
   return (
     <ContentBodyContainer
@@ -95,13 +105,13 @@ export const UserScreen = () => {
                   </Button>
                 </OverlayTrigger>
               </div>
-              <div className="touchable">
+              <div className="touchable" onClick={() => initDisable((row.original as UserInfo).id)}>
                 <OverlayTrigger
                   placement="top"
-                  overlay={<Tooltip id="delete-tooltip">Delete</Tooltip>}
+                  overlay={<Tooltip id="delete-tooltip">Disable</Tooltip>}
                 >
                   <div>
-                    <FaTrash size={16} color="red" />
+                    <FaUserSlash size={16} color="red" />
                   </div>
                 </OverlayTrigger>
               </div>

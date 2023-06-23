@@ -7,11 +7,12 @@ import { ContentBodyContainer } from "../../home";
 import { useFormik } from "formik";
 import { AddInterventionScheme } from "validations";
 import { AddInterventionDialog } from "./addIntervention";
-import { useGetInterventionsQuery } from "store/intervention";
+import { useGetInterventionsQuery, useDeleteInterventionMutation, Intervention } from "store/intervention";
 import { useAllInterventionsColumn } from "./components";
 import _ from "lodash";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import { useProject } from "store/projects";
+import { resolveApiError } from "utilities";
 
 export const InterventionScreen = () => {
   const navigate = useNavigate();
@@ -19,6 +20,19 @@ export const InterventionScreen = () => {
   const projectId: number = useProject().getProject()?.id;
   const { data, isLoading, refetch } = useGetInterventionsQuery({ page: 1, query: "", project_id: projectId });
   const toast = useToast({ position: "top-right" });
+  const [deleteIntervention] = useDeleteInterventionMutation();
+
+  const initDelete = (intervention: number) => {
+    let payload = { project_id: projectId, interventions: [intervention]}
+    deleteIntervention(payload).unwrap().then((response) => {
+      let msg = "Intervention has been deleted successfully"
+      toast({ title: "Intervention Deleted", description: msg, status: "success" })
+      refetch();
+    }).catch((error) => {
+      let msg = resolveApiError(error?.data?.response)
+      toast({ title: "Request Failed", description: msg, status: "error"})
+    });
+  }
 
   return (
     <ContentBodyContainer
@@ -93,7 +107,7 @@ export const InterventionScreen = () => {
                   </Button>
                 </OverlayTrigger>
               </div>
-              <div className="touchable">
+              <div className="touchable" onClick={() => initDelete((row.original as Intervention).id)}>
                 <OverlayTrigger
                   placement="top"
                   overlay={<Tooltip id="delete-tooltip">Delete</Tooltip>}

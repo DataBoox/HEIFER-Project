@@ -36,7 +36,7 @@ export const GroupScreen = () => {
   const [showModal, setShowModal] = useState(false);
   const handleButtonClick = () => setShowModal(true);
   const handleModalClose = () => setShowModal(false);
-  const [deleteGroup, { isLoading: isDeleting }] = useDeleteGroupMutation();
+  const [deleteGroup] = useDeleteGroupMutation();
 
   const initDelete = (group: number) => {
     let payload = { project_id: projectId, groups: [group]}
@@ -120,7 +120,7 @@ export const GroupScreen = () => {
                   </div>
                 </OverlayTrigger>
               </div>
-              <div className="touchable" onClick={() => console.log((row.original as Group).id)}>
+              <div className="touchable" onClick={() => initDelete((row.original as Group).id)}>
                 <OverlayTrigger
                   placement="top"
                   overlay={<Tooltip id="delete-tooltip">Delete</Tooltip>}
