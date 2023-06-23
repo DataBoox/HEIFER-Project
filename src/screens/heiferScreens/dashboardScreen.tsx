@@ -440,7 +440,7 @@ export const DashboardScreen = () => {
         >
           <iframe
             title="Dashboard_1"
-            src="https://app.powerbi.com/view?r=eyJrIjoiZmE1ZTI4MmMtMWU2NS00YmU5LWFhMzQtYTkzYjliNzc5ZmEyIiwidCI6ImUyYWQ4NzllLTFjYWEtNDZhZS1iOGNkLTRjN2MyZDAyOTJmYSJ9"
+            src="https://app.powerbi.com/view?r=eyJrIjoiMzJmYWMxM2QtZTNiYy00ODRhLThlMDktZWNjZjc2OTgyNmFkIiwidCI6ImUyYWQ4NzllLTFjYWEtNDZhZS1iOGNkLTRjN2MyZDAyOTJmYSJ9LTRjN2MyZDAyOTJmYSJ9"
             allowFullScreen
             style={{
               position: "absolute",
