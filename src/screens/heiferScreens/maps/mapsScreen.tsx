@@ -36,7 +36,7 @@ export const MapsScreen = () => {
       //     </div>
       //   }
     >
-      <DashboardCardContainer title="" bodyClassName="p-3">
+      
         {/* <PowerBIEmbed
           embedConfig={{
             type: "report",
@@ -111,7 +111,7 @@ export const MapsScreen = () => {
           ></iframe>
         </div>
   
-      </DashboardCardContainer>
+      
     </ContentBodyContainer>
   );
 };

@@ -421,7 +421,7 @@ export const DashboardScreen = () => {
               width: "100%",
               height: "100%",
               border: "none",
-              fontFamily: "Montserrat, sans-serif",
+              fontFamily: "Montserrat, sans-serif !important",
             }}
           ></iframe>
         </div>
@@ -440,7 +440,7 @@ export const DashboardScreen = () => {
         >
           <iframe
             title="Dashboard_1"
-            src="https://app.powerbi.com/view?r=eyJrIjoiMzJmYWMxM2QtZTNiYy00ODRhLThlMDktZWNjZjc2OTgyNmFkIiwidCI6ImUyYWQ4NzllLTFjYWEtNDZhZS1iOGNkLTRjN2MyZDAyOTJmYSJ9LTRjN2MyZDAyOTJmYSJ9"
+            src="https://app.powerbi.com/view?r=eyJrIjoiY2VjZGE2YzYtZWQ0ZS00OGM3LTg0ODQtOTJmNzFhM2JlMDdmIiwidCI6ImUyYWQ4NzllLTFjYWEtNDZhZS1iOGNkLTRjN2MyZDAyOTJmYSJ9"
             allowFullScreen
             style={{
               position: "absolute",
@@ -449,7 +449,34 @@ export const DashboardScreen = () => {
               width: "100%",
               height: "100%",
               border: "none",
-              fontFamily: "Montserrat, sans-serif",
+              fontFamily: "Montserrat, sans-serif !important",
+            }}
+          ></iframe>
+        </div>
+      </div>
+      <div className="col-xl-12 col-md-12 mb-4">
+        <div
+          className="animate"
+          style={{
+            position: "relative",
+            paddingBottom: "56.25%",
+            height: 0,
+            overflow: "hidden",
+            borderRadius: "10px",
+          }}
+        >
+          <iframe
+            title="Dashboard_1"
+            src="https://app.powerbi.com/view?r=eyJrIjoiZmE1ZTI4MmMtMWU2NS00YmU5LWFhMzQtYTkzYjliNzc5ZmEyIiwidCI6ImUyYWQ4NzllLTFjYWEtNDZhZS1iOGNkLTRjN2MyZDAyOTJmYSJ9"
+            allowFullScreen
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: "100%",
+              height: "100%",
+              border: "none",
+              fontFamily: "Montserrat, sans-serif !important",
             }}
           ></iframe>
         </div>
@@ -477,7 +504,7 @@ export const DashboardScreen = () => {
               width: "100%",
               height: "100%",
               border: "none",
-              fontFamily: "Montserrat, sans-serif",
+              fontFamily: "Montserrat, sans-serif !important",
             }}
           ></iframe>
         </div>
@@ -505,7 +532,7 @@ export const DashboardScreen = () => {
               width: "100%",
               height: "100%",
               border: "none",
-              fontFamily: "Montserrat, sans-serif",
+              fontFamily: "Montserrat, sans-serif !important",
             }}
           ></iframe>
         </div>
