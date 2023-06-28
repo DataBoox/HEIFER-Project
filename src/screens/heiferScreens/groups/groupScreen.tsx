@@ -100,23 +100,13 @@ export const GroupScreen = () => {
                   </Button>
                 </OverlayTrigger>
               </div>
-              <div className="touchable pe-2">
-                <OverlayTrigger
-                  placement="top"
-                  overlay={<Tooltip id="edit-tooltip">Edit</Tooltip>}
-                >
-                  <Button onClick={() => navigate("/groups/edit")}>
-                    <FaPen size={16} color="#7F8C9F" />
-                  </Button>
-                </OverlayTrigger>
-              </div>
               <div className="touchable pe-2" onClick={handleButtonClick}>
                 <OverlayTrigger
                   placement="top"
                   overlay={<Tooltip id="Addform-tooltip">Add Form</Tooltip>}
                 >
                   <div>
-                    <FaPlus size={16} color="red" />
+                    <FaPlus size={16} color="#7F8C9F" />
                   </div>
                 </OverlayTrigger>
               </div>

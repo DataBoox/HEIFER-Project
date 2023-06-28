@@ -21,6 +21,7 @@ export interface GroupInfo {
     secretary: string;
     farmers: string;
     interventions: string;
+    group_farmers_count: number
 }
 
 export interface AddGroupPayload {
