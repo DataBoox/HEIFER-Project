@@ -1,7 +1,7 @@
 // import { Devotional, DevotionalProps} from "./components/devotionalComponent";
 import { MdOutlineAddCircleOutline } from "react-icons/md";
 import { Button} from "@chakra-ui/react";
-import { FaEye, FaPen, FaSearch, FaTrash, FaUserSlash } from "react-icons/fa";
+import { FaEye, FaPen, FaSearch, FaTrash, FaUserCheck, FaUserSlash } from "react-icons/fa";
 import { useToast, } from "@chakra-ui/react";
 import { PrimaryInput, ThemeTable } from "components";
 import { useNavigate } from "react-router-dom";
@@ -95,26 +95,30 @@ export const UserScreen = () => {
                   </Button>
                 </OverlayTrigger>
               </div>
-              <div className="touchable pe-2">
-                <OverlayTrigger
-                  placement="top"
-                  overlay={<Tooltip id="edit-tooltip">Edit</Tooltip>}
-                >
-                  <Button onClick={() => navigate("/users/edit")}>
-                    <FaPen size={16} color="#7F8C9F" />
-                  </Button>
-                </OverlayTrigger>
-              </div>
-              <div className="touchable" onClick={() => initDisable((row.original as UserInfo).id)}>
-                <OverlayTrigger
-                  placement="top"
-                  overlay={<Tooltip id="delete-tooltip">Disable</Tooltip>}
-                >
-                  <div>
-                    <FaUserSlash size={16} color="red" />
+              {(row.original as UserInfo).status ? (
+                  <div className="touchable" onClick={() => initDisable((row.original as UserInfo).id)}>
+                    <OverlayTrigger
+                      placement="top"
+                      overlay={<Tooltip id="delete-tooltip">Disable</Tooltip>}
+                    >
+                      <div>
+                        <FaUserSlash size={16} color="red" />
+                      </div>
+                    </OverlayTrigger>
                   </div>
-                </OverlayTrigger>
-              </div>
+              ) : (
+                <div className="touchable" onClick={() => initDisable((row.original as UserInfo).id)}>
+                  <OverlayTrigger
+                    placement="top"
+                    overlay={<Tooltip id="enable-tooltip">Enable</Tooltip>}
+                  >
+                    <div>
+                      <FaUserCheck size={16} color="green" />
+                    </div>
+                  </OverlayTrigger>
+                </div>
+              ) }
+              
             </div>
           )}
         />
