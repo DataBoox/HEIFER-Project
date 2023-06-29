@@ -23,20 +23,11 @@ export const useAllGroupsColumn = () => {
         },
         {
           header: "Venue",
-          accessorFn: (row) => `${row.venue}`,
+          accessorFn: (row) => `${row.community}`,
         },
         {
           header: "Farmers",
-          accessorFn: (row) => `${row.farmers}`,
-          Cell: ({ row }) => (
-            <Link
-              to={"/farmers/view/" + row.original.farmer_id}
-              state={{ member: row.original }}
-              className="text-decoration-underline"
-            >
-              {_.startCase(row.original.farmers)}
-            </Link>
-          ),
+          accessorFn: (row) => `${row.group_farmers_count}`,
         },
         {
           header: "Interventions",

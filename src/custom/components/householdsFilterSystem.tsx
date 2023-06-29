@@ -44,7 +44,7 @@ export const HouseholdFilterSystem = () => {
     });
     return (
       <div className="col-xl-12">
-        <div className="row g-3 p-4 mb-2">
+        <div className="row g-3 mb-4">
           <div className="col-auto">
             <PrimaryInput
               name="search"

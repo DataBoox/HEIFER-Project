@@ -116,7 +116,7 @@ export const GroupScreen = () => {
                   overlay={<Tooltip id="Addform-tooltip">Add Form</Tooltip>}
                 >
                   <div>
-                    <FaPlus size={16} color="red" />
+                    <FaPlus size={16} color="#7F8C9F" />
                   </div>
                 </OverlayTrigger>
               </div>
