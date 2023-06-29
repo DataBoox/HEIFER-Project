@@ -134,78 +134,6 @@ export const AddGroup = () => {
                   </div>
 
                   <div className="col-auto mb-4">
-                      <PrimarySelect 
-                        name="state"
-                        label="Select State"
-                        placeholder="Select State"
-                        options={ states }
-                        onChange={handleChange}
-                        isDisabled={isLoading}
-                        style={{
-                          backgroundColor: "#F2FAFC",
-                          borderRadius: 0,
-                          borderColor: "#CAECF3",
-                        }}
-                      />
-                  </div>
-                </div>
-                
-                <div className="col-lg-6 col-md-12">
-                  {(values.state.length ? 
-                      <div className="col-auto mb-4">
-                        <PrimarySelect 
-                          name="lga"
-                          label="Select Local Gov"
-                          placeholder="Select Local Gov"
-                          options={ localGov(Number(values.state)) }
-                          onChange={handleChange}
-                          size={"md"}
-                          isDisabled={isLoading}
-                          style={{
-                          backgroundColor: "#F2FAFC",
-                          borderRadius: 0,
-                          borderColor: "#CAECF3",
-                        }}
-                        />
-                      </div> : <></> )}
-                      
-                    {(values.state.length && values.lga.length ? 
-                      <div className="col-auto mb-4">
-                        <PrimarySelect
-                          name="community"
-                          label="Select Community"
-                          placeholder="Select Community"
-                          options={ communities(Number(values.state), Number(values.lga)) }
-                          onChange={handleChange}
-                          size={"md"}
-                          isDisabled={isLoading}
-                          style={{
-                            backgroundColor: "#F2FAFC",
-                            borderRadius: 0,
-                            borderColor: "#CAECF3",
-                          }}
-                        />
-                      </div> : <></> )}
-
-                  {/* <div className="col-auto mb-4">
-                    <PrimaryInput
-                      isRequired
-                      name="community"
-                      label="Community"
-                      placeholder="Enter resident community"
-                      value={values.community}
-                      error={Boolean(touched.community && errors.community)}
-                      bottomText={errors.community}
-                      onChange={handleChange}
-                      isDisabled={isLoading}
-                      style={{
-                        backgroundColor: "#F2FAFC",
-                        borderRadius: 0,
-                        borderColor: "#CAECF3",
-                      }}
-                    />
-                  </div> */}
-                  <div className="col-auto mb-4">
                     <PrimaryInput
                       isRequired
                       name="established_at"
@@ -225,7 +153,12 @@ export const AddGroup = () => {
                       min={new Date().toISOString().split("T")[0]}
                     />
                   </div>
-                  <div className="col-auto mb-4">
+                  
+                </div>
+                
+                <div className="col-lg-6 col-md-12">
+                  
+                <div className="col-auto mb-4">
                     <PrimarySelect 
                       isRequired
                       name="chairman"
@@ -261,6 +194,7 @@ export const AddGroup = () => {
                         }}
                       />
                   </div>
+                  
                   <div className="col-auto mb-4">
                     <PrimarySelect 
                         isRequired
@@ -279,6 +213,59 @@ export const AddGroup = () => {
                         }}
                       />
                   </div>
+
+                  <div className="col-auto mb-4">
+                      <PrimarySelect 
+                        name="state"
+                        label="Select State"
+                        placeholder="Select State"
+                        options={ states }
+                        onChange={handleChange}
+                        isDisabled={isLoading}
+                        style={{
+                          backgroundColor: "#F2FAFC",
+                          borderRadius: 0,
+                          borderColor: "#CAECF3",
+                        }}
+                      />
+                    </div>
+
+                    {(values.state.length ? 
+                        <div className="col-auto mb-4">
+                          <PrimarySelect 
+                            name="lga"
+                            label="Select Local Gov"
+                            placeholder="Select Local Gov"
+                            options={ localGov(Number(values.state)) }
+                            onChange={handleChange}
+                            size={"md"}
+                            isDisabled={isLoading}
+                            style={{
+                            backgroundColor: "#F2FAFC",
+                            borderRadius: 0,
+                            borderColor: "#CAECF3",
+                          }}
+                          />
+                        </div> : <></> )}
+                        
+                    {(values.state.length && values.lga.length ? 
+                      <div className="col-auto mb-4">
+                        <PrimarySelect
+                          name="community"
+                          label="Select Community"
+                          placeholder="Select Community"
+                          options={ communities(Number(values.state), Number(values.lga)) }
+                          onChange={handleChange}
+                          size={"md"}
+                          isDisabled={isLoading}
+                          style={{
+                            backgroundColor: "#F2FAFC",
+                            borderRadius: 0,
+                            borderColor: "#CAECF3",
+                          }}
+                        />
+                      </div> : <></> )}
+
                   <div className="col-auto text-end mb-4">
                     <Button
                       colorScheme="teal"
