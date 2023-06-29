@@ -95,7 +95,7 @@ export const UserScreen = () => {
                   </Button>
                 </OverlayTrigger>
               </div>
-              <div className="touchable pe-2">
+              {/* <div className="touchable pe-2">
                 <OverlayTrigger
                   placement="top"
                   overlay={<Tooltip id="edit-tooltip">Edit</Tooltip>}
@@ -104,7 +104,7 @@ export const UserScreen = () => {
                     <FaPen size={16} color="#7F8C9F" />
                   </Button>
                 </OverlayTrigger>
-              </div>
+              </div> */}
               <div className="touchable" onClick={() => initDisable((row.original as UserInfo).id)}>
                 <OverlayTrigger
                   placement="top"

@@ -12,6 +12,7 @@ import _ from "lodash";
 import { useLocation } from "react-router-dom";
 import { useProject } from "store/projects";
 import { useGetUserInfoQuery } from "store/user";
+import FrameTwo from "../../../assets/images/Frame_1303-transformed.png"
 
 export const ViewGroups = () => {
   const navigate = useNavigate();
@@ -240,6 +241,9 @@ export const ViewGroups = () => {
         </div>
         </div>
 
+        <div className="col-lg-6">
+        <img src={FrameTwo} alt="analytics" />
+        </div>
 
       <div className="col-xl-12">
       <h2 className="mt-3 mb-3 fw-bold" style={{color: "rgb(41, 41, 42)"}}>Household History</h2>

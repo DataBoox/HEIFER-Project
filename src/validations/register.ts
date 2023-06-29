@@ -19,9 +19,12 @@ export const AddRegisterFarmerScheme = () => {
     state: string().required('State is required'),
     lga: string().required('Local Government is required'),
     community: string().required('Commmunity is required'),
-    // group_name: string().required('Group name is required'),
-    // group_type: string().required('Group Type is required'),
     project_id: string().required('Project ID is required'),
+    no_of_males: number().required('Number of males is required'),
+      no_of_females: number().required('Number of females is required'),
+      farm_size: string().required('Farm size is required'),
+      household_type: string().required('Household type is required'),
+      household_income: string().required('Household Income is required'),
 
     });
 }
@@ -45,8 +48,11 @@ export const EditRegisterFarmerScheme = () => {
     state: string().required('State is required'),
     lga: string().required('Local Government is required'),
     community: string().required('Commmunity is required'),
-    // group_name: string().required('Group name is required'),
-    // group_type: string().required('Group Type is required'),
     project_id: string().required('Project ID is required'),
+    no_of_males: number().required('Number of males is required'),
+    no_of_females: number().required('Number of females is required'),
+    farm_size: string().required('Farm size is required'),
+    household_type: string().required('Household type is required'),
+    household_income: string().required('Household Income is required'),
     });
 }

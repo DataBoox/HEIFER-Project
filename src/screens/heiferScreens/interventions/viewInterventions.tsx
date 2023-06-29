@@ -12,6 +12,9 @@ import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import _ from "lodash";
 import { toast } from "react-toastify";
 import { useState } from "react";
+import FrameThree from "../../../assets/images/Frame_1304-transformed.png"
+import FrameFour from "../../../assets/images/Frame_1489-transformed.png"
+
 
 export const ViewInterventions = () => {
   const navigate = useNavigate();
@@ -262,6 +265,13 @@ export const ViewInterventions = () => {
         </div>
         </div>
 
+        <div className="col-lg-6">
+        <img src={FrameThree} alt="analytics" />
+        </div>
+
+        <div className="col-lg-12 mt-4">
+        <img src={FrameFour} alt="analytics" />
+        </div>
 
       <div className="col-xl-12">
       <h2 className="mt-3 mb-3 fw-bold" style={{color: "rgb(41, 41, 42)"}}>Household History</h2>

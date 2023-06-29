@@ -10,6 +10,8 @@ import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import _ from "lodash";
 import { toast } from "react-toastify";
 import { useState } from "react";
+import FrameOne from "../../../assets/images/Frame_1302-transformed.png"
+import FrameTwo from "../../../assets/images/Frame_1303-transformed.png"
 
 export const ViewFarmers = () => {
   const navigate = useNavigate();
@@ -188,7 +190,13 @@ export const ViewFarmers = () => {
           </div>
         </div>
 
-
+        <div className="col-lg-6">
+      <div className="stacked-frames">
+        <div className="col-lg-6"></div>
+        <img className="mb-4" src={FrameOne} alt="analytics" />
+        <img src={FrameTwo} alt="analytics" />
+      </div>
+    </div>
 
       <div className="col-xl-12">
       <h2 className="mt-3 mb-3 fw-bold" style={{color: "rgb(41, 41, 42)"}}>Intervention History</h2>

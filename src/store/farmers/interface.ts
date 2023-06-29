@@ -34,6 +34,12 @@ export interface FarmerInfo {
     farmer_id: number,
     latitude: number,
     longitude: number,
+    no_of_males: number,
+      no_of_females: number,
+      total_household: number,
+      farm_size: string,
+      household_type: string,
+      household_income: string,
 }
 
 export interface AddFarmerPayload {

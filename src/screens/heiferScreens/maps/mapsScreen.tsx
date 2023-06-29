@@ -97,7 +97,7 @@ export const MapsScreen = () => {
         >
           <iframe
             title="Map_DB"
-            src="https://app.powerbi.com/view?r=eyJrIjoiYjNiOTAzOTUtODBjYi00ZmZlLTlmNDItMDFjYjliZDkwZDYyIiwidCI6ImUyYWQ4NzllLTFjYWEtNDZhZS1iOGNkLTRjN2MyZDAyOTJmYSJ9"
+            src="https://app.powerbi.com/view?r=eyJrIjoiOTk0MGQxZTgtYzFhMy00NmQzLThmMjEtNjRhODc3N2ViOGY2IiwidCI6IjBlNjYxZTk4LTgzNGUtNDkyMC05YzM5LWIzZTU0MmJiNjY2NSIsImMiOjh9"
             allowFullScreen
             style={{
               position: "absolute",
