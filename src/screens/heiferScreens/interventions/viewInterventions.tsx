@@ -91,47 +91,27 @@ export const ViewInterventions = () => {
                     <td className="fw-bold" style={{ minWidth: "150px" }}>
                       Name
                     </td>
-                    <td className="p-2">Lorem ipsum .......</td>
+                    <td className="p-2">{ intervention?.data.name }</td>
                   </tr>
                   <tr>
                     <td className="fw-bold">Description</td>
-                    <td className="p-2">
-                      Lorem ipsum .......
-                      {/* {_.truncate(ev?.description.replace(/<[^>]*>?/gm, ""), {
-                          length: 40,
-                        })} */}
-                    </td>
+                    <td className="p-2">{ intervention?.data.description }</td>
                   </tr>
                   <tr>
                     <td className="fw-bold">State</td>
-                    <td className="p-2">
-                      Lorem ipsum .......
-                      {/* {moment(ev?.starts_at).format(
-                          "dddd, MMMM Do YYYY, h:mm:ss a"
-                        )}{" "} */}
-                    </td>
+                    <td className="p-2">{ intervention?.data.state }</td>
                   </tr>
                   <tr>
                     <td className="fw-bold">LGA</td>
-                    <td className="p-2">
-                      Lorem ipsum .......
-                      {/* {moment(ev?.ends_at).format(
-                          "dddd, MMMM Do YYYY, h:mm:ss a"
-                        )}{" "} */}
-                    </td>
+                    <td className="p-2">{ intervention?.data.lga }</td>
                   </tr>
                   <tr>
                     <td className="fw-bold">Community</td>
-                    <td className="p-2">
-                      Lorem ipsum .......
-                      {/* {moment(ev?.created_at).format(
-                          "ddd, MMMM Do YYYY, h:mm:ss a"
-                        )} */}
-                    </td>
+                    <td className="p-2">{ intervention?.data.community }</td>
                   </tr>
                   <tr>
                     <td className="fw-bold">Created By</td>
-                    <td className="p-2 ">Lorem ipsum .......</td>
+                    <td className="p-2 ">{ intervention?.data.creator.user_info?.first_name }</td>
                   </tr>
                 </tbody>
               </table>
