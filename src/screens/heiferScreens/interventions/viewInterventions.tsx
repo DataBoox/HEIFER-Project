@@ -195,7 +195,10 @@ export const ViewInterventions = () => {
           </div>
         </div>
 
-        <div className="col-lg-3">
+        <div className="col-lg-6">
+      <div className="stacked-frames">
+        <div className="col-lg-6"></div>
+       
         <div className="card card-animate">
           <div className="card-body">
             <div className="d-flex align-items-center justify-content-between">
@@ -228,9 +231,9 @@ export const ViewInterventions = () => {
           </div>
           {/* end card */}
         </div>
-        </div>
+        
 
-        <div className="col-lg-3">
+       
         <div className="card card-animate">
           <div className="card-body">
             <div className="d-flex align-items-center justify-content-between">
@@ -263,13 +266,12 @@ export const ViewInterventions = () => {
           </div>
           {/* end card */}
         </div>
-        </div>
-
-        <div className="col-lg-6">
+        
         <img src={FrameThree} alt="analytics" />
-        </div>
+      </div>
+    </div>
 
-        <div className="col-lg-12 mt-4">
+        <div className="col-lg-12 mt-4 mb-3">
         <img src={FrameFour} alt="analytics" />
         </div>
 

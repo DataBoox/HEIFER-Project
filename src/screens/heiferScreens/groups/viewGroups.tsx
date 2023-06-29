@@ -171,7 +171,12 @@ export const ViewGroups = () => {
           </div>
         </div>
 
-        <div className="col-lg-3">
+        
+
+        <div className="col-lg-6">
+      <div className="stacked-frames">
+        <div className="col-lg-6"></div>
+       
         <div className="card card-animate">
           <div className="card-body">
             <div className="d-flex align-items-center justify-content-between">
@@ -204,9 +209,9 @@ export const ViewGroups = () => {
           </div>
           {/* end card */}
         </div>
-        </div>
+        
 
-        <div className="col-lg-3">
+       
         <div className="card card-animate">
           <div className="card-body">
             <div className="d-flex align-items-center justify-content-between">
@@ -239,11 +244,13 @@ export const ViewGroups = () => {
           </div>
           {/* end card */}
         </div>
-        </div>
-
-        <div className="col-lg-6">
+        
         <img src={FrameTwo} alt="analytics" />
-        </div>
+      </div>
+    </div>
+
+
+
 
       <div className="col-xl-12">
       <h2 className="mt-3 mb-3 fw-bold" style={{color: "rgb(41, 41, 42)"}}>Household History</h2>
