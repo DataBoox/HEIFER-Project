@@ -1,4 +1,4 @@
-import { object, string } from "yup";
+import { object, string, number } from "yup";
 
 export const AddShgRecordScheme = () => {
     return object({
@@ -11,6 +11,12 @@ export const AddShgRecordScheme = () => {
             financial_services: string().required('This Field is required'),
             how_much_was_accessed: string().required('This Field is required'),
             service_provider: string().required('This Field is required'),
+            conduct_sales: string().required('This Field is required'),
+            commodity_sold: string().required('This Field is required'),
+            quantity_sold: number().required('This Field is required'),
+            measurement_unit: string().required('This Field is required'),
+            price: number().required('This Field is required'),
+            value: number().required('This Field is required'),
             comment: string().required('This Field is required'),
     });
 }
@@ -26,6 +32,11 @@ export const EditShgRecordScheme = () => {
         financial_services: string().required('This Field is required'),
         how_much_was_accessed: string().required('This Field is required'),
         service_provider: string().required('This Field is required'),
+        commodity_sold: string().required('This Field is required'),
+            quantity_sold: number().required('This Field is required'),
+            measurement_unit: string().required('This Field is required'),
+            price: number().required('This Field is required'),
+            value: number().required('This Field is required'),
         comment: string().required('This Field is required'),
     });
 }
