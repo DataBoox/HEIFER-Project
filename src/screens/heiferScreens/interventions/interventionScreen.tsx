@@ -92,7 +92,7 @@ export const InterventionScreen = () => {
                   placement="top"
                   overlay={<Tooltip id="view-tooltip">View</Tooltip>}
                 >
-                  <Button onClick={() => navigate("/interventions/view")}>
+                  <Button onClick={() => navigate(`/interventions/view/` + (row.original as Intervention).id)}>
                     <FaEye size={16} color="#7F8C9F" />
                   </Button>
                 </OverlayTrigger>

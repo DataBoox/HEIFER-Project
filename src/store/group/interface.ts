@@ -20,7 +20,7 @@ export interface GroupInfo {
     vice_chairman: string;
     secretary: string;
     farmers: string;
-    interventions: string;
+    group_interventions_count: number;
     group_farmers_count: number
 }
 

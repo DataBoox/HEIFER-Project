@@ -2,7 +2,8 @@ import { PaginatedPayload } from "@store/interface";
 import { IResponse } from "../auth";
 
 export interface RequiresFarmerID {
-    farmers: (number | string)[],
+    project_id: number;
+    farmer_id: number|string
 }
 
 export interface FarmerInfo {

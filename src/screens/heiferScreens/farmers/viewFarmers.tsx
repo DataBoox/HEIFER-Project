@@ -5,22 +5,25 @@ import { PrimaryButton, PrimaryInput, ThemeTable } from "components";
 import { useNavigate } from "react-router-dom";
 import { ContentBodyContainer, DashboardCardContainer } from "../../home";
 import { useAllHistorysColumn} from "./components";
-import { useGetFarmersQuery } from "store/farmers";
+import { useGetFarmersQuery, useGetFarmerInfoQuery } from "store/farmers";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import _ from "lodash";
 import { toast } from "react-toastify";
 import { useState } from "react";
 import FrameOne from "../../../assets/images/Frame_1302-transformed.png"
 import FrameTwo from "../../../assets/images/Frame_1303-transformed.png"
+import { useLocation } from "react-router-dom";
+import { useProject } from "store/projects";
 
 export const ViewFarmers = () => {
   const navigate = useNavigate();
   const columns = useAllHistorysColumn();
-  const { data, isLoading, refetch } = useGetFarmersQuery({
-    page: 1,
-    query: "",
-  });
+  const { data, isLoading, refetch } = useGetFarmersQuery({ page: 1, query: "" });
   const toast = useToast({ position: "top-right" });
+  const pathArray: string[] = useLocation().pathname.trim().split("/")
+  const groupId = pathArray[pathArray.length - 1]
+  const projectId: number = useProject().project?.id;
+  const { data: farmer } = useGetFarmerInfoQuery({ project_id: projectId, farmer_id: groupId  });
 
   return (
     <ContentBodyContainer
@@ -82,47 +85,27 @@ export const ViewFarmers = () => {
                     <td className="fw-bold" style={{ minWidth: "150px" }}>
                       Last Name
                     </td>
-                    <td className="p-2">Lorem ipsum .......</td>
+                    <td className="p-2">{ farmer?.data?.last_name }</td>
                   </tr>
                   <tr>
                     <td className="fw-bold">First Name</td>
-                    <td className="p-2">
-                      Lorem ipsum .......
-                      {/* {_.truncate(ev?.description.replace(/<[^>]*>?/gm, ""), {
-                          length: 40,
-                        })} */}
-                    </td>
+                    <td className="p-2"> { farmer?.data?.first_name }</td>
                   </tr>
                   <tr>
                     <td className="fw-bold">Phone Number</td>
-                    <td className="p-2">
-                      Lorem ipsum .......
-                      {/* {moment(ev?.starts_at).format(
-                          "dddd, MMMM Do YYYY, h:mm:ss a"
-                        )}{" "} */}
-                    </td>
+                    <td className="p-2"> { farmer?.data?.farmer_phone }</td>
                   </tr>
                   <tr>
                     <td className="fw-bold">Gender</td>
-                    <td className="p-2">
-                      Lorem ipsum .......
-                      {/* {moment(ev?.ends_at).format(
-                          "dddd, MMMM Do YYYY, h:mm:ss a"
-                        )}{" "} */}
-                    </td>
+                    <td className="p-2">{ farmer?.data?.farmer_gender }</td>
                   </tr>
                   <tr>
                     <td className="fw-bold">Group Name</td>
-                    <td className="p-2">
-                      Lorem ipsum .......
-                      {/* {moment(ev?.created_at).format(
-                          "ddd, MMMM Do YYYY, h:mm:ss a"
-                        )} */}
-                    </td>
+                    <td className="p-2">{ farmer?.data?.group_name }</td>
                   </tr>
                   <tr>
                     <td className="fw-bold">Address</td>
-                    <td className="p-2 ">Lorem ipsum .......</td>
+                    <td className="p-2 ">{ farmer?.data?.farmer_address }</td>
                   </tr>
                 </tbody>
               </table>

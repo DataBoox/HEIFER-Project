@@ -78,21 +78,12 @@ export const FarmerScreen = () => {
                   placement="top"
                   overlay={<Tooltip id="view-tooltip">View</Tooltip>}
                 >
-                  <Button onClick={() => navigate("/farmers/view")}>
+                  <Button onClick={() => navigate("/farmers/view/" + (row.original as Farmer).id)}>
                     <FaEye size={16} color="#7F8C9F" />
                   </Button>
                 </OverlayTrigger>
               </div>
-              {/* <div className="touchable pe-2">
-                <OverlayTrigger
-                  placement="top"
-                  overlay={<Tooltip id="edit-tooltip">Edit</Tooltip>}
-                >
-                  <Button onClick={() => navigate("/farmers/edit")}>
-                    <FaPen size={16} color="#7F8C9F" />
-                  </Button>
-                </OverlayTrigger>
-              </div> */}
+              
               <div className="touchable" onClick={() => initDelete((row.original as Farmer).id)}>
                 <OverlayTrigger
                   placement="top"

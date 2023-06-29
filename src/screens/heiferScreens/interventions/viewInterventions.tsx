@@ -7,14 +7,15 @@ import { PrimaryButton, PrimaryInput, ThemeTable } from "components";
 import { useNavigate } from "react-router-dom";
 import { ContentBodyContainer, DashboardCardContainer } from "../../home";
 import { useAllFarmersColumn} from "../farmers/components";
-import { useGetInterventionsQuery, Intervention } from "store/intervention";
+import { useGetInterventionsQuery, useGetInterventionInfoQuery } from "store/intervention";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import _ from "lodash";
 import { toast } from "react-toastify";
 import { useState } from "react";
 import FrameThree from "../../../assets/images/Frame_1304-transformed.png"
 import FrameFour from "../../../assets/images/Frame_1489-transformed.png"
-
+import { useLocation } from "react-router-dom";
+import { useProject } from "store/projects";
 
 export const ViewInterventions = () => {
   const navigate = useNavigate();
@@ -23,8 +24,13 @@ export const ViewInterventions = () => {
     page: 1,
     query: "",
   });
-  const toast = useToast({ position: "top-right" });
+  const pathArray: string[] = useLocation().pathname.trim().split("/")
+  const interventionId = pathArray[pathArray.length - 1]
+  const projectId: number = useProject().project?.id;
+  const { data: intervention } = useGetInterventionInfoQuery({ project_id: projectId, intervention_id: interventionId  });
 
+
+  const toast = useToast({ position: "top-right" });
   return (
     <ContentBodyContainer
       title="View Interventions"
