@@ -83,7 +83,7 @@ export const FarmerScreen = () => {
                   </Button>
                 </OverlayTrigger>
               </div>
-              <div className="touchable pe-2">
+              {/* <div className="touchable pe-2">
                 <OverlayTrigger
                   placement="top"
                   overlay={<Tooltip id="edit-tooltip">Edit</Tooltip>}
@@ -92,7 +92,7 @@ export const FarmerScreen = () => {
                     <FaPen size={16} color="#7F8C9F" />
                   </Button>
                 </OverlayTrigger>
-              </div>
+              </div> */}
               <div className="touchable" onClick={() => initDelete((row.original as Farmer).id)}>
                 <OverlayTrigger
                   placement="top"

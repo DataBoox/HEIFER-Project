@@ -11,6 +11,7 @@ import {
   GroupOrAssSelect,
   GroupTypeSelect,
   PrimarySelect,
+  HouseholdTypeSelect,
 } from "components";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -68,6 +69,12 @@ export const RegisterFarmers = () => {
       longitude: "",
       state: "",
       lga: "",
+      no_of_males: "",
+      no_of_females: "",
+      total_household: "",
+      farm_size: "",
+      household_type: "",
+      household_income: "",
     },
     validationSchema: AddRegisterFarmerScheme(),
     onSubmit: () => initRequest(),
@@ -259,9 +266,7 @@ export const RegisterFarmers = () => {
                       }}
                     />
                   </div>
-                </div>
 
-                <div className="col-lg-3 col-md-12">
                   <div className="col-auto mb-4">
                     <PrimaryInput
                       isRequired
@@ -282,10 +287,36 @@ export const RegisterFarmers = () => {
                       }}
                     />
                   </div>
+
+                  <div className="col-auto mb-4">
+                    <GenderSelect
+                      isRequired
+                      name="farmer_gender"
+                      value={values.farmer_gender}
+                      error={Boolean(
+                        touched.farmer_gender && errors.farmer_gender
+                      )}
+                      onChange={handleChange}
+                      isDisabled={isLoading}
+                      label="Farmer's gender?"
+                      style={{
+                        backgroundColor: "#F2FAFC",
+                        borderRadius: 0,
+                        borderColor: "#CAECF3",
+                      }}
+                    />
+                  </div>
+
+
+                </div>
+
+                <div className="col-lg-3 col-md-12">
+                
                   <div className="col-auto mb-4">
             <PrimarySelect 
               name="state"
-              placeholder="Select State"
+              placeholder="Select"
+              label="Select State"
               options={ states }
               onChange={handleChange}
               size={"md"}
@@ -374,28 +405,7 @@ export const RegisterFarmers = () => {
                       }}
                     />
                   </div>
-                 
-                </div>
-
-                <div className="col-lg-3 col-md-12">
-                <div className="col-auto mb-4">
-                    <GenderSelect
-                      isRequired
-                      name="farmer_gender"
-                      value={values.farmer_gender}
-                      error={Boolean(
-                        touched.farmer_gender && errors.farmer_gender
-                      )}
-                      onChange={handleChange}
-                      isDisabled={isLoading}
-                      label="Farmer's gender?"
-                      style={{
-                        backgroundColor: "#F2FAFC",
-                        borderRadius: 0,
-                        borderColor: "#CAECF3",
-                      }}
-                    />
-                  </div>
+                  
                   <div className="col-auto mb-4">
                     <PrimaryInput
                       isRequired
@@ -414,6 +424,7 @@ export const RegisterFarmers = () => {
                       }}
                     />
                   </div>
+
                   <div className="col-auto mb-4">
                     <AgeCategorySelect
                       isRequired
@@ -454,6 +465,11 @@ export const RegisterFarmers = () => {
                       }}
                     />
                   </div>
+                </div>
+
+                <div className="col-lg-3 col-md-12">
+
+                  
                   <div className="col-auto mb-4">
                     <HouseholdHeadSelect
                       isRequired
@@ -477,7 +493,107 @@ export const RegisterFarmers = () => {
                       }}
                     />
                   </div>
+
                   <div className="col-auto mb-4">
+                    <PrimaryInput
+                      isRequired
+                      name="no_of_males"
+                      label="Number of males in the household"
+                      type="number"
+                      placeholder="Your answer here..."
+                      value={values.no_of_males}
+                      error={Boolean(touched.no_of_males && errors.no_of_males)}
+                      bottomText={errors.no_of_males}
+                      onChange={handleChange}
+                      isDisabled={isLoading}
+                      style={{
+                        backgroundColor: "#F2FAFC",
+                        borderRadius: 0,
+                        borderColor: "#CAECF3",
+                      }}
+                    />
+                  </div>
+
+                  <div className="col-auto mb-4">
+                    <PrimaryInput
+                      isRequired
+                      name="no_of_females"
+                      label="Number of females in the household"
+                      type="number"
+                      placeholder="Your answer here..."
+                      value={values.no_of_females}
+                      error={Boolean(touched.no_of_females && errors.no_of_females)}
+                      bottomText={errors.no_of_females}
+                      onChange={handleChange}
+                      isDisabled={isLoading}
+                      style={{
+                        backgroundColor: "#F2FAFC",
+                        borderRadius: 0,
+                        borderColor: "#CAECF3",
+                      }}
+                    />
+                  </div>
+                
+                  <div className="col-auto mb-4">
+                    <PrimaryInput
+                      isRequired
+                      name="total_household"
+                      label="Total number of members in the household"
+                      type="number"
+                      placeholder="Your answer here..."
+                      value={values.total_household}
+                      error={Boolean(touched.total_household && errors.total_household)}
+                      bottomText={errors.total_household}
+                      onChange={handleChange}
+                      isDisabled={isLoading}
+                      style={{
+                        backgroundColor: "#F2FAFC",
+                        borderRadius: 0,
+                        borderColor: "#CAECF3",
+                      }}
+                    />
+                  </div>
+
+                  <div className="col-auto mb-4">
+                    <PrimaryInput
+                      isRequired
+                      name="farm_size"
+                      label="Farm Size (in Hectres)"
+                      type="number"
+                      placeholder="Your answer here..."
+                      value={values.farm_size}
+                      error={Boolean(touched.farm_size && errors.farm_size)}
+                      bottomText={errors.farm_size}
+                      onChange={handleChange}
+                      isDisabled={isLoading}
+                      style={{
+                        backgroundColor: "#F2FAFC",
+                        borderRadius: 0,
+                        borderColor: "#CAECF3",
+                      }}
+                    />
+                  </div>
+
+                  <div className="col-auto mb-4">
+                    <HouseholdTypeSelect
+                      isRequired
+                      name="household_type"
+                      value={values.household_type}
+                      error={Boolean(
+                        touched.household_type &&
+                          errors.household_type
+                      )}
+                     
+                      onChange={handleChange}
+                      isDisabled={isLoading}
+                      style={{
+                        backgroundColor: "#F2FAFC",
+                        borderRadius: 0,
+                        borderColor: "#CAECF3",
+                      }}
+                    />
+                  </div>
+                  {/* <div className="col-auto mb-4">
                     <GenderSelect
                       isRequired
                       name="house_head_gender"
@@ -494,10 +610,32 @@ export const RegisterFarmers = () => {
                         borderColor: "#CAECF3",
                       }}
                     />
-                  </div>
+                  </div> */}
+                  
                 </div>
 
                 <div className="col-lg-3 col-md-12">
+               
+
+                  <div className="col-auto mb-4">
+                    <PrimaryInput
+                      isRequired
+                      name="household_income"
+                      label="What is the income of your household?"
+                      type="number"
+                      placeholder="Your answer here..."
+                      value={values.household_income}
+                      error={Boolean(touched.household_income && errors.household_income)}
+                      bottomText={errors.household_income}
+                      onChange={handleChange}
+                      isDisabled={isLoading}
+                      style={{
+                        backgroundColor: "#F2FAFC",
+                        borderRadius: 0,
+                        borderColor: "#CAECF3",
+                      }}
+                    />
+                  </div>
                   <div className="col-auto mb-4">
                     <MaritalStatusSelect
                       isRequired

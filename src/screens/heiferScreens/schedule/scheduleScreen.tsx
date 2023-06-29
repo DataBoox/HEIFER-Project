@@ -1,10 +1,10 @@
 import { ContentBodyContainer } from "../../home";
 import UnderConstructionImage from "../../../assets/svg/under_construction_-46-pa.svg"
 
-export const UnderConstruction = () => {
+export const ScheduleUnderConstruction = () => {
     return (
-        <ContentBodyContainer  title="Communication"
-        routesRule={"Communication"}>
+        <ContentBodyContainer  title="Schedule"
+        routesRule={"Schedule"}>
             <div className="h-100">
                 <div className="d-grid container" style={{ placeItems: "center" }}>
                     <img src={UnderConstructionImage} width="700" alt="under-const" />

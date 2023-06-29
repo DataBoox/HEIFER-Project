@@ -80,7 +80,7 @@ export const ViewUsers = () => {
                   </tr>
                   <tr>
                     <td className="fw-bold">First Name</td>
-                    <td className="p-2">Lorem ipsum {data?.data.fname}</td>
+                    <td className="p-2">{data?.data.fname}</td>
                   </tr>
                   <tr>
                     <td className="fw-bold">Email Address</td>

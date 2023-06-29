@@ -1,6 +1,6 @@
 import { Button, useToast } from "@chakra-ui/react";
 import { MdOutlineAddCircleOutline } from "react-icons/md";
-import { PrimaryInput, YesNoSelect, EntitySelect, PrimaryTextarea, FinancialServicesSelect, ServiceProviderSelect } from "components";
+import { PrimaryInput, YesNoSelect, EntitySelect, PrimaryTextarea, FinancialServicesSelect, ServiceProviderSelect, MeasurementUnitSelect } from "components";
 import { useNavigate } from "react-router-dom";
 import { ContentBodyContainer, DashboardCardContainer } from "../../home";
 import { useFormik } from "formik";
@@ -38,6 +38,12 @@ export const ShgRecordForm = () => {
             financial_services: "",
             how_much_was_accessed: "",
             service_provider: "",
+            conduct_sales: "",
+            commodity_sold: "",
+            quantity_sold: "",
+            measurement_unit: "",
+            price: "",
+            value: "",
             comment: "",
         },
         validationSchema: AddShgRecordScheme(),
@@ -172,10 +178,25 @@ export const ShgRecordForm = () => {
                             }}
                         />
                     </div>
-                    </div>
 
-                    <div className="col-lg-6 col-md-12">
-                   
+                    <div className="col-auto mb-3">
+                        <YesNoSelect
+                            isRequired
+                            name="asset"
+                            label="Was The Loan Received In Form Of Input/Assets Credit?"
+                            placeholder="Select"
+                            value={values.asset}
+                            error={Boolean(touched.asset && errors.asset)}
+                            bottomText={errors.asset}
+                            onChange={handleChange}
+                            isDisabled={isLoading}
+                            style={{
+                                backgroundColor: "#F2FAFC",
+                                borderRadius: 0,
+                                borderColor: "#CAECF3",
+                            }}
+                        />
+                    </div>
                     <div className="col-auto mb-3">
                         <FinancialServicesSelect
                             isRequired
@@ -212,6 +233,12 @@ export const ShgRecordForm = () => {
                             }}
                         />
                     </div>
+
+                    </div>
+
+                    <div className="col-lg-6 col-md-12">
+                   
+                    
                     <div className="col-auto mb-3">
                         <ServiceProviderSelect
                             isRequired
@@ -231,9 +258,121 @@ export const ShgRecordForm = () => {
                         />
                     </div>
                     <div className="col-auto mb-3">
+                        <YesNoSelect
+                            isRequired
+                            name="conduct_sales"
+                            label="Did The Group Conduct Sales This Month?"
+                            placeholder="Select"
+                            value={values.conduct_sales}
+                            error={Boolean(touched.conduct_sales && errors.conduct_sales)}
+                            bottomText={errors.conduct_sales}
+                            onChange={handleChange}
+                            isDisabled={isLoading}
+                            style={{
+                                backgroundColor: "#F2FAFC",
+                                borderRadius: 0,
+                                borderColor: "#CAECF3",
+                            }}
+                        />
+                    </div>
+                    <div className="col-auto mb-3">
+                        <PrimaryInput
+                            isRequired
+                            name="commodity_sold"
+                            label="Type Of Commodity Sold"
+                            placeholder="Answer here"
+                            value={values.commodity_sold}
+                            error={Boolean(touched.commodity_sold && errors.commodity_sold)}
+                            bottomText={errors.commodity_sold}
+                            onChange={handleChange}
+                            isDisabled={isLoading}
+                            style={{
+                                backgroundColor: "#F2FAFC",
+                                borderRadius: 0,
+                                borderColor: "#CAECF3",
+                            }}
+                        />
+                    </div>
+                    <div className="col-auto mb-3">
+                        <PrimaryInput
+                            isRequired
+                            name="quantity_sold"
+                            label="How Much Was Sold?"
+                            type="number"
+                            placeholder="Answer here"
+                            value={values.quantity_sold}
+                            error={Boolean(touched.quantity_sold && errors.quantity_sold)}
+                            bottomText={errors.quantity_sold}
+                            onChange={handleChange}
+                            isDisabled={isLoading}
+                            style={{
+                                backgroundColor: "#F2FAFC",
+                                borderRadius: 0,
+                                borderColor: "#CAECF3",
+                            }}
+                        />
+                    </div>
+                    <div className="col-auto mb-3">
+                        <MeasurementUnitSelect
+                            isRequired
+                            name="measurement_unit"
+                            label="What Unit Of Measurement Was Used?"
+                            placeholder="Select"
+                            value={values.measurement_unit}
+                            error={Boolean(touched.measurement_unit && errors.measurement_unit)}
+                            bottomText={errors.measurement_unit}
+                            onChange={handleChange}
+                            isDisabled={isLoading}
+                            style={{
+                                backgroundColor: "#F2FAFC",
+                                borderRadius: 0,
+                                borderColor: "#CAECF3",
+                            }}
+                        />
+                    </div>
+                    <div className="col-auto mb-3">
+                        <PrimaryInput
+                            isRequired
+                            name="price"
+                            label="What Was The Unit Price?"
+                            type="number"
+                            placeholder="Answer here"
+                            value={values.price}
+                            error={Boolean(touched.price && errors.price)}
+                            bottomText={errors.price}
+                            onChange={handleChange}
+                            isDisabled={isLoading}
+                            style={{
+                                backgroundColor: "#F2FAFC",
+                                borderRadius: 0,
+                                borderColor: "#CAECF3",
+                            }}
+                        />
+                    </div>
+                    <div className="col-auto mb-3">
+                        <PrimaryInput
+                            isRequired
+                            name="value"
+                            label="The Total Value Of Sales?"
+                            type="number"
+                            placeholder="Answer here"
+                            value={values.value}
+                            error={Boolean(touched.value && errors.value)}
+                            bottomText={errors.value}
+                            onChange={handleChange}
+                            isDisabled={isLoading}
+                            style={{
+                                backgroundColor: "#F2FAFC",
+                                borderRadius: 0,
+                                borderColor: "#CAECF3",
+                            }}
+                        />
+                    </div>
+
+                    <div className="col-auto mb-3">
                         <PrimaryTextarea
                             name="comment"
-                            label="Any Additional Comments?"
+                            label="Highlight Any Major Achievements or Challenges"
                             placeholder="Answer here"
                             value={values.comment}
                             error={Boolean(touched.comment && errors.comment)}
@@ -261,7 +400,7 @@ export const ShgRecordForm = () => {
                     borderRadius={0}
                     padding={"16px, 48px, 16px, 48px"}
                   >
-                    Add Form
+                    Submit Response
                   </Button>
                 </div>
                     </div>

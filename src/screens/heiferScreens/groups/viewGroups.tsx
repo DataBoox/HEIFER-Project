@@ -12,6 +12,7 @@ import _ from "lodash";
 import { useLocation } from "react-router-dom";
 import { useProject } from "store/projects";
 import { useGetUserInfoQuery } from "store/user";
+import FrameTwo from "../../../assets/images/Frame_1303-transformed.png"
 
 export const ViewGroups = () => {
   const navigate = useNavigate();
@@ -170,7 +171,12 @@ export const ViewGroups = () => {
           </div>
         </div>
 
-        <div className="col-lg-3">
+        
+
+        <div className="col-lg-6">
+      <div className="stacked-frames">
+        <div className="col-lg-6"></div>
+       
         <div className="card card-animate">
           <div className="card-body">
             <div className="d-flex align-items-center justify-content-between">
@@ -203,9 +209,9 @@ export const ViewGroups = () => {
           </div>
           {/* end card */}
         </div>
-        </div>
+        
 
-        <div className="col-lg-3">
+       
         <div className="card card-animate">
           <div className="card-body">
             <div className="d-flex align-items-center justify-content-between">
@@ -238,7 +244,12 @@ export const ViewGroups = () => {
           </div>
           {/* end card */}
         </div>
-        </div>
+        
+        <img src={FrameTwo} alt="analytics" />
+      </div>
+    </div>
+
+
 
 
       <div className="col-xl-12">

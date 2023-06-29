@@ -100,6 +100,16 @@ export const GroupScreen = () => {
                   </Button>
                 </OverlayTrigger>
               </div>
+              {/* <div className="touchable pe-2">
+                <OverlayTrigger
+                  placement="top"
+                  overlay={<Tooltip id="edit-tooltip">Edit</Tooltip>}
+                >
+                  <Button onClick={() => navigate("/groups/edit")}>
+                    <FaPen size={16} color="#7F8C9F" />
+                  </Button>
+                </OverlayTrigger>
+              </div> */}
               <div className="touchable pe-2" onClick={handleButtonClick}>
                 <OverlayTrigger
                   placement="top"
@@ -139,9 +149,9 @@ export const GroupScreen = () => {
               <li className="mb-2">
                 <Button variant="link" onClick={() => navigate("/groups/form-1")}>Self Help Group Record Tracking</Button>
               </li>
-              <li className="mb-2">
+              {/* <li className="mb-2">
                 <Button variant="link">SHG & Entities Summary Form</Button>
-              </li>
+              </li> */}
               {/* Add more form options as needed */}
             </ul>
           </ModalBody>

@@ -19,6 +19,12 @@ export interface ShgInfo {
             financial_services: string,
             how_much_was_accessed: string,
             service_provider: string,
+            conduct_sales: string,
+            commodity_sold: string,
+            quantity_sold: number,
+            measurement_unit: string,
+            price: number,
+            value: number,
             comment: string,
 }
 
