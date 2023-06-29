@@ -111,7 +111,7 @@ export const ViewInterventions = () => {
                   </tr>
                   <tr>
                     <td className="fw-bold">Created By</td>
-                    <td className="p-2 ">{ intervention?.data.creator.user_info?.first_name }</td>
+                    <td className="p-2 ">{ intervention?.data.creator.user_info?.fname }</td>
                   </tr>
                 </tbody>
               </table>

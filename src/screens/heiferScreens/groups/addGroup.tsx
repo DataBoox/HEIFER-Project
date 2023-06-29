@@ -9,6 +9,7 @@ import { useState } from "react";
 import { useAddGroupMutation } from "store/group";
 import { useGetFarmersQuery } from "store/farmers";
 import { useProject } from "store/projects";
+import { states, localGov, communities } from "utilities";
 
 export const AddGroup = () => {
   const [show, setShow] = useState(false);
@@ -26,7 +27,7 @@ export const AddGroup = () => {
   } = useFormik({
     initialValues: {
       project_id: projectId, name: "", description: "", 
-      meeting_days: "", community: "", venue: "", 
+      meeting_days: "", state: "", lga: "", community: "", venue: "", 
       established_at: "", chairman: "", vice_chairman: "", secretary: "",
     },
     validationSchema: AddGroupScheme(), onSubmit: () => initRequest(),
@@ -82,7 +83,7 @@ export const AddGroup = () => {
                       label={"Group Description"}
                       placeholder="About your group"
                       size={"lg"}
-                      rows={7}
+                      rows={5}
                       value={values.description}
                       error={Boolean(touched.description && errors.description)}
                       bottomText={errors.description}
@@ -131,10 +132,62 @@ export const AddGroup = () => {
                       }}
                     />
                   </div>
-                </div>
 
-                <div className="col-lg-6 col-md-12">
                   <div className="col-auto mb-4">
+                      <PrimarySelect 
+                        name="state"
+                        label="Select State"
+                        placeholder="Select State"
+                        options={ states }
+                        onChange={handleChange}
+                        isDisabled={isLoading}
+                        style={{
+                          backgroundColor: "#F2FAFC",
+                          borderRadius: 0,
+                          borderColor: "#CAECF3",
+                        }}
+                      />
+                  </div>
+                </div>
+                
+                <div className="col-lg-6 col-md-12">
+                  {(values.state.length ? 
+                      <div className="col-auto mb-4">
+                        <PrimarySelect 
+                          name="lga"
+                          label="Select Local Gov"
+                          placeholder="Select Local Gov"
+                          options={ localGov(Number(values.state)) }
+                          onChange={handleChange}
+                          size={"md"}
+                          isDisabled={isLoading}
+                          style={{
+                          backgroundColor: "#F2FAFC",
+                          borderRadius: 0,
+                          borderColor: "#CAECF3",
+                        }}
+                        />
+                      </div> : <></> )}
+                      
+                    {(values.state.length && values.lga.length ? 
+                      <div className="col-auto mb-4">
+                        <PrimarySelect
+                          name="community"
+                          label="Select Community"
+                          placeholder="Select Community"
+                          options={ communities(Number(values.state), Number(values.lga)) }
+                          onChange={handleChange}
+                          size={"md"}
+                          isDisabled={isLoading}
+                          style={{
+                            backgroundColor: "#F2FAFC",
+                            borderRadius: 0,
+                            borderColor: "#CAECF3",
+                          }}
+                        />
+                      </div> : <></> )}
+
+                  {/* <div className="col-auto mb-4">
                     <PrimaryInput
                       isRequired
                       name="community"
@@ -151,7 +204,7 @@ export const AddGroup = () => {
                         borderColor: "#CAECF3",
                       }}
                     />
-                  </div>
+                  </div> */}
                   <div className="col-auto mb-4">
                     <PrimaryInput
                       isRequired
