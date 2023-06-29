@@ -18,6 +18,8 @@ export const breadcrumbConfig: { [x: string]: RouteDirector[] } = {
     'formsOne': [{ name: 'Dashboard', to: '/' }, { name: 'Groups', to: '/groups' }, { name: 'SHG Record Tracking' }],
     'viewGroups': [{ name: 'Dashboard', to: '/' }, { name: 'Groups', to: '/groups' }, { name: 'View Group' }],
     'Communication': [{ name: 'Dashboard', to: '/' }, { name: 'Communication' }],
+    'Schedule': [{ name: 'Dashboard', to: '/' }, { name: 'Schedule' }],
+    'Stories': [{ name: 'Dashboard', to: '/' }, { name: 'Stories' }],
     // 'subscriptionPlans': [{ name: 'Settings' }, { name: 'Subscription', to: '/church/settings/subscription' }, { name: 'Purchase Plans' }],
 }
 
