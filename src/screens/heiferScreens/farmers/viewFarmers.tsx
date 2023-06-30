@@ -11,6 +11,7 @@ import _ from "lodash";
 import { toast } from "react-toastify";
 import { useState } from "react";
 import { AssignInterventionDialog } from "../farmers/components/assignIntervention";
+import { AssignGroupDialog } from "../farmers/components/assignGroup";
 import FrameOne from "../../../assets/images/Frame_1302-transformed.png"
 import FrameTwo from "../../../assets/images/Frame_1303-transformed.png"
 import { useLocation } from "react-router-dom";
@@ -133,23 +134,25 @@ export const ViewFarmers = () => {
           </div>
 
           <div className="col-auto">
-            <Button
-              colorScheme="teal"
-              onClick={() => navigate("/farmers/edit")}
-              leftIcon={
-                <MdOutlineAddCircleOutline size={12} />
-              }
-              className={"fw-bold"}
-              fontSize={"sm"}
-              backgroundColor={"#7AD0E2"}
-              color={"#fff"}
-              borderRadius={0}
-              padding={"12px, 20px, 12px, 20px"}
-              _hover={{ bg: "#bbc7ca" }}
-              transition={"background-color 0.5s ease-in-out"}
+          <AssignGroupDialog
+              useButton={true}
+              buttonProps={{
+                leftIcon: (
+                  <MdOutlineAddCircleOutline size={12} />
+                ),
+                fontSize: "sm",
+                className: "fw-bold",
+                backgroundColor: "#7AD0E2",
+                color: "#fff",
+                borderRadius: 0,
+                padding: "12px, 20px, 12px, 20px",
+                transition: "background-color 0.5s ease-in-out", // Add transition property
+              }}
+              onClose={refetch}
             >
-              Assign to Group
-            </Button>
+              Assign To Group
+            </AssignGroupDialog>
+           
           </div>
 
           <div className="col-auto">

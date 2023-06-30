@@ -9,19 +9,19 @@ import { useFormik } from "formik";
 import { resolveApiError } from "utilities";
 import { useEffect, useState } from "react";
 import { ChakraProviderLoader } from "providers";
-import { Intervention, useGetInterventionsQuery } from "store/intervention";
+import { Group, useGetGroupsQuery } from "store/group";
 import { useProject } from "store/projects";
 import { useAddUserMutation } from "store/user";
 
-export interface AssignInterventionDialogProps extends ChakraAlertDialogProps {
+export interface AssignGroupDialogProps extends ChakraAlertDialogProps {
   useButton?: boolean;
-  intervention?: Intervention;
+  group?: Group;
   children?: string | React.ReactElement;
   buttonProps?: ButtonProps;
 }
 
-export const AssignInterventionDialog: React.FC<AssignInterventionDialogProps> = ({
-  intervention,
+export const AssignGroupDialog: React.FC<AssignGroupDialogProps> = ({
+  group,
   useButton = false,
   children,
   buttonProps,
@@ -32,10 +32,14 @@ export const AssignInterventionDialog: React.FC<AssignInterventionDialogProps> =
   const toast = useToast({ position: "top-right" });
   const [request, { isLoading }] = useAddUserMutation();
   const projectId: number = useProject().project.id;
-  const { data: interventions } = useGetInterventionsQuery({ project_id: projectId });
-  const interventionNames = interventions?.data.data.map((data: { name: any; id: any; }) => {
-    return { text: `${data.name}`, props: { value: data.id  }}
-  })
+  const { data: groups } = useGetGroupsQuery({ project_id: projectId });
+  const groupNames = groups?.data.data.map((group: Group) => {
+    return {
+      text: group.name,
+      props: { value: group.id }
+    };
+  });
+
   const {
     values,
     errors,
@@ -55,8 +59,8 @@ export const AssignInterventionDialog: React.FC<AssignInterventionDialogProps> =
   });
 
   useEffect(() => {
-    if (intervention) setFieldValue("intervention_id", intervention?.id);
-  }, [intervention]);
+    if (group) setFieldValue("group_id", group?.id);
+  }, [group]);
 
   
 
@@ -103,7 +107,7 @@ export const AssignInterventionDialog: React.FC<AssignInterventionDialogProps> =
         </Button>
       )}
       <ChakraAlertDialog
-        title={"Assign Intervention"}
+        title={"Assign Group"}
         size={"xl"}
         proceedButtonProps={{ colorScheme: "teal" }}
         proceedButtonDefaultChild={"Assign"}
@@ -116,9 +120,9 @@ export const AssignInterventionDialog: React.FC<AssignInterventionDialogProps> =
         <div className="row g-2">
         <div className="col-12">
             <PrimarySelect
-              name="Intervention"
-              placeholder="Select Intervention"
-              options={interventionNames}
+              name="Group"
+              placeholder="Select Group"
+              options={groupNames}
               onChange={handleChange}
               size={"lg"}
               isDisabled={isLoading}

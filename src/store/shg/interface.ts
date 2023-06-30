@@ -7,7 +7,7 @@ export interface RequiresShgID {
 
 export interface ShgInfo {
 
-    shg_id: number;
+   
     entity_name: string,
             financial: string,
             business_plan: string,

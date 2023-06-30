@@ -147,7 +147,7 @@ export const GroupScreen = () => {
             <h5 className="mb-4">Select a Form</h5>
             <ul>
               <li className="mb-2">
-                <Button variant="link" onClick={() => navigate("/groups/form-1")}>Self Help Group Record Tracking</Button>
+                <Button variant="link" onClick={() => navigate("/groups/sub")}>Self Help Group Record Tracking</Button>
               </li>
               {/* <li className="mb-2">
                 <Button variant="link">SHG & Entities Summary Form</Button>
