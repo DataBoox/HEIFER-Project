@@ -51,10 +51,10 @@ export const RootNavigator = () => {
           <Route path="maps" element={<MapsScreen />} />
           <Route path="groups" element={<GroupScreen />} />
           <Route path="farmers" element={<FarmerScreen />} />
-          <Route path="farmers/view" element={<ViewFarmers />} />
+          <Route path="farmers/view/:id" element={<ViewFarmers />} />
           <Route path="groups/view/:id" element={<ViewGroups />} />
           <Route path="users/view/:id" element={<ViewUsers />} />
-          <Route path="interventions/view" element={<ViewInterventions />} />
+          <Route path="interventions/view/:id" element={<ViewInterventions />} />
           <Route path="interventions" element={<InterventionScreen />} />
           <Route path="communication" element={<UnderConstruction />} />
           <Route path="schedule" element={<ScheduleUnderConstruction />} />

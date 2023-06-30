@@ -95,7 +95,7 @@ export const ViewGroups = () => {
                   </tr>
                   <tr>
                     <td className="fw-bold">LGA</td>
-                    <td className="p-2">{group?.data?.state}</td>
+                    <td className="p-2">{group?.data?.lga}</td>
                   </tr>
                   <tr>
                     <td className="fw-bold">Community</td>
@@ -103,7 +103,7 @@ export const ViewGroups = () => {
                   </tr>
                   <tr>
                     <td className="fw-bold">Created By</td>
-                    <td className="p-2 ">{}</td>
+                    <td className="p-2 ">{group?.data?.creator.user_info?.fname}</td>
                   </tr>
                 </tbody>
               </table>

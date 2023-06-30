@@ -44,46 +44,23 @@ export const AddInterventionDialog: React.FC<AddInterventionDialogProps> = ({
     initialValues: {
       name: "",
       description: "",
-      // project_id: project ? project.id : 0,
+      project_id: project ? project.id : 0, 
     },
     validationSchema: AddInterventionScheme(),
     onSubmit: () => initRequest(),
   });
 
-
-
   const initRequest = () => {
-    const payload: any = {
-      ...values,
-    };
-    request(payload)
-      .unwrap()
-      .then((res) => {
-        // console.log(res);
-        toast({
-          title: "Intervention Added",
-          description: res?.response,
-          status: "success",
-        });
-        resetForm({}); // reset form
-        initOnClose();
-      })
-      .catch((error) => {
-        console.log(error);
-        toast({
-          title: "Request Failed",
-          description: resolveApiError(error),
-          status: "error",
-        });
-      });
+    const payload: any = { ...values };
+    request(payload).unwrap().then((res) => {
+        toast({ title: "Intervention Added", description: res?.response, status: "success" });
+        initOnClose(); resetForm({}); // reset form 
+    }).catch((error) => {
+        toast({ title: "Request Failed", description: resolveApiError(error), status: "error" });
+    });
   };
 
-  const initOnClose = () => {
-    setShow(false);
-    onClose();
-  };
-
-  console.log(errors)
+  const initOnClose = () => { setShow(false); onClose(); };
 
   return (
     <ChakraProviderLoader>

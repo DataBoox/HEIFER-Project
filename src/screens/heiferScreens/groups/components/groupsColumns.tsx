@@ -31,7 +31,7 @@ export const useAllGroupsColumn = () => {
         },
         {
           header: "Interventions",
-          accessorFn: (row) => `${row.interventions}`,
+          accessorFn: (row) => `${row.group_interventions_count}`,
         },
 
         {
