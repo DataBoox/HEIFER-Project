@@ -18,10 +18,10 @@ import FrameTwo from "../../../assets/images/Frame_1303-transformed.png"
 export const ViewGroups = () => {
   const navigate = useNavigate();
   const columns = useAllFarmersColumn();
-  const { data, isLoading, refetch } = useGetGroupsQuery({ page: 1, query: "" });
+  const projectId: number = useProject().project?.id;
+  const { data, isLoading, refetch } = useGetGroupsQuery({ page: 1, query: "", project_id: projectId });
   const pathArray: string[] = useLocation().pathname.trim().split("/")
   const groupId = pathArray[pathArray.length - 1]
-  const projectId: number = useProject().project?.id;
   const { data: group } = useGetGroupInfoQuery({ project_id: projectId, group_id: groupId  });
 
   return (

@@ -36,7 +36,7 @@ export interface DeleteUsersPayload {
 }
 
 export interface FetchUsersPayload extends PaginatedPayload {
-    users?: (number | string)[]
+    project_id: number; 
 }
 
 

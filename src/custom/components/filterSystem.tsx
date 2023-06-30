@@ -14,7 +14,7 @@ export const FilterSystem = () => {
   const interventionNames = interventions?.data.data.map((data: { name: any; id: any; }) => {
     return { text: `${data.name}`, props: { value: data.id  }}
   })
-  const { isLoading } = useGetGroupsQuery({ page: 1, query: "" });
+  const { isLoading } = useGetGroupsQuery({ page: 1, query: "", project_id: projectId });
   const initRequest = () => { const payload: any = { ...values } };
 
   const {
