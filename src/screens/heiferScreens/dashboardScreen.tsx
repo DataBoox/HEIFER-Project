@@ -7,11 +7,15 @@ import {
 } from "react-icons/bs";
 import { MdLocationOn, MdPersonAddAlt1 } from "react-icons/md";
 import { useState } from "react";
-// import { currencyFormatter } from "utilities";
-// import { useGetDashboardStatisticsQuery } from "store/dashboard";
+import { currencyFormatter } from "utilities";
+import { useGetDashboardStatisticsQuery } from "store/dashboard";
+import { useProject } from "store/projects";
+
+
 export const DashboardScreen = () => {
 
-// const { data } = useGetDashboardStatisticsQuery();
+  const projectId: number = useProject().project.id;
+  const { data } = useGetDashboardStatisticsQuery({ project_id: projectId });
 
 
   return (
@@ -43,7 +47,7 @@ export const DashboardScreen = () => {
                   No. of Projects
                 </p>
                 <h4 className="fs-1 fw-bold text-dark mb-5">
-                  {/* {currencyFormatter(data?.data.projects ?? 0)} */} 3
+                  {currencyFormatter(data?.data.no_projects ?? 0)}
                 </h4>
               </div>
             </div>
@@ -106,7 +110,7 @@ export const DashboardScreen = () => {
                   {" "}
                   Registered Households
                 </p>
-                <h4 className="fs-1 fw-bold text-dark mb-5">9</h4>
+                <h4 className="fs-1 fw-bold text-dark mb-5">{currencyFormatter(data?.data.no_households ?? 0)}</h4>
               </div>
             </div>
             {/* end card body */}
@@ -140,7 +144,7 @@ export const DashboardScreen = () => {
                   {" "}
                   States Covered
                 </p>
-                <h4 className="fs-1 fw-bold text-dark mb-5">4</h4>
+                <h4 className="fs-1 fw-bold text-dark mb-5">{currencyFormatter(data?.data.no_state ?? 0)}</h4>
               </div>
             </div>
             {/* end card body */}
@@ -174,7 +178,7 @@ export const DashboardScreen = () => {
                   {" "}
                   LGAs Covered
                 </p>
-                <h4 className="fs-1 fw-bold text-dark mb-5">...</h4>
+                <h4 className="fs-1 fw-bold text-dark mb-5">{currencyFormatter(data?.data.no_lga ?? 0)}</h4>
               </div>
             </div>
             {/* end card body */}
@@ -208,7 +212,7 @@ export const DashboardScreen = () => {
                   {" "}
                   Communities Covered
                 </p>
-                <h4 className="fs-1 fw-bold text-dark mb-5">...</h4>
+                <h4 className="fs-1 fw-bold text-dark mb-5">{currencyFormatter(data?.data.no_community ?? 0)}</h4>
               </div>
             </div>
             {/* end card body */}
@@ -276,7 +280,7 @@ export const DashboardScreen = () => {
                   {" "}
                   Intervention Administered
                 </p>
-                <h4 className="fs-1 fw-bold text-dark mb-5">0</h4>
+                <h4 className="fs-1 fw-bold text-dark mb-5">{currencyFormatter(data?.data.no_interventions ?? 0)}</h4>
               </div>
             </div>
             {/* end card body */}
@@ -310,7 +314,7 @@ export const DashboardScreen = () => {
                   {" "}
                   Team Members
                 </p>
-                <h4 className="fs-1 fw-bold text-dark mb-5">9</h4>
+                <h4 className="fs-1 fw-bold text-dark mb-5">{currencyFormatter(data?.data.no_users ?? 0)}</h4>
               </div>
             </div>
             {/* end card body */}
