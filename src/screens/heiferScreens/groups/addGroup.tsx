@@ -83,7 +83,7 @@ export const AddGroup = () => {
                       label={"Group Description"}
                       placeholder="About your group"
                       size={"lg"}
-                      rows={7}
+                      rows={5}
                       value={values.description}
                       error={Boolean(touched.description && errors.description)}
                       bottomText={errors.description}
@@ -132,58 +132,7 @@ export const AddGroup = () => {
                       }}
                     />
                   </div>
-                </div>
 
-                <div className="col-lg-6 col-md-12">
-                <div className="col-auto mb-4">
-            <PrimarySelect 
-              name="state"
-              placeholder="Select"
-              label="Select State"
-              options={ states }
-              onChange={handleChange}
-              size={"md"}
-              isDisabled={isLoading}
-              style={{
-                        backgroundColor: "#F2FAFC",
-                        borderRadius: 0,
-                        borderColor: "#CAECF3",
-                      }}
-            />
-          </div>
-          {(values.state.length ? 
-            <div className="col-auto mb-4">
-              <PrimarySelect 
-                name="lga"
-                placeholder="Select Local Gov"
-                options={ localGov(Number(values.state)) }
-                onChange={handleChange}
-                size={"md"}
-                isDisabled={isLoading}
-                style={{
-                        backgroundColor: "#F2FAFC",
-                        borderRadius: 0,
-                        borderColor: "#CAECF3",
-                      }}
-              />
-            </div> : <></> )}
-
-            {(values.state.length && values.lga.length ? 
-              <div className="col-auto mb-4">
-                <PrimarySelect
-                  name="community"
-                  placeholder="Select Community"
-                  options={ communities(Number(values.state), Number(values.lga)) }
-                  onChange={handleChange}
-                  size={"md"}
-                  isDisabled={isLoading}
-                  style={{
-                    backgroundColor: "#F2FAFC",
-                    borderRadius: 0,
-                    borderColor: "#CAECF3",
-                  }}
-                />
-              </div> : <></> )}
                   <div className="col-auto mb-4">
                     <PrimaryInput
                       isRequired
@@ -204,7 +153,12 @@ export const AddGroup = () => {
                       min={new Date().toISOString().split("T")[0]}
                     />
                   </div>
-                  <div className="col-auto mb-4">
+                  
+                </div>
+                
+                <div className="col-lg-6 col-md-12">
+                  
+                <div className="col-auto mb-4">
                     <PrimarySelect 
                       isRequired
                       name="chairman"
@@ -240,6 +194,7 @@ export const AddGroup = () => {
                         }}
                       />
                   </div>
+                  
                   <div className="col-auto mb-4">
                     <PrimarySelect 
                         isRequired
@@ -258,6 +213,59 @@ export const AddGroup = () => {
                         }}
                       />
                   </div>
+
+                  <div className="col-auto mb-4">
+                      <PrimarySelect 
+                        name="state"
+                        label="Select State"
+                        placeholder="Select State"
+                        options={ states }
+                        onChange={handleChange}
+                        isDisabled={isLoading}
+                        style={{
+                          backgroundColor: "#F2FAFC",
+                          borderRadius: 0,
+                          borderColor: "#CAECF3",
+                        }}
+                      />
+                    </div>
+
+                    {(values.state.length ? 
+                        <div className="col-auto mb-4">
+                          <PrimarySelect 
+                            name="lga"
+                            label="Select Local Gov"
+                            placeholder="Select Local Gov"
+                            options={ localGov(Number(values.state)) }
+                            onChange={handleChange}
+                            size={"md"}
+                            isDisabled={isLoading}
+                            style={{
+                            backgroundColor: "#F2FAFC",
+                            borderRadius: 0,
+                            borderColor: "#CAECF3",
+                          }}
+                          />
+                        </div> : <></> )}
+                        
+                    {(values.state.length && values.lga.length ? 
+                      <div className="col-auto mb-4">
+                        <PrimarySelect
+                          name="community"
+                          label="Select Community"
+                          placeholder="Select Community"
+                          options={ communities(Number(values.state), Number(values.lga)) }
+                          onChange={handleChange}
+                          size={"md"}
+                          isDisabled={isLoading}
+                          style={{
+                            backgroundColor: "#F2FAFC",
+                            borderRadius: 0,
+                            borderColor: "#CAECF3",
+                          }}
+                        />
+                      </div> : <></> )}
+
                   <div className="col-auto text-end mb-4">
                     <Button
                       colorScheme="teal"

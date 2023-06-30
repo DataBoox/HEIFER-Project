@@ -7,7 +7,7 @@ import { PrimaryButton, PrimaryInput, ThemeTable } from "components";
 import { useNavigate } from "react-router-dom";
 import { ContentBodyContainer, DashboardCardContainer } from "../../home";
 import { useAllFarmersColumn} from "../farmers/components";
-import { useGetInterventionsQuery, Intervention } from "store/intervention";
+import { useGetInterventionsQuery, useGetInterventionInfoQuery } from "store/intervention";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import _ from "lodash";
 import { toast } from "react-toastify";
@@ -15,7 +15,8 @@ import { useState } from "react";
 import { AssignInterventionDialog } from "../farmers/components/assignIntervention";
 import FrameThree from "../../../assets/images/Frame_1304-transformed.png"
 import FrameFour from "../../../assets/images/Frame_1489-transformed.png"
-
+import { useLocation } from "react-router-dom";
+import { useProject } from "store/projects";
 
 export const ViewInterventions = () => {
   const navigate = useNavigate();
@@ -24,8 +25,13 @@ export const ViewInterventions = () => {
     page: 1,
     query: "",
   });
-  const toast = useToast({ position: "top-right" });
+  const pathArray: string[] = useLocation().pathname.trim().split("/")
+  const interventionId = pathArray[pathArray.length - 1]
+  const projectId: number = useProject().project?.id;
+  const { data: intervention } = useGetInterventionInfoQuery({ project_id: projectId, intervention_id: interventionId  });
 
+
+  const toast = useToast({ position: "top-right" });
   return (
     <ContentBodyContainer
       title="View Interventions"
@@ -86,47 +92,27 @@ export const ViewInterventions = () => {
                     <td className="fw-bold" style={{ minWidth: "150px" }}>
                       Name
                     </td>
-                    <td className="p-2">Lorem ipsum .......</td>
+                    <td className="p-2">{ intervention?.data.name }</td>
                   </tr>
                   <tr>
                     <td className="fw-bold">Description</td>
-                    <td className="p-2">
-                      Lorem ipsum .......
-                      {/* {_.truncate(ev?.description.replace(/<[^>]*>?/gm, ""), {
-                          length: 40,
-                        })} */}
-                    </td>
+                    <td className="p-2">{ intervention?.data.description }</td>
                   </tr>
                   <tr>
                     <td className="fw-bold">State</td>
-                    <td className="p-2">
-                      Lorem ipsum .......
-                      {/* {moment(ev?.starts_at).format(
-                          "dddd, MMMM Do YYYY, h:mm:ss a"
-                        )}{" "} */}
-                    </td>
+                    <td className="p-2">{ intervention?.data.state }</td>
                   </tr>
                   <tr>
                     <td className="fw-bold">LGA</td>
-                    <td className="p-2">
-                      Lorem ipsum .......
-                      {/* {moment(ev?.ends_at).format(
-                          "dddd, MMMM Do YYYY, h:mm:ss a"
-                        )}{" "} */}
-                    </td>
+                    <td className="p-2">{ intervention?.data.lga }</td>
                   </tr>
                   <tr>
                     <td className="fw-bold">Community</td>
-                    <td className="p-2">
-                      Lorem ipsum .......
-                      {/* {moment(ev?.created_at).format(
-                          "ddd, MMMM Do YYYY, h:mm:ss a"
-                        )} */}
-                    </td>
+                    <td className="p-2">{ intervention?.data.community }</td>
                   </tr>
                   <tr>
                     <td className="fw-bold">Created By</td>
-                    <td className="p-2 ">Lorem ipsum .......</td>
+                    <td className="p-2 ">{ intervention?.data.creator.user_info?.fname }</td>
                   </tr>
                 </tbody>
               </table>

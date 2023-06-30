@@ -48,7 +48,7 @@ fetchInterventions: builder.mutation<ChurchInterventionsResponse, FetchIntervent
                 body: payload
             }),
         }),
-        getInterventionInfo: builder.query<IResponse, RequiresInterventionID>({
+        getInterventionInfo: builder.query<IResponse, { project_id: number, intervention_id: number|string }>({
             query: (payload) => ({
                 url: `projects/interventions/info?${convertObjectToURLParams(payload)}`,
                 method: 'GET',
