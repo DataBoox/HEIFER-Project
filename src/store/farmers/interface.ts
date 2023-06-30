@@ -76,6 +76,7 @@ export interface BaseFarmer {
 }
 
 export interface Farmer extends FarmerInfo {
+    name: any;
 }
 
 

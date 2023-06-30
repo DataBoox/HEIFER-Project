@@ -12,6 +12,7 @@ import _ from "lodash";
 import { useLocation } from "react-router-dom";
 import { useProject } from "store/projects";
 import { AssignInterventionDialog } from "../farmers/components/assignIntervention";
+import { AssignFarmerDialog } from "../farmers/components/assignHousehold";
 import FrameTwo from "../../../assets/images/Frame_1303-transformed.png"
 
 export const ViewGroups = () => {
@@ -130,23 +131,24 @@ export const ViewGroups = () => {
           </div>
 
           <div className="col-auto">
-            <Button
-              colorScheme="teal"
-              onClick={() => navigate("/groups/edit")}
-              leftIcon={
-                <MdOutlineAddCircleOutline size={12} />
-              }
-              className={"fw-bold"}
-              fontSize={"sm"}
-              backgroundColor={"#7AD0E2"}
-              color={"#fff"}
-              borderRadius={0}
-              padding={"12px, 20px, 12px, 20px"}
-              _hover={{ bg: "#bbc7ca" }}
-              transition={"background-color 0.5s ease-in-out"}
+          <AssignFarmerDialog
+              useButton={true}
+              buttonProps={{
+                leftIcon: (
+                  <MdOutlineAddCircleOutline size={12} />
+                ),
+                fontSize: "sm",
+                className: "fw-bold",
+                backgroundColor: "#7AD0E2",
+                color: "#fff",
+                borderRadius: 0,
+                padding: "12px, 20px, 12px, 20px",
+                transition: "background-color 0.5s ease-in-out", // Add transition property
+              }}
+              onClose={refetch}
             >
               Assign a Household
-            </Button>
+            </AssignFarmerDialog>
           </div>
 
           <div className="col-auto">
