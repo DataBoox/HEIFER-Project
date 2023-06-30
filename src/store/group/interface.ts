@@ -58,6 +58,7 @@ export interface BaseGroup{
 }
 
 export interface Group extends BaseGroup {
+    name: any;
 }
 
 

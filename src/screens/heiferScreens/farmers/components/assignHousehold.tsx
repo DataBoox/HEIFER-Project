@@ -9,19 +9,19 @@ import { useFormik } from "formik";
 import { resolveApiError } from "utilities";
 import { useEffect, useState } from "react";
 import { ChakraProviderLoader } from "providers";
-import { Intervention, useGetInterventionsQuery } from "store/intervention";
+import { Farmer, useGetFarmersQuery } from "store/farmers";
 import { useProject } from "store/projects";
 import { useAddUserMutation } from "store/user";
 
-export interface AssignInterventionDialogProps extends ChakraAlertDialogProps {
+export interface AssignFarmerDialogProps extends ChakraAlertDialogProps {
   useButton?: boolean;
-  intervention?: Intervention;
+  farmer?: Farmer;
   children?: string | React.ReactElement;
   buttonProps?: ButtonProps;
 }
 
-export const AssignInterventionDialog: React.FC<AssignInterventionDialogProps> = ({
-  intervention,
+export const AssignFarmerDialog: React.FC<AssignFarmerDialogProps> = ({
+  farmer,
   useButton = false,
   children,
   buttonProps,
@@ -32,10 +32,14 @@ export const AssignInterventionDialog: React.FC<AssignInterventionDialogProps> =
   const toast = useToast({ position: "top-right" });
   const [request, { isLoading }] = useAddUserMutation();
   const projectId: number = useProject().project.id;
-  const { data: interventions } = useGetInterventionsQuery({ project_id: projectId });
-  const interventionNames = interventions?.data.data.map((data: { name: any; id: any; }) => {
-    return { text: `${data.name}`, props: { value: data.id  }}
-  })
+  const { data: farmers } = useGetFarmersQuery({ project_id: projectId });
+  const farmerNames = farmers?.data.data.map((farmer: Farmer) => {
+    return {
+      text: farmer.name,
+      props: { value: farmer.id }
+    };
+  });
+
   const {
     values,
     errors,
@@ -55,8 +59,8 @@ export const AssignInterventionDialog: React.FC<AssignInterventionDialogProps> =
   });
 
   useEffect(() => {
-    if (intervention) setFieldValue("intervention_id", intervention?.id);
-  }, [intervention]);
+    if (farmer) setFieldValue("farmer_id", farmer?.id);
+  }, [farmer]);
 
   
 
@@ -103,7 +107,7 @@ export const AssignInterventionDialog: React.FC<AssignInterventionDialogProps> =
         </Button>
       )}
       <ChakraAlertDialog
-        title={"Assign Intervention"}
+        title={"Assign To Household"}
         size={"xl"}
         proceedButtonProps={{ colorScheme: "teal" }}
         proceedButtonDefaultChild={"Assign"}
@@ -116,9 +120,9 @@ export const AssignInterventionDialog: React.FC<AssignInterventionDialogProps> =
         <div className="row g-2">
         <div className="col-12">
             <PrimarySelect
-              name="Intervention"
-              placeholder="Select Intervention"
-              options={interventionNames}
+              name="Farmer"
+              placeholder="Select Farmer"
+              options={farmerNames}
               onChange={handleChange}
               size={"lg"}
               isDisabled={isLoading}

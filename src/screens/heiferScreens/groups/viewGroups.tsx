@@ -11,7 +11,8 @@ import { useGetGroupInfoQuery, useGetGroupsQuery } from "store/group";
 import _ from "lodash";
 import { useLocation } from "react-router-dom";
 import { useProject } from "store/projects";
-import { useGetUserInfoQuery } from "store/user";
+import { AssignInterventionDialog } from "../farmers/components/assignIntervention";
+import { AssignFarmerDialog } from "../farmers/components/assignHousehold";
 import FrameTwo from "../../../assets/images/Frame_1303-transformed.png"
 
 export const ViewGroups = () => {
@@ -109,43 +110,45 @@ export const ViewGroups = () => {
               </table>
               <div className="row g-3 pt-4 pb-4 align-items-center">
           <div className="col-auto">
-            <Button
-              colorScheme="teal"
-              onClick={() => navigate("/groups/edit")}
-              leftIcon={
-                <MdOutlineAddCircleOutline size={12} />
-              }
-              className={"fw-bold"}
-              fontSize={"sm"}
-              backgroundColor={"#2A4153"}
-              color={"#fff"}
-              borderRadius={0}
-              padding={"12px, 20px, 12px, 20px"}
-              _hover={{ bg: "#bbc7ca" }}
-              transition={"background-color 0.5s ease-in-out"}
+          <AssignInterventionDialog
+              useButton={true}
+              buttonProps={{
+                leftIcon: (
+                  <MdOutlineAddCircleOutline size={12} />
+                ),
+                fontSize: "sm",
+                className: "fw-bold",
+                backgroundColor: "#2A4153",
+                color: "#fff",
+                borderRadius: 0,
+                padding: "12px, 20px, 12px, 20px",
+                transition: "background-color 0.5s ease-in-out", // Add transition property
+              }}
+              onClose={refetch}
             >
               Assign Intervention
-            </Button>
+            </AssignInterventionDialog>
           </div>
 
           <div className="col-auto">
-            <Button
-              colorScheme="teal"
-              onClick={() => navigate("/groups/edit")}
-              leftIcon={
-                <MdOutlineAddCircleOutline size={12} />
-              }
-              className={"fw-bold"}
-              fontSize={"sm"}
-              backgroundColor={"#7AD0E2"}
-              color={"#fff"}
-              borderRadius={0}
-              padding={"12px, 20px, 12px, 20px"}
-              _hover={{ bg: "#bbc7ca" }}
-              transition={"background-color 0.5s ease-in-out"}
+          <AssignFarmerDialog
+              useButton={true}
+              buttonProps={{
+                leftIcon: (
+                  <MdOutlineAddCircleOutline size={12} />
+                ),
+                fontSize: "sm",
+                className: "fw-bold",
+                backgroundColor: "#7AD0E2",
+                color: "#fff",
+                borderRadius: 0,
+                padding: "12px, 20px, 12px, 20px",
+                transition: "background-color 0.5s ease-in-out", // Add transition property
+              }}
+              onClose={refetch}
             >
               Assign a Household
-            </Button>
+            </AssignFarmerDialog>
           </div>
 
           <div className="col-auto">
