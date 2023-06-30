@@ -246,7 +246,7 @@ export const DashboardScreen = () => {
                   {" "}
                   No. of SH Groups
                 </p>
-                <h4 className="fs-1 fw-bold text-dark mb-5">3</h4>
+                <h4 className="fs-1 fw-bold text-dark mb-5">{currencyFormatter(data?.data.no_group ?? 0)}</h4>
               </div>
             </div>
             {/* end card body */}
