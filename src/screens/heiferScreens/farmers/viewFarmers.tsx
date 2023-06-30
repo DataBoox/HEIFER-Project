@@ -20,11 +20,11 @@ import { useProject } from "store/projects";
 export const ViewFarmers = () => {
   const navigate = useNavigate();
   const columns = useAllHistorysColumn();
-  const { data, isLoading, refetch } = useGetFarmersQuery({ page: 1, query: "" });
+  const projectId: number = useProject().project?.id;
+  const { data, isLoading, refetch } = useGetFarmersQuery({ page: 1, query: "", project_id: projectId });
   const toast = useToast({ position: "top-right" });
   const pathArray: string[] = useLocation().pathname.trim().split("/")
   const groupId = pathArray[pathArray.length - 1]
-  const projectId: number = useProject().project?.id;
   const { data: farmer } = useGetFarmerInfoQuery({ project_id: projectId, farmer_id: groupId  });
 
   return (

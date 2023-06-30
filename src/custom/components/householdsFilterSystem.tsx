@@ -16,6 +16,7 @@ export const HouseholdFilterSystem = () => {
     const { isLoading } = useGetGroupsQuery({
         page: 1,
         query: "",
+        project_id: projectId
     });
     const initRequest = () => {
         const payload: any = {

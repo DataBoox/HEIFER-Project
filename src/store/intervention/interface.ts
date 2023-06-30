@@ -22,7 +22,7 @@ export interface DeleteInterventionsPayload {
 }
 
 export interface FetchInterventionsPayload extends PaginatedPayload {
-    project_id?: number;
+    project_id: number;
     interventions?: (number | string)[]
 }
 

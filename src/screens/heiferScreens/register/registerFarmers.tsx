@@ -113,7 +113,6 @@ export const RegisterFarmers = () => {
     const payload: any = {
       ...values,
     };
-    console.log(payload);
     request(payload)
       .unwrap()
       .then((res) => {
@@ -126,7 +125,7 @@ export const RegisterFarmers = () => {
         resetForm({}); // reset form
       })
       .catch((error) => {
-        // console.log(error);
+        console.log(error);
         toast({
           title: "Request Failed",
           description: resolveApiError(error),
@@ -135,7 +134,7 @@ export const RegisterFarmers = () => {
       });
 
     // navigate to farmers after clicking register
-    navigate("/farmers");
+   navigate("/farmers");
   };
 
 
@@ -155,7 +154,7 @@ export const RegisterFarmers = () => {
                 <div className="col-auto text-end mb-4">
                   <Button
                     colorScheme="teal"
-                    onClick={() => handleSubmit()}
+                    onClick={() => initRequest()} 
                     className={"fw-light"}
                     fontSize={"sm"}
                     backgroundColor={"#2A4153"}
@@ -307,6 +306,7 @@ export const RegisterFarmers = () => {
                     />
                   </div>
 
+                
 
                 </div>
 
@@ -559,7 +559,7 @@ export const RegisterFarmers = () => {
                       isRequired
                       name="farm_size"
                       label="Farm Size (in Hectres)"
-                      type="number"
+                      type="text"
                       placeholder="Your answer here..."
                       value={values.farm_size}
                       error={Boolean(touched.farm_size && errors.farm_size)}
@@ -593,7 +593,7 @@ export const RegisterFarmers = () => {
                       }}
                     />
                   </div>
-                  {/* <div className="col-auto mb-4">
+                  <div className="col-auto mb-4">
                     <GenderSelect
                       isRequired
                       name="house_head_gender"
@@ -610,7 +610,7 @@ export const RegisterFarmers = () => {
                         borderColor: "#CAECF3",
                       }}
                     />
-                  </div> */}
+                  </div>
                   
                 </div>
 
@@ -622,7 +622,7 @@ export const RegisterFarmers = () => {
                       isRequired
                       name="household_income"
                       label="What is the income of your household?"
-                      type="number"
+                      type="text"
                       placeholder="Your answer here..."
                       value={values.household_income}
                       error={Boolean(touched.household_income && errors.household_income)}
