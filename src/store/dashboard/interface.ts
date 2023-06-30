@@ -17,8 +17,15 @@ export interface SubPlansResponse extends IResponse {
 }
 
 
-export interface ChurchDashboardStatisticsResponse extends IResponse {
+export interface DashboardStatisticsResponse extends IResponse {
     data: {
-        projects: number;
+        no_users: number,
+        no_projects: number,
+        no_households: number,
+        no_group: number,
+        no_interventions: number,
+        no_state: number,
+        no_lga: number,
+        no_community: number
     }
 }

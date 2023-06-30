@@ -1,3 +1,4 @@
+import { dashboardApi } from "./dashboard";
 import { configureStore } from '@reduxjs/toolkit';
 import authReducer from './auth/slice';
 import { authApi } from './auth/api';
@@ -22,6 +23,7 @@ export const store = configureStore({
         [projectApi.reducerPath]: projectApi.reducer,
         [interventionApi.reducerPath]: interventionApi.reducer,
         [farmerApi.reducerPath]: farmerApi.reducer,
+        [dashboardApi.reducerPath]: dashboardApi.reducer,
         auth: authReducer,
     },
     middleware: (getDefaultMiddleware) =>
@@ -38,6 +40,7 @@ export const store = configureStore({
             projectApi.middleware,
             interventionApi.middleware,
             farmerApi.middleware,
+            dashboardApi.middleware,
         )
 });
 
