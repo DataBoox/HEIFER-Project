@@ -12,6 +12,7 @@ import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import _ from "lodash";
 import { toast } from "react-toastify";
 import { useState } from "react";
+import { AssignInterventionDialog } from "../farmers/components/assignIntervention";
 import FrameThree from "../../../assets/images/Frame_1304-transformed.png"
 import FrameFour from "../../../assets/images/Frame_1489-transformed.png"
 import { useLocation } from "react-router-dom";
@@ -116,24 +117,28 @@ export const ViewInterventions = () => {
                 </tbody>
               </table>
               <div className="row g-3 pt-4 pb-4 align-items-center">
+
+              
+
           <div className="col-auto">
-            <Button
-              colorScheme="teal"
-              onClick={() => navigate("/interventions/edit")}
-              leftIcon={
-                <MdOutlineAddCircleOutline size={12} />
-              }
-              className={"fw-bold"}
-              fontSize={"sm"}
-              backgroundColor={"#2A4153"}
-              color={"#fff"}
-              borderRadius={0}
-              padding={"12px, 20px, 12px, 20px"}
-              _hover={{ bg: "#bbc7ca" }}
-              transition={"background-color 0.5s ease-in-out"}
+          <AssignInterventionDialog
+              useButton={true}
+              buttonProps={{
+                leftIcon: (
+                  <MdOutlineAddCircleOutline size={12} />
+                ),
+                fontSize: "sm",
+                className: "fw-bold",
+                backgroundColor: "#2A4153",
+                color: "#fff",
+                borderRadius: 0,
+                padding: "12px, 20px, 12px, 20px",
+                transition: "background-color 0.5s ease-in-out", // Add transition property
+              }}
+              onClose={refetch}
             >
               Assign Intervention
-            </Button>
+            </AssignInterventionDialog>
           </div>
 
           <div className="col-auto">
