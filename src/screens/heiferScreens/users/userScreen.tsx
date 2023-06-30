@@ -7,7 +7,7 @@ import { PrimaryInput, ThemeTable } from "components";
 import { useNavigate } from "react-router-dom";
 import { ContentBodyContainer} from "../../home";
 import { AddUserDialog } from "./addUser";
-import { useAddUserMutation, useDisableUserMutation, useGetUsersQuery } from "store/user";
+import { useAddUserMutation, useDisableUserMutation, useGetUsersQuery, useEnableUserMutation } from "store/user";
 import { useAllUsersColumn } from "./components";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import { resolveApiError } from "utilities";
@@ -19,11 +19,23 @@ export const UserScreen = () => {
   const { data, isLoading, refetch } = useGetUsersQuery({ page: 1, query: '' });
   const toast = useToast({ position: "top-right" });
   const [disableUser] = useDisableUserMutation();
+  const [enableUser] = useEnableUserMutation();
 
   const initDisable = (user: number) => {
     disableUser({users: [user]}).unwrap().then((response) => {
       let msg = "User has been disabled successfully"
       toast({ title: "User Disabled", description: msg, status: "success" })
+      refetch();
+    }).catch((error) => {
+      let msg = resolveApiError(error?.data?.response)
+      toast({ title: "Request Failed", description: msg, status: "error"})
+    });
+  }
+
+  const enableDisable = (user: number) => {
+    enableUser({users: [user]}).unwrap().then((response) => {
+      let msg = "User has been enabled successfully"
+      toast({ title: "User Enabled", description: msg, status: "success" })
       refetch();
     }).catch((error) => {
       let msg = resolveApiError(error?.data?.response)
@@ -95,7 +107,7 @@ export const UserScreen = () => {
                   </Button>
                 </OverlayTrigger>
               </div>
-              {(row.original as UserInfo).status ? (
+              {(row.original as UserInfo).user.status ? (
                   <div className="touchable" onClick={() => initDisable((row.original as UserInfo).id)}>
                     <OverlayTrigger
                       placement="top"
@@ -107,7 +119,7 @@ export const UserScreen = () => {
                     </OverlayTrigger>
                   </div>
               ) : (
-                <div className="touchable" onClick={() => initDisable((row.original as UserInfo).id)}>
+                <div className="touchable" onClick={() => enableDisable((row.original as UserInfo).id)}>
                   <OverlayTrigger
                     placement="top"
                     overlay={<Tooltip id="enable-tooltip">Enable</Tooltip>}
