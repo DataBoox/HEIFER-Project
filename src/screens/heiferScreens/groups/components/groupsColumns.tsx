@@ -23,7 +23,7 @@ export const useAllGroupsColumn = () => {
         },
         {
           header: "Venue",
-          accessorFn: (row) => `${row.community}`,
+          accessorFn: (row) => `${row.venue}`,
         },
         {
           header: "Farmers",
