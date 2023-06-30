@@ -9,6 +9,7 @@ import { useState } from "react";
 import { useAddGroupMutation } from "store/group";
 import { useGetFarmersQuery } from "store/farmers";
 import { useProject } from "store/projects";
+import { states, localGov, communities } from "utilities";
 
 export const AddGroup = () => {
   const [show, setShow] = useState(false);
@@ -26,7 +27,7 @@ export const AddGroup = () => {
   } = useFormik({
     initialValues: {
       project_id: projectId, name: "", description: "", 
-      meeting_days: "", community: "", venue: "", 
+      meeting_days: "", state: "", lga: "", community: "", venue: "", 
       established_at: "", chairman: "", vice_chairman: "", secretary: "",
     },
     validationSchema: AddGroupScheme(), onSubmit: () => initRequest(),
@@ -134,24 +135,55 @@ export const AddGroup = () => {
                 </div>
 
                 <div className="col-lg-6 col-md-12">
-                  <div className="col-auto mb-4">
-                    <PrimaryInput
-                      isRequired
-                      name="community"
-                      label="Community"
-                      placeholder="Enter resident community"
-                      value={values.community}
-                      error={Boolean(touched.community && errors.community)}
-                      bottomText={errors.community}
-                      onChange={handleChange}
-                      isDisabled={isLoading}
-                      style={{
+                <div className="col-auto mb-4">
+            <PrimarySelect 
+              name="state"
+              placeholder="Select"
+              label="Select State"
+              options={ states }
+              onChange={handleChange}
+              size={"md"}
+              isDisabled={isLoading}
+              style={{
                         backgroundColor: "#F2FAFC",
                         borderRadius: 0,
                         borderColor: "#CAECF3",
                       }}
-                    />
-                  </div>
+            />
+          </div>
+          {(values.state.length ? 
+            <div className="col-auto mb-4">
+              <PrimarySelect 
+                name="lga"
+                placeholder="Select Local Gov"
+                options={ localGov(Number(values.state)) }
+                onChange={handleChange}
+                size={"md"}
+                isDisabled={isLoading}
+                style={{
+                        backgroundColor: "#F2FAFC",
+                        borderRadius: 0,
+                        borderColor: "#CAECF3",
+                      }}
+              />
+            </div> : <></> )}
+
+            {(values.state.length && values.lga.length ? 
+              <div className="col-auto mb-4">
+                <PrimarySelect
+                  name="community"
+                  placeholder="Select Community"
+                  options={ communities(Number(values.state), Number(values.lga)) }
+                  onChange={handleChange}
+                  size={"md"}
+                  isDisabled={isLoading}
+                  style={{
+                    backgroundColor: "#F2FAFC",
+                    borderRadius: 0,
+                    borderColor: "#CAECF3",
+                  }}
+                />
+              </div> : <></> )}
                   <div className="col-auto mb-4">
                     <PrimaryInput
                       isRequired

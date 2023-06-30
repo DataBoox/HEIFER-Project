@@ -8,8 +8,6 @@ export interface RequiresShgID {
 export interface ShgInfo {
 
     shg_id: number;
-    project_id: number;
-    farmer_id: number,
     entity_name: string,
             financial: string,
             business_plan: string,

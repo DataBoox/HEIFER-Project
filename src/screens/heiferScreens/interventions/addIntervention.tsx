@@ -44,7 +44,7 @@ export const AddInterventionDialog: React.FC<AddInterventionDialogProps> = ({
     initialValues: {
       name: "",
       description: "",
-      // project_id: project ? project.id : 0,
+      project_id: project ? project.id : 0,
     },
     validationSchema: AddInterventionScheme(),
     onSubmit: () => initRequest(),
