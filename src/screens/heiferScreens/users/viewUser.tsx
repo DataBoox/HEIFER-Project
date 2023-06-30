@@ -6,14 +6,41 @@ import { ContentBodyContainer } from "../../home";
 import { useGetUserInfoQuery } from "store/user";
 import _ from "lodash";
 import { useLocation } from "react-router-dom";
+import { useDisableUserMutation, useEnableUserMutation } from "store/user";
+import { resolveApiError } from "utilities";
+import { useToast, } from "@chakra-ui/react";
 
 export const ViewUsers = () => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const pathArray: string[] = pathname.trim().split("/")
   const userId = pathArray[pathArray.length - 1]
-  const { data, isLoading } = useGetUserInfoQuery({ uid: userId });
+  const { data, isLoading, refetch } = useGetUserInfoQuery({ uid: userId });
+  const [disableUser] = useDisableUserMutation();
+  const [enableUser] = useEnableUserMutation();
+  const toast = useToast({ position: "top-right" });
 
+  const initDisable = (user: number) => {
+    disableUser({users: [user]}).unwrap().then((response) => {
+      let msg = "User has been disabled successfully"
+      toast({ title: "User Disabled", description: msg, status: "success" })
+      refetch();
+    }).catch((error) => {
+      let msg = resolveApiError(error?.data?.response)
+      toast({ title: "Request Failed", description: msg, status: "error"})
+    });
+  }
+
+  const enableDisable = (user: number) => {
+    enableUser({users: [user]}).unwrap().then((response) => {
+      let msg = "User has been enabled successfully"
+      toast({ title: "User Enabled", description: msg, status: "success" })
+      refetch();
+    }).catch((error) => {
+      let msg = resolveApiError(error?.data?.response)
+      toast({ title: "Request Failed", description: msg, status: "error"})
+    });
+  }
 
   return (
     <ContentBodyContainer
@@ -21,10 +48,9 @@ export const ViewUsers = () => {
       routesRule={"viewUsers"}
       rightCardHeaderComponent={
         <div className="row g-3 mb-0 align-items-center">
-          <div className="col-auto">
-            <Button
-              colorScheme="teal"
-              onClick={() => navigate("/users/delete")}
+          {data?.data.user.status ? (
+              <Button
+              onClick={() => initDisable(data?.data.user.id)}
               leftIcon={
                 <FaTrash size={12} />
               }
@@ -37,10 +63,27 @@ export const ViewUsers = () => {
               _hover={{ bg: "#bbc7ca" }}
               transition={"background-color 0.5s ease-in-out"}
             >
-              Delete User
+              Enable User
             </Button>
+
+          ) : (
+            <Button
+              onClick={() => enableDisable(data?.data.user.id)}
+              leftIcon={
+                <FaTrash size={12} />
+              }
+              className={"fw-bold"}
+              fontSize={"sm"}
+              backgroundColor={"success"}
+              color={"#fff"}
+              borderRadius={0}
+              padding={"12px, 20px, 12px, 20px"}
+              _hover={{ bg: "#bbc7ca" }}
+              transition={"background-color 0.5s ease-in-out"}
+            >
+              Enable User
+            </Button>)}
           </div>
-        </div>
       }
     >
       <div className="row g-2">

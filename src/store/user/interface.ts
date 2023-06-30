@@ -44,6 +44,7 @@ export interface BaseUser {
     id: number;
     email: string;
     ref: string;
+    status: number;
     created_by: number;
     updated_at: string;
     created_at: string;
