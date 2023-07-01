@@ -11,12 +11,14 @@ import { useAddUserMutation, useDisableUserMutation, useGetUsersQuery, useEnable
 import { useAllUsersColumn } from "./components";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import { resolveApiError } from "utilities";
+import { useProject } from "store/projects";
 import { UserInfo } from "@store/user";
 
 export const UserScreen = () => {
   const navigate = useNavigate();
   const columns = useAllUsersColumn()
-  const { data, isLoading, refetch } = useGetUsersQuery({ page: 1, query: '' });
+  const projectId: number = useProject().project?.id;
+  const { data, isLoading, refetch } = useGetUsersQuery({ page: 1, query: '', project_id: projectId });
   const toast = useToast({ position: "top-right" });
   const [disableUser] = useDisableUserMutation();
   const [enableUser] = useEnableUserMutation();

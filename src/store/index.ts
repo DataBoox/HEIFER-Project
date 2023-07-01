@@ -9,6 +9,7 @@ import { historyApi } from "./interventionHistory/api";
 import { farmerApi } from "./farmers/api";
 import { uploadApi } from './uploads';
 import { projectApi } from './projects';
+import { profileApi } from './profile';
 import { interventionApi } from './intervention';
 
 
@@ -21,6 +22,7 @@ export const store = configureStore({
         [historyApi.reducerPath]: historyApi.reducer,
         [uploadApi.reducerPath]: uploadApi.reducer,
         [projectApi.reducerPath]: projectApi.reducer,
+        [profileApi.reducerPath]: profileApi.reducer,
         [interventionApi.reducerPath]: interventionApi.reducer,
         [farmerApi.reducerPath]: farmerApi.reducer,
         [dashboardApi.reducerPath]: dashboardApi.reducer,
@@ -38,6 +40,7 @@ export const store = configureStore({
             uploadApi.middleware,
             historyApi.middleware,
             projectApi.middleware,
+            profileApi.middleware,
             interventionApi.middleware,
             farmerApi.middleware,
             dashboardApi.middleware,

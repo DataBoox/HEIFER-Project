@@ -44,8 +44,40 @@ export interface FarmerInfo {
 }
 
 export interface AddFarmerPayload {
-    farmers: { name: string, file: File }[],
-    farmer_id?: number | string | null,
+    farmer_address: string,
+      first_name: string,
+      last_name: string,
+      created_at: string,
+      cluster_name: string,
+      cluster_no: number,
+      cluster_head_name: string,
+      farmer_gender: string,
+      farmer_gender_household: string,
+      farmer_age: number,
+      farmer_age_category: string,
+      farmer_phone: number | string,
+      is_house_head: boolean,
+      house_head_gender: string,
+      house_head_edu: string,
+      marital_status: string,
+      valid_id: string,
+      id_type: string,
+      group_or_ass: string,
+      group_name: string,
+      group_type: string,
+      project_id: number,
+      farmer_id: number,
+      latitude: number,
+      longitude: number,
+      state: string,
+      lga: string,
+      no_of_males: string,
+      no_of_females: string,
+      total_household: string,
+      farm_size: string,
+      household_type: string,
+      household_income: string,
+
 }
 
 export interface EditFarmerPayload extends RequiresFarmerID {
@@ -57,7 +89,7 @@ export interface DeleteFarmersPayload {
 }
 
 export interface FetchFarmersPayload extends PaginatedPayload {
-    project_id?: number;
+    project_id: number;
     farmers?: (number | string)[]
 }
 

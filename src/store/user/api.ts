@@ -13,14 +13,14 @@ export const userApi = createApi({
     endpoints: (builder) => ({
         getUsers: builder.query<ChurchUsersResponse, FetchUsersPayload>({
             query: (payload) => ({
-                url: `users?${convertObjectToURLParams(payload)}`,
+                url: `users`,
                 method: 'POST',
                 body: payload
             }),
         }),
         fetchUsers: builder.mutation<ChurchUsersResponse, FetchUsersPayload>({
             query: (payload) => ({
-                url: `users?${convertObjectToURLParams(payload)}`,
+                url: `users`,
                 method: 'POST',
                 body: payload
             }),

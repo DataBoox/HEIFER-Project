@@ -15,7 +15,7 @@ export interface GroupInfo {
     meeting_days: (number | string)[],
     venue: string;
     community: string;
-    established_at: Date;
+    established_at: string;
     chairman: string;
     vice_chairman: string;
     secretary: string;
@@ -39,7 +39,7 @@ export interface DeleteGroupsPayload {
 }
 
 export interface FetchGroupsPayload extends PaginatedPayload {
-    project_id?: number;
+    project_id: number;
     groups?: (number | string)[]
 }
 

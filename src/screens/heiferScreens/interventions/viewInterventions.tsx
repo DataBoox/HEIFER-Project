@@ -13,6 +13,7 @@ import _ from "lodash";
 import { toast } from "react-toastify";
 import { useState } from "react";
 import { AssignInterventionDialog } from "../farmers/components/assignIntervention";
+import { AssignFarmerDialog } from "../farmers/components/assignHousehold";
 import FrameThree from "../../../assets/images/Frame_1304-transformed.png"
 import FrameFour from "../../../assets/images/Frame_1489-transformed.png"
 import { useLocation } from "react-router-dom";
@@ -21,13 +22,14 @@ import { useProject } from "store/projects";
 export const ViewInterventions = () => {
   const navigate = useNavigate();
   const columns = useAllFarmersColumn();
+  const projectId: number = useProject().project?.id;
   const { data, isLoading, refetch } = useGetInterventionsQuery({
     page: 1,
     query: "",
+    project_id: projectId,
   });
   const pathArray: string[] = useLocation().pathname.trim().split("/")
   const interventionId = pathArray[pathArray.length - 1]
-  const projectId: number = useProject().project?.id;
   const { data: intervention } = useGetInterventionInfoQuery({ project_id: projectId, intervention_id: interventionId  });
 
 
@@ -41,7 +43,7 @@ export const ViewInterventions = () => {
           <div className="col-auto">
           <Button
               colorScheme="teal"
-              onClick={() => navigate("/farmers/edit")}
+              onClick={() => navigate("/intervention")}
               leftIcon={
                 <FaTrash size={12} />
               }
@@ -92,27 +94,27 @@ export const ViewInterventions = () => {
                     <td className="fw-bold" style={{ minWidth: "150px" }}>
                       Name
                     </td>
-                    <td className="p-2">{ intervention?.data.name }</td>
+                    <td className="p-2">{ intervention?.data.name ?? '- - - - - - - - - - - - - - -'}</td>
                   </tr>
                   <tr>
                     <td className="fw-bold">Description</td>
-                    <td className="p-2">{ intervention?.data.description }</td>
+                    <td className="p-2">{ intervention?.data.description ?? '- - - - - - - - - - - - - - -'}</td>
                   </tr>
                   <tr>
                     <td className="fw-bold">State</td>
-                    <td className="p-2">{ intervention?.data.state }</td>
+                    <td className="p-2">{ intervention?.data.state ?? '- - - - - - - - - - - - - - -'}</td>
                   </tr>
                   <tr>
                     <td className="fw-bold">LGA</td>
-                    <td className="p-2">{ intervention?.data.lga }</td>
+                    <td className="p-2">{ intervention?.data.lga ?? '- - - - - - - - - - - - - - -'}</td>
                   </tr>
                   <tr>
                     <td className="fw-bold">Community</td>
-                    <td className="p-2">{ intervention?.data.community }</td>
+                    <td className="p-2">{ intervention?.data.community ?? '- - - - - - - - - - - - - - -'}</td>
                   </tr>
                   <tr>
                     <td className="fw-bold">Created By</td>
-                    <td className="p-2 ">{ intervention?.data.creator.user_info?.fname }</td>
+                    <td className="p-2 ">{ intervention?.data.creator.user_info?.fname ?? '- - - - - - - - - - - - - - -'}</td>
                   </tr>
                 </tbody>
               </table>
@@ -120,7 +122,7 @@ export const ViewInterventions = () => {
 
               
 
-          <div className="col-auto">
+          <div className="col-auto">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
           <AssignInterventionDialog
               useButton={true}
               buttonProps={{
@@ -142,23 +144,24 @@ export const ViewInterventions = () => {
           </div>
 
           <div className="col-auto">
-            <Button
-              colorScheme="teal"
-              onClick={() => navigate("/interventions/edit")}
-              leftIcon={
-                <MdOutlineAddCircleOutline size={12} />
-              }
-              className={"fw-bold"}
-              fontSize={"sm"}
-              backgroundColor={"#7AD0E2"}
-              color={"#fff"}
-              borderRadius={0}
-              padding={"12px, 20px, 12px, 20px"}
-              _hover={{ bg: "#bbc7ca" }}
-              transition={"background-color 0.5s ease-in-out"}
+          <AssignFarmerDialog
+              useButton={true}
+              buttonProps={{
+                leftIcon: (
+                  <MdOutlineAddCircleOutline size={12} />
+                ),
+                fontSize: "sm",
+                className: "fw-bold",
+                backgroundColor: "#7AD0E2",
+                color: "#fff",
+                borderRadius: 0,
+                padding: "12px, 20px, 12px, 20px",
+                transition: "background-color 0.5s ease-in-out", // Add transition property
+              }}
+              onClose={refetch}
             >
               Assign a Household
-            </Button>
+            </AssignFarmerDialog>
           </div>
 
           <div className="col-auto">

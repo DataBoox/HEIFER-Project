@@ -14,7 +14,7 @@ export const groupApi = createApi({
         getGroups: builder.query<ChurchGroupsResponse, FetchGroupsPayload>({
             query: (payload) => ({
                 url: `projects/groups?project_id=${payload.project_id}`,
-                method: 'GET',
+                method: 'POST',
                 body: payload
             }),
         }),
