@@ -87,27 +87,27 @@ export const ViewFarmers = () => {
                     <td className="fw-bold" style={{ minWidth: "150px" }}>
                       Last Name
                     </td>
-                    <td className="p-2">{ farmer?.data?.last_name }</td>
+                    <td className="p-2">{ farmer?.data?.last_name }?? '- - - - - - - - - - - - - - -'</td>
                   </tr>
                   <tr>
                     <td className="fw-bold">First Name</td>
-                    <td className="p-2"> { farmer?.data?.first_name }</td>
+                    <td className="p-2"> { farmer?.data?.first_name ?? '- - - - - - - - - - - - - - -'}</td>
                   </tr>
                   <tr>
                     <td className="fw-bold">Phone Number</td>
-                    <td className="p-2"> { farmer?.data?.farmer_phone }</td>
+                    <td className="p-2"> { farmer?.data?.farmer_phone ?? '- - - - - - - - - - - - - - -'}</td>
                   </tr>
                   <tr>
                     <td className="fw-bold">Gender</td>
-                    <td className="p-2">{ farmer?.data?.farmer_gender }</td>
+                    <td className="p-2">{ farmer?.data?.farmer_gender ?? '- - - - - - - - - - - - - - -'}</td>
                   </tr>
                   <tr>
                     <td className="fw-bold">Group Name</td>
-                    <td className="p-2">{ farmer?.data?.group_name }</td>
+                    <td className="p-2">{ farmer?.data?.group_name ?? '- - - - - - - - - - - - - - -'}</td>
                   </tr>
                   <tr>
                     <td className="fw-bold">Address</td>
-                    <td className="p-2 ">{ farmer?.data?.farmer_address }</td>
+                    <td className="p-2 ">{ farmer?.data?.farmer_address ?? '- - - - - - - - - - - - - - -'}</td>
                   </tr>
                 </tbody>
               </table>
