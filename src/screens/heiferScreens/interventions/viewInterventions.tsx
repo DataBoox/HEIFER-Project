@@ -7,17 +7,18 @@ import { PrimaryButton, PrimaryInput, ThemeTable } from "components";
 import { useNavigate } from "react-router-dom";
 import { ContentBodyContainer, DashboardCardContainer } from "../../home";
 import { useAllFarmersColumn} from "../farmers/components";
-import { useGetInterventionsQuery, useGetInterventionInfoQuery } from "store/intervention";
+import { useGetInterventionsQuery, useGetInterventionInfoQuery, useDeleteInterventionMutation } from "store/intervention";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import _ from "lodash";
 import { toast } from "react-toastify";
 import { useState } from "react";
 import { AssignInterventionDialog } from "../farmers/components/assignIntervention";
-import { AssignFarmerDialog } from "../farmers/components/assignHousehold";
+import { AssignFarmerDialog } from "./components/assignHousehold";
 import FrameThree from "../../../assets/images/Frame_1304-transformed.png"
 import FrameFour from "../../../assets/images/Frame_1489-transformed.png"
 import { useLocation } from "react-router-dom";
 import { useProject } from "store/projects";
+import { resolveApiError } from "utilities";
 
 export const ViewInterventions = () => {
   const navigate = useNavigate();
@@ -31,9 +32,21 @@ export const ViewInterventions = () => {
   const pathArray: string[] = useLocation().pathname.trim().split("/")
   const interventionId = pathArray[pathArray.length - 1]
   const { data: intervention } = useGetInterventionInfoQuery({ project_id: projectId, intervention_id: interventionId  });
-
-
+  const [deleteIntervention] = useDeleteInterventionMutation();
   const toast = useToast({ position: "top-right" });
+
+  const initDelete = () => {
+    let payload = { project_id: projectId, interventions: [interventionId] }
+    deleteIntervention(payload).unwrap().then((response) => {
+      let msg = "Deleted successfully"
+      toast({ title: "Intervention", description: msg, status: "success" })
+      navigate("/interventions");
+    }).catch((error) => {
+      let msg = resolveApiError(error?.data?.response)
+      toast({ title: "Request Failed", description: msg, status: "error"})
+    });
+  }
+
   return (
     <ContentBodyContainer
       title="View Interventions"
@@ -43,7 +56,7 @@ export const ViewInterventions = () => {
           <div className="col-auto">
           <Button
               colorScheme="teal"
-              onClick={() => navigate("/intervention")}
+              onClick={() => initDelete()}
               leftIcon={
                 <FaTrash size={12} />
               }
@@ -62,7 +75,7 @@ export const ViewInterventions = () => {
         </div>
       }
     >
-        <div className="col-lg-6">
+        <div className="col-lg-8">
           <div className="card custom-card">
             <div className="px-3 pt-3 align-items-center d-flex border-bottom">
               {/* {leftCardHeaderComponent} */}
@@ -146,6 +159,7 @@ export const ViewInterventions = () => {
 
           <div className="col-auto">
           <AssignFarmerDialog
+              requiredId={interventionId}
               useButton={true}
               buttonProps={{
                 leftIcon: (
@@ -165,109 +179,84 @@ export const ViewInterventions = () => {
             </AssignFarmerDialog>
           </div>
 
-          <div className="col-auto">
-  <Button
-    colorScheme="teal"
-    onClick={() => navigate("/interventions/edit")}
-    leftIcon={<FaPen size={13} />}
-    className={"fw-bold"}
-    fontSize={"sm"}
-    backgroundColor={"#7AD0E2"}
-    color={"#fff"}
-    borderRadius={0}
-    padding={"12px 20px"} // Updated padding values
-    _hover={{ bg: "#bbc7ca" }}
-    transition={"background-color 0.5s ease-in-out"}
-    display="flex" // Added display:flex to align items center
-    alignItems="center" // Added alignItems:center to vertically center the icon
-  >
-    {/* Add button text here if needed */}
-  </Button>
-</div>
-
         </div>
             </div>
           </div>
         </div>
 
-        <div className="col-lg-6">
-      <div className="stacked-frames">
-        <div className="col-lg-6"></div>
-       
-        <div className="card card-animate">
-          <div className="card-body">
-            <div className="d-flex align-items-center justify-content-between">
-              <div className="avatar-sm flex-shrink-0 mt-5">
-                <div
-                  style={{
-                    backgroundColor: "#0BB508",
-                    borderRadius: "50%",
-                    display: "inline-flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    width: "48px",
-                    height: "48px",
-                  }}
-                >
-                  <BsFillPersonCheckFill size={24} className="svg-light" />
+        <div className="row col-lg-12">
+          <div className="col-lg-6 mb-md-0 mb-3">
+            <div className="card card-animate">
+              <div className="card-body">
+                <div className="d-flex align-items-center justify-content-between">
+                  <div className="avatar-sm flex-shrink-0 mt-5">
+                    <div
+                      style={{
+                        backgroundColor: "#0BB508",
+                        borderRadius: "50%",
+                        display: "inline-flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        width: "48px",
+                        height: "48px",
+                      }}
+                    >
+                      <BsFillPersonCheckFill size={24} className="svg-light" />
+                    </div>
+                  </div>
+                  <div className="flex-grow-1 overflow-hidden text-end">
+                    <p className="fs-5 fw-medium text-dark text-truncate mb-3">
+                      {" "}
+                      Total Households
+                    </p>
+                    <h4 className="fs-1 fw-bold text-dark mb-5">
+                      {/* {currencyFormatter(data?.data.projects ?? 0)} */} 3
+                    </h4>
+                  </div>
                 </div>
+                {/* end card body */}
               </div>
-              <div className="flex-grow-1 overflow-hidden text-end">
-                <p className="fs-5 fw-medium text-dark text-truncate mb-3">
-                  {" "}
-                  Total Households
-                </p>
-                <h4 className="fs-1 fw-bold text-dark mb-5">
-                  {/* {currencyFormatter(data?.data.projects ?? 0)} */} 3
-                </h4>
-              </div>
+              {/* end card */}
             </div>
-            {/* end card body */}
           </div>
-          {/* end card */}
-        </div>
-        
 
-       
-        <div className="card card-animate">
-          <div className="card-body">
-            <div className="d-flex align-items-center justify-content-between">
-              <div className="avatar-sm flex-shrink-0 mt-5">
-                <div
-                  style={{
-                    backgroundColor: "#FFD914",
-                    borderRadius: "50%",
-                    display: "inline-flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    width: "48px",
-                    height: "48px",
-                  }}
-                >
-                  <MdPersonAddAlt1 size={24} className="svg-light" />
+          <div className="col-lg-6">
+            <div className="card card-animate">
+              <div className="card-body">
+                <div className="d-flex align-items-center justify-content-between">
+                  <div className="avatar-sm flex-shrink-0 mt-5">
+                    <div
+                      style={{
+                        backgroundColor: "#FFD914",
+                        borderRadius: "50%",
+                        display: "inline-flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        width: "48px",
+                        height: "48px",
+                      }}
+                    >
+                      <MdPersonAddAlt1 size={24} className="svg-light" />
+                    </div>
+                  </div>
+                  <div className="flex-grow-1 overflow-hidden text-end">
+                    <p className="fs-5 fw-medium text-dark text-truncate mb-3">
+                      {" "}
+                      Total SH Groups
+                    </p>
+                    <h4 className="fs-1 fw-bold text-dark mb-5">
+                      {/* {currencyFormatter(data?.data.projects ?? 0)} */} 3
+                    </h4>
+                  </div>
                 </div>
+                {/* end card body */}
               </div>
-              <div className="flex-grow-1 overflow-hidden text-end">
-                <p className="fs-5 fw-medium text-dark text-truncate mb-3">
-                  {" "}
-                  Total SH Groups
-                </p>
-                <h4 className="fs-1 fw-bold text-dark mb-5">
-                  {/* {currencyFormatter(data?.data.projects ?? 0)} */} 3
-                </h4>
-              </div>
+              {/* end card */}
             </div>
-            {/* end card body */}
           </div>
-          {/* end card */}
-        </div>
-        
-        <img src={FrameThree} alt="analytics" />
-      </div>
-    </div>
-
-        <div className="col-lg-12 mt-4 mb-3">
-        <img src={FrameFour} alt="analytics" />
+          <div className="col-lg-12">
+            <img src={FrameThree} alt="analytics" />
+          </div>
         </div>
 
       <div className="col-xl-12">
