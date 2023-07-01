@@ -55,7 +55,7 @@ export const groupApi = createApi({
         }),
         assignGroup: builder.mutation<IResponse, AssignGroupPayload>({
             query: (payload) => ({
-                url: 'projects/groups/interventions/assign',
+                url: 'projects/groups/farmers/assign',
                 method: 'POST',
                 body: payload
             }),

@@ -1,19 +1,15 @@
 import { Button, ButtonProps, useToast } from "@chakra-ui/react";
-import { AddUserScheme } from "validations";
-import {
-  ChakraAlertDialog,
-  ChakraAlertDialogProps,
-  PrimarySelect,
-} from "components";
+import { ChakraAlertDialog, ChakraAlertDialogProps, PrimarySelect } from "components";
 import { useFormik } from "formik";
 import { resolveApiError } from "utilities";
 import { useEffect, useState } from "react";
 import { ChakraProviderLoader } from "providers";
-import { Group, useGetGroupsQuery } from "store/group";
+import { Group, useGetGroupsQuery, useAssignGroupMutation } from "store/group";
 import { useProject } from "store/projects";
 import { useAddUserMutation } from "store/user";
 
 export interface AssignGroupDialogProps extends ChakraAlertDialogProps {
+  requiredId: number | string;
   useButton?: boolean;
   group?: Group;
   children?: string | React.ReactElement;
@@ -21,6 +17,7 @@ export interface AssignGroupDialogProps extends ChakraAlertDialogProps {
 }
 
 export const AssignGroupDialog: React.FC<AssignGroupDialogProps> = ({
+  requiredId,
   group,
   useButton = false,
   children,
@@ -34,61 +31,31 @@ export const AssignGroupDialog: React.FC<AssignGroupDialogProps> = ({
   const projectId: number = useProject().project.id;
   const { data: groups } = useGetGroupsQuery({ project_id: projectId });
   const groupNames = groups?.data.data.map((group: Group) => {
-    return {
-      text: group.name,
-      props: { value: group.id }
-    };
+    return { text: group.name, props: { value: group.id } };
   });
 
-  const {
-    values,
-    errors,
-    handleChange,
-    handleSubmit,
-    setFieldValue,
-    resetForm,
-    touched,
-    setValues,
-    setFieldTouched,
-  } = useFormik({
-    initialValues: {
-      intervention: "",
-    },
-    validationSchema: AddUserScheme(),
-    onSubmit: () => initRequest(),
+  const { values, handleChange, setFieldValue } = useFormik({
+    initialValues: { group: "" }, onSubmit: () => initRequest()
   });
+
+  const [assignGroup] = useAssignGroupMutation();
 
   useEffect(() => {
-    if (group) setFieldValue("group_id", group?.id);
+    if (group) setFieldValue("group", group?.id);
   }, [group]);
 
   
 
   const initRequest = () => {
-    const payload: any = {
-      ...values,
-    };
-    request(payload)
-      .unwrap()
-      .then((res) => {
-        // console.log(res);
-        toast({
-          title: "User Added",
-          description: res?.response,
-          status: "success",
-        });
-        resetForm({}); // reset form
-        initOnClose();
-      })
-      .catch((error) => {
-        console.log(error);
-        toast({
-          title: "Request Failed",
-          description: resolveApiError(error),
-          status: "error",
-        });
-      });
-  };
+    let payload = { group_id: values.group, farmers: [{ id: requiredId }]}
+    assignGroup(payload).unwrap().then((response) => {
+      let msg = "Assigned successfully"
+      toast({ title: "Group", description: msg, status: "success" })
+    }).catch((error) => {
+      let msg = resolveApiError(error?.data?.response)
+      toast({ title: "Request Failed", description: msg, status: "error"})
+    });
+  }
 
   const initOnClose = () => {
     setShow(false);
@@ -112,7 +79,7 @@ export const AssignGroupDialog: React.FC<AssignGroupDialogProps> = ({
         proceedButtonProps={{ colorScheme: "teal" }}
         proceedButtonDefaultChild={"Assign"}
         isOpen={rest?.isOpen ? rest?.isOpen : show}
-        onProceed={handleSubmit}
+        onProceed={initRequest}
         onClose={initOnClose}
         isProceeding={isLoading}
         {...rest}
@@ -120,7 +87,7 @@ export const AssignGroupDialog: React.FC<AssignGroupDialogProps> = ({
         <div className="row g-2">
         <div className="col-12">
             <PrimarySelect
-              name="Group"
+              name="group"
               placeholder="Select Group"
               options={groupNames}
               onChange={handleChange}

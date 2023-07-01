@@ -152,6 +152,7 @@ export const ViewFarmers = () => {
 
                   <div className="col-auto">
                     <AssignGroupDialog
+                        requiredId={farmerId}
                         useButton={true}
                         buttonProps={{
                           leftIcon: (
@@ -176,7 +177,7 @@ export const ViewFarmers = () => {
         </div>
 
         <div className="row col-lg-12">
-          <div className="col-lg-6">
+          <div className="col-lg-6 mb-md-0 mb-3">
             <img src={FrameTwo} alt="analytics" />
           </div>
           <div className="col-lg-6">

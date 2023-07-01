@@ -33,17 +33,10 @@ export const AssignInterventionDialog: React.FC<AssignInterventionDialogProps> =
   const interventionNames = interventions?.data.data.map((data: { name: any; id: any; }) => {
     return { text: `${data.name}`, props: { value: data.id  }}
   })
-  const {
-    values, errors, handleChange,
-    handleSubmit, setFieldValue, resetForm,
-    touched, setValues, setFieldTouched,
-  } = useFormik({
-    initialValues: { intervention: "" },
-    onSubmit: () => initRequest(),
+  const { values, handleChange, setFieldValue } = useFormik({
+    initialValues: { intervention: "" }, onSubmit: () => initRequest()
   });
-
   const [assignIntervention] = useAssignInterventionMutation();
-
 
   useEffect(() => {
     if (intervention) setFieldValue("intervention", intervention?.id);
