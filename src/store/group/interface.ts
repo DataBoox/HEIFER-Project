@@ -81,3 +81,8 @@ export interface GroupSuccessResponse extends IResponse {
 }
 
 
+export interface AssignGroupPayload {
+    group_id: number;
+    interventions: Array<object>
+}
+

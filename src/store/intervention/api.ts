@@ -3,7 +3,7 @@ import { convertObjectToURLParams } from 'utilities/general';
 import { axiosBaseQuery } from '../../utilities/axiosQuery/axiosBaseQuery';
 import { baseUrl } from '../../utilities/requests';
 import { IResponse } from '../auth/interface';
-import { AddInterventionPayload, ChurchInterventionsResponse, DeleteInterventionsPayload, EditInterventionPayload, FetchInterventionsPayload, RequiresInterventionID, InterventionSuccessResponse } from './interface';
+import { AddInterventionPayload, ChurchInterventionsResponse, DeleteInterventionsPayload, EditInterventionPayload, FetchInterventionsPayload, AssignInterventionPayload, InterventionSuccessResponse } from './interface';
 
 
 export const interventionApi = createApi({
@@ -12,20 +12,19 @@ export const interventionApi = createApi({
     tagTypes: ['myProfile'],
     endpoints: (builder) => ({
         getInterventions: builder.query<ChurchInterventionsResponse, FetchInterventionsPayload>({
-  query: (payload) => ({
-    url: `projects/interventions?project_id=${payload.project_id}`,
-    method: 'POST',
-    body: payload
-  }),
-}),
-fetchInterventions: builder.mutation<ChurchInterventionsResponse, FetchInterventionsPayload>({
-  query: (payload) => ({
-    url: `projects/interventions?project_id=${payload.project_id}`,
-    method: 'POST',
-    body: payload
-  }),
-}),
-
+            query: (payload) => ({
+                url: `projects/interventions?project_id=${payload.project_id}`,
+                method: 'POST',
+                body: payload
+            }),
+        }),
+        fetchInterventions: builder.mutation<ChurchInterventionsResponse, FetchInterventionsPayload>({
+            query: (payload) => ({
+                url: `projects/interventions?project_id=${payload.project_id}`,
+                method: 'POST',
+                body: payload
+            }),
+        }),
         addIntervention: builder.mutation<InterventionSuccessResponse, AddInterventionPayload>({
             query: (payload) => ({
                 url: 'projects/interventions/create',
@@ -54,6 +53,13 @@ fetchInterventions: builder.mutation<ChurchInterventionsResponse, FetchIntervent
                 method: 'GET',
             }),
         }),
+        assignIntervention: builder.mutation<IResponse, AssignInterventionPayload>({
+            query: (payload) => ({
+                url: 'projects/farmers/interventions/assign',
+                method: 'POST',
+                body: payload
+            }),
+        }),
     })
 });
 
@@ -64,5 +70,6 @@ export const {
     useEditInterventionMutation,
     useDeleteInterventionMutation,
     useGetInterventionInfoQuery,
+    useAssignInterventionMutation,
 } = interventionApi;
 
