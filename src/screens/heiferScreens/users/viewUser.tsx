@@ -1,5 +1,5 @@
 import { MdOutlineAddCircleOutline } from "react-icons/md";
-import { FaPen, FaTrash } from "react-icons/fa";
+import { FaPen, FaTrash, FaUserCheck } from "react-icons/fa";
 import { Button } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { ContentBodyContainer } from "../../home";
@@ -63,18 +63,18 @@ export const ViewUsers = () => {
               _hover={{ bg: "#bbc7ca" }}
               transition={"background-color 0.5s ease-in-out"}
             >
-              Enable User
+              Disable User
             </Button>
 
           ) : (
             <Button
               onClick={() => enableDisable(data?.data.user.id)}
               leftIcon={
-                <FaTrash size={12} />
+                <FaUserCheck size={12} />
               }
               className={"fw-bold"}
               fontSize={"sm"}
-              backgroundColor={"success"}
+              backgroundColor={"green"}
               color={"#fff"}
               borderRadius={0}
               padding={"12px, 20px, 12px, 20px"}

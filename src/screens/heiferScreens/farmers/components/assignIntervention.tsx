@@ -1,10 +1,5 @@
 import { Button, ButtonProps, useToast } from "@chakra-ui/react";
-import { AddUserScheme } from "validations";
-import {
-  ChakraAlertDialog,
-  ChakraAlertDialogProps,
-  PrimarySelect,
-} from "components";
+import { ChakraAlertDialog, ChakraAlertDialogProps, PrimarySelect } from "components";
 import { useFormik } from "formik";
 import { resolveApiError } from "utilities";
 import { useEffect, useState } from "react";
@@ -12,8 +7,9 @@ import { ChakraProviderLoader } from "providers";
 import { Intervention, useGetInterventionsQuery } from "store/intervention";
 import { useProject } from "store/projects";
 import { useAddUserMutation } from "store/user";
-
+import { useAssignInterventionMutation } from "store/intervention";
 export interface AssignInterventionDialogProps extends ChakraAlertDialogProps {
+  requiredId: number | string;
   useButton?: boolean;
   intervention?: Intervention;
   children?: string | React.ReactElement;
@@ -21,6 +17,7 @@ export interface AssignInterventionDialogProps extends ChakraAlertDialogProps {
 }
 
 export const AssignInterventionDialog: React.FC<AssignInterventionDialogProps> = ({
+  requiredId,
   intervention,
   useButton = false,
   children,
@@ -36,55 +33,26 @@ export const AssignInterventionDialog: React.FC<AssignInterventionDialogProps> =
   const interventionNames = interventions?.data.data.map((data: { name: any; id: any; }) => {
     return { text: `${data.name}`, props: { value: data.id  }}
   })
-  const {
-    values,
-    errors,
-    handleChange,
-    handleSubmit,
-    setFieldValue,
-    resetForm,
-    touched,
-    setValues,
-    setFieldTouched,
-  } = useFormik({
-    initialValues: {
-      intervention: "",
-    },
-    validationSchema: AddUserScheme(),
-    onSubmit: () => initRequest(),
+  const { values, handleChange, setFieldValue } = useFormik({
+    initialValues: { intervention: "" }, onSubmit: () => initRequest()
   });
+  const [assignIntervention] = useAssignInterventionMutation();
 
   useEffect(() => {
-    if (intervention) setFieldValue("intervention_id", intervention?.id);
+    if (intervention) setFieldValue("intervention", intervention?.id);
   }, [intervention]);
 
   
-
   const initRequest = () => {
-    const payload: any = {
-      ...values,
-    };
-    request(payload)
-      .unwrap()
-      .then((res) => {
-        // console.log(res);
-        toast({
-          title: "User Added",
-          description: res?.response,
-          status: "success",
-        });
-        resetForm({}); // reset form
-        initOnClose();
-      })
-      .catch((error) => {
-        console.log(error);
-        toast({
-          title: "Request Failed",
-          description: resolveApiError(error),
-          status: "error",
-        });
-      });
-  };
+    let payload = { farmer_id: requiredId, interventions: [{ id: values.intervention }]}
+    assignIntervention(payload).unwrap().then((response) => {
+      let msg = "Assigned successfully"
+      toast({ title: "Intervention", description: msg, status: "success" })
+    }).catch((error) => {
+      let msg = resolveApiError(error?.data?.response)
+      toast({ title: "Request Failed", description: msg, status: "error"})
+    });
+  }
 
   const initOnClose = () => {
     setShow(false);
@@ -108,7 +76,7 @@ export const AssignInterventionDialog: React.FC<AssignInterventionDialogProps> =
         proceedButtonProps={{ colorScheme: "teal" }}
         proceedButtonDefaultChild={"Assign"}
         isOpen={rest?.isOpen ? rest?.isOpen : show}
-        onProceed={handleSubmit}
+        onProceed={initRequest}
         onClose={initOnClose}
         isProceeding={isLoading}
         {...rest}
@@ -116,7 +84,7 @@ export const AssignInterventionDialog: React.FC<AssignInterventionDialogProps> =
         <div className="row g-2">
         <div className="col-12">
             <PrimarySelect
-              name="Intervention"
+              name="intervention"
               placeholder="Select Intervention"
               options={interventionNames}
               onChange={handleChange}

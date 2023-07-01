@@ -111,6 +111,7 @@ export const ViewGroups = () => {
               <div className="row g-3 pt-4 pb-4 align-items-center">
           <div className="col-auto">
           <AssignInterventionDialog
+              requiredId={groupId}
               useButton={true}
               buttonProps={{
                 leftIcon: (

@@ -3,7 +3,7 @@ import { convertObjectToURLParams } from 'utilities/general';
 import { axiosBaseQuery } from '../../utilities/axiosQuery/axiosBaseQuery';
 import { baseUrl } from '../../utilities/requests';
 import { IResponse } from '../auth/interface';
-import { AddGroupPayload, ChurchGroupsResponse, DeleteGroupsPayload, EditGroupPayload, FetchGroupsPayload, RequiresGroupID, GroupSuccessResponse } from './interface';
+import { AddGroupPayload, ChurchGroupsResponse, DeleteGroupsPayload, EditGroupPayload, FetchGroupsPayload, AssignGroupPayload, GroupSuccessResponse } from './interface';
 
 
 export const groupApi = createApi({
@@ -53,6 +53,13 @@ export const groupApi = createApi({
                 method: 'GET',
             }),
         }),
+        assignGroup: builder.mutation<IResponse, AssignGroupPayload>({
+            query: (payload) => ({
+                url: 'projects/groups/farmers/assign',
+                method: 'POST',
+                body: payload
+            }),
+        }),
     })
 });
 
@@ -63,5 +70,6 @@ export const {
     useEditGroupMutation,
     useDeleteGroupMutation,
     useGetGroupInfoQuery,
+    useAssignGroupMutation,
 } = groupApi;
 

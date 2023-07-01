@@ -131,5 +131,3 @@ export interface FarmerInfoResponse extends IResponse {
 export interface FarmerSuccessResponse extends IResponse {
     data: Farmer[],
 }
-
-

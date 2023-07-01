@@ -27,7 +27,7 @@ export const UserScreen = () => {
     disableUser({users: [user]}).unwrap().then((response) => {
       let msg = "User has been disabled successfully"
       toast({ title: "User Disabled", description: msg, status: "success" })
-      refetch();
+      navigate("/users");
     }).catch((error) => {
       let msg = resolveApiError(error?.data?.response)
       toast({ title: "Request Failed", description: msg, status: "error"})
@@ -38,7 +38,7 @@ export const UserScreen = () => {
     enableUser({users: [user]}).unwrap().then((response) => {
       let msg = "User has been enabled successfully"
       toast({ title: "User Enabled", description: msg, status: "success" })
-      refetch();
+      navigate("/users");
     }).catch((error) => {
       let msg = resolveApiError(error?.data?.response)
       toast({ title: "Request Failed", description: msg, status: "error"})

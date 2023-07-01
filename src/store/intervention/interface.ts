@@ -59,4 +59,7 @@ export interface InterventionSuccessResponse extends IResponse {
     data: Intervention[],
 }
 
-
+export interface AssignInterventionPayload {
+    farmer_id: number | string;
+    interventions: Array<object>
+}
