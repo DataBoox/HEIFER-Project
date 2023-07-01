@@ -84,27 +84,27 @@ export const ViewGroups = () => {
                     <td className="fw-bold" style={{ minWidth: "150px" }}>
                       Name
                     </td>
-                    <td className="p-2">{group?.data.name}</td>
+                    <td className="p-2">{group?.data.name ?? '- - - - - - - - - - - - - - -'}</td>
                   </tr>
                   <tr>
                     <td className="fw-bold">Description</td>
-                    <td className="p-2">{group?.data.description}</td>
+                    <td className="p-2">{group?.data.description ?? '- - - - - - - - - - - - - - -'}</td>
                   </tr>
                   <tr>
                     <td className="fw-bold">State</td>
-                    <td className="p-2">{group?.data?.state}</td>
+                    <td className="p-2">{group?.data?.state ?? '- - - - - - - - - - - - - - -'}</td>
                   </tr>
                   <tr>
                     <td className="fw-bold">LGA</td>
-                    <td className="p-2">{group?.data?.lga}</td>
+                    <td className="p-2">{group?.data?.lga ?? '- - - - - - - - - - - - - - -'}</td>
                   </tr>
                   <tr>
                     <td className="fw-bold">Community</td>
-                    <td className="p-2">{group?.data?.community}</td>
+                    <td className="p-2">{group?.data?.community ?? '- - - - - - - - - - - - - - -'}</td>
                   </tr>
                   <tr>
                     <td className="fw-bold">Created By</td>
-                    <td className="p-2 ">{group?.data?.creator.user_info?.fname}</td>
+                    <td className="p-2 ">{group?.data?.creator.user_info?.fname ?? '- - - - - - - - - - - - - - -'}</td>
                   </tr>
                 </tbody>
               </table>

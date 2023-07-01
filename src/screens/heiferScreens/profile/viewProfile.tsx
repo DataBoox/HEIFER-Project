@@ -68,35 +68,35 @@ export const ViewProfile = () => {
                     <td className="fw-bold" style={{ minWidth: "150px" }}>
                       Last Name
                     </td>
-                    <td className="p-3">{data?.data.lname}</td>
+                    <td className="p-3">{data?.data.lname ?? '- - - - - - - - - - - - - - -'}</td>
                   </tr>
                   <tr>
                     <td className="fw-bold">First Name</td>
-                    <td className="p-3">{data?.data.fname}</td>
+                    <td className="p-3">{data?.data.fname ?? '- - - - - - - - - - - - - - -'}</td>
                   </tr>
                   <tr>
                     <td className="fw-bold">Email Address</td>
-                    <td className="p-3"> {data?.data.user.email}</td>
+                    <td className="p-3"> {data?.data.user.email ?? '- - - - - - - - - - - - - - -'}</td>
                   </tr>
                   <tr>
                     <td className="fw-bold">Gender</td>
-                    <td className="p-3">{data?.data.gender}</td>
+                    <td className="p-3">{data?.data.gender ?? '- - - - - - - - - - - - - - -'}</td>
                   </tr>
                   <tr>
                     <td className="fw-bold">State</td>
-                    <td className="p-3">{data?.data.state}</td>
+                    <td className="p-3">{data?.data.state ?? '- - - - - - - - - - - - - - -'}</td>
                   </tr>
                   <tr>
                     <td className="fw-bold">Community</td>
-                    <td className="p-3">{data?.data.community}</td>
+                    <td className="p-3">{data?.data.community ?? '- - - - - - - - - - - - - - -'}</td>
                   </tr>
                   <tr>
                     <td className="fw-bold">Project</td>
-                    <td className="p-3"></td>
+                    <td className="p-3">{data?.data.project ?? '- - - - - - - - - - - - - - -'}</td>
                   </tr>
                   <tr>
                     <td className="fw-bold">Role</td>
-                    <td className="p-3 ">{data?.data.user.account_type.replace('_', ' ').toUpperCase()}</td>
+                    <td className="p-3 ">{data?.data.user.account_type.replace('_', ' ').toUpperCase() ?? '- - - - - - - - - - - - - - -'}</td>
                   </tr>
                 </tbody>
               </table>
