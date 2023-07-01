@@ -1,24 +1,30 @@
 import { Button, ButtonProps, useToast } from "@chakra-ui/react";
-import { ChakraAlertDialog, ChakraAlertDialogProps, PrimarySelect } from "components";
+import { AddUserScheme } from "validations";
+import {
+  ChakraAlertDialog,
+  ChakraAlertDialogProps,
+  PrimarySelect,
+} from "components";
 import { useFormik } from "formik";
 import { resolveApiError } from "utilities";
 import { useEffect, useState } from "react";
 import { ChakraProviderLoader } from "providers";
-import { Intervention, useGetInterventionsQuery } from "store/intervention";
+import { Farmer, useGetFarmersQuery } from "store/farmers";
 import { useProject } from "store/projects";
 import { useAddUserMutation } from "store/user";
-import { useAssignInterventionMutation } from "store/farmers";
-export interface AssignInterventionDialogProps extends ChakraAlertDialogProps {
+import { useAssignFarmerMutation } from "store/group";
+
+export interface AssignFarmerDialogProps extends ChakraAlertDialogProps {
   requiredId: number | string;
   useButton?: boolean;
-  intervention?: Intervention;
+  farmer?: Farmer;
   children?: string | React.ReactElement;
   buttonProps?: ButtonProps;
 }
 
-export const AssignInterventionDialog: React.FC<AssignInterventionDialogProps> = ({
+export const AssignFarmerDialog: React.FC<AssignFarmerDialogProps> = ({
   requiredId,
-  intervention,
+  farmer,
   useButton = false,
   children,
   buttonProps,
@@ -29,25 +35,28 @@ export const AssignInterventionDialog: React.FC<AssignInterventionDialogProps> =
   const toast = useToast({ position: "top-right" });
   const [request, { isLoading }] = useAddUserMutation();
   const projectId: number = useProject().project.id;
-  const { data: interventions } = useGetInterventionsQuery({ project_id: projectId });
-  const interventionNames = interventions?.data.data.map((data: { name: any; id: any; }) => {
-    return { text: `${data.name}`, props: { value: data.id  }}
-  })
-  const { values, handleChange, setFieldValue } = useFormik({
-    initialValues: { intervention: "" }, onSubmit: () => initRequest()
+  const { data: farmers } = useGetFarmersQuery({ project_id: projectId });
+  const farmerNames = farmers?.data.data.map((farmer: Farmer) => {
+    return { text: farmer.first_name+" "+farmer.last_name, props: { value: farmer.id } };
   });
-  const [assignIntervention] = useAssignInterventionMutation();
+
+  const { values, handleChange, setFieldValue } = useFormik({
+    initialValues: { farmer: "" }, onSubmit: () => initRequest()
+  });
+  const [assignFarmer] = useAssignFarmerMutation();
+
 
   useEffect(() => {
-    if (intervention) setFieldValue("intervention", intervention?.id);
-  }, [intervention]);
+    if (farmer) setFieldValue("farmer", farmer?.id);
+  }, [farmer]);
 
   
+
   const initRequest = () => {
-    let payload = { farmer_id: requiredId, interventions: [{ id: values.intervention }]}
-    assignIntervention(payload).unwrap().then((response) => {
+    let payload = { group_id: requiredId, farmers: [{ id: values.farmer }]}
+    assignFarmer(payload).unwrap().then((response) => {
       let msg = "Assigned successfully"
-      toast({ title: "Intervention", description: msg, status: "success" })
+      toast({ title: "Household", description: msg, status: "success" })
     }).catch((error) => {
       let msg = resolveApiError(error?.data?.response)
       toast({ title: "Request Failed", description: msg, status: "error"})
@@ -71,7 +80,7 @@ export const AssignInterventionDialog: React.FC<AssignInterventionDialogProps> =
         </Button>
       )}
       <ChakraAlertDialog
-        title={"Assign Intervention"}
+        title={"Assign To Household"}
         size={"xl"}
         proceedButtonProps={{ colorScheme: "teal" }}
         proceedButtonDefaultChild={"Assign"}
@@ -84,9 +93,9 @@ export const AssignInterventionDialog: React.FC<AssignInterventionDialogProps> =
         <div className="row g-2">
         <div className="col-12">
             <PrimarySelect
-              name="intervention"
-              placeholder="Select Intervention"
-              options={interventionNames}
+              name="farmer"
+              placeholder="Select Farmer"
+              options={farmerNames}
               onChange={handleChange}
               size={"lg"}
               isDisabled={isLoading}

@@ -4,7 +4,7 @@ import { useFormik } from "formik";
 import { resolveApiError } from "utilities";
 import { useEffect, useState } from "react";
 import { ChakraProviderLoader } from "providers";
-import { Group, useGetGroupsQuery, useAssignGroupMutation } from "store/group";
+import { Group, useGetGroupsQuery, useAssignFarmerMutation } from "store/group";
 import { useProject } from "store/projects";
 import { useAddUserMutation } from "store/user";
 
@@ -38,13 +38,12 @@ export const AssignGroupDialog: React.FC<AssignGroupDialogProps> = ({
     initialValues: { group: "" }, onSubmit: () => initRequest()
   });
 
-  const [assignGroup] = useAssignGroupMutation();
+  const [assignGroup] = useAssignFarmerMutation();
 
   useEffect(() => {
     if (group) setFieldValue("group", group?.id);
   }, [group]);
 
-  
 
   const initRequest = () => {
     let payload = { group_id: values.group, farmers: [{ id: requiredId }]}
