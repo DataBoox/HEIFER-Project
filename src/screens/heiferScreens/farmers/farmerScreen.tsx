@@ -25,7 +25,7 @@ export const FarmerScreen = () => {
   const [deleteFarmer] = useDeleteFarmerMutation();
   const toast = useToast({ position: "top-right" });
   const [showModal, setShowModal] = useState(false);
-  const [selectedFarmerId, setSelectedFarmerId] = useState(null);
+  const [selectedFarmerId, setSelectedFarmerId] = useState(0);
 
 
   const handleDelete = (row: any) => {
