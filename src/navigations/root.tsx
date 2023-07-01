@@ -10,6 +10,7 @@ import {
   ViewFarmers,
   ViewGroups,
   ViewUsers,
+  ViewProfile,
   ViewInterventions,
   UserScreen,
   MapsScreen,
@@ -54,6 +55,7 @@ export const RootNavigator = () => {
           <Route path="farmers/view/:id" element={<ViewFarmers />} />
           <Route path="groups/view/:id" element={<ViewGroups />} />
           <Route path="users/view/:id" element={<ViewUsers />} />
+          <Route path="profile/view" element={< ViewProfile />} />
           <Route path="interventions/view/:id" element={<ViewInterventions />} />
           <Route path="interventions" element={<InterventionScreen />} />
           <Route path="communication" element={<UnderConstruction />} />

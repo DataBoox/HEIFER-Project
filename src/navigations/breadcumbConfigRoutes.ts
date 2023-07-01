@@ -20,6 +20,7 @@ export const breadcrumbConfig: { [x: string]: RouteDirector[] } = {
     'Communication': [{ name: 'Dashboard', to: '/' }, { name: 'Communication' }],
     'Schedule': [{ name: 'Dashboard', to: '/' }, { name: 'Schedule' }],
     'Stories': [{ name: 'Dashboard', to: '/' }, { name: 'Stories' }],
+    'viewProfile': [{ name: 'Dashboard', to: '/' }, { name: 'Profile' }],
     // 'subscriptionPlans': [{ name: 'Settings' }, { name: 'Subscription', to: '/church/settings/subscription' }, { name: 'Purchase Plans' }],
 }
 

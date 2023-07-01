@@ -21,11 +21,11 @@ export const AdminMenuLinkItem: Array<LinkItemProps> = [
   { name: "Groups", icon: BsGridFill, path: "groups" },
   { name: "Interventions", icon: BsFillPatchCheckFill, path: "interventions" },
   { name: "Users", icon: FaUser, path: "users" },
+  { name: "Reports", icon: HiDocument, path: "reports" },
   { name: "Schedule", icon: BiCalendar, path: "schedule" },
   { name: "Communication", icon: HiMail, path: "communication" },
-  { name: "Reports", icon: HiDocument, path: "reports" },
   { name: "Stories", icon: BsFillCameraFill, path: "stories" },
-  { name: "Settings", icon: RiSettings4Fill, path: "settings" },
+  // { name: "Settings", icon: RiSettings4Fill, path: "settings" },
 ];
 
 const except = "Dashboard Maps Users"
