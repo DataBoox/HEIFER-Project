@@ -43,7 +43,7 @@ export const ViewInterventions = () => {
           <div className="col-auto">
           <Button
               colorScheme="teal"
-              onClick={() => navigate("/farmers/edit")}
+              onClick={() => navigate("/intervention")}
               leftIcon={
                 <FaTrash size={12} />
               }

@@ -150,7 +150,7 @@ export const NavHeader: React.FC<NavHeaderProps> = ({
                     borderColor={useColorModeValue("gray.200", "gray.700")}
                   >
                     <MenuItem
-                      onClick={() => navigate("/church/profile/view-info")}
+                      onClick={() => navigate("/profile/view")}
                     >
                       Profile
                     </MenuItem>
