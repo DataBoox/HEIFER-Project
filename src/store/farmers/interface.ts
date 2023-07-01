@@ -131,3 +131,8 @@ export interface FarmerInfoResponse extends IResponse {
 export interface FarmerSuccessResponse extends IResponse {
     data: Farmer[],
 }
+
+export interface AssignInterventionPayload {
+    farmer_id: number | string;
+    interventions: Array<object>
+}

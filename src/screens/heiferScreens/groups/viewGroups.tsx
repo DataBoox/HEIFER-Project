@@ -7,13 +7,14 @@ import { ThemeTable } from "components";
 import { useNavigate } from "react-router-dom";
 import { ContentBodyContainer, DashboardCardContainer } from "../../home";
 import { useAllFarmersColumn} from "../farmers/components";
-import { useGetGroupInfoQuery, useGetGroupsQuery } from "store/group";
+import { useGetGroupInfoQuery, useGetGroupsQuery, useDeleteGroupMutation } from "store/group";
 import _ from "lodash";
 import { useLocation } from "react-router-dom";
 import { useProject } from "store/projects";
-import { AssignInterventionDialog } from "../farmers/components/assignIntervention";
-import { AssignFarmerDialog } from "../farmers/components/assignHousehold";
+import { AssignInterventionDialog } from "./components/assignIntervention";
+import { AssignFarmerDialog } from "./components/assignHousehold";
 import FrameTwo from "../../../assets/images/Frame_1303-transformed.png"
+import { resolveApiError } from "utilities";
 
 export const ViewGroups = () => {
   const navigate = useNavigate();
@@ -23,6 +24,20 @@ export const ViewGroups = () => {
   const pathArray: string[] = useLocation().pathname.trim().split("/")
   const groupId = pathArray[pathArray.length - 1]
   const { data: group } = useGetGroupInfoQuery({ project_id: projectId, group_id: groupId  });
+  const [deleteGroup] = useDeleteGroupMutation();
+  const toast = useToast({ position: "top-right" });
+
+  const initDelete = () => {
+    let payload = { project_id: projectId, groups: [groupId] }
+    deleteGroup(payload).unwrap().then((response) => {
+      let msg = "Deleted successfully"
+      toast({ title: "Group", description: msg, status: "success" })
+      navigate("/groups");
+    }).catch((error) => {
+      let msg = resolveApiError(error?.data?.response)
+      toast({ title: "Request Failed", description: msg, status: "error"})
+    });
+  }
 
   return (
     <ContentBodyContainer
@@ -33,7 +48,7 @@ export const ViewGroups = () => {
           <div className="col-auto">
           <Button
               colorScheme="teal"
-              onClick={() => navigate("/farmers/edit")}
+              onClick={() => initDelete()}
               leftIcon={
                 <FaTrash size={12} />
               }
@@ -52,7 +67,7 @@ export const ViewGroups = () => {
         </div>
       }
     >
-        <div className="col-lg-6">
+        <div className="col-lg-8">
           <div className="card custom-card">
             <div className="px-3 pt-3 align-items-center d-flex border-bottom">
               {/* {leftCardHeaderComponent} */}
@@ -133,6 +148,7 @@ export const ViewGroups = () => {
 
           <div className="col-auto">
           <AssignFarmerDialog
+              requiredId={groupId}
               useButton={true}
               buttonProps={{
                 leftIcon: (
@@ -152,24 +168,6 @@ export const ViewGroups = () => {
             </AssignFarmerDialog>
           </div>
 
-          <div className="col-auto">
-            <Button
-              colorScheme="teal"
-              onClick={() => navigate("/groups/edit")}
-              leftIcon={
-                <FaPen size={13} />
-              }
-              className={"fw-bold"}
-              fontSize={"sm"}
-              backgroundColor={"#7AD0E2"}
-              color={"#fff"}
-              borderRadius={0}
-              padding={"12px, 20px, 12px, 20px"}
-              _hover={{ bg: "#bbc7ca" }}
-              transition={"background-color 0.5s ease-in-out"}
-            >
-            </Button>
-          </div>
         </div>
             </div>
           </div>
@@ -177,81 +175,80 @@ export const ViewGroups = () => {
 
         
 
-        <div className="col-lg-6">
-      <div className="stacked-frames">
-        <div className="col-lg-6"></div>
-       
-        <div className="card card-animate">
-          <div className="card-body">
-            <div className="d-flex align-items-center justify-content-between">
-              <div className="avatar-sm flex-shrink-0 mt-5">
-                <div
-                  style={{
-                    backgroundColor: "#0BB508",
-                    borderRadius: "50%",
-                    display: "inline-flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    width: "48px",
-                    height: "48px",
-                  }}
-                >
-                  <BsFillPersonCheckFill size={24} className="svg-light" />
+        <div className="row col-lg-12">
+          <div className="col-lg-6 mb-md-0 mb-3">
+            <div className="card card-animate">
+              <div className="card-body">
+                <div className="d-flex align-items-center justify-content-between">
+                  <div className="avatar-sm flex-shrink-0 mt-5">
+                    <div
+                      style={{
+                        backgroundColor: "#0BB508",
+                        borderRadius: "50%",
+                        display: "inline-flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        width: "48px",
+                        height: "48px",
+                      }}
+                    >
+                      <BsFillPersonCheckFill size={24} className="svg-light" />
+                    </div>
+                  </div>
+                  <div className="flex-grow-1 overflow-hidden text-end">
+                    <p className="fs-5 fw-medium text-dark text-truncate mb-3">
+                      {" "}
+                      Total Households
+                    </p>
+                    <h4 className="fs-1 fw-bold text-dark mb-5">
+                      {/* {currencyFormatter(data?.data.projects ?? 0)} */} 3
+                    </h4>
+                  </div>
                 </div>
+                {/* end card body */}
               </div>
-              <div className="flex-grow-1 overflow-hidden text-end">
-                <p className="fs-5 fw-medium text-dark text-truncate mb-3">
-                  {" "}
-                  Total Households
-                </p>
-                <h4 className="fs-1 fw-bold text-dark mb-5">
-                  {/* {currencyFormatter(data?.data.projects ?? 0)} */} 3
-                </h4>
-              </div>
+              {/* end card */}
             </div>
-            {/* end card body */}
           </div>
-          {/* end card */}
-        </div>
-        
-
-       
-        <div className="card card-animate">
-          <div className="card-body">
-            <div className="d-flex align-items-center justify-content-between">
-              <div className="avatar-sm flex-shrink-0 mt-5">
-                <div
-                  style={{
-                    backgroundColor: "#FFD914",
-                    borderRadius: "50%",
-                    display: "inline-flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    width: "48px",
-                    height: "48px",
-                  }}
-                >
-                  <MdPersonAddAlt1 size={24} className="svg-light" />
+          
+          <div className="col-lg-6">
+            <div className="card card-animate">
+              <div className="card-body">
+                <div className="d-flex align-items-center justify-content-between">
+                  <div className="avatar-sm flex-shrink-0 mt-5">
+                    <div
+                      style={{
+                        backgroundColor: "#FFD914",
+                        borderRadius: "50%",
+                        display: "inline-flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        width: "48px",
+                        height: "48px",
+                      }}
+                    >
+                      <MdPersonAddAlt1 size={24} className="svg-light" />
+                    </div>
+                  </div>
+                  <div className="flex-grow-1 overflow-hidden text-end">
+                    <p className="fs-5 fw-medium text-dark text-truncate mb-3">
+                      {" "}
+                      Total SH Groups
+                    </p>
+                    <h4 className="fs-1 fw-bold text-dark mb-5">
+                      {/* {currencyFormatter(data?.data.projects ?? 0)} */} 3
+                    </h4>
+                  </div>
                 </div>
+                {/* end card body */}
               </div>
-              <div className="flex-grow-1 overflow-hidden text-end">
-                <p className="fs-5 fw-medium text-dark text-truncate mb-3">
-                  {" "}
-                  Total SH Groups
-                </p>
-                <h4 className="fs-1 fw-bold text-dark mb-5">
-                  {/* {currencyFormatter(data?.data.projects ?? 0)} */} 3
-                </h4>
-              </div>
+              {/* end card */}
             </div>
-            {/* end card body */}
           </div>
-          {/* end card */}
+          <div className="col-lg-12">
+            <img src={FrameTwo} alt="analytics" />
+          </div>
         </div>
-        
-        <img src={FrameTwo} alt="analytics" />
-      </div>
-    </div>
 
 
 
