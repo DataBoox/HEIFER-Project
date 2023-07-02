@@ -35,7 +35,7 @@ export const AssignFarmerDialog: React.FC<AssignFarmerDialogProps> = ({
   const { data: farmers } = useGetFarmersQuery({ project_id: projectId });
   const farmerNames = farmers?.data.data.map((farmer: Farmer) => {
     return {
-      text: farmer.name,
+      text: farmer.first_name+" "+farmer.last_name,
       props: { value: farmer.id }
     };
   });

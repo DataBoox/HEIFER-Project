@@ -7,7 +7,8 @@ import { ChakraProviderLoader } from "providers";
 import { Intervention, useGetInterventionsQuery } from "store/intervention";
 import { useProject } from "store/projects";
 import { useAddUserMutation } from "store/user";
-import { useAssignInterventionMutation } from "store/farmers";
+import { useAssignInterventionMutation } from "store/group";
+
 export interface AssignInterventionDialogProps extends ChakraAlertDialogProps {
   requiredId: number | string;
   useButton?: boolean;
@@ -44,7 +45,7 @@ export const AssignInterventionDialog: React.FC<AssignInterventionDialogProps> =
 
   
   const initRequest = () => {
-    let payload = { farmer_id: requiredId, interventions: [{ id: values.intervention }]}
+    let payload = { group_id: requiredId, interventions: [{ id: values.intervention }]}
     assignIntervention(payload).unwrap().then((response) => {
       let msg = "Assigned successfully"
       toast({ title: "Intervention", description: msg, status: "success" })

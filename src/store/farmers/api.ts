@@ -3,7 +3,7 @@ import { convertObjectToURLParams } from 'utilities/general';
 import { axiosBaseQuery } from '../../utilities/axiosQuery/axiosBaseQuery';
 import { baseUrl } from '../../utilities/requests';
 import { IResponse } from '../auth/interface';
-import { AddFarmerPayload, ChurchFarmersResponse, DeleteFarmersPayload, EditFarmerPayload, FetchFarmersPayload, RequiresFarmerID, FarmerSuccessResponse } from './interface';
+import { AddFarmerPayload, ChurchFarmersResponse, DeleteFarmersPayload, EditFarmerPayload, FetchFarmersPayload, RequiresFarmerID, FarmerSuccessResponse, AssignInterventionPayload } from './interface';
 
 
 export const farmerApi = createApi({
@@ -52,6 +52,13 @@ export const farmerApi = createApi({
                 method: 'GET',
             }),
         }),
+        assignIntervention: builder.mutation<IResponse, AssignInterventionPayload>({
+            query: (payload) => ({
+                url: 'projects/farmers/interventions/assign',
+                method: 'POST',
+                body: payload
+            }),
+        }),
     })
 });
 
@@ -62,5 +69,6 @@ export const {
     useEditFarmerMutation,
     useDeleteFarmerMutation,
     useGetFarmerInfoQuery,
+    useAssignInterventionMutation,
 } = farmerApi;
 
