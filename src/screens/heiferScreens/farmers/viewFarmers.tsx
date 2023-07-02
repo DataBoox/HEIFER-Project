@@ -169,7 +169,7 @@ export const ViewFarmers = () => {
                         onClose={refetch}
                       >
                         Assign To Group
-                      </AssignGroupDialog>
+                    </AssignGroupDialog>
                   </div>
                 </div>
             </div>
