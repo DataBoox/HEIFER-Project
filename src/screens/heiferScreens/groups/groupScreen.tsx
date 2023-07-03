@@ -26,10 +26,9 @@ export const GroupScreen = () => {
   const navigate = useNavigate();
   const columns = useAllGroupsColumn();
   const projectId: number = useProject().project?.id;
+  const [query, setQuery] = useState("");
   const { data, isLoading, refetch } = useGetGroupsQuery({
-    page: 1,
-    query: "",
-    project_id: projectId,
+    page: 1, query: query, project_id: projectId,
   });
   const toast = useToast({ position: "top-right" });
   const [showModal, setShowModal] = useState(false);
@@ -95,7 +94,8 @@ export const GroupScreen = () => {
         </div>
       }
     >
-      <FilterSystem />
+      <FilterSystem query={(target: any) => setQuery(target) }  />
+      
       <div className="col-xl-12">
         <ThemeTable
           data={data?.data?.data ?? []}

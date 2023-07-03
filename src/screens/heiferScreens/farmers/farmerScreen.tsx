@@ -17,18 +17,25 @@ export const FarmerScreen = () => {
   const navigate = useNavigate();
   const columns = useAllFarmersColumn();
   const projectId: number = useProject().getProject()?.id;
+  const [query, setQuery] = useState("");
+  const [gender, setGender] = useState("");
+  const [age, setAge] = useState("");
+  const [state, setState] = useState("");
+  const [lga, setLga] = useState("");
+  const [community, setCommunity] = useState("");
+  const [intervention, setIntervention] = useState([]);
+  const [income, setIncome] = useState("");
+
   const { data, isLoading, refetch } = useGetFarmersQuery({
-    page: 1, query: "", project_id: projectId,
-    // gender: "female", age_catgeory: "25-35", 
-    // state: "lagos", lga: "surulere", 
-    // community: "ijesha", interventions: [5], 
-    // income: "200000"  
+    page: 1, query: query, project_id: projectId,
+    gender: gender, age_catgeory: age, state: state, 
+    lga: lga, community: community, 
+    interventions: intervention, income: income
   });
   const [deleteFarmer] = useDeleteFarmerMutation();
   const toast = useToast({ position: "top-right" });
   const [showModal, setShowModal] = useState(false);
   const [selectedFarmerId, setSelectedFarmerId] = useState(0);
-
 
   const handleDelete = (row: any) => {
     setSelectedFarmerId(row.original.id);
@@ -40,9 +47,7 @@ export const FarmerScreen = () => {
     setShowModal(false);
   };
 
-  const handleCancelDelete = () => {
-    setShowModal(false);
-  };
+  const handleCancelDelete = () => setShowModal(false);
 
   const initDelete = (farmerId: number) => {
     let payload = { project_id: projectId, farmers: [farmerId] };
@@ -85,7 +90,16 @@ export const FarmerScreen = () => {
         </div>
       }
     >
-      <HouseholdFilterSystem />
+      <HouseholdFilterSystem 
+        gender={(target: any) => setGender(target) } 
+        age={(target: any) => setAge(target) } 
+        state={(target: any) => setState(target) } 
+        lga={(target: any) => setLga(target) } 
+        community={(target: any) => setCommunity(target) } 
+        intervention={(target: any) => setIntervention(target) } 
+        income={(target: any) => setIncome(target) } 
+        query={(target: any) => setQuery(target) } 
+      />
       <div className="col-xl-12">
         <ThemeTable
           data={data?.data?.data ?? []}

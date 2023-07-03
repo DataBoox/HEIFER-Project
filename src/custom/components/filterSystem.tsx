@@ -8,7 +8,11 @@ import { useProject } from "store/projects";
 import { states, localGov, communities } from "utilities";
 import { useEffect, useState } from "react";
 
-export const FilterSystem = () => {
+export interface FilterSystemProps {
+  query?: (value?: string) => void;
+}
+
+export const FilterSystem: React.FC<FilterSystemProps>= ({query = () => {}}) => {
   const projectId: number = useProject().project.id;
   const { data: interventions } = useGetInterventionsQuery({ project_id: projectId });
   const interventionNames = interventions?.data.data.map((data: { name: any; id: any; }) => {
@@ -17,13 +21,19 @@ export const FilterSystem = () => {
   const { isLoading } = useGetGroupsQuery({ page: 1, query: "", project_id: projectId });
   const initRequest = () => { const payload: any = { ...values } };
 
-  const {
-      values, errors, setValues,
-      handleChange, setFieldTouched, touched,
-  } = useFormik({
-      initialValues: { lga: "", state: "", intervention: "", community: "" },
-      validationSchema: AddGroupScheme(), onSubmit: async () => initRequest(),
+  const { values, handleChange } = useFormik({
+      initialValues: { 
+        lga: "", 
+        state: "", 
+        intervention: "", 
+        community: "",
+        query: "" 
+      }, onSubmit: async () => initRequest(),
   });
+
+  useEffect(() => {
+    if (values.query) query(values.query);
+  }, [values]);
 
     return (
       <div className="col-xl-12">
@@ -34,7 +44,7 @@ export const FilterSystem = () => {
               placeholder="Search ..."
               size={"lg"}
               rightComponent={<FaSearch color={"grey"} />}
-              // onChange={({ target }) => onSearch(target.value)}
+              onChange={({ target }) => query(target.value)}
               isDisabled={isLoading}
               style={{
                 backgroundColor: "#ffff",
