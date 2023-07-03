@@ -18,9 +18,11 @@ export const FarmerScreen = () => {
   const columns = useAllFarmersColumn();
   const projectId: number = useProject().getProject()?.id;
   const { data, isLoading, refetch } = useGetFarmersQuery({
-    page: 1,
-    query: "",
-    project_id: projectId,
+    page: 1, query: "", project_id: projectId,
+    // gender: "female", age_catgeory: "25-35", 
+    // state: "lagos", lga: "surulere", 
+    // community: "ijesha", interventions: [5], 
+    // income: "200000"  
   });
   const [deleteFarmer] = useDeleteFarmerMutation();
   const toast = useToast({ position: "top-right" });

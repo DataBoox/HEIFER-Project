@@ -90,7 +90,13 @@ export interface DeleteFarmersPayload {
 
 export interface FetchFarmersPayload extends PaginatedPayload {
     project_id: number;
-    farmers?: (number | string)[]
+    gender?: string, 
+    age_catgeory?: string, 
+    state?: string, 
+    lga?: string, 
+    community?: string, 
+    interventions?: Array<number>, 
+    income?: string
 }
 
 

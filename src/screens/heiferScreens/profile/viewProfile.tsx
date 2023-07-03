@@ -10,14 +10,14 @@ import { resolveApiError } from "utilities";
 import { useToast, } from "@chakra-ui/react";
 import { LoginValidationSchema } from "validations";
 import { useFormik } from "formik";
+import { PrimaryInput } from "components";
+import { useAuth } from "store/auth";
 
 
 export const ViewProfile = () => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
-  const pathArray: string[] = pathname.trim().split("/")
-  const profileId = pathArray[pathArray.length - 1]
-  const { data, isLoading, refetch } = useGetProfileInfoQuery({ pid: profileId });
+  const { user } = useAuth()
   const toast = useToast({ position: "top-right" });
   const { values, errors, handleSubmit, setFieldValue, touched } = useFormik({
     initialValues: { auth: "", password: "" },
@@ -68,35 +68,49 @@ export const ViewProfile = () => {
                     <td className="fw-bold" style={{ minWidth: "150px" }}>
                       Last Name
                     </td>
-                    <td className="p-3">{data?.data.lname ?? '- - - - - - - - - - - - - - -'}</td>
+                    <PrimaryInput
+                      isRequired
+                      name="name"
+                      placeholder="Last name"
+                      value={user?.user_info?.lname}
+                      error={false}
+                      // bottomText={}
+                      // onChange={}
+                      style={{
+                        borderRadius: 0, background: "#FFF !important", 
+                        border: 0, borderBottom: "1px solid #ddd",
+                        padding: "0"
+                      }}
+                    />
+                    {/* <td className="p-3">{user?.data.lname ?? '- - - - - - - - - - - - - - -'}</td> */}
                   </tr>
                   <tr>
                     <td className="fw-bold">First Name</td>
-                    <td className="p-3">{data?.data.fname ?? '- - - - - - - - - - - - - - -'}</td>
+                    <td className="p-3">{user?.user_info.fname ?? '- - - - - - - - - - - - - - -'}</td>
                   </tr>
                   <tr>
                     <td className="fw-bold">Email Address</td>
-                    <td className="p-3"> {data?.data.user.email ?? '- - - - - - - - - - - - - - -'}</td>
+                    <td className="p-3"> {user?.email ?? '- - - - - - - - - - - - - - -'}</td>
                   </tr>
                   <tr>
                     <td className="fw-bold">Gender</td>
-                    <td className="p-3">{data?.data.gender ?? '- - - - - - - - - - - - - - -'}</td>
+                    <td className="p-3">{user?.user_info.gender ?? '- - - - - - - - - - - - - - -'}</td>
                   </tr>
                   <tr>
                     <td className="fw-bold">State</td>
-                    <td className="p-3">{data?.data.state ?? '- - - - - - - - - - - - - - -'}</td>
+                    <td className="p-3">{user?.user_info.state ?? '- - - - - - - - - - - - - - -'}</td>
                   </tr>
                   <tr>
                     <td className="fw-bold">Community</td>
-                    <td className="p-3">{data?.data.community ?? '- - - - - - - - - - - - - - -'}</td>
+                    <td className="p-3">{user?.user_info.community ?? '- - - - - - - - - - - - - - -'}</td>
                   </tr>
                   <tr>
                     <td className="fw-bold">Project</td>
-                    <td className="p-3">{data?.data.project ?? '- - - - - - - - - - - - - - -'}</td>
+                    <td className="p-3">{user?.projects[0]?.name ?? '- - - - - - - - - - - - - - -'}</td>
                   </tr>
                   <tr>
                     <td className="fw-bold">Role</td>
-                    <td className="p-3 ">{data?.data.user.account_type.replace('_', ' ').toUpperCase() ?? '- - - - - - - - - - - - - - -'}</td>
+                    <td className="p-3 ">{user?.account_type.replace('_', ' ').toUpperCase() ?? '- - - - - - - - - - - - - - -'}</td>
                   </tr>
                 </tbody>
               </table>
