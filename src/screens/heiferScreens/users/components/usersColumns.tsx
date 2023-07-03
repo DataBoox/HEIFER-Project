@@ -12,7 +12,7 @@ export const useAllUsersColumn = () => {
     accessorFn: (row) => `${row.fname}`,
     Cell: ({ row }) => (
         <Link
-            to={'/users/view/' + row.original.id}
+            to={'/users/view/' + (row.original as UserInfo).id}
             state={{ member: row.original }}
             className="text-decoration-underline"
         >
@@ -25,7 +25,7 @@ export const useAllUsersColumn = () => {
     accessorFn: (row) => `${row.lname}`,
     Cell: ({ row }) => (
         <Link
-            to={'/users/view/' + row.original.id}
+            to={'/users/view/' + (row.original as UserInfo).id}
             state={{ member: row.original }}
             className="text-decoration-underline"
         >

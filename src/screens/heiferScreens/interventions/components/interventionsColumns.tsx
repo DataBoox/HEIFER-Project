@@ -13,7 +13,7 @@ export const useAllInterventionsColumn = () => {
           accessorFn: (row) => `${row.name}`,
           Cell: ({ row }) => (
             <Link
-              to={"/interventions/view/" + row.original.intervention_id}
+              to={"/interventions/view/" + (row.original as Intervention).id}
               state={{ member: row.original }}
               className="text-decoration-underline"
             >

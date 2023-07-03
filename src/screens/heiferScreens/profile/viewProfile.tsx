@@ -8,7 +8,7 @@ import _ from "lodash";
 import { useLocation } from "react-router-dom";
 import { resolveApiError } from "utilities";
 import { useToast, } from "@chakra-ui/react";
-import { LoginValidationSchema } from "validations";
+import { ResetPasswordValidationSchema } from "validations";
 import { useFormik } from "formik";
 import { PrimaryInput } from "components";
 import { useAuth } from "store/auth";
@@ -20,8 +20,8 @@ export const ViewProfile = () => {
   const { user } = useAuth()
   const toast = useToast({ position: "top-right" });
   const { values, errors, handleSubmit, setFieldValue, touched } = useFormik({
-    initialValues: { auth: "", password: "" },
-    validationSchema: LoginValidationSchema,
+    initialValues: { auth: "", password: "", new_password: "", confirm: ""},
+    validationSchema: ResetPasswordValidationSchema,
     onSubmit: () => initRequest(),
   });
   const initRequest = () => {
@@ -172,14 +172,14 @@ export const ViewProfile = () => {
                   />
 
 <CustomPasswordInput className="p-4 mb-4"
-                    name={"password"}
+                    name={"new_password"}
                     label={"New Password"}
                     placeholder={"Enter your new password"}
-                    value={values.password}
-                    error={Boolean(errors.password && touched.password)}
-                    bottomText={errors.password}
+                    value={values.new_password}
+                    error={Boolean(errors.new_password && touched.new_password)}
+                    bottomText={errors.new_password}
                     onChange={({ target }) =>
-                      setFieldValue("password", target.value)
+                      setFieldValue("new_password", target.value)
                     }
                     style={{
                         backgroundColor: "#F2FAFC",
@@ -189,14 +189,14 @@ export const ViewProfile = () => {
                   />
 
 <CustomPasswordInput className="p-4 mb-4"
-                    name={"password"}
+                    name={"confirm"}
                     label={"Confirm New Password"}
                     placeholder={"Confirm your new password"}
-                    value={values.password}
-                    error={Boolean(errors.password && touched.password)}
-                    bottomText={errors.password}
+                    value={values.confirm}
+                    error={Boolean(errors.confirm && touched.confirm)}
+                    bottomText={errors.confirm}
                     onChange={({ target }) =>
-                      setFieldValue("password", target.value)
+                      setFieldValue("confirm", target.value)
                     }
                     style={{
                         backgroundColor: "#F2FAFC",
@@ -208,7 +208,7 @@ export const ViewProfile = () => {
 <div className="col-auto text-end">
             <Button
               colorScheme="teal"
-              onClick={() => navigate("/farmers/edit")}
+              onClick={() => handleSubmit}
               className={"fw-bold"}
               fontSize={"md"}
               backgroundColor={"#2A4153"}

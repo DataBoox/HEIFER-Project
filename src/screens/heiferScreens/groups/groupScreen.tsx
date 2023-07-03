@@ -6,12 +6,11 @@ import { ContentBodyContainer} from "../../home";
 import { Group, useGetGroupsQuery } from "store/group";
 import { useAllGroupsColumn} from "./components";
 import { FaEye, FaPen, FaTrash, FaPlus } from "react-icons/fa";
-import { OverlayTrigger, Tooltip } from "react-bootstrap";
+import { OverlayTrigger, Tooltip, Modal } from "react-bootstrap";
 import _ from "lodash";
 import { StateLGAInput, FilterSystem } from "custom";
 import { useState } from "react";
 import {
-  Modal,
   ModalOverlay,
   ModalContent,
   ModalHeader,
@@ -34,9 +33,26 @@ export const GroupScreen = () => {
   });
   const toast = useToast({ position: "top-right" });
   const [showModal, setShowModal] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
   const handleButtonClick = () => setShowModal(true);
   const handleModalClose = () => setShowModal(false);
   const [deleteGroup] = useDeleteGroupMutation();
+  const [selectedGroupId, setSelectedGroupId] = useState(0);
+
+
+  const handleDelete = (row: any) => {
+    setSelectedGroupId(row.original.id);
+    setShowDeleteModal(true);
+  };
+
+  const handleConfirmDelete = () => {
+    initDelete(selectedGroupId);
+    setShowDeleteModal(false);
+  };
+
+  const handleCancelDelete = () => {
+    setShowDeleteModal(false);
+  };
 
   const initDelete = (group: number) => {
     let payload = { project_id: projectId, groups: [group]}
@@ -120,7 +136,7 @@ export const GroupScreen = () => {
                   </div>
                 </OverlayTrigger>
               </div>
-              <div className="touchable" onClick={() => initDelete((row.original as Group).id)}>
+              <div className="touchable" onClick={() => handleDelete(row)}>
                 <OverlayTrigger
                   placement="top"
                   overlay={<Tooltip id="delete-tooltip">Delete</Tooltip>}
@@ -137,35 +153,60 @@ export const GroupScreen = () => {
       </div>
 
       <Modal isOpen={showModal} onClose={handleModalClose}>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>
-            <h4 className="border-bottom pb-2">Additional Groups Forms</h4>
-          </ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            <h5 className="mb-4">Select a Form</h5>
-            <ul>
-              <li className="mb-2">
-                <Button variant="link" onClick={() => navigate("/groups/sub")}>Self Help Group Record Tracking</Button>
-              </li>
-              {/* <li className="mb-2">
-                <Button variant="link">SHG & Entities Summary Form</Button>
-              </li> */}
-              {/* Add more form options as needed */}
-            </ul>
-          </ModalBody>
-          <ModalFooter>
-            <Button variant="secondary" onClick={handleModalClose}>
-              Close
-            </Button>
-            <Button variant="primary" onClick={handleModalClose}>
-              Save Changes
-            </Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
+  <ModalOverlay />
+  <ModalContent>
+    <ModalHeader>
+      <h4 className="border-bottom pb-2">Additional Groups Forms</h4>
+    </ModalHeader>
+    <ModalCloseButton />
+    <ModalBody>
+      <h5 className="mb-4">Select a Form</h5>
+      <ul>
+        <li className="mb-2">
+          <Button variant="link" onClick={() => navigate("/groups/sub")}>
+            Self Help Group Record Tracking
+          </Button>
+        </li>
+        {/* <li className="mb-2">
+          <Button variant="link">SHG & Entities Summary Form</Button>
+        </li> */}
+        {/* Add more form options as needed */}
+      </ul>
+    </ModalBody>
+    <ModalFooter>
+      <Button variant="secondary" onClick={handleModalClose}>
+        Close
+      </Button>
+      <Button variant="primary" onClick={handleModalClose}>
+        Save Changes
+      </Button>
+    </ModalFooter>
+  </ModalContent>
+</Modal>
 
+
+      <Modal show={showDeleteModal} onHide={handleCancelDelete}>
+  <Modal.Header closeButton>
+    <Modal.Title>Delete Group</Modal.Title>
+  </Modal.Header>
+  <Modal.Body className="fs-4 p-4">Are you sure you want to delete this group?</Modal.Body>
+  <Modal.Footer style={{ borderTop: "none" }}>
+    <Button
+      variant="secondary"
+      onClick={handleCancelDelete}
+      style={{ backgroundColor: "#cccccc", color: "#ffffff" }}
+    >
+      Cancel
+    </Button>
+    <Button
+      variant="danger"
+      onClick={handleConfirmDelete}
+      style={{ backgroundColor: "red", color: "#ffffff" }}
+    >
+      Delete
+    </Button>
+  </Modal.Footer>
+</Modal>
      
     </ContentBodyContainer>
   );

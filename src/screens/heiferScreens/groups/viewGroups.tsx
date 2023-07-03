@@ -233,7 +233,7 @@ export const ViewGroups = () => {
                   <div className="flex-grow-1 overflow-hidden text-end">
                     <p className="fs-5 fw-medium text-dark text-truncate mb-3">
                       {" "}
-                      Total SH Groups
+                      Total Interventions
                     </p>
                     <h4 className="fs-1 fw-bold text-dark mb-5">
                       {/* {currencyFormatter(data?.data.projects ?? 0)} */} 3
