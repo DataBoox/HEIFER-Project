@@ -1,4 +1,4 @@
-import { PrimaryInput, PrimarySelect } from "components/inputs";
+import { PrimaryInput, PrimarySelect, GenderSelect } from "components";
 import { FaSearch, FaPlus } from "react-icons/fa";
 import { useGetGroupsQuery } from "store/group";
 import { useGetInterventionsQuery } from "store/intervention";
@@ -6,54 +6,69 @@ import { AddGroupScheme } from "validations/group";
 import { useFormik } from "formik";
 import { useProject } from "store/projects";
 import { states, localGov, communities } from "utilities";
+import { useEffect, useCallback } from "react";
 
-export const HouseholdFilterSystem = () => {
+export interface FilterSystemProps {
+  gender?: (value?: string) => void;
+  age?: (value?: string) => void;
+  state?: (value?: string) => void;
+  lga?: (value?: string) => void;
+  community?: (value?: string) => void;
+  intervention?: (value?: string) => void;
+  income?: (value?: string) => void;
+  query?: (value?: string) => void;
+}
+
+export const HouseholdFilterSystem: React.FC<FilterSystemProps> = ({ 
+  gender = () => {}, 
+  age = () => {}, 
+  state = () => {}, 
+  lga = () => {}, 
+  intervention = () => {}, 
+  community = () => {}, 
+  income = () => {},
+  query = () => {},
+}) => {
   const projectId: number = useProject().project.id;
   const { data: interventions } = useGetInterventionsQuery({ project_id: projectId });
   const interventionNames = interventions?.data.data.map((data: { name: any; id: any; }) => {
     return { text: `${data.name}`, props: { value: data.id  }}
   })
-    const { isLoading } = useGetGroupsQuery({
-        page: 1,
-        query: "",
-        project_id: projectId
-    });
+    const { isLoading } = useGetGroupsQuery({ page: 1, query: "", project_id: projectId });
     const initRequest = () => {
         const payload: any = {
             ...values,
         };
     };
-    const {
-        values,
-        errors,
-        setValues,
-        handleChange,
-        setFieldTouched,
-        touched,
-    } = useFormik({
-        initialValues: {
-            gname: "",
-            createdby: "",
-            lga: "",
-            location: "",
-            state: "",
-            farmers: "",
-            intervention: "",
-        },
-        validationSchema: AddGroupScheme(),
-        onSubmit: async () => initRequest(),
+    const { values, handleChange } = useFormik({ 
+      initialValues: {
+        lga: "", location: "", community: "",
+        state: "", farmers: "", age: "", query:"",
+        gender: "", intervention: "", income: ""
+      },onSubmit: async () => initRequest(),
     });
+
+    useEffect(() => {
+      if (values.gender) gender(values.gender);
+      if (values.age) gender(values.age);
+      if (values.state) gender(values.state);
+      if (values.community) gender(values.community);
+      if (values.lga) gender(values.lga);
+      if (values.intervention) gender(values.intervention);
+      if (values.income) gender(values.income);
+    }, [values]);
+
     return (
       <div className="col-xl-12">
         <div className="row g-3 mb-4">
           <div className="col-auto">
             <PrimaryInput
-              name="search"
+              name="query"
               placeholder="Search ..."
               size={"lg"}
+              onChange={handleChange}
+              value={values.query}
               rightComponent={<FaSearch color={"grey"} />}
-              // onChange={({ target }) => onSearch(target.value)}
-              isDisabled={isLoading}
               style={{
                 backgroundColor: "#ffff",
                 borderRadius: 0,
@@ -64,6 +79,7 @@ export const HouseholdFilterSystem = () => {
           <div className="col-auto">
             <PrimarySelect 
               name="state"
+              value={values.state}
               placeholder="Select State"
               options={ states }
               onChange={handleChange}
@@ -76,6 +92,7 @@ export const HouseholdFilterSystem = () => {
             <div className="col-auto">
               <PrimarySelect 
                 name="lga"
+                value={values.lga}
                 placeholder="Select Local Gov"
                 options={ localGov(Number(values.state)) }
                 onChange={handleChange}
@@ -89,6 +106,7 @@ export const HouseholdFilterSystem = () => {
               <div className="col-auto">
                 <PrimarySelect
                   name="community"
+                  value={values.community}
                   placeholder="Select Community"
                   options={ communities(Number(values.state), Number(values.lga)) }
                   onChange={handleChange}
@@ -100,8 +118,9 @@ export const HouseholdFilterSystem = () => {
 
           <div className="col-3">
             <PrimarySelect
-              name="All Age Groups"
+              name="age"
               placeholder="Select Age Group"
+              value={values.age}
               options={interventionNames}
               onChange={handleChange}
               size={"lg"}
@@ -115,12 +134,13 @@ export const HouseholdFilterSystem = () => {
           </div>
 
           <div className="col-3">
-            <PrimarySelect
-              name="All Gender"
-              placeholder="Select All Gender"
-              options={interventionNames}
+            <GenderSelect
+              isRequired
+              name="gender"
+              value={values.gender}
               onChange={handleChange}
               size={"lg"}
+              label=""
               isDisabled={isLoading}
               style={{
                 backgroundColor: "#ffff",
@@ -133,9 +153,10 @@ export const HouseholdFilterSystem = () => {
 
           <div className="col-3">
             <PrimarySelect
-              name="Intervention"
+              name="intervention"
               placeholder="Select Intervention"
               options={interventionNames}
+              value={values.intervention}
               onChange={handleChange}
               size={"lg"}
               isDisabled={isLoading}
@@ -149,8 +170,9 @@ export const HouseholdFilterSystem = () => {
 
           <div className="col-3">
             <PrimaryInput
-              name="Income"
+              name="income"
               placeholder="Income, ₦"
+              value={values.income}
               onChange={handleChange}
               rightComponent={<FaPlus color={"grey"} />}
               size={"lg"}
