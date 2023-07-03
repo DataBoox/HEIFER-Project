@@ -61,56 +61,154 @@ export const ViewProfile = () => {
               </h4>
               {/* {rightCardHeaderComponent} */}
             </div>
-            <div className="mx-4 pt-1">
+            <div className="mx-4 pt-3">
               <table>
                 <tbody>
                   <tr>
-                    <td className="fw-bold" style={{ minWidth: "150px" }}>
+                    <td className="fw-bold" style={{ minWidth: "200px"}}>
                       Last Name
                     </td>
                     <PrimaryInput
                       isRequired
                       name="name"
                       placeholder="Last name"
-                      value={user?.user_info?.lname}
+                      value={user?.user_info?.lname ?? '- - - - - - - - - - - - - - -'}
                       error={false}
                       // bottomText={}
                       // onChange={}
                       style={{
                         borderRadius: 0, background: "#FFF !important", 
                         border: 0, borderBottom: "1px solid #ddd",
-                        padding: "0"
+                        padding: "1rem"
                       }}
                     />
                     {/* <td className="p-3">{user?.data.lname ?? '- - - - - - - - - - - - - - -'}</td> */}
                   </tr>
                   <tr>
-                    <td className="fw-bold">First Name</td>
-                    <td className="p-3">{user?.user_info.fname ?? '- - - - - - - - - - - - - - -'}</td>
+                    <td className="fw-bold pt-3" style={{ minWidth: "200px"}}>First Name</td>
+                    <PrimaryInput
+                      isRequired
+                      name="fname"
+                      placeholder="First name"
+                      value={user?.user_info?.fname ?? '- - - - - - - - - - - - - - -'}
+                      error={false}
+                      // bottomText={}
+                      // onChange={}
+                      style={{
+                        borderRadius: 0, background: "#FFF !important", 
+                        border: 0, borderBottom: "1px solid #ddd",
+                        padding: "1rem",
+                        paddingTop: "2rem"
+                      }}
+                    />
                   </tr>
                   <tr>
-                    <td className="fw-bold">Email Address</td>
-                    <td className="p-3"> {user?.email ?? '- - - - - - - - - - - - - - -'}</td>
+                    <td className="fw-bold" style={{ minWidth: "200px"}}>Email Address</td>
+                    <PrimaryInput
+                      isRequired
+                      name="email"
+                      placeholder="Email Address"
+                      value={user?.email ?? '- - - - - - - - - - - - - - -'}
+                      error={false}
+                      // bottomText={}
+                      // onChange={}
+                      style={{
+                        borderRadius: 0, background: "#FFF !important", 
+                        border: 0, borderBottom: "1px solid #ddd",
+                        padding: "1rem",
+                        paddingTop: "2rem"
+                      }}
+                    />
                   </tr>
                   <tr>
-                    <td className="fw-bold">Gender</td>
-                    <td className="p-3">{user?.user_info.gender ?? '- - - - - - - - - - - - - - -'}</td>
+                    <td className="fw-bold" style={{ minWidth: "200px"}}>Gender</td>
+                    <PrimaryInput
+                      isRequired
+                      name="gender"
+                      placeholder="Gender"
+                      value={user?.user_info?.gender ?? '- - - - - - - - - - - - - - -'}
+                      error={false}
+                      // bottomText={}
+                      // onChange={}
+                      style={{
+                        borderRadius: 0, background: "#FFF !important", 
+                        border: 0, borderBottom: "1px solid #ddd",
+                        padding: "1rem",
+                        paddingTop: "2rem"
+                      }}
+                    />
                   </tr>
                   <tr>
-                    <td className="fw-bold">State</td>
-                    <td className="p-3">{user?.user_info.state ?? '- - - - - - - - - - - - - - -'}</td>
+                    <td className="fw-bold" style={{ minWidth: "200px"}}>State</td>
+                    <PrimaryInput
+                      isRequired
+                      name="state"
+                      placeholder="State"
+                      value={user?.user_info?.state ?? '- - - - - - - - - - - - - - -'}
+                      error={false}
+                      // bottomText={}
+                      // onChange={}
+                      style={{
+                        borderRadius: 0, background: "#FFF !important", 
+                        border: 0, borderBottom: "1px solid #ddd",
+                        padding: "1rem",
+                        paddingTop: "2rem"
+                      }}
+                    />
                   </tr>
                   <tr>
-                    <td className="fw-bold">Community</td>
-                    <td className="p-3">{user?.user_info.community ?? '- - - - - - - - - - - - - - -'}</td>
+                    <td className="fw-bold" style={{ minWidth: "200px"}}>Community</td>
+                    <PrimaryInput
+                      isRequired
+                      name="community"
+                      placeholder="Community"
+                      value={user?.user_info?.community ?? '- - - - - - - - - - - - - - -'}
+                      error={false}
+                      // bottomText={}
+                      // onChange={}
+                      style={{
+                        borderRadius: 0, background: "#FFF !important", 
+                        border: 0, borderBottom: "1px solid #ddd",
+                        padding: "1rem",
+                        paddingTop: "2rem"
+                      }}
+                    />
                   </tr>
                   <tr>
-                    <td className="fw-bold">Project</td>
-                    <td className="p-3">{user?.projects[0]?.name ?? '- - - - - - - - - - - - - - -'}</td>
+                    <td className="fw-bold" style={{ minWidth: "200px"}}>Project</td>
+                    <PrimaryInput
+                      isRequired
+                      name="projects"
+                      placeholder="Project"
+                      value={user?.projects[0]?.name ?? '- - - - - - - - - - - - - - -'}
+                      error={false}
+                      // bottomText={}
+                      // onChange={}
+                      style={{
+                        borderRadius: 0, background: "#FFF !important", 
+                        border: 0, borderBottom: "1px solid #ddd",
+                        padding: "1rem",
+                        paddingTop: "2rem"
+                      }}
+                    />
                   </tr>
                   <tr>
-                    <td className="fw-bold">Role</td>
-                    <td className="p-3 ">{user?.account_type.replace('_', ' ').toUpperCase() ?? '- - - - - - - - - - - - - - -'}</td>
+                    <td className="fw-bold" style={{ minWidth: "200px"}}>Role</td>
+                    <PrimaryInput
+                      isRequired
+                      name="account_type"
+                      placeholder="Account Type"
+                      value={user?.account_type.replace('_', ' ').toUpperCase() ?? '- - - - - - - - - - - - - - -'}
+                      error={false}
+                      // bottomText={}
+                      // onChange={}
+                      style={{
+                        borderRadius: 0, background: "#FFF !important", 
+                        border: 0, borderBottom: "1px solid #ddd",
+                        padding: "1rem",
+                        paddingTop: "2rem"
+                      }}
+                      />
                   </tr>
                 </tbody>
               </table>
