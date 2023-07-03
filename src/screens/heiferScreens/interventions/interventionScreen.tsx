@@ -19,7 +19,8 @@ export const InterventionScreen = () => {
   const navigate = useNavigate();
   const columns = useAllInterventionsColumn();
   const projectId: number = useProject().getProject()?.id;
-  const { data, isLoading, refetch } = useGetInterventionsQuery({ page: 1, query: "", project_id: projectId });
+  const [query, setQuery] = useState("");
+  const { data, isLoading, refetch } = useGetInterventionsQuery({ page: 1, query: query, project_id: projectId });
   const toast = useToast({ position: "top-right" });
   const [deleteIntervention] = useDeleteInterventionMutation();
   const [showModal, setShowModal] = useState(false);
@@ -64,7 +65,7 @@ export const InterventionScreen = () => {
               placeholder="Search..."
               size={"lg"}
               rightComponent={<FaSearch color={"grey"} />}
-              // onChange={({ target }) => onSearch(target.value)}
+              onChange={({ target }) => setQuery(target.value)}
               isDisabled={isLoading}
               style={{
                 backgroundColor: "#ffff",
