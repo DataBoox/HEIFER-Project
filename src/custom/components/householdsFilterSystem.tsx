@@ -8,7 +8,7 @@ import { useProject } from "store/projects";
 import { states, localGov, communities } from "utilities";
 import { useEffect, useCallback } from "react";
 
-export interface FilterSystemProps {
+export interface HouseholdFilterSystemProps {
   gender?: (value?: string) => void;
   age?: (value?: string) => void;
   state?: (value?: string) => void;
@@ -19,7 +19,7 @@ export interface FilterSystemProps {
   query?: (value?: string) => void;
 }
 
-export const HouseholdFilterSystem: React.FC<FilterSystemProps> = ({ 
+export const HouseholdFilterSystem: React.FC<HouseholdFilterSystemProps> = ({ 
   gender = () => {}, 
   age = () => {}, 
   state = () => {}, 
@@ -50,12 +50,13 @@ export const HouseholdFilterSystem: React.FC<FilterSystemProps> = ({
 
     useEffect(() => {
       if (values.gender) gender(values.gender);
-      if (values.age) gender(values.age);
-      if (values.state) gender(values.state);
-      if (values.community) gender(values.community);
-      if (values.lga) gender(values.lga);
-      if (values.intervention) gender(values.intervention);
-      if (values.income) gender(values.income);
+      if (values.age) age(values.age);
+      if (values.state) state(values.state);
+      if (values.community) community(values.community);
+      if (values.lga) lga(values.lga);
+      if (values.intervention) intervention(values.intervention);
+      if (values.income) income(values.income);
+      if (values.query) query(values.query);
     }, [values]);
 
     return (
