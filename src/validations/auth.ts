@@ -28,6 +28,7 @@ export const ForgotValidationSchema = () => {
 export const ResetPasswordValidationSchema = () => {
     return object({
         password: string().required('Password is required'),
+        new_password: string().required('New password is required'),
         confirm: string().required('Confirm Password is required').test('passwords-match', 'Passwords must match', function (value) { return this.parent.password === value }),
     });
 }

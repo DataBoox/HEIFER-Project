@@ -1,4 +1,4 @@
-import { FarmerInfo } from 'store/farmers';
+import { FarmerInfo, Farmer } from 'store/farmers';
 import _ from 'lodash';
 import { MRT_ColumnDef } from 'material-react-table';
 import { useMemo } from 'react';
@@ -13,7 +13,7 @@ export const useAllFarmersColumn = () => {
           accessorFn: (row) => `${row.first_name}`,
           Cell: ({ row }) => (
             <Link
-              to={"/farmers/view/" + row.original.farmer_id}
+              to={"/farmers/view/" + (row.original as Farmer).id}
               state={{ member: row.original }}
               className="text-decoration-underline"
             >
@@ -26,7 +26,7 @@ export const useAllFarmersColumn = () => {
           accessorFn: (row) => `${row.last_name}`,
           Cell: ({ row }) => (
             <Link
-              to={"/farmers/view/" + row.original.farmer_id}
+              to={"/farmers/view/" + (row.original as Farmer).id}
               state={{ member: row.original }}
               className="text-decoration-underline"
             >

@@ -1,4 +1,4 @@
-import { GroupInfo } from 'store/group';
+import { GroupInfo, Group } from 'store/group';
 import _ from 'lodash';
 import { MRT_ColumnDef } from 'material-react-table';
 import { useMemo } from 'react';
@@ -13,7 +13,7 @@ export const useAllGroupsColumn = () => {
           accessorFn: (row) => `${row.name}`,
           Cell: ({ row }) => (
             <Link
-              to={"/groups/view/" + row.original.group_id}
+              to={"/groups/view/" + (row.original as unknown as Group).id}
               state={{ member: row.original }}
               className="text-decoration-underline"
             >
