@@ -124,56 +124,54 @@ export const ViewGroups = () => {
                 </tbody>
               </table>
               <div className="row g-3 pt-4 pb-4 align-items-center">
-          <div className="col-auto">
-          <AssignInterventionDialog
-              requiredId={groupId}
-              useButton={true}
-              buttonProps={{
-                leftIcon: (
-                  <MdOutlineAddCircleOutline size={12} />
-                ),
-                fontSize: "sm",
-                className: "fw-bold",
-                backgroundColor: "#2A4153",
-                color: "#fff",
-                borderRadius: 0,
-                padding: "12px, 20px, 12px, 20px",
-                transition: "background-color 0.5s ease-in-out", // Add transition property
-              }}
-              onClose={refetch}
-            >
-              Assign Intervention
-            </AssignInterventionDialog>
-          </div>
+                <div className="col-auto">
+                  <AssignInterventionDialog
+                    requiredId={groupId}
+                    useButton={true}
+                    buttonProps={{
+                      leftIcon: (
+                        <MdOutlineAddCircleOutline size={12} />
+                      ),
+                      fontSize: "sm",
+                      className: "fw-bold",
+                      backgroundColor: "#2A4153",
+                      color: "#fff",
+                      borderRadius: 0,
+                      padding: "12px, 20px, 12px, 20px",
+                      transition: "background-color 0.5s ease-in-out", // Add transition property
+                    }}
+                    onClose={refetch}
+                  >
+                    Assign Intervention
+                  </AssignInterventionDialog>
+                </div>
 
-          <div className="col-auto">
-          <AssignFarmerDialog
-              requiredId={groupId}
-              useButton={true}
-              buttonProps={{
-                leftIcon: (
-                  <MdOutlineAddCircleOutline size={12} />
-                ),
-                fontSize: "sm",
-                className: "fw-bold",
-                backgroundColor: "#7AD0E2",
-                color: "#fff",
-                borderRadius: 0,
-                padding: "12px, 20px, 12px, 20px",
-                transition: "background-color 0.5s ease-in-out", // Add transition property
-              }}
-              onClose={refetch}
-            >
-              Assign a Household
-            </AssignFarmerDialog>
-          </div>
+                <div className="col-auto">
+                  <AssignFarmerDialog
+                    requiredId={groupId}
+                    useButton={true}
+                    buttonProps={{
+                      leftIcon: (
+                        <MdOutlineAddCircleOutline size={12} />
+                      ),
+                      fontSize: "sm",
+                      className: "fw-bold",
+                      backgroundColor: "#7AD0E2",
+                      color: "#fff",
+                      borderRadius: 0,
+                      padding: "12px, 20px, 12px, 20px",
+                      transition: "background-color 0.5s ease-in-out", // Add transition property
+                    }}
+                    onClose={refetch}
+                  >
+                    Assign a Household
+                  </AssignFarmerDialog>
+                </div>
 
-        </div>
+              </div>
             </div>
           </div>
         </div>
-
-        
 
         <div className="row col-lg-12">
           <div className="col-lg-6 mb-md-0 mb-3">
