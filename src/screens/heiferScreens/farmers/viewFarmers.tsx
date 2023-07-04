@@ -3,7 +3,7 @@ import { FaPen, FaTrash, FaEye } from "react-icons/fa";
 import { Button, useToast, ButtonProps } from "@chakra-ui/react";
 import { PrimaryButton, PrimaryInput, ThemeTable } from "components";
 import { useNavigate } from "react-router-dom";
-import { ContentBodyContainer, DashboardCardContainer } from "../../home";
+import { ContentBodyContainer} from "../../home";
 import { useAllHistorysColumn} from "./components";
 import { useGetFarmersQuery, useGetFarmerInfoQuery, useDeleteFarmerMutation } from "store/farmers";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
@@ -120,6 +120,14 @@ export const ViewFarmers = () => {
                   <tr>
                     <td className="fw-bold">Group Name</td>
                     <td className="p-2">{ farmer?.data?.group_name ?? '- - - - - - - - - - - - - - -'}</td>
+                  </tr>
+                  <tr>
+                    <td className="fw-bold">State</td>
+                    <td className="p-2">{ farmer?.data?.state ?? '- - - - - - - - - - - - - - -'}</td>
+                  </tr>
+                  <tr>
+                    <td className="fw-bold">LGA</td>
+                    <td className="p-2">{ farmer?.data?.lga ?? '- - - - - - - - - - - - - - -'}</td>
                   </tr>
                   <tr>
                     <td className="fw-bold">Address</td>
