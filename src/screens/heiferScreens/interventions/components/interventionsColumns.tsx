@@ -33,7 +33,7 @@ export const useAllInterventionsColumn = () => {
         
         {
           header: "Date Created",
-          accessorFn: (row) => `${row.created_at}`,
+          accessorFn: (row) => `${moment(row.created_at)}`,
         },
       ],
       []
