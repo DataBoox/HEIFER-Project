@@ -36,8 +36,7 @@ export const useAllGroupsColumn = () => {
 
         {
           header: "Date Added",
-          accessorFn: (row) =>
-            `${moment(row.established_at).format("HH:mm a, DD MMM YYYY")}`,
+          accessorFn: (row) => `${row.established_at}`,
         },
       ],
       []

@@ -48,8 +48,7 @@ export const useAllFarmersColumn = () => {
         },
         {
           header: "Date Added",
-          accessorFn: (row) =>
-            `${moment(row.created_at).format("HH:mm a, DD MMM YYYY")}`,
+          accessorFn: (row) => `${moment(row.created_at)}`,
         },
       ],
       []
