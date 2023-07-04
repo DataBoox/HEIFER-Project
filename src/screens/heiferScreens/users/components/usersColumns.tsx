@@ -44,7 +44,7 @@ export const useAllUsersColumn = () => {
         },
         {
             header: "Date Added",
-            accessorFn: (row) => `${moment(row.created_at).format('HH:mm a, DD MMM YYYY')}`,
+            accessorFn: (row) => `${row.created_at}`,
         },
     ], []);
 };
