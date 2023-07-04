@@ -69,20 +69,24 @@ export const ViewProfile = () => {
                       Last Name
                     </td>
                     <PrimaryInput
-                      isRequired
-                      name="name"
-                      placeholder="Last name"
-                      value={user?.user_info?.lname ?? '- - - - - - - - - - - - - - -'}
-                      error={false}
-                      // bottomText={}
-                      // onChange={}
-                      style={{
-                        borderRadius: 0, background: "#FFF !important", 
-                        border: 0, borderBottom: "1px solid #ddd",
-                        padding: "1rem",
-                        outline: "none"
-                      }}
-                    />
+  isRequired
+  name="name"
+  placeholder="Last name"
+  value={user?.user_info?.lname ?? '- - - - - - - - - - - - - - -'}
+  error={false}
+  // bottomText={}
+  // onChange={}
+  style={{
+    borderRadius: 0,
+    background: "#FFF !important",
+    border: 0,
+    borderBottom: "1px solid #ddd", borderColor: "transparent",
+    padding: "1rem",
+    outline: "none !important" // Added !important to override other styles
+  }}
+/>
+
+
                     {/* <td className="p-3">{user?.data.lname ?? '- - - - - - - - - - - - - - -'}</td> */}
                   </tr>
                   <tr>
