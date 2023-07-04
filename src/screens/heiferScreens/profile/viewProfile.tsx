@@ -79,7 +79,8 @@ export const ViewProfile = () => {
                       style={{
                         borderRadius: 0, background: "#FFF !important", 
                         border: 0, borderBottom: "1px solid #ddd",
-                        padding: "1rem"
+                        padding: "1rem",
+                        outline: "none"
                       }}
                     />
                     {/* <td className="p-3">{user?.data.lname ?? '- - - - - - - - - - - - - - -'}</td> */}
