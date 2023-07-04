@@ -27,8 +27,14 @@ export const GroupScreen = () => {
   const columns = useAllGroupsColumn();
   const projectId: number = useProject().project?.id;
   const [query, setQuery] = useState("");
+  const [state, setState] = useState("");
+  const [lga, setLga] = useState("");
+  const [community, setCommunity] = useState("");
+  const [intervention, setIntervention] = useState([]);
   const { data, isLoading, refetch } = useGetGroupsQuery({
     page: 1, query: query, project_id: projectId,
+    state: state, lga: lga, community: community, 
+    interventions: intervention
   });
   const toast = useToast({ position: "top-right" });
   const [showModal, setShowModal] = useState(false);
@@ -94,7 +100,13 @@ export const GroupScreen = () => {
         </div>
       }
     >
-      <FilterSystem query={(target: any) => setQuery(target) }  />
+      <FilterSystem 
+        query={(target: any) => setQuery(target) }
+        state={(target: any) => setState(target) } 
+        lga={(target: any) => setLga(target) } 
+        community={(target: any) => setCommunity(target) } 
+        intervention={(target: any) => setIntervention(target) }  
+      />
       
       <div className="col-xl-12">
         <ThemeTable

@@ -10,9 +10,19 @@ import { useEffect, useState } from "react";
 
 export interface FilterSystemProps {
   query?: (value?: string) => void;
+  state?: (value?: string) => void;
+  lga?: (value?: string) => void;
+  community?: (value?: string) => void;
+  intervention?: (value?: string) => void;
 }
 
-export const FilterSystem: React.FC<FilterSystemProps>= ({query = () => {}}) => {
+export const FilterSystem: React.FC<FilterSystemProps>= ({
+  query = () => {},
+  state = () => {}, 
+  lga = () => {}, 
+  intervention = () => {}, 
+  community = () => {}, 
+}) => {
   const projectId: number = useProject().project.id;
   const { data: interventions } = useGetInterventionsQuery({ project_id: projectId });
   const interventionNames = interventions?.data.data.map((data: { name: any; id: any; }) => {
@@ -33,6 +43,10 @@ export const FilterSystem: React.FC<FilterSystemProps>= ({query = () => {}}) => 
 
   useEffect(() => {
     if (values.query) query(values.query);
+    if (values.state) state(values.state);
+    if (values.community) community(values.community);
+    if (values.lga) lga(values.lga);
+    if (values.intervention) intervention(values.intervention);
   }, [values]);
 
     return (
@@ -91,21 +105,21 @@ export const FilterSystem: React.FC<FilterSystemProps>= ({query = () => {}}) => 
                 />
               </div> : <></> )}
 
-          <div className="col-3">
-            <PrimarySelect
-              name="Intervention"
-              placeholder="Select Intervention"
-              options={interventionNames}
-              onChange={handleChange}
-              size={"lg"}
-              isDisabled={isLoading}
-              style={{
-                backgroundColor: "#ffff",
-                borderRadius: 0,
-                border: 0,
-              }}
-            />
-          </div>
+            <div className="col-3">
+              <PrimarySelect
+                name="intervention"
+                placeholder="Select Intervention"
+                options={interventionNames}
+                onChange={handleChange}
+                size={"lg"}
+                isDisabled={isLoading}
+                style={{
+                  backgroundColor: "#ffff",
+                  borderRadius: 0,
+                  border: 0,
+                }}
+              />
+            </div>
         </div>
       </div>
     ); 
