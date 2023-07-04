@@ -152,45 +152,7 @@ export const ViewUsers = () => {
                 </tbody>
               </table>
               <div className="row g-3 pt-4 pb-4 align-items-center">
-          <div className="col-auto">
-            <Button
-              colorScheme="teal"
-              onClick={() => navigate("/groups/edit")}
-              leftIcon={
-                <MdOutlineAddCircleOutline size={12} />
-              }
-              className={"fw-bold"}
-              fontSize={"sm"}
-              backgroundColor={"#2A4153"}
-              color={"#fff"}
-              borderRadius={0}
-              padding={"12px, 20px, 12px, 20px"}
-              _hover={{ bg: "#bbc7ca" }}
-              transition={"background-color 0.5s ease-in-out"}
-            >
-              Assign Intervention
-            </Button>
-          </div>
-
-          <div className="col-auto">
-            <Button
-              colorScheme="teal"
-              onClick={() => navigate("/farmers/edit")}
-              leftIcon={
-                <MdOutlineAddCircleOutline size={12} />
-              }
-              className={"fw-bold"}
-              fontSize={"sm"}
-              backgroundColor={"#7AD0E2"}
-              color={"#fff"}
-              borderRadius={0}
-              padding={"12px, 20px, 12px, 20px"}
-              _hover={{ bg: "#bbc7ca" }}
-              transition={"background-color 0.5s ease-in-out"}
-            >
-              Assign to Group
-            </Button>
-          </div>
+        
 
           <div className="col-auto">
             <Button

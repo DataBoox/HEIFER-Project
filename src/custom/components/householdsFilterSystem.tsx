@@ -1,4 +1,4 @@
-import { PrimaryInput, PrimarySelect, GenderSelect } from "components";
+import { PrimaryInput, PrimarySelect, GenderSelect, AgeCategorySelect } from "components";
 import { FaSearch, FaPlus } from "react-icons/fa";
 import { useGetGroupsQuery } from "store/group";
 import { useGetInterventionsQuery } from "store/intervention";
@@ -44,7 +44,7 @@ export const HouseholdFilterSystem: React.FC<HouseholdFilterSystemProps> = ({
       initialValues: {
         lga: "", location: "", community: "",
         state: "", farmers: "", age: "", query:"",
-        gender: "", intervention: "", income: ""
+        gender: "", intervention: "", income: "", farmer_age_category: "",
       },onSubmit: async () => initRequest(),
     });
 
@@ -117,27 +117,26 @@ export const HouseholdFilterSystem: React.FC<HouseholdFilterSystemProps> = ({
                 />
               </div> : <></> )}
 
-          <div className="col-3">
-            <PrimarySelect
-              name="age"
-              placeholder="Select Age Group"
-              value={values.age}
-              options={interventionNames}
-              onChange={handleChange}
-              size={"lg"}
-              isDisabled={isLoading}
-              style={{
-                backgroundColor: "#ffff",
-                borderRadius: 0,
-                border: 0,
-              }}
-            />
-          </div>
+              <div className="col-3">
+                    <AgeCategorySelect
+                      isRequired
+                      placeholder="Select Age Category"
+                      name="farmer_age_category"
+                      label=""
+                      value={values.farmer_age_category}
+                      onChange={handleChange}
+                      isDisabled={isLoading}
+                      style={{
+                        backgroundColor: "#fff", borderRadius: 0, border: 0 
+                      }}
+                    />
+                  </div>
 
           <div className="col-3">
             <GenderSelect
               isRequired
               name="gender"
+              placeholder="Select Gender"
               value={values.gender}
               onChange={handleChange}
               size={"lg"}
