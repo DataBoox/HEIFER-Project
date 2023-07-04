@@ -68,16 +68,22 @@ const NigeriaStates = [
 ]
 
 export const states = NigeriaStates.map((data) => ({ 
-    text: data.state.name, props: { value: data.state.id }
+    text: data.state.name, props: { value: data.state.name }
 }));
 
-export const localGov = (id: number)  => {
-    const states = NigeriaStates.filter((data) => data.state.id === id);
-    return (states[0].state.locals).map((data) => ({ text: data.name, props: { value: data.id }} ));
+export const localGov = (state: string)  => {
+    const states = NigeriaStates.filter((data) => data.state.name == state);
+    if(!states.length) return [];
+
+    return (states[0].state.locals).map((data) => ({ text: data.name, props: { value: data.name }}));
 }
 
-export const communities = (state: number, lga: number) => {
-    const states = NigeriaStates.filter((data) => data.state.id === state);
-    const localGov = states[0].state.locals.filter((data) => data.id === lga);
-    return (localGov[0].communities).map((data) => ({text: data.name, props: { value: data.name }} ));
+export const communities = (state: string, lga: string) => {
+    const states = NigeriaStates.filter((data) => data.state.name == state);
+    if(!states.length) return [];
+
+    const localGov = states[0].state.locals.filter((data) => data.name == lga);
+    if(!localGov.length) return [];
+
+    return (localGov[0].communities).map((data) => ({ text: data.name, props: { value: data.name }}));
 }

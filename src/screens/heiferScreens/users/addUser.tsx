@@ -213,7 +213,7 @@ export const AddUserDialog: React.FC<AddUserDialogProps> = ({
               <PrimarySelect 
                 name="lga"
                 placeholder="Select Local Gov"
-                options={ localGov(Number(values.state)) }
+                options={ localGov(values.state) }
                 onChange={handleChange}
                 size={"md"}
                 isDisabled={isLoading}
@@ -230,7 +230,7 @@ export const AddUserDialog: React.FC<AddUserDialogProps> = ({
                 <PrimarySelect
                   name="community"
                   placeholder="Select Community"
-                  options={ communities(Number(values.state), Number(values.lga)) }
+                  options={ communities(values.state, values.lga) }
                   onChange={handleChange}
                   size={"md"}
                   isDisabled={isLoading}
