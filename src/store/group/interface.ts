@@ -40,7 +40,10 @@ export interface DeleteGroupsPayload {
 
 export interface FetchGroupsPayload extends PaginatedPayload {
     project_id: number;
-    groups?: (number | string)[]
+    state?: string, 
+    lga?: string, 
+    community?: string, 
+    interventions?: Array<number>, 
 }
 
 
