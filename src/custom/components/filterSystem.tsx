@@ -70,7 +70,7 @@ export const FilterSystem: React.FC<FilterSystemProps>= ({query = () => {}}) => 
               <PrimarySelect 
                 name="lga"
                 placeholder="Select Local Gov"
-                options={ localGov(Number(values.state)) }
+                options={ localGov(values.state) }
                 onChange={handleChange}
                 size={"lg"}
                 isDisabled={isLoading}
@@ -83,7 +83,7 @@ export const FilterSystem: React.FC<FilterSystemProps>= ({query = () => {}}) => 
                 <PrimarySelect
                   name="community"
                   placeholder="Select Community"
-                  options={ communities(Number(values.state), Number(values.lga)) }
+                  options={ communities(values.state, values.lga) }
                   onChange={handleChange}
                   size={"lg"}
                   isDisabled={isLoading}
