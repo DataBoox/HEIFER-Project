@@ -16,6 +16,7 @@ import {
   MapsScreen,
   GroupScreen,
   FarmerScreen,
+  FormsScreen,
   UnderConstruction,
   ScheduleUnderConstruction,
   StoriesUnderConstruction,
@@ -53,6 +54,7 @@ export const RootNavigator = () => {
           <Route path="maps" element={<MapsScreen />} />
           <Route path="groups" element={<GroupScreen />} />
           <Route path="farmers" element={<FarmerScreen />} />
+          <Route path="forms" element={<FormsScreen />} />
           <Route path="farmers/view/:id" element={<ViewFarmers />} />
           <Route path="groups/view/:id" element={<ViewGroups />} />
           <Route path="users/view/:id" element={<ViewUsers />} />

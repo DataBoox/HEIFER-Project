@@ -1,5 +1,6 @@
 export * from './default';
 export * from './select';
+export * from './editInput';
 export * from './phone'
 export * from './textarea'
 export * from './multiSelect'

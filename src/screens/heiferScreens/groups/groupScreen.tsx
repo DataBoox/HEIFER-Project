@@ -5,10 +5,10 @@ import { useNavigate } from "react-router-dom";
 import { ContentBodyContainer} from "../../home";
 import { Group, useGetGroupsQuery } from "store/group";
 import { useAllGroupsColumn} from "./components";
-import { FaEye, FaPen, FaTrash, FaPlus } from "react-icons/fa";
+import { FaEye, FaTrash, FaPlus } from "react-icons/fa";
 import { OverlayTrigger, Tooltip, Modal } from "react-bootstrap";
 import _ from "lodash";
-import { StateLGAInput, FilterSystem } from "custom";
+import { FilterSystem } from "custom";
 import { useState } from "react";
 import {
   ModalOverlay,
@@ -138,7 +138,7 @@ export const GroupScreen = () => {
                   </Button>
                 </OverlayTrigger>
               </div> */}
-              <div className="touchable pe-2" onClick={handleButtonClick}>
+              <div className="touchable pe-2" onClick={() => handleButtonClick()}>
                 <OverlayTrigger
                   placement="top"
                   overlay={<Tooltip id="Addform-tooltip">Add Form</Tooltip>}
@@ -179,10 +179,6 @@ export const GroupScreen = () => {
             Self Help Group Record Tracking
           </Button>
         </li>
-        {/* <li className="mb-2">
-          <Button variant="link">SHG & Entities Summary Form</Button>
-        </li> */}
-        {/* Add more form options as needed */}
       </ul>
     </ModalBody>
     <ModalFooter>

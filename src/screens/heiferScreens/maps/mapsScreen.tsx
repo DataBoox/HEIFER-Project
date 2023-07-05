@@ -97,7 +97,7 @@ export const MapsScreen = () => {
         >
           <iframe
             title="Map_DB"
-            src="https://app.powerbi.com/view?r=eyJrIjoiOTk0MGQxZTgtYzFhMy00NmQzLThmMjEtNjRhODc3N2ViOGY2IiwidCI6IjBlNjYxZTk4LTgzNGUtNDkyMC05YzM5LWIzZTU0MmJiNjY2NSIsImMiOjh9"
+            src="https://heifernigeria.maps.arcgis.com/apps/dashboards/9018b9f4173e4f748097bba3d6fade7a"
             allowFullScreen
             style={{
               position: "absolute",
@@ -110,7 +110,7 @@ export const MapsScreen = () => {
             }}
           ></iframe>
         </div>
-  
+  {/* https://app.powerbi.com/view?r=eyJrIjoiOTk0MGQxZTgtYzFhMy00NmQzLThmMjEtNjRhODc3N2ViOGY2IiwidCI6IjBlNjYxZTk4LTgzNGUtNDkyMC05YzM5LWIzZTU0MmJiNjY2NSIsImMiOjh9 */}
       
     </ContentBodyContainer>
   );
