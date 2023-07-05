@@ -17,6 +17,7 @@ import { LinkItemProps } from "../interface";
 export const AdminMenuLinkItem: Array<LinkItemProps> = [
   { name: "Dashboard", icon: RiHomeFill, path: "/" },
   { name: "Maps", icon: MdMyLocation, path: "maps" },
+  { name: "Forms", icon: MdNoteAdd, path: "forms" },
   { name: "Households", icon: GiFarmer, path: "farmers" },
   { name: "Groups", icon: BsGridFill, path: "groups" },
   { name: "Interventions", icon: BsFillPatchCheckFill, path: "interventions" },

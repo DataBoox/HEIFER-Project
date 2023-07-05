@@ -1,15 +1,12 @@
 import { MdOutlineAddCircleOutline } from "react-icons/md";
-import { FaPen, FaTrash, FaEye } from "react-icons/fa";
-import { Button, useToast, ButtonProps } from "@chakra-ui/react";
-import { PrimaryButton, PrimaryInput, ThemeTable } from "components";
+import { FaTrash } from "react-icons/fa";
+import { Button, useToast } from "@chakra-ui/react";
+import { ThemeTable } from "components";
 import { useNavigate } from "react-router-dom";
 import { ContentBodyContainer} from "../../home";
 import { useAllHistorysColumn} from "./components";
 import { useGetFarmersQuery, useGetFarmerInfoQuery, useDeleteFarmerMutation } from "store/farmers";
-import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import _ from "lodash";
-import { toast } from "react-toastify";
-import { useState } from "react";
 import { AssignInterventionDialog } from "../farmers/components/assignIntervention";
 import { AssignGroupDialog } from "../farmers/components/assignGroup";
 import FrameOne from "../../../assets/images/Frame_1302-transformed.png"

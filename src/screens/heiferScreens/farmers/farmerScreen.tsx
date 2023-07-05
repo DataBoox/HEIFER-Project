@@ -1,5 +1,5 @@
 import { MdOutlineAddCircleOutline } from "react-icons/md";
-import { FaEye, FaPen, FaTrash } from "react-icons/fa";
+import { FaEye, FaTrash } from "react-icons/fa";
 import { Button } from "@chakra-ui/react";
 import { ThemeTable } from "components";
 import { useNavigate } from "react-router-dom";
@@ -11,7 +11,7 @@ import { HouseholdFilterSystem } from "custom";
 import { useProject } from "store/projects";
 import { resolveApiError } from "utilities";
 import { useToast } from "@chakra-ui/react";
-import { SetStateAction, useState } from "react";
+import { useState } from "react";
 
 export const FarmerScreen = () => {
   const navigate = useNavigate();
