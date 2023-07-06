@@ -13,7 +13,7 @@ export const groupApi = createApi({
     endpoints: (builder) => ({
         getGroups: builder.query<ChurchGroupsResponse, FetchGroupsPayload>({
             query: (payload) => ({
-                url: `projects/groups?project_id=${payload.project_id}`,
+                url: `projects/groups?${convertObjectToURLParams(payload)}`,
                 method: 'POST',
                 body: payload
             }),
