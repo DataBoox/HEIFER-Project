@@ -32,7 +32,7 @@ const surveyFormCode = `
                     // cardHeaderTitle={"Participant Details"}
                     bodyClassName={"p-4 m-3"} title={""}          >
             <h1 className="fw-bold" style={{ textAlign: "center" }}>View All Forms</h1>
-            <p style={{ textAlign: "center" }}>Login to your Surveycto account and manage your forms here</p>
+            <p style={{ textAlign: "center" }}>Login to your SurveyCTO account and manage your forms from here</p>
             <div dangerouslySetInnerHTML={{ __html: surveyFormCode }} />
           </DashboardCardContainer>
         </div>

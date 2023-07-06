@@ -164,7 +164,7 @@ export const ViewGroups = () => {
                     }}
                     onClose={refetch}
                   >
-                    Assign a Household
+                    Assign Household
                   </AssignFarmerDialog>
                 </div>
 

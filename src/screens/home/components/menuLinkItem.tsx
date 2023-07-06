@@ -29,6 +29,6 @@ export const AdminMenuLinkItem: Array<LinkItemProps> = [
   // { name: "Settings", icon: RiSettings4Fill, path: "settings" },
 ];
 
-const except = "Dashboard Maps Users"
+const except = "Dashboard Maps Users Forms"
 export const FacilitatorCoordinator = AdminMenuLinkItem.filter((e) => !except.includes(e.name))
 export const ProjectManager = AdminMenuLinkItem.filter((e) => !"Users".includes(e.name))
