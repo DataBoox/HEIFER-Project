@@ -14,7 +14,7 @@ export interface HouseholdFilterSystemProps {
   state?: (value?: string) => void;
   lga?: (value?: string) => void;
   community?: (value?: string) => void;
-  intervention?: (value?: string) => void;
+  intervention?: (value?: Array<number | string>) => void;
   income?: (value?: string) => void;
   query?: (value?: string) => void;
 }
@@ -54,7 +54,7 @@ export const HouseholdFilterSystem: React.FC<HouseholdFilterSystemProps> = ({
       if (values.state) state(values.state);
       if (values.community) community(values.community);
       if (values.lga) lga(values.lga);
-      if (values.intervention) intervention(values.intervention);
+      if (values.intervention) intervention([Number(values.intervention)]);
       if (values.income) income(values.income);
       if (values.query) query(values.query);
     }, [values]);
@@ -118,19 +118,19 @@ export const HouseholdFilterSystem: React.FC<HouseholdFilterSystemProps> = ({
               </div> : <></> )}
 
               <div className="col-3">
-                    <AgeCategorySelect
-                      isRequired
-                      placeholder="Select Age Category"
-                      name="farmer_age_category"
-                      label=""
-                      value={values.farmer_age_category}
-                      onChange={handleChange}
-                      isDisabled={isLoading}
-                      style={{
-                        backgroundColor: "#fff", borderRadius: 0, border: 0 
-                      }}
-                    />
-                  </div>
+                <AgeCategorySelect
+                  isRequired
+                  placeholder="Select Age Category"
+                  name="age"
+                  label=""
+                  value={values.farmer_age_category}
+                  onChange={handleChange}
+                  isDisabled={isLoading}
+                  style={{
+                    backgroundColor: "#fff", borderRadius: 0, border: 0 
+                  }}
+                />
+              </div>
 
           <div className="col-3">
             <GenderSelect

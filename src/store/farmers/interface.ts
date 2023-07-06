@@ -89,7 +89,8 @@ export interface DeleteFarmersPayload {
 }
 
 export interface FetchFarmersPayload extends PaginatedPayload {
-    project_id: number;
+    project_id: number,
+    query?: string, 
     gender?: string, 
     age_catgeory?: string, 
     state?: string, 
