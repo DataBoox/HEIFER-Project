@@ -13,14 +13,14 @@ export const interventionApi = createApi({
     endpoints: (builder) => ({
         getInterventions: builder.query<ChurchInterventionsResponse, FetchInterventionsPayload>({
             query: (payload) => ({
-                url: `projects/interventions?project_id=${payload.project_id}`,
+                url: `projects/interventions?${convertObjectToURLParams(payload)}`,
                 method: 'POST',
                 body: payload
             }),
         }),
         fetchInterventions: builder.mutation<ChurchInterventionsResponse, FetchInterventionsPayload>({
             query: (payload) => ({
-                url: `projects/interventions?project_id=${payload.project_id}`,
+                url: `projects/interventions?${convertObjectToURLParams(payload)}`,
                 method: 'POST',
                 body: payload
             }),

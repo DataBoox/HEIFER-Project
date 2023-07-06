@@ -13,7 +13,7 @@ export interface FilterSystemProps {
   state?: (value?: string) => void;
   lga?: (value?: string) => void;
   community?: (value?: string) => void;
-  intervention?: (value?: string) => void;
+  intervention?: (value?: Array<number | string>) => void;
 }
 
 export const FilterSystem: React.FC<FilterSystemProps>= ({
@@ -46,7 +46,7 @@ export const FilterSystem: React.FC<FilterSystemProps>= ({
     if (values.state) state(values.state);
     if (values.community) community(values.community);
     if (values.lga) lga(values.lga);
-    if (values.intervention) intervention(values.intervention);
+    if (values.intervention) intervention([Number(values.intervention)]);
   }, [values]);
 
     return (

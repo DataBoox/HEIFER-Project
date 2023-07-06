@@ -4,7 +4,6 @@ import {
   ChakraAlertDialog,
   ChakraAlertDialogProps,
   GenderSelect,
-  ProjectSelect,
   RoleSelect,
   PrimaryInput,
   PrimarySelect,
@@ -16,6 +15,7 @@ import { ChakraProviderLoader } from "providers";
 import { useAddUserMutation } from "store/user";
 import { User } from "@store/user";
 import { states, localGov, communities } from "utilities";
+import { useProject } from "store/projects";
 
 export interface AddUserDialogProps extends ChakraAlertDialogProps {
   useButton?: boolean;
@@ -66,7 +66,7 @@ export const AddUserDialog: React.FC<AddUserDialogProps> = ({
     if (user) setFieldValue("user_id", user?.id);
   }, [user]);
 
-  
+  const project = useProject().project;
 
   const initRequest = () => {
     const payload: any = {
@@ -241,22 +241,22 @@ export const AddUserDialog: React.FC<AddUserDialogProps> = ({
                   }}
                 />
               </div> : <></> )}
-          <div className="col-12">
-            <ProjectSelect
-              isRequired
-              name="project"
-              value={values.project}
-              error={Boolean(touched.project && errors.project)}
-              bottomText={errors.project}
-              onChange={handleChange}
-              isDisabled={isLoading}
-              style={{
-                backgroundColor: "#F2FAFC",
-                borderRadius: 0,
-                borderColor: "#CAECF3",
-              }}
-            />
-          </div>
+              <div className="col-12">
+                <PrimarySelect
+                    isRequired
+                    name="project"
+                    label="Project Name"
+                    options={[{ text: project.name, props: { value: project.id  } }]}
+                    onChange={handleChange}
+                    isDisabled={isLoading}
+                    isReadOnly={true}
+                    style={{
+                      backgroundColor: "#F2FAFC",
+                      borderRadius: 0,
+                      borderColor: "#CAECF3",
+                    }}
+                />
+              </div>
 
           <div className="col-12">
             <RoleSelect

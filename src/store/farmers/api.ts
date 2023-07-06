@@ -13,7 +13,7 @@ export const farmerApi = createApi({
     endpoints: (builder) => ({
         getFarmers: builder.query<ChurchFarmersResponse, FetchFarmersPayload>({
             query: (payload) => ({
-                url: `projects/farmers`,
+                url: `projects/farmers?${convertObjectToURLParams(payload)}`,
                 method: 'POST',
                 body: payload
             }),
