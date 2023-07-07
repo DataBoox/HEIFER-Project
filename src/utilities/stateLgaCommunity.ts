@@ -14,7 +14,7 @@ const NigeriaStates = [
         { "name": "Epe", "id" :2, "communities": [{ "name": "Ogolonto"},{ "name": "Oke Oyinba"}] },
         { "name": "Ikorodu", "id" :3, "communities": [{ "name": "Ugondo"},{ "name": "Ugba"}] }] }
     },
-    { "state": { "name": "Nasarawa", "id" :3, "locals": [
+    { "state": { "name": "Nasarawa State", "id" :3, "locals": [
         { "name":  "Awe", "id" :1, "communities": [{ "name": "Akiri"},{ "name": "Azara"},{ "name": "Galadima"},{ "name": "Jangaru"},{ "name": "Kanje/abuni"},{ "name": "Madaki"},{ "name": "Makwangiji"},{ "name": "Ribi"},{ "name": "Tungu"},{ "name": "Wuse"}] },
         { "name": "Doma", "id" :2, "communities": [{ "name": "Agbashi"},{ "name": "Akpanaja"},{ "name": "Alagye I"},{ "name": "Alagye II"},{ "name": "Doka I"},{ "name": "Doka II"},{ "name": "Rukubi I"},{ "name": "Rukubi II"},{ "name": "Sarkin Dawaki"},{ "name": "Ungwan Madaki"}] },
         { "name": "Karu", "id" :3, "communities": [{ "name": "Agada/bagaji"},{ "name": "Aso/Kodape"},{ "name": "Gitata"},{ "name": "Gurku/kabusa"},{ "name": "Kafin Shana/betti"},{ "name": "Karshi I"},{ "name": "Karshi II"},{ "name": "Karu"},{ "name": "Panda/Kare"},{ "name": "Tattara/kondoro"},{ "name": "Uke"}] },
@@ -28,7 +28,7 @@ const NigeriaStates = [
         { "name": "Toto", "id" :11, "communities": [{ "name": "Bugakarmo"},{ "name": "Dausu"},{ "name": "Gadagwa"},{ "name": "Gwargwada"},{ "name": "Kenyehu"},{ "name": "Kenyehu I"},{ "name": "Shafan Abakpa I"},{ "name": "Shafan Kwatto I"},{ "name": "Shege I"},{ "name": "Toto"},{ "name": "Ugya"},{ "name": "Umaisha"}] },
         { "name": "Wamba", "id" :12, "communities": [{ "name": "Arum"},{ "name": "Gitta"},{ "name": "Jimiya"},{ "name": "Konvah"},{ "name": "Kwara"},{ "name": "Mangar"},{ "name": "Nakere"},{ "name": "Wamba East"},{ "name": "Wamba West"},{ "name": "Wayo"}] }] }
     },
-    { "state" : { "name": "Edo", "id" :4, "locals": [
+    { "state" : { "name": "Edo State", "id" :4, "locals": [
         { "name": "Akoko-Edo", "id" :1, "communities": [{ "name": "Enwan/atte/ikpeshi/egbigele"},{ "name": "Ibillo/Ekpesa/Ekor/Ikiran-ile/Oke"},{ "name": "Igarra I"},{ "name": "Igarra II"},{ "name": "Imoga/Lampese/Bekuma/Ekpe"},{ "name": "Makeke/Ojah/Damgbala/Ojirami/Anyawoza"},{ "name": "Oloma/Okpa/Ijaja/Kakuma/Anyara"},{ "name": "Ososo"},{ "name": "Somorika/Ogbe/Sasaro/Onumu/Eshawa/Ogugu Igboshi-afe/Igboshi-Ele/Aiyegunle"},{ "name": "Uneme-nekhua/akpama/Aiyetoro/Ekpedo/Erhurun/Uneme Osu"}] },
         { "name": "Egor", "id" :2, "communities": [{ "name": "Egor"},{ "name": "Evbareke"},{ "name": "Ogida/use"},{ "name": "Okhoro"},{ "name": "Oliha"},{ "name": "Otubu"},{ "name": "Ugbowo"},{ "name": "Uselu I"},{ "name": "Uselu II"},{ "name": "Uwelu"}] },
         { "name": "Etsako East", "id" :3, "communities": [{ "name": "Agenebode"},{ "name": "Okpekpe"},{ "name": "Okpella I"},{ "name": "Okpella II"},{ "name": "Okpella III"},{ "name": "Okpella IV"},{ "name": "Three Ibies"},{ "name": "Wanno I"},{ "name": "Wanno II"},{ "name": "Weppa"}] },
