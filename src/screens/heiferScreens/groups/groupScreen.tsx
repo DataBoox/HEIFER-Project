@@ -10,14 +10,6 @@ import { OverlayTrigger, Tooltip, Modal } from "react-bootstrap";
 import _ from "lodash";
 import { FilterSystem } from "custom";
 import { useState } from "react";
-import {
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
-  ModalCloseButton,
-} from "@chakra-ui/react";
 import { useProject } from "store/projects";
 import { useDeleteGroupMutation } from "store/group";
 import { resolveApiError } from "utilities";
@@ -164,33 +156,31 @@ export const GroupScreen = () => {
         />
       </div>
 
-      <Modal isOpen={showModal} onClose={handleModalClose}>
-  <ModalOverlay />
-  <ModalContent>
-    <ModalHeader>
-      <h4 className="border-bottom pb-2">Additional Groups Forms</h4>
-    </ModalHeader>
-    <ModalCloseButton />
-    <ModalBody>
-      <h5 className="mb-4">Select a Form</h5>
-      <ul>
-        <li className="mb-2">
-          <Button variant="link" onClick={() => navigate("/groups/sub")}>
-            Self Help Group Record Tracking
-          </Button>
-        </li>
-      </ul>
-    </ModalBody>
-    <ModalFooter>
-      <Button variant="secondary" onClick={handleModalClose}>
-        Close
-      </Button>
-      <Button variant="primary" onClick={handleModalClose}>
-        Save Changes
-      </Button>
-    </ModalFooter>
-  </ModalContent>
-</Modal>
+      <Modal show={showModal} onHide={handleModalClose}>
+      <Modal.Header closeButton>
+        <Modal.Title>
+          <h4 className="pt-2">Additional Groups Forms</h4>
+        </Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <h5 className="mb-4">Select a Form</h5>
+        <ul>
+          <li className="mb-2">
+            <Button variant="link" onClick={() => navigate("/groups/sub")}>
+              Self Help Group Record Tracking
+            </Button>
+          </li>
+        </ul>
+      </Modal.Body>
+      <Modal.Footer>
+        <Button variant="secondary" onClick={handleModalClose}>
+          Close
+        </Button>
+        <Button variant="primary" onClick={handleModalClose}>
+          Save Changes
+        </Button>
+      </Modal.Footer>
+    </Modal>
 
 
       <Modal show={showDeleteModal} onHide={handleCancelDelete}>
