@@ -30,8 +30,8 @@ export const ThemeTable: React.FC<ThemeTableProps> = ({
   const [globalFilter, setGlobalFilter] = useState("");
   const [sorting, setSorting] = useState<SortingState>([]);
   const [pagination, setPagination] = useState<PaginationState>({
-    pageIndex: 0,
-    pageSize: 10,
+    pageIndex: 1,
+    pageSize: 15,
   });
   const csvExporter = new ExportToCsv({
     fieldSeparator: ",",

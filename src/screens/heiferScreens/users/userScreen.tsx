@@ -29,7 +29,7 @@ export const UserScreen = () => {
     disableUser({users: [user]}).unwrap().then((response) => {
       let msg = "User has been disabled successfully"
       toast({ title: "User Disabled", description: msg, status: "success" })
-      navigate("/users");
+      refetch();
     }).catch((error) => {
       let msg = resolveApiError(error?.data?.response)
       toast({ title: "Request Failed", description: msg, status: "error"})
@@ -40,7 +40,7 @@ export const UserScreen = () => {
     enableUser({users: [user]}).unwrap().then((response) => {
       let msg = "User has been enabled successfully"
       toast({ title: "User Enabled", description: msg, status: "success" })
-      navigate("/users");
+      refetch();
     }).catch((error) => {
       let msg = resolveApiError(error?.data?.response)
       toast({ title: "Request Failed", description: msg, status: "error"})
@@ -112,7 +112,7 @@ export const UserScreen = () => {
                 </OverlayTrigger>
               </div>
               {(row.original as UserInfo).user.status ? (
-                  <div className="touchable" onClick={() => initDisable((row.original as UserInfo).id)}>
+                  <div className="touchable" onClick={() => initDisable((row.original as UserInfo).uid)}>
                     <OverlayTrigger
                       placement="top"
                       overlay={<Tooltip id="delete-tooltip">Disable</Tooltip>}
@@ -123,7 +123,7 @@ export const UserScreen = () => {
                     </OverlayTrigger>
                   </div>
               ) : (
-                <div className="touchable" onClick={() => enableDisable((row.original as UserInfo).id)}>
+                <div className="touchable" onClick={() => enableDisable((row.original as UserInfo).uid)}>
                   <OverlayTrigger
                     placement="top"
                     overlay={<Tooltip id="enable-tooltip">Enable</Tooltip>}

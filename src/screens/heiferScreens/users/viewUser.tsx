@@ -48,9 +48,9 @@ export const ViewUsers = () => {
       routesRule={"viewUsers"}
       rightCardHeaderComponent={
         <div className="row g-3 mb-0 align-items-center">
-          {data?.data.user.status ? (
+          {data?.data?.user.status ? (
               <Button
-              onClick={() => initDisable(data?.data.user.id)}
+              onClick={() => initDisable(data?.data?.uid)}
               leftIcon={
                 <FaTrash size={12} />
               }
@@ -68,7 +68,7 @@ export const ViewUsers = () => {
 
           ) : (
             <Button
-              onClick={() => enableDisable(data?.data.user.id)}
+              onClick={() => enableDisable(data?.data?.uid)}
               leftIcon={
                 <FaUserCheck size={12} />
               }
@@ -119,35 +119,35 @@ export const ViewUsers = () => {
                     <td className="fw-bold" style={{ minWidth: "150px" }}>
                       Last Name
                     </td>
-                    <td className="p-2">{data?.data.lname ?? '- - - - - - - - - - - - - - -'}</td>
+                    <td className="p-2">{data?.data?.lname ?? '- - - - - - - - - - - - - - -'}</td>
                   </tr>
                   <tr>
                     <td className="fw-bold">First Name</td>
-                    <td className="p-2">{data?.data.fname ?? '- - - - - - - - - - - - - - -'}</td>
+                    <td className="p-2">{data?.data?.fname ?? '- - - - - - - - - - - - - - -'}</td>
                   </tr>
                   <tr>
                     <td className="fw-bold">Email Address</td>
-                    <td className="p-2"> {data?.data.user.email ?? '- - - - - - - - - - - - - - -'}</td>
+                    <td className="p-2"> {data?.data?.user.email ?? '- - - - - - - - - - - - - - -'}</td>
                   </tr>
                   <tr>
                     <td className="fw-bold">Gender</td>
-                    <td className="p-2">{data?.data.gender ?? '- - - - - - - - - - - - - - -'}</td>
+                    <td className="p-2">{data?.data?.gender ?? '- - - - - - - - - - - - - - -'}</td>
                   </tr>
                   <tr>
                     <td className="fw-bold">State</td>
-                    <td className="p-2">{data?.data.state ?? '- - - - - - - - - - - - - - -'}</td>
+                    <td className="p-2">{data?.data?.state ?? '- - - - - - - - - - - - - - -'}</td>
                   </tr>
                   <tr>
                     <td className="fw-bold">Community</td>
-                    <td className="p-2">{data?.data.community ?? '- - - - - - - - - - - - - - -'}</td>
+                    <td className="p-2">{data?.data?.community ?? '- - - - - - - - - - - - - - -'}</td>
                   </tr>
                   <tr>
                     <td className="fw-bold">Project</td>
-                    <td className="p-2">{data?.data.project ?? '- - - - - - - - - - - - - - -'}</td>
+                    <td className="p-2">{data?.data?.project ?? '- - - - - - - - - - - - - - -'}</td>
                   </tr>
                   <tr>
                     <td className="fw-bold">Role</td>
-                    <td className="p-2 ">{data?.data.user.account_type.replace('_', ' ').toUpperCase() ?? '- - - - - - - - - - - - - - -'}</td>
+                    <td className="p-2 ">{data?.data?.user.account_type.replace('_', ' ').toUpperCase() ?? '- - - - - - - - - - - - - - -'}</td>
                   </tr>
                 </tbody>
               </table>
