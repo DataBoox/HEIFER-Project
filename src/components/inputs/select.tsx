@@ -25,6 +25,7 @@ export interface PrimarySelectProp extends SelectProps {
     errorTextProps?: FormErrorMessageProps;
     bottomTextProps?: FormHelperTextProps;
     placeholder?: string;
+    isMulti?: boolean;
     children?: React.ReactNode;
 }
 

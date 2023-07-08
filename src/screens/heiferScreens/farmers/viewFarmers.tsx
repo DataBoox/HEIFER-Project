@@ -134,25 +134,24 @@ export const ViewFarmers = () => {
               </table>
               <div className="row g-3 pt-4 pb-4 align-items-center">
                 <div className="col-auto">
-                  <AssignInterventionDialog
-                      requiredId={farmerId}
-                      useButton={true}
-                      buttonProps={{
-                        leftIcon: (
-                          <MdOutlineAddCircleOutline size={12} />
-                        ),
-                        fontSize: "sm",
-                        className: "fw-bold",
-                        backgroundColor: "#2A4153",
-                        color: "#fff",
-                        borderRadius: 0,
-                        padding: "12px, 20px, 12px, 20px",
-                        transition: "background-color 0.5s ease-in-out", // Add transition property
-                      }}
-                      onClose={refetch}
-                    >
-                      Assign Intervention
-                    </AssignInterventionDialog>
+                <AssignInterventionDialog
+  requiredId={farmerId}
+  useButton={true}
+  buttonProps={{
+    leftIcon: <MdOutlineAddCircleOutline size={12} />,
+    fontSize: "sm",
+    className: "fw-bold",
+    backgroundColor: "#2A4153",
+    color: "#fff",
+    borderRadius: 0,
+    padding: "12px, 20px, 12px, 20px",
+    transition: "background-color 0.5s ease-in-out",
+  }}
+  onClose={refetch}
+>
+  Assign Intervention
+</AssignInterventionDialog>
+
                   </div>
 
                   <div className="col-auto">
