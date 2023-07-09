@@ -27,8 +27,23 @@ export const AssignInterventionDialog: React.FC<AssignInterventionDialogProps> =
 }) => {
   const [show, setShow] = useState(false);
   const toast = useToast({ position: "top-right" });
+  const [selectedInterventions, setSelectedInterventions] = useState<string[]>([]);
   const [request, { isLoading }] = useAddUserMutation();
   const projectId: number = useProject().project.id;
+  const handleInterventionChange: React.ChangeEventHandler<HTMLSelectElement> = (event) => {
+    const interventionId = event.target.value;
+  
+    setSelectedInterventions((prevInterventions) => {
+      if (prevInterventions.includes(interventionId)) {
+        return prevInterventions.filter((id) => id !== interventionId);
+      } else {
+        return [...prevInterventions, interventionId];
+      }
+    });
+  };
+  const handleAddIntervention = () => {
+    setSelectedInterventions([]);
+  };
   const { data: interventions } = useGetInterventionsQuery({ project_id: projectId });
   const interventionNames = interventions?.data.data.map((data: { name: any; id: any; }) => {
     return { text: `${data.name}`, props: { value: data.id  }}
@@ -44,7 +59,10 @@ export const AssignInterventionDialog: React.FC<AssignInterventionDialogProps> =
 
   
   const initRequest = () => {
-    let payload = { farmer_id: requiredId, interventions: [{ id: values.intervention }]}
+    let payload = {
+      farmer_id: requiredId,
+      interventions: selectedInterventions.map(interventionId => ({ id: interventionId }))
+    };
     assignIntervention(payload).unwrap().then((response) => {
       let msg = "Assigned successfully"
       toast({ title: "Intervention", description: msg, status: "success" })
@@ -79,25 +97,28 @@ export const AssignInterventionDialog: React.FC<AssignInterventionDialogProps> =
         onProceed={initRequest}
         onClose={initOnClose}
         isProceeding={isLoading}
+        
         {...rest}
       >
         <div className="row g-2">
-        <div className="col-12">
-            <PrimarySelect
-              name="intervention"
-              placeholder="Select Intervention"
-              options={interventionNames}
-              onChange={handleChange}
-              size={"lg"}
-              isDisabled={isLoading}
-              style={{
-                backgroundColor: "#F2FAFC",
-                borderRadius: 0,
-                borderColor: "#CAECF3",
-              }}
-            />
-          </div>
+        <div className="col-12 d-flex flex-column align-items-end">
+  <PrimarySelect
+    name="intervention"
+    placeholder="Select Intervention"
+    options={interventionNames}
+    onChange={handleChange}
+    size={"lg"}
+    isDisabled={isLoading}
+    style={{
+      backgroundColor: "#F2FAFC",
+      borderRadius: 0,
+      borderColor: "#CAECF3",
+    }}
+  />
+  <Button onClick={handleAddIntervention} className="mt-4">Add</Button>
+</div>
 
+         
          
         </div>
       </ChakraAlertDialog>
