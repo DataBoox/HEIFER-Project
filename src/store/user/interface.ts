@@ -27,8 +27,12 @@ export interface AddUserPayload {
     user_id?: number | string | null,
 }
 
-export interface EditUserPayload extends RequiresUserID {
-
+export interface EditUserPayload {
+    uid: number | undefined;
+    fname: string | undefined;
+    lname: string | undefined;
+    email: string | undefined;
+    gender: string | undefined;
 }
 
 export interface DeleteUsersPayload {
@@ -72,4 +76,8 @@ export interface UserSuccessResponse extends IResponse {
     data: User[],
 }
 
-
+export interface ChangePasswordPayload {
+    old: string,
+    password: string,
+    confirm: string,
+}

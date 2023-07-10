@@ -3,29 +3,44 @@ import { FaPen, FaTrash } from "react-icons/fa";
 import { Button } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { ContentBodyContainer } from "../../home";
-import { useGetProfileInfoQuery } from "store/profile";
 import _ from "lodash";
-import { useLocation } from "react-router-dom";
 import { resolveApiError } from "utilities";
 import { useToast, } from "@chakra-ui/react";
 import { ResetPasswordValidationSchema } from "validations";
 import { useFormik } from "formik";
-import { PrimaryInput, EditInput } from "components";
+import { EditInput } from "components";
 import { useAuth } from "store/auth";
-
+import { useChangePasswordMutation, useEditUserMutation } from "store/user";
 
 export const ViewProfile = () => {
   const navigate = useNavigate();
-  const { pathname } = useLocation();
   const { user } = useAuth()
   const toast = useToast({ position: "top-right" });
-  const { values, errors, handleSubmit, setFieldValue, touched } = useFormik({
-    initialValues: { auth: "", password: "", new_password: "", confirm: "" },
-    validationSchema: ResetPasswordValidationSchema,
-    onSubmit: () => initRequest(),
+  const [changePassword] = useChangePasswordMutation();
+  const [editProfile] = useEditUserMutation();
+  const { values, errors, handleChange, touched } = useFormik({
+    initialValues: { 
+      old: "", password: "", confirm: "", uid: user?.user_info.uid,
+      fname: user?.user_info?.fname, lname: user?.user_info?.lname,
+      email: user?.email, gender: user?.user_info?.gender,
+    },
+    onSubmit: () => changePasswordRequest(),
   });
-  const initRequest = () => {
 
+  const changePasswordRequest = () => {
+    changePassword(values).unwrap().then((res) => {
+      toast({ title: "Password", description: res?.response, status: "success" });
+    }).catch((error) => {
+        toast({ title: "Request Failed", description: resolveApiError(error), status: "error" });
+    });
+  };
+
+  const editProfileRequest = () => {
+    editProfile(values).unwrap().then((res) => {
+      toast({ title: "Profile", description: res?.response, status: "success" });
+    }).catch((error) => {
+        toast({ title: "Request Failed", description: resolveApiError(error), status: "error" });
+    });
   };
 
 
@@ -72,13 +87,11 @@ export const ViewProfile = () => {
                       isRequired
                       name="lname"
                       placeholder="Last name"
-                      value={user?.user_info?.lname ?? '- - - - - - - - - - - - - - -'}
+                      value={user?.user_info?.lname}
+                      onChange={handleChange}
                       error={false}
                     />
 
-
-
-                    {/* <td className="p-3">{user?.data.lname ?? '- - - - - - - - - - - - - - -'}</td> */}
                   </tr>
                   <tr>
                     <td className="fw-bold pt-3" style={{ minWidth: "200px" }}>First Name</td>
@@ -86,7 +99,8 @@ export const ViewProfile = () => {
                       isRequired
                       name="fname"
                       placeholder="First name"
-                      value={user?.user_info?.fname ?? '- - - - - - - - - - - - - - -'}
+                      value={user?.user_info?.fname}
+                      onChange={handleChange}
                       error={false}
                     />
                   </tr>
@@ -96,7 +110,8 @@ export const ViewProfile = () => {
                       isRequired
                       name="email"
                       placeholder="Email Address"
-                      value={user?.email ?? '- - - - - - - - - - - - - - -'}
+                      onChange={handleChange}
+                      value={user?.email}
                       error={false}
                     />
                   </tr>
@@ -106,7 +121,8 @@ export const ViewProfile = () => {
                       isRequired
                       name="gender"
                       placeholder="Gender"
-                      value={user?.user_info?.gender ?? '- - - - - - - - - - - - - - -'}
+                      onChange={handleChange}
+                      value={user?.user_info?.gender}
                       error={false}
                     />
                   </tr>
@@ -115,6 +131,7 @@ export const ViewProfile = () => {
                     <EditInput
                       isRequired
                       name="state"
+                      readOnly
                       placeholder="State"
                       value={user?.user_info?.state ?? '- - - - - - - - - - - - - - -'}
                       error={false}
@@ -125,6 +142,7 @@ export const ViewProfile = () => {
                     <EditInput
                       isRequired
                       name="community"
+                      readOnly
                       placeholder="Community"
                       value={user?.user_info?.community ?? '- - - - - - - - - - - - - - -'}
                       error={false}
@@ -135,6 +153,7 @@ export const ViewProfile = () => {
                     <EditInput
                       isRequired
                       name="projects"
+                      readOnly
                       placeholder="Project"
                       value={user?.projects[0]?.name ?? '- - - - - - - - - - - - - - -'}
                       error={false}
@@ -145,6 +164,7 @@ export const ViewProfile = () => {
                     <td className="fw-bold pt-3" style={{ minWidth: "200px" }}>Role</td>
                     <EditInput
                       isRequired
+                      readOnly
                       name="account_type"
                       placeholder="Account Type"
                       value={user?.account_type.replace('_', ' ').toUpperCase() ?? '- - - - - - - - - - - - - - -'}
@@ -159,7 +179,7 @@ export const ViewProfile = () => {
                 <div className="col-auto">
                   <Button
                     colorScheme="teal"
-                    onClick={() => navigate("/farmers/edit")}
+                    onClick={() => editProfileRequest()}
                     leftIcon={
                       <FaPen size={13} />
                     }
@@ -168,7 +188,7 @@ export const ViewProfile = () => {
                     backgroundColor={"#7AD0E2"}
                     color={"#fff"}
                     borderRadius={0}
-                    padding={"12px, 20px, 12px, 20px"}
+                    padding={"15px"}
                     _hover={{ bg: "#bbc7ca" }}
                     transition={"background-color 0.5s ease-in-out"}
                   >
@@ -195,15 +215,14 @@ export const ViewProfile = () => {
             </div>
             <div className="p-4">
               <CustomPasswordInput className="p-4 mb-4"
-                name={"password"}
+                name={"old"}
                 label={"Old Password"}
                 placeholder={"Enter your old password"}
-                value={values.password}
-                error={Boolean(errors.password && touched.password)}
+                value={values.old}
+                error={Boolean(errors.old && touched.old)}
                 bottomText={errors.password}
-                onChange={({ target }) =>
-                  setFieldValue("password", target.value)
-                }
+                isRequired
+                onChange={handleChange}
                 style={{
                   backgroundColor: "#F2FAFC",
                   borderRadius: 0,
@@ -212,15 +231,14 @@ export const ViewProfile = () => {
               />
 
               <CustomPasswordInput className="p-4 mb-4"
-                name={"new_password"}
+                name={"password"}
                 label={"New Password"}
                 placeholder={"Enter your new password"}
-                value={values.new_password}
-                error={Boolean(errors.new_password && touched.new_password)}
-                bottomText={errors.new_password}
-                onChange={({ target }) =>
-                  setFieldValue("new_password", target.value)
-                }
+                value={values.password}
+                isRequired
+                error={Boolean(errors.password && touched.password)}
+                bottomText={errors.password}
+                onChange={handleChange}
                 style={{
                   backgroundColor: "#F2FAFC",
                   borderRadius: 0,
@@ -233,11 +251,10 @@ export const ViewProfile = () => {
                 label={"Confirm New Password"}
                 placeholder={"Confirm your new password"}
                 value={values.confirm}
+                isRequired
                 error={Boolean(errors.confirm && touched.confirm)}
                 bottomText={errors.confirm}
-                onChange={({ target }) =>
-                  setFieldValue("confirm", target.value)
-                }
+                onChange={handleChange}
                 style={{
                   backgroundColor: "#F2FAFC",
                   borderRadius: 0,
@@ -248,7 +265,7 @@ export const ViewProfile = () => {
               <div className="col-auto text-end">
                 <Button
                   colorScheme="teal"
-                  onClick={() => handleSubmit}
+                  onClick={() => changePasswordRequest()}
                   className={"fw-bold"}
                   fontSize={"md"}
                   backgroundColor={"#2A4153"}
