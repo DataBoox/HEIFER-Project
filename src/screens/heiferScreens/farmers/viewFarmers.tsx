@@ -25,7 +25,8 @@ export const ViewFarmers = () => {
   const { data: farmer } = useGetFarmerInfoQuery({ project_id: projectId, farmer_id: farmerId  });
   const [disableFarmer] = useDeleteFarmerMutation();
   const toast = useToast({ position: "top-right" });
-  
+  const interventionHistory = farmer?.data?.farmer_interventions.map((data: any) => { return data.intervention })
+
 
   const initDelete = () => {
     let payload = { project_id: projectId, farmers: [farmerId] }
@@ -181,7 +182,7 @@ export const ViewFarmers = () => {
         </div>
 
         <div className="row col-lg-12">
-          <div className="col-lg-6 mb-md-0 mb-3">
+          <div className="col-lg-6 mb-lg-0 mb-3">
             <img src={FrameTwo} alt="analytics" />
           </div>
           <div className="col-lg-6">
@@ -192,7 +193,7 @@ export const ViewFarmers = () => {
         <div className="col-xl-12">
           <h2 className="mt-3 mb-3 fw-bold" style={{color: "rgb(41, 41, 42)"}}>Intervention History</h2>
           <ThemeTable
-            data={data?.data?.data ?? []}
+            data={interventionHistory ?? []}
             columns={columns as any}
             isLoading={isLoading}
             onRefetch={refetch}
