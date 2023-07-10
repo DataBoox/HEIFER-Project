@@ -85,31 +85,33 @@ export const MapsScreen = () => {
           cssClassName={"reportClass"}
         /> */}
          
-        <div
-          className="animate"
-          style={{
-            position: "relative",
-            paddingBottom: "56.25%",
-            height: 0,
-            overflow: "hidden",
-            borderRadius: "10px",
-          }}
-        >
-          <iframe
-            title="Map_DB"
-            src="https://heifernigeria.maps.arcgis.com/apps/dashboards/9018b9f4173e4f748097bba3d6fade7a"
-            allowFullScreen
-            style={{
-              position: "absolute",
-              top: 0,
-              left: 0,
-              width: "100%",
-              height: "100%",
-              border: "none",
-              fontFamily: "Montserrat, sans-serif",
-            }}
-          ></iframe>
-        </div>
+         <div
+  className="animate"
+  style={{
+    position: "relative",
+    paddingBottom: "56.25%",
+    height: "90vh",
+    overflow: "hidden",
+    borderRadius: "10px",
+    overflowX: "auto" // Added overflow-x property
+  }}
+>
+  <iframe
+    title="Map_DB"
+    src="https://heifernigeria.maps.arcgis.com/apps/dashboards/9018b9f4173e4f748097bba3d6fade7a"
+    allowFullScreen
+    style={{
+      position: "absolute",
+      top: 0,
+      left: 0,
+      width: "100%",
+      height: "100%",
+      border: "none",
+      fontFamily: "Montserrat, sans-serif",
+    }}
+  ></iframe>
+</div>
+
   {/* https://app.powerbi.com/view?r=eyJrIjoiOTk0MGQxZTgtYzFhMy00NmQzLThmMjEtNjRhODc3N2ViOGY2IiwidCI6IjBlNjYxZTk4LTgzNGUtNDkyMC05YzM5LWIzZTU0MmJiNjY2NSIsImMiOjh9 */}
       
     </ContentBodyContainer>
