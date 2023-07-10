@@ -1,6 +1,6 @@
 import { PaginatedPayload } from "@store/interface";
 import { IResponse } from "../auth";
-
+import { BaseIntervention } from "store/intervention";
 export interface RequiresFarmerID {
     project_id: number;
     farmer_id: number|string
@@ -36,11 +36,12 @@ export interface FarmerInfo {
     latitude: number,
     longitude: number,
     no_of_males: number,
-      no_of_females: number,
-      total_household: number,
-      farm_size: string,
-      household_type: string,
-      household_income: string,
+    no_of_females: number,
+    total_household: number,
+    farm_size: string,
+    household_type: string,
+    household_income: string,
+    farmer_interventions: FarmerInterventions[]
 }
 
 export interface AddFarmerPayload {
@@ -115,7 +116,7 @@ export interface BaseFarmer {
 }
 
 export interface Farmer extends FarmerInfo {
-    name: any;
+    
 }
 
 
@@ -142,4 +143,15 @@ export interface FarmerSuccessResponse extends IResponse {
 export interface AssignInterventionPayload {
     farmer_id: number | string;
     interventions: Array<object>
+}
+
+export interface FarmerInterventions {
+    id: number,
+    farmer_id: number,
+    intervention_id: number,
+    created_by: number,
+    deleted_at: null | string,
+    updated_at: string,
+    created_at: string,
+    intervention: BaseIntervention[]
 }
