@@ -17,7 +17,6 @@ import { resolveApiError } from "utilities";
 import { EditInput } from "components";
 import { useFormik } from "formik";
 import { FaPen } from "react-icons/fa";
-import { PrimaryLoader } from "components";
 
 export const ViewFarmers = () => {
   const navigate = useNavigate();
@@ -114,9 +113,7 @@ export const ViewFarmers = () => {
               </h4>
               {/* {rightCardHeaderComponent} */}
             </div>
-            {(!farmer?.data || isLoading) ?
-                <PrimaryLoader height={"70vh"} />
-            : (<div className="mx-4 pt-1">
+            <div className="mx-4 pt-1">
               <table>
                 <tbody>
                   <tr>
@@ -129,7 +126,7 @@ export const ViewFarmers = () => {
                         name="last_name"
                         placeholder="Last name"
                         onChange={handleChange}
-                        value={values.last_name}
+                        value={values.last_name ?? farmer?.data?.last_name}
                       />
                     </td>
                   </tr>
@@ -141,7 +138,7 @@ export const ViewFarmers = () => {
                         name="first_name"
                         placeholder="First name"
                         onChange={handleChange}
-                        value={values.first_name}
+                        value={values.first_name  ?? farmer?.data?.first_name}
                       />
                     </td>
                   </tr>
@@ -153,7 +150,7 @@ export const ViewFarmers = () => {
                           name="farmer_phone"
                           placeholder="Farmer phone"
                           onChange={handleChange}
-                          value={values.farmer_phone}
+                          value={values.farmer_phone  ?? farmer?.data?.farmer_phone}
                         />
                     </td>
                   </tr>
@@ -165,7 +162,7 @@ export const ViewFarmers = () => {
                           name="farmer_gender"
                           placeholder="Farmer gender"
                           onChange={handleChange}
-                          value={values.farmer_gender}
+                          value={values.farmer_gender  ?? farmer?.data?.farmer_gender}
                         />
                      </td>
                   </tr>
@@ -177,7 +174,7 @@ export const ViewFarmers = () => {
                           name="group_name"
                           placeholder="Farmer group"
                           onChange={handleChange}
-                          value={values.group_name}
+                          value={values.group_name  ?? farmer?.data?.group_name}
                         />
                       </td>
                   </tr>
@@ -189,7 +186,7 @@ export const ViewFarmers = () => {
                           name="state"
                           placeholder="State"
                           onChange={handleChange}
-                          value={values.state}
+                          value={values.state  ?? farmer?.data?.state}
                       />
                     </td>
                   </tr>
@@ -201,7 +198,7 @@ export const ViewFarmers = () => {
                           name="lga"
                           placeholder="LGA"
                           onChange={handleChange}
-                          value={values.lga}
+                          value={values.lga  ?? farmer?.data?.lga}
                       />
                      </td>
                   </tr>
@@ -213,7 +210,7 @@ export const ViewFarmers = () => {
                           name="farmer_address"
                           placeholder="Address"
                           onChange={handleChange}
-                          value={values.farmer_address}
+                          value={values.farmer_address  ?? farmer?.data?.farmer_address}
                       />
                     </td>
                   </tr>
@@ -277,7 +274,7 @@ export const ViewFarmers = () => {
                   </AssignGroupDialog>
                 </div>
               </div>
-            </div>)}
+            </div>
           </div>
         </div>
 
