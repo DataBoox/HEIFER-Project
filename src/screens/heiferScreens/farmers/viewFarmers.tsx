@@ -3,9 +3,9 @@ import { FaTrash } from "react-icons/fa";
 import { Button, useToast } from "@chakra-ui/react";
 import { ThemeTable } from "components";
 import { useNavigate } from "react-router-dom";
-import { ContentBodyContainer} from "../../home";
+import { ContentBodyContainer } from "../../home";
 import { useAllHistorysColumn} from "./components";
-import { useGetFarmersQuery, useGetFarmerInfoQuery, useDeleteFarmerMutation } from "store/farmers";
+import { useGetFarmerInfoQuery, useDeleteFarmerMutation, useEditFarmerMutation } from "store/farmers";
 import _ from "lodash";
 import { AssignInterventionDialog } from "../farmers/components/assignIntervention";
 import { AssignGroupDialog } from "../farmers/components/assignGroup";
@@ -14,19 +14,22 @@ import FrameTwo from "../../../assets/images/Frame_1303-transformed.png"
 import { useLocation } from "react-router-dom";
 import { useProject } from "store/projects";
 import { resolveApiError } from "utilities";
+import { EditInput } from "components";
+import { useFormik } from "formik";
+import { FaPen } from "react-icons/fa";
+import { PrimaryLoader } from "components";
 
 export const ViewFarmers = () => {
   const navigate = useNavigate();
   const columns = useAllHistorysColumn();
   const projectId: number = useProject().project?.id;
-  const { data, isLoading, refetch } = useGetFarmersQuery({ page: 1, query: "", project_id: projectId });
   const pathArray: string[] = useLocation().pathname.trim().split("/")
   const farmerId = pathArray[pathArray.length - 1]
-  const { data: farmer } = useGetFarmerInfoQuery({ project_id: projectId, farmer_id: farmerId  });
+  const { data: farmer, isLoading,  refetch } = useGetFarmerInfoQuery({ project_id: projectId, farmer_id: farmerId  });
   const [disableFarmer] = useDeleteFarmerMutation();
   const toast = useToast({ position: "top-right" });
   const interventionHistory = farmer?.data?.farmer_interventions.map((data: any) => { return data.intervention })
-
+  const [editFarmer] = useEditFarmerMutation();
 
   const initDelete = () => {
     let payload = { project_id: projectId, farmers: [farmerId] }
@@ -39,6 +42,23 @@ export const ViewFarmers = () => {
       toast({ title: "Request Failed", description: msg, status: "error"})
     });
   }
+
+  const { values, handleChange, touched } = useFormik({
+    initialValues: { ...farmer?.data, ...{ farmer_id: farmerId }},
+    onSubmit: () => editFarmerRequest(),
+  });
+
+  const editFarmerRequest = () => {
+    let discard = ["creator", "farmer_interventions"]
+    discard.map(data => delete values[data])
+
+    editFarmer(values).unwrap().then((res) => {
+      refetch()
+      toast({ title: "Farmer", description: res?.response, status: "success" });
+    }).catch((error) => {
+        toast({ title: "Request Failed", description: resolveApiError(error), status: "error" });
+    });
+  };
 
 
   return (
@@ -94,46 +114,127 @@ export const ViewFarmers = () => {
               </h4>
               {/* {rightCardHeaderComponent} */}
             </div>
-            <div className="mx-4 pt-1">
+            {(!farmer?.data || isLoading) ?
+                <PrimaryLoader height={"70vh"} />
+            : (<div className="mx-4 pt-1">
               <table>
                 <tbody>
                   <tr>
                     <td className="fw-bold" style={{ minWidth: "150px" }}>
                       Last Name
                     </td>
-                    <td className="p-2">{ farmer?.data?.last_name ??  '- - - - - - - - - - - - - - -'}</td>
+                    <td className="p-2">
+                      <EditInput
+                        isRequired
+                        name="last_name"
+                        placeholder="Last name"
+                        onChange={handleChange}
+                        value={values.last_name}
+                      />
+                    </td>
                   </tr>
                   <tr>
                     <td className="fw-bold">First Name</td>
-                    <td className="p-2"> { farmer?.data?.first_name ?? '- - - - - - - - - - - - - - -'}</td>
+                    <td className="p-2">
+                      <EditInput
+                        isRequired
+                        name="first_name"
+                        placeholder="First name"
+                        onChange={handleChange}
+                        value={values.first_name}
+                      />
+                    </td>
                   </tr>
                   <tr>
                     <td className="fw-bold">Phone Number</td>
-                    <td className="p-2"> { farmer?.data?.farmer_phone ?? '- - - - - - - - - - - - - - -'}</td>
+                    <td className="p-2"> 
+                      <EditInput
+                          isRequired
+                          name="farmer_phone"
+                          placeholder="Farmer phone"
+                          onChange={handleChange}
+                          value={values.farmer_phone}
+                        />
+                    </td>
                   </tr>
                   <tr>
                     <td className="fw-bold">Gender</td>
-                    <td className="p-2">{ farmer?.data?.farmer_gender ?? '- - - - - - - - - - - - - - -'}</td>
+                    <td className="p-2">
+                      <EditInput
+                          isRequired
+                          name="farmer_gender"
+                          placeholder="Farmer gender"
+                          onChange={handleChange}
+                          value={values.farmer_gender}
+                        />
+                     </td>
                   </tr>
                   <tr>
                     <td className="fw-bold">Group Name</td>
-                    <td className="p-2">{ farmer?.data?.group_name ?? '- - - - - - - - - - - - - - -'}</td>
+                    <td className="p-2">
+                      <EditInput
+                          isRequired
+                          name="group_name"
+                          placeholder="Farmer group"
+                          onChange={handleChange}
+                          value={values.group_name}
+                        />
+                      </td>
                   </tr>
                   <tr>
                     <td className="fw-bold">State</td>
-                    <td className="p-2">{ farmer?.data?.state ?? '- - - - - - - - - - - - - - -'}</td>
+                    <td className="p-2">
+                      <EditInput
+                          isRequired
+                          name="state"
+                          placeholder="State"
+                          onChange={handleChange}
+                          value={values.state}
+                      />
+                    </td>
                   </tr>
                   <tr>
                     <td className="fw-bold">LGA</td>
-                    <td className="p-2">{ farmer?.data?.lga ?? '- - - - - - - - - - - - - - -'}</td>
+                    <td className="p-2">
+                      <EditInput
+                          isRequired
+                          name="lga"
+                          placeholder="LGA"
+                          onChange={handleChange}
+                          value={values.lga}
+                      />
+                     </td>
                   </tr>
                   <tr>
                     <td className="fw-bold">Address</td>
-                    <td className="p-2 ">{ farmer?.data?.farmer_address ?? '- - - - - - - - - - - - - - -'}</td>
+                    <td className="p-2 ">
+                      <EditInput
+                          isRequired
+                          name="farmer_address"
+                          placeholder="Address"
+                          onChange={handleChange}
+                          value={values.farmer_address}
+                      />
+                    </td>
                   </tr>
                 </tbody>
               </table>
               <div className="row g-3 pt-4 pb-4 align-items-center">
+                <div className="col-auto">
+                  <Button
+                    colorScheme="teal"
+                    onClick={() => editFarmerRequest()}
+                    leftIcon={ <FaPen size={13} /> }
+                    className={"fw-bold"}
+                    fontSize={"sm"}
+                    backgroundColor={"#7AD0E2"}
+                    color={"#fff"}
+                    borderRadius={0}
+                    padding={"15px"}
+                    _hover={{ bg: "#bbc7ca" }}
+                    transition={"background-color 0.5s ease-in-out"}
+                  >Edit</Button>
+                  </div>
                 <div className="col-auto">
                   <AssignInterventionDialog
                     requiredId={farmerId}
@@ -176,7 +277,7 @@ export const ViewFarmers = () => {
                   </AssignGroupDialog>
                 </div>
               </div>
-            </div>
+            </div>)}
           </div>
         </div>
 
