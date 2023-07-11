@@ -10,9 +10,33 @@ const NigeriaStates = [
         { "name": "Okpokwu", "id" :8, "communities": [{ "name": "Ojapo"},{ "name": "Ugbokolo"}] }] }
     },
     { "state": { "name": "Lagos State", "id" :2, "locals": [
-        { "name": "Badagry", "id" :1, "communities": [{ "name": "Ugondo"},{ "name": "Ugba"}] },
+        { "name": "Badagry", "id" :1, "communities": [
+            { "name": "Ibereko" },
+            { "name": "Oke oko" },
+            { "name": "Ajara" },
+            { "name": "Ajido" },
+            { "name": "Akarakumo" },
+            { "name": "Gbaji" }
+          ]
+           },
         { "name": "Epe", "id" :2, "communities": [{ "name": "Ogolonto"},{ "name": "Oke Oyinba"}] },
-        { "name": "Ikorodu", "id" :3, "communities": [{ "name": "Ugondo"},{ "name": "Ugba"}] }] }
+        { "name": "Ikorodu", "id" :3, "communities": [
+            { "name": "Ugondo" },
+            { "name": "Ugba" },
+            { "name": "Abe Abo" },
+            { "name": "Abule Ajeregun" },
+            { "name": "Abule Igbira" },
+            { "name": "Agodo Nla" },
+            { "name": "Aleke" },
+            { "name": "Araromi Ikorodu" },
+            { "name": "Apeje" },
+            { "name": "Baiyeku" },
+            { "name": "Agunfoye/Igbogbo" },
+            { "name": "Abule Eko" },
+            { "name": "Fadahin" },
+            { "name": "Gbagbowa" }
+          ]
+           }] }
     },
     { "state": { "name": "Nasarawa State", "id" :3, "locals": [
         { "name":  "Awe", "id" :1, "communities": [{ "name": "Akiri"},{ "name": "Azara"},{ "name": "Galadima"},{ "name": "Jangaru"},{ "name": "Kanje/abuni"},{ "name": "Madaki"},{ "name": "Makwangiji"},{ "name": "Ribi"},{ "name": "Tungu"},{ "name": "Wuse"}] },
