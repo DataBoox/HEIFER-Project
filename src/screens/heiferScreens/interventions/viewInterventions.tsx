@@ -11,7 +11,7 @@ import { useGetInterventionsQuery, useGetInterventionInfoQuery, useDeleteInterve
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import _ from "lodash";
 import { toast } from "react-toastify";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AssignFarmerDialog, AssignGroupDialog } from "./components";
 import FrameThree from "../../../assets/images/Frame_1304-transformed.png"
 import FrameFour from "../../../assets/images/Frame_1489-transformed.png"
@@ -44,17 +44,19 @@ export const ViewInterventions = () => {
     });
   }
 
-  const { values, handleChange } = useFormik({
+  const { values, handleChange, setFieldValue } = useFormik({
     initialValues: { ...intervention?.data, ...{ intervention_id: interventionId }},
     onSubmit: () => editInterventionRequest(),
   });
 
-  const editInterventionRequest = () => {
-    let payload: any = Object.assign(values, intervention?.data)
-    delete payload["creator"]
+  useEffect(() => {
+    if (intervention?.data) Object.keys(intervention?.data).forEach((key) => setFieldValue(key, intervention?.data[key]))
+  }, [intervention])
 
-    console.log(payload)
-    editIntervention(payload).unwrap().then((res) => {
+  const editInterventionRequest = () => {
+    delete values["creator"]
+
+    editIntervention(values).unwrap().then((res) => {
       refetch()
       toast({ title: "Intervention", description: res?.response, status: "success" });
     }).catch((error) => {
@@ -128,7 +130,7 @@ export const ViewInterventions = () => {
                           name="name"
                           placeholder="Name"
                           onChange={handleChange}
-                          value={values?.name  ?? intervention?.data?.name}
+                          value={values?.name}
                       />
                     </td>
                   </tr>
@@ -140,7 +142,7 @@ export const ViewInterventions = () => {
                           name="description"
                           placeholder="Description"
                           onChange={handleChange}
-                          value={values.description  ?? intervention?.data?.description}
+                          value={values.description}
                       />
                     </td>
                   </tr>
@@ -152,7 +154,7 @@ export const ViewInterventions = () => {
                           name="state"
                           placeholder="State"
                           onChange={handleChange}
-                          value={values.state  ?? intervention?.data?.state}
+                          value={values.state}
                       />
                     </td>
                   </tr>
@@ -164,7 +166,7 @@ export const ViewInterventions = () => {
                           name="lga"
                           placeholder="LGA"
                           onChange={handleChange}
-                          value={values.lga  ?? intervention?.data?.lga}
+                          value={values.lga}
                       />
                      </td>
                   </tr>
@@ -176,7 +178,7 @@ export const ViewInterventions = () => {
                           name="community"
                           placeholder="Community"
                           onChange={handleChange}
-                          value={values.community  ?? intervention?.data?.community}
+                          value={values.community}
                       />
                     </td>
                   </tr>

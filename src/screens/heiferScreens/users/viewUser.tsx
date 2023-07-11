@@ -11,6 +11,7 @@ import { resolveApiError } from "utilities";
 import { useToast, } from "@chakra-ui/react";
 import { EditInput } from "components";
 import { useFormik } from "formik";
+import { useEffect } from "react";
 
 export const ViewUsers = () => {
   const navigate = useNavigate();
@@ -46,19 +47,23 @@ export const ViewUsers = () => {
     });
   }
 
-  const { values, handleChange } = useFormik({
+  const { values, handleChange, setFieldValue } = useFormik({
     initialValues: { ...data?.data, ...{ uid: userId }},
     onSubmit: () => editUserRequest(),
   });
 
+
+  useEffect(() => {
+    if (data?.data) Object.keys(data?.data).forEach((key) => setFieldValue(key, data?.data[key]))
+    if (data?.data?.user) setFieldValue("email", data?.data?.user?.email)
+    if (data?.data?.user) setFieldValue("role", data?.data?.user?.account_type)
+  }, [data])
+
   const editUserRequest = () => {
-    let payload: any = Object.assign(values, data?.data)
-    delete payload["creator"]
+    let discard = ["creator", "user", "projects"]
+    discard.map(data => delete values[data])
 
-    payload.email = data?.data?.user?.email
-    payload.role = data?.data?.user?.account_type
-
-    editUser(payload).unwrap().then((res) => {
+    editUser(values).unwrap().then((res) => {
       refetch()
       toast({ title: "User", description: res?.response, status: "success" });
     }).catch((error) => {
@@ -149,7 +154,7 @@ export const ViewUsers = () => {
                           name="lname"
                           placeholder="Last name"
                           onChange={handleChange}
-                          value={values?.lname  ?? data?.data?.lname}
+                          value={values?.lname}
                       />
                     </td>
 
@@ -162,7 +167,7 @@ export const ViewUsers = () => {
                           name="fname"
                           placeholder="First name"
                           onChange={handleChange}
-                          value={values?.fname  ?? data?.data?.fname}
+                          value={values?.fname}
                       />
                     </td>
                   </tr>
@@ -175,7 +180,7 @@ export const ViewUsers = () => {
                           type="email"
                           placeholder="Email Address"
                           onChange={handleChange}
-                          value={values?.email  ?? data?.data?.user?.email}
+                          value={values?.email}
                       />
                     </td>
                   </tr>
@@ -187,7 +192,7 @@ export const ViewUsers = () => {
                           name="gender"
                           placeholder="Gender"
                           onChange={handleChange}
-                          value={values.farmer_gender  ?? data?.data?.gender}
+                          value={values.gender}
                         />
                      </td>
                   </tr>
@@ -199,7 +204,7 @@ export const ViewUsers = () => {
                           name="state"
                           placeholder="State"
                           onChange={handleChange}
-                          value={values.farmer_gender  ?? data?.data?.state}
+                          value={values.state}
                         />
                      </td>
                   </tr>
@@ -211,7 +216,7 @@ export const ViewUsers = () => {
                           name="community"
                           placeholder="Community"
                           onChange={handleChange}
-                          value={values.community  ?? data?.data?.community}
+                          value={values.community}
                         />
                     </td>
                   </tr>
@@ -223,7 +228,7 @@ export const ViewUsers = () => {
                           name="project"
                           placeholder="Project"
                           onChange={handleChange}
-                          value={values.project  ?? data?.data?.project}
+                          value={values.project}
                         />
                     </td>
                   </tr>
@@ -235,7 +240,7 @@ export const ViewUsers = () => {
                           name="role"
                           placeholder="Role"
                           onChange={handleChange}
-                          value={values.account_type  ?? data?.data?.user.account_type}
+                          value={values.role}
                         />
                     </td>
                   </tr>
