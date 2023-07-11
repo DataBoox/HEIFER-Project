@@ -5,9 +5,9 @@ import { MdPersonAddAlt1 } from "react-icons/md";
 import { Button, useToast } from "@chakra-ui/react";
 import { ThemeTable } from "components";
 import { useNavigate } from "react-router-dom";
-import { ContentBodyContainer, DashboardCardContainer } from "../../home";
-import { useAllFarmersColumn} from "../farmers/components";
-import { useGetGroupInfoQuery, useGetGroupsQuery, useDeleteGroupMutation } from "store/group";
+import { ContentBodyContainer } from "../../home";
+import { useAllFarmersColumn } from "../farmers/components";
+import { useGetGroupInfoQuery, useGetGroupsQuery, useDeleteGroupMutation, useEditGroupMutation } from "store/group";
 import _ from "lodash";
 import { useLocation } from "react-router-dom";
 import { useProject } from "store/projects";
@@ -15,17 +15,20 @@ import { AssignInterventionDialog } from "./components/assignIntervention";
 import { AssignFarmerDialog } from "./components/assignHousehold";
 import FrameTwo from "../../../assets/images/Frame_1303-transformed.png"
 import { resolveApiError } from "utilities";
+import { EditInput } from "components";
+import { useFormik } from "formik";
 
 export const ViewGroups = () => {
   const navigate = useNavigate();
   const columns = useAllFarmersColumn();
   const projectId: number = useProject().project?.id;
-  const { data, isLoading, refetch } = useGetGroupsQuery({ page: 1, query: "", project_id: projectId });
   const pathArray: string[] = useLocation().pathname.trim().split("/")
   const groupId = pathArray[pathArray.length - 1]
-  const { data: group } = useGetGroupInfoQuery({ project_id: projectId, group_id: groupId  });
+  const { data: group, isLoading,  refetch } = useGetGroupInfoQuery({ project_id: projectId, group_id: groupId  });
   const [deleteGroup] = useDeleteGroupMutation();
   const toast = useToast({ position: "top-right" });
+  const [editGroup] = useEditGroupMutation();
+
 
   const initDelete = () => {
     let payload = { project_id: projectId, groups: [groupId] }
@@ -38,6 +41,25 @@ export const ViewGroups = () => {
       toast({ title: "Request Failed", description: msg, status: "error"})
     });
   }
+
+  const { values, handleChange } = useFormik({
+    initialValues: { ...group?.data, ...{ group_id: groupId }},
+    onSubmit: () => editGroupRequest(),
+  });
+
+  const editGroupRequest = () => {
+    let payload: any = Object.assign(values, group?.data)
+    payload.secretary = group?.data.secretary?.id
+    payload.chairman = group?.data.chairman?.id
+    payload.vice_chairman = group?.data.vice_chairman?.id
+
+    editGroup(payload).unwrap().then((res) => {
+      refetch()
+      toast({ title: "Group", description: res?.response, status: "success" });
+    }).catch((error) => {
+        toast({ title: "Request Failed", description: resolveApiError(error), status: "error" });
+    });
+  };
 
   return (
     <ContentBodyContainer
@@ -99,31 +121,94 @@ export const ViewGroups = () => {
                     <td className="fw-bold" style={{ minWidth: "150px" }}>
                       Name
                     </td>
-                    <td className="p-2">{group?.data.name ?? '- - - - - - - - - - - - - - -'}</td>
+                    <td className="p-2">
+                      <EditInput
+                          isRequired
+                          name="name"
+                          placeholder="Name"
+                          onChange={handleChange}
+                          value={values?.name  ?? group?.data?.name}
+                      />
+                    </td>
                   </tr>
                   <tr>
                     <td className="fw-bold">Description</td>
-                    <td className="p-2">{group?.data.description ?? '- - - - - - - - - - - - - - -'}</td>
+                    <td className="p-2">
+                      <EditInput
+                          isRequired
+                          name="description"
+                          placeholder="Description"
+                          onChange={handleChange}
+                          value={values.description  ?? group?.data?.description}
+                      />
+                    </td>
                   </tr>
                   <tr>
                     <td className="fw-bold">State</td>
-                    <td className="p-2">{group?.data?.state ?? '- - - - - - - - - - - - - - -'}</td>
+                    <td className="p-2">
+                      <EditInput
+                          isRequired
+                          name="state"
+                          placeholder="State"
+                          onChange={handleChange}
+                          value={values.state  ?? group?.data?.state}
+                      />
+                    </td>
                   </tr>
                   <tr>
                     <td className="fw-bold">LGA</td>
-                    <td className="p-2">{group?.data?.lga ?? '- - - - - - - - - - - - - - -'}</td>
+                    <td className="p-2">
+                      <EditInput
+                          isRequired
+                          name="lga"
+                          placeholder="LGA"
+                          onChange={handleChange}
+                          value={values.lga  ?? group?.data?.lga}
+                      />
+                     </td>
                   </tr>
                   <tr>
                     <td className="fw-bold">Community</td>
-                    <td className="p-2">{group?.data?.community ?? '- - - - - - - - - - - - - - -'}</td>
+                    <td className="p-2">
+                      <EditInput
+                          isRequired
+                          name="community"
+                          placeholder="Community"
+                          onChange={handleChange}
+                          value={values.community  ?? group?.data?.community}
+                      />
+                    </td>
                   </tr>
                   <tr>
                     <td className="fw-bold">Created By</td>
-                    <td className="p-2 ">{group?.data?.creator.user_info?.fname ?? '- - - - - - - - - - - - - - -'}</td>
+                    <td className="p-2 ">
+                      <EditInput
+                          isRequired
+                          placeholder="Created By"
+                          readonly={true}
+                          onChange={handleChange}
+                          value={ group?.data?.creator.user_info?.fname }
+                      />
+                    </td>
                   </tr>
                 </tbody>
               </table>
               <div className="row g-3 pt-4 pb-4 align-items-center">
+              <div className="col-auto">
+                  <Button
+                    colorScheme="teal"
+                    onClick={() => editGroupRequest()}
+                    leftIcon={ <FaPen size={13} /> }
+                    className={"fw-bold"}
+                    fontSize={"sm"}
+                    backgroundColor={"#7AD0E2"}
+                    color={"#fff"}
+                    borderRadius={0}
+                    padding={"15px"}
+                    _hover={{ bg: "#bbc7ca" }}
+                    transition={"background-color 0.5s ease-in-out"}
+                  >Edit</Button>
+                </div>
                 <div className="col-auto">
                   <AssignInterventionDialog
                     requiredId={groupId}
@@ -254,7 +339,7 @@ export const ViewGroups = () => {
       <div className="col-xl-12">
       <h2 className="mt-3 mb-3 fw-bold" style={{color: "rgb(41, 41, 42)"}}>Household History</h2>
         <ThemeTable
-          data={data?.data?.data ?? []}
+          data={[]}
           columns={columns as any}
           isLoading={isLoading}
           onRefetch={refetch}
