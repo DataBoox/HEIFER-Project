@@ -7,7 +7,7 @@ import { PrimaryButton, PrimaryInput, ThemeTable } from "components";
 import { useNavigate } from "react-router-dom";
 import { ContentBodyContainer, DashboardCardContainer } from "../../home";
 import { useAllFarmersColumn} from "../farmers/components";
-import { useGetInterventionsQuery, useGetInterventionInfoQuery, useDeleteInterventionMutation } from "store/intervention";
+import { useGetInterventionsQuery, useGetInterventionInfoQuery, useDeleteInterventionMutation, useEditInterventionMutation } from "store/intervention";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import _ from "lodash";
 import { toast } from "react-toastify";
@@ -18,21 +18,19 @@ import FrameFour from "../../../assets/images/Frame_1489-transformed.png"
 import { useLocation } from "react-router-dom";
 import { useProject } from "store/projects";
 import { resolveApiError } from "utilities";
+import { EditInput } from "components";
+import { useFormik } from "formik";
 
 export const ViewInterventions = () => {
   const navigate = useNavigate();
   const columns = useAllFarmersColumn();
   const projectId: number = useProject().project?.id;
-  const { data, isLoading, refetch } = useGetInterventionsQuery({
-    page: 1,
-    query: "",
-    project_id: projectId,
-  });
   const pathArray: string[] = useLocation().pathname.trim().split("/")
   const interventionId = pathArray[pathArray.length - 1]
-  const { data: intervention } = useGetInterventionInfoQuery({ project_id: projectId, intervention_id: interventionId  });
+  const { data: intervention, refetch } = useGetInterventionInfoQuery({ project_id: projectId, intervention_id: interventionId  });
   const [deleteIntervention] = useDeleteInterventionMutation();
   const toast = useToast({ position: "top-right" });
+  const [editIntervention] = useEditInterventionMutation();
 
   const initDelete = () => {
     let payload = { project_id: projectId, interventions: [interventionId] }
@@ -45,6 +43,24 @@ export const ViewInterventions = () => {
       toast({ title: "Request Failed", description: msg, status: "error"})
     });
   }
+
+  const { values, handleChange } = useFormik({
+    initialValues: { ...intervention?.data, ...{ intervention_id: interventionId }},
+    onSubmit: () => editInterventionRequest(),
+  });
+
+  const editInterventionRequest = () => {
+    let payload: any = Object.assign(values, intervention?.data)
+    delete payload["creator"]
+
+    console.log(payload)
+    editIntervention(payload).unwrap().then((res) => {
+      refetch()
+      toast({ title: "Intervention", description: res?.response, status: "success" });
+    }).catch((error) => {
+        toast({ title: "Request Failed", description: resolveApiError(error), status: "error" });
+    });
+  };
 
   return (
     <ContentBodyContainer
@@ -101,40 +117,102 @@ export const ViewInterventions = () => {
             </div>
             <div className="mx-4 pt-1">
               <table>
-                <tbody>
+              <tbody>
                   <tr>
                     <td className="fw-bold" style={{ minWidth: "150px" }}>
                       Name
                     </td>
-                    <td className="p-2">{ intervention?.data.name ?? '- - - - - - - - - - - - - - -'}</td>
+                    <td className="p-2">
+                      <EditInput
+                          isRequired
+                          name="name"
+                          placeholder="Name"
+                          onChange={handleChange}
+                          value={values?.name  ?? intervention?.data?.name}
+                      />
+                    </td>
                   </tr>
                   <tr>
                     <td className="fw-bold">Description</td>
-                    <td className="p-2">{ intervention?.data.description ?? '- - - - - - - - - - - - - - -'}</td>
+                    <td className="p-2">
+                      <EditInput
+                          isRequired
+                          name="description"
+                          placeholder="Description"
+                          onChange={handleChange}
+                          value={values.description  ?? intervention?.data?.description}
+                      />
+                    </td>
                   </tr>
                   <tr>
                     <td className="fw-bold">State</td>
-                    <td className="p-2">{ intervention?.data.state ?? '- - - - - - - - - - - - - - -'}</td>
+                    <td className="p-2">
+                      <EditInput
+                          isRequired
+                          name="state"
+                          placeholder="State"
+                          onChange={handleChange}
+                          value={values.state  ?? intervention?.data?.state}
+                      />
+                    </td>
                   </tr>
                   <tr>
                     <td className="fw-bold">LGA</td>
-                    <td className="p-2">{ intervention?.data.lga ?? '- - - - - - - - - - - - - - -'}</td>
+                    <td className="p-2">
+                      <EditInput
+                          isRequired
+                          name="lga"
+                          placeholder="LGA"
+                          onChange={handleChange}
+                          value={values.lga  ?? intervention?.data?.lga}
+                      />
+                     </td>
                   </tr>
                   <tr>
                     <td className="fw-bold">Community</td>
-                    <td className="p-2">{ intervention?.data.community ?? '- - - - - - - - - - - - - - -'}</td>
+                    <td className="p-2">
+                      <EditInput
+                          isRequired
+                          name="community"
+                          placeholder="Community"
+                          onChange={handleChange}
+                          value={values.community  ?? intervention?.data?.community}
+                      />
+                    </td>
                   </tr>
                   <tr>
                     <td className="fw-bold">Created By</td>
-                    <td className="p-2 ">{ intervention?.data.creator.user_info?.fname ?? '- - - - - - - - - - - - - - -'}</td>
+                    <td className="p-2 ">
+                      <EditInput
+                          isRequired
+                          placeholder="Created By"
+                          readonly={true}
+                          onChange={handleChange}
+                          value={ intervention?.data?.creator.user_info?.fname }
+                      />
+                    </td>
                   </tr>
                 </tbody>
               </table>
               <div className="row g-3 pt-4 pb-4 align-items-center">
-
+                <div className="col-auto">
+                    <Button
+                      colorScheme="teal"
+                      onClick={() => editInterventionRequest()}
+                      leftIcon={ <FaPen size={13} /> }
+                      className={"fw-bold"}
+                      fontSize={"sm"}
+                      backgroundColor={"#7AD0E2"}
+                      color={"#fff"}
+                      borderRadius={0}
+                      padding={"15px"}
+                      _hover={{ bg: "#bbc7ca" }}
+                      transition={"background-color 0.5s ease-in-out"}
+                    >Edit</Button>
+                  </div>
               
 
-              <div className="col-auto">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+                <div className="col-auto">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
                   <AssignGroupDialog
                     requiredId={interventionId}
                     useButton={true}
@@ -151,29 +229,29 @@ export const ViewInterventions = () => {
                     >
                       Assign To Group
                   </AssignGroupDialog>
-              </div>
+                </div>
 
-          <div className="col-auto">
-          <AssignFarmerDialog
-              requiredId={interventionId}
-              useButton={true}
-              buttonProps={{
-                leftIcon: (
-                  <MdOutlineAddCircleOutline size={12} />
-                ),
-                fontSize: "sm",
-                className: "fw-bold",
-                backgroundColor: "#7AD0E2",
-                color: "#fff",
-                borderRadius: 0,
-                padding: "12px, 20px, 12px, 20px",
-                transition: "background-color 0.5s ease-in-out", // Add transition property
-              }}
-              onClose={refetch}
-            >
-              Assign a Household
-            </AssignFarmerDialog>
-          </div>
+              <div className="col-auto">
+              <AssignFarmerDialog
+                  requiredId={interventionId}
+                  useButton={true}
+                  buttonProps={{
+                    leftIcon: (
+                      <MdOutlineAddCircleOutline size={12} />
+                    ),
+                    fontSize: "sm",
+                    className: "fw-bold",
+                    backgroundColor: "#7AD0E2",
+                    color: "#fff",
+                    borderRadius: 0,
+                    padding: "12px, 20px, 12px, 20px",
+                    transition: "background-color 0.5s ease-in-out", // Add transition property
+                  }}
+                  onClose={refetch}
+                >
+                  Assign a Household
+                </AssignFarmerDialog>
+              </div>
 
         </div>
             </div>
@@ -258,10 +336,10 @@ export const ViewInterventions = () => {
       <div className="col-xl-12">
       <h2 className="mt-3 mb-3 fw-bold" style={{color: "rgb(41, 41, 42)"}}>Household History</h2>
         <ThemeTable
-          data={data?.data?.data ?? []}
+          data={[]}
           columns={columns as any}
-          isLoading={isLoading}
-          onRefetch={refetch}
+          // isLoading={isLoading}
+          // onRefetch={refetch}
         />
       </div>
     </ContentBodyContainer>
