@@ -17,6 +17,7 @@ import { resolveApiError } from "utilities";
 import { EditInput } from "components";
 import { useFormik } from "formik";
 import { FaPen } from "react-icons/fa";
+import { useEffect } from "react";
 
 export const ViewFarmers = () => {
   const navigate = useNavigate();
@@ -42,18 +43,20 @@ export const ViewFarmers = () => {
     });
   }
 
-  const { values, handleChange, touched } = useFormik({
+  const { values, handleChange, setFieldValue } = useFormik({
     initialValues: { ...farmer?.data, ...{ farmer_id: farmerId }},
     onSubmit: () => editFarmerRequest(),
   });
 
+  useEffect(() => {
+    if (farmer?.data) Object.keys(farmer?.data).forEach((key) => setFieldValue(key, farmer?.data[key]))
+  }, [farmer])
+
   const editFarmerRequest = () => {
-    let payload: any = Object.assign(values, farmer?.data)
-
     let discard = ["creator", "farmer_interventions"]
-    discard.map(data => delete payload[data])
+    discard.map(data => delete values[data])
 
-    editFarmer(payload).unwrap().then((res) => {
+    editFarmer(values).unwrap().then((res) => {
       refetch()
       toast({ title: "Farmer", description: res?.response, status: "success" });
     }).catch((error) => {
@@ -128,7 +131,7 @@ export const ViewFarmers = () => {
                         name="last_name"
                         placeholder="Last name"
                         onChange={handleChange}
-                        value={values.last_name ?? farmer?.data?.last_name}
+                        value={values.last_name}
                       />
                     </td>
                   </tr>
@@ -140,7 +143,7 @@ export const ViewFarmers = () => {
                         name="first_name"
                         placeholder="First name"
                         onChange={handleChange}
-                        value={values.first_name  ?? farmer?.data?.first_name}
+                        value={values.first_name}
                       />
                     </td>
                   </tr>
@@ -152,7 +155,7 @@ export const ViewFarmers = () => {
                           name="farmer_phone"
                           placeholder="Farmer phone"
                           onChange={handleChange}
-                          value={values.farmer_phone  ?? farmer?.data?.farmer_phone}
+                          value={values.farmer_phone}
                         />
                     </td>
                   </tr>
@@ -164,7 +167,7 @@ export const ViewFarmers = () => {
                           name="farmer_gender"
                           placeholder="Farmer gender"
                           onChange={handleChange}
-                          value={values.farmer_gender  ?? farmer?.data?.farmer_gender}
+                          value={values.farmer_gender}
                         />
                      </td>
                   </tr>
@@ -176,7 +179,7 @@ export const ViewFarmers = () => {
                           name="group_name"
                           placeholder="Farmer group"
                           onChange={handleChange}
-                          value={values.group_name  ?? farmer?.data?.group_name}
+                          value={values.group_name}
                         />
                       </td>
                   </tr>
@@ -188,7 +191,7 @@ export const ViewFarmers = () => {
                           name="state"
                           placeholder="State"
                           onChange={handleChange}
-                          value={values.state  ?? farmer?.data?.state}
+                          value={values.state}
                       />
                     </td>
                   </tr>
@@ -200,7 +203,7 @@ export const ViewFarmers = () => {
                           name="lga"
                           placeholder="LGA"
                           onChange={handleChange}
-                          value={values.lga  ?? farmer?.data?.lga}
+                          value={values.lga}
                       />
                      </td>
                   </tr>
@@ -212,7 +215,7 @@ export const ViewFarmers = () => {
                           name="farmer_address"
                           placeholder="Address"
                           onChange={handleChange}
-                          value={values.farmer_address  ?? farmer?.data?.farmer_address}
+                          value={values.farmer_address}
                       />
                     </td>
                   </tr>

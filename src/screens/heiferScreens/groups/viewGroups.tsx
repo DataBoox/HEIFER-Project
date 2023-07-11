@@ -17,6 +17,7 @@ import FrameTwo from "../../../assets/images/Frame_1303-transformed.png"
 import { resolveApiError } from "utilities";
 import { EditInput } from "components";
 import { useFormik } from "formik";
+import { useEffect } from "react";
 
 export const ViewGroups = () => {
   const navigate = useNavigate();
@@ -42,18 +43,24 @@ export const ViewGroups = () => {
     });
   }
 
-  const { values, handleChange } = useFormik({
+  const { values, handleChange, setFieldValue } = useFormik({
     initialValues: { ...group?.data, ...{ group_id: groupId }},
     onSubmit: () => editGroupRequest(),
   });
 
-  const editGroupRequest = () => {
-    let payload: any = Object.assign(values, group?.data)
-    payload.secretary = group?.data.secretary?.id
-    payload.chairman = group?.data.chairman?.id
-    payload.vice_chairman = group?.data.vice_chairman?.id
+  useEffect(() => {
+    if (group?.data) Object.keys(group?.data).map((key) => setFieldValue(key, group?.data[key]))
+  }, [group])
 
-    editGroup(payload).unwrap().then((res) => {
+  const editGroupRequest = () => {
+    let discard = ["creator", "sub"]
+    discard.map(data => delete values[data])
+    
+    values.secretary = group?.data.secretary?.id
+    values.chairman = group?.data.chairman?.id
+    values.vice_chairman = group?.data.vice_chairman?.id
+
+    editGroup(values).unwrap().then((res) => {
       refetch()
       toast({ title: "Group", description: res?.response, status: "success" });
     }).catch((error) => {
@@ -127,7 +134,7 @@ export const ViewGroups = () => {
                           name="name"
                           placeholder="Name"
                           onChange={handleChange}
-                          value={values?.name  ?? group?.data?.name}
+                          value={values?.name}
                       />
                     </td>
                   </tr>
@@ -139,7 +146,7 @@ export const ViewGroups = () => {
                           name="description"
                           placeholder="Description"
                           onChange={handleChange}
-                          value={values.description  ?? group?.data?.description}
+                          value={values.description}
                       />
                     </td>
                   </tr>
@@ -151,7 +158,7 @@ export const ViewGroups = () => {
                           name="state"
                           placeholder="State"
                           onChange={handleChange}
-                          value={values.state  ?? group?.data?.state}
+                          value={values.state}
                       />
                     </td>
                   </tr>
@@ -163,7 +170,7 @@ export const ViewGroups = () => {
                           name="lga"
                           placeholder="LGA"
                           onChange={handleChange}
-                          value={values.lga  ?? group?.data?.lga}
+                          value={values.lga}
                       />
                      </td>
                   </tr>
@@ -175,7 +182,7 @@ export const ViewGroups = () => {
                           name="community"
                           placeholder="Community"
                           onChange={handleChange}
-                          value={values.community  ?? group?.data?.community}
+                          value={values.community}
                       />
                     </td>
                   </tr>
