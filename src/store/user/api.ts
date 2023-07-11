@@ -3,7 +3,7 @@ import { convertObjectToURLParams } from 'utilities/general';
 import { axiosBaseQuery } from '../../utilities/axiosQuery/axiosBaseQuery';
 import { baseUrl } from '../../utilities/requests';
 import { IResponse } from '../auth/interface';
-import { AddUserPayload, ChurchUsersResponse, DeleteUsersPayload, EditUserPayload, FetchUsersPayload, RequiresUserID, UserSuccessResponse } from './interface';
+import { AddUserPayload, ChurchUsersResponse, DeleteUsersPayload, EditUserPayload, FetchUsersPayload, RequiresUserID, UserSuccessResponse, ChangePasswordPayload } from "./interface";
 
 
 export const userApi = createApi({
@@ -67,6 +67,13 @@ export const userApi = createApi({
                 method: 'GET',
             }),
         }),
+        changePassword: builder.mutation<IResponse, ChangePasswordPayload>({
+            query: (payload) => ({
+                url: 'users/change_password',
+                method: 'POST',
+                body: payload
+            }),
+        }),
     })
 });
 
@@ -79,5 +86,6 @@ export const {
     useGetUserInfoQuery,
     useDisableUserMutation,
     useEnableUserMutation,
+    useChangePasswordMutation,
 } = userApi;
 
