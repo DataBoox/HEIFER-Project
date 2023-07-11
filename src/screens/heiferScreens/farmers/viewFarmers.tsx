@@ -48,10 +48,12 @@ export const ViewFarmers = () => {
   });
 
   const editFarmerRequest = () => {
-    let discard = ["creator", "farmer_interventions"]
-    discard.map(data => delete values[data])
+    let payload: any = Object.assign(values, farmer?.data)
 
-    editFarmer(values).unwrap().then((res) => {
+    let discard = ["creator", "farmer_interventions"]
+    discard.map(data => delete payload[data])
+
+    editFarmer(payload).unwrap().then((res) => {
       refetch()
       toast({ title: "Farmer", description: res?.response, status: "success" });
     }).catch((error) => {
