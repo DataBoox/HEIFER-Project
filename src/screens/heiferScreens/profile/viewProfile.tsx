@@ -22,7 +22,7 @@ export const ViewProfile = () => {
     initialValues: { 
       old: "", password: "", confirm: "", uid: user?.user_info.uid,
       fname: user?.user_info?.fname, lname: user?.user_info?.lname,
-      email: user?.email, gender: user?.user_info?.gender,
+      email: user?.email, gender: user?.user_info?.gender, role: user?.account_type
     },
     onSubmit: () => changePasswordRequest(),
   });
@@ -36,7 +36,8 @@ export const ViewProfile = () => {
   };
 
   const editProfileRequest = () => {
-    editProfile(values).unwrap().then((res) => {
+    let payload: any = Object.fromEntries(Object.entries(values).slice(3))
+    editProfile(payload).unwrap().then((res) => {
       toast({ title: "Profile", description: res?.response, status: "success" });
     }).catch((error) => {
         toast({ title: "Request Failed", description: resolveApiError(error), status: "error" });
@@ -87,11 +88,11 @@ export const ViewProfile = () => {
                       isRequired
                       name="lname"
                       placeholder="Last name"
-                      value={user?.user_info?.lname}
                       onChange={handleChange}
+                      value={values.lname}
                       error={false}
                     />
-
+                    
                   </tr>
                   <tr>
                     <td className="fw-bold pt-3" style={{ minWidth: "200px" }}>First Name</td>
@@ -99,7 +100,7 @@ export const ViewProfile = () => {
                       isRequired
                       name="fname"
                       placeholder="First name"
-                      value={user?.user_info?.fname}
+                      value={values.fname}
                       onChange={handleChange}
                       error={false}
                     />
@@ -111,7 +112,7 @@ export const ViewProfile = () => {
                       name="email"
                       placeholder="Email Address"
                       onChange={handleChange}
-                      value={user?.email}
+                      value={values.email}
                       error={false}
                     />
                   </tr>
@@ -122,7 +123,7 @@ export const ViewProfile = () => {
                       name="gender"
                       placeholder="Gender"
                       onChange={handleChange}
-                      value={user?.user_info?.gender}
+                      value={values.gender}
                       error={false}
                     />
                   </tr>
