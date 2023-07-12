@@ -1,19 +1,18 @@
 // import { Devotional, DevotionalProps} from "./components/devotionalComponent";
-import { MdOutlineAddCircleOutline } from "react-icons/md";
-import { Button} from "@chakra-ui/react";
-import { FaEye, FaPen, FaSearch, FaTrash, FaUserCheck, FaUserSlash } from "react-icons/fa";
-import { useToast, } from "@chakra-ui/react";
-import { PrimaryInput, ThemeTable } from "components";
-import { useNavigate } from "react-router-dom";
-import { ContentBodyContainer} from "../../home";
-import { AddUserDialog } from "./addUser";
-import { useAddUserMutation, useDisableUserMutation, useGetUsersQuery, useEnableUserMutation } from "store/user";
-import { useAllUsersColumn } from "./components";
-import { OverlayTrigger, Tooltip } from "react-bootstrap";
-import { resolveApiError } from "utilities";
-import { useProject } from "store/projects";
+import { Button, useToast } from "@chakra-ui/react";
 import { UserInfo } from "@store/user";
+import { ThemeTable } from "components";
 import { useState } from "react";
+import { OverlayTrigger, Tooltip } from "react-bootstrap";
+import { FaEye, FaUserCheck, FaUserSlash } from "react-icons/fa";
+import { MdOutlineAddCircleOutline } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
+import { useProject } from "store/projects";
+import { useDisableUserMutation, useEnableUserMutation, useGetUsersQuery } from "store/user";
+import { resolveApiError } from "utilities";
+import { ContentBodyContainer } from "../../home";
+import { AddUserDialog } from "./addUser";
+import { useAllUsersColumn } from "./components";
 
 export const UserScreen = () => {
   const navigate = useNavigate();
@@ -53,21 +52,6 @@ export const UserScreen = () => {
       routesRule={"createUser"}
       rightCardHeaderComponent={
         <div className="row g-3 mb-0 align-items-center">
-          <div className="col-auto">
-            <PrimaryInput
-              name="search"
-              placeholder="Search..."
-              size={"lg"}
-              rightComponent={<FaSearch color={"grey"} />}
-              onChange={({ target }) => setQuery(target.value)}
-              isDisabled={isLoading}
-              style={{
-                backgroundColor: "#ffff",
-                borderRadius: 0,
-                border: 0,
-              }}
-            />
-          </div>
           <div className="col-auto">
             <AddUserDialog
               useButton={true}

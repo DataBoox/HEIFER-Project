@@ -1,12 +1,11 @@
-import { PrimaryInput, PrimarySelect, GenderSelect, AgeCategorySelect } from "components";
-import { FaSearch, FaPlus } from "react-icons/fa";
+import { AgeCategorySelect, GenderSelect, PrimaryInput, PrimarySelect } from "components";
+import { useFormik } from "formik";
+import { useEffect } from "react";
+import { FaPlus } from "react-icons/fa";
 import { useGetGroupsQuery } from "store/group";
 import { useGetInterventionsQuery } from "store/intervention";
-import { AddGroupScheme } from "validations/group";
-import { useFormik } from "formik";
 import { useProject } from "store/projects";
-import { states, localGov, communities } from "utilities";
-import { useEffect, useCallback } from "react";
+import { communities, localGov, states } from "utilities";
 
 export interface HouseholdFilterSystemProps {
   gender?: (value?: string) => void;
@@ -62,7 +61,7 @@ export const HouseholdFilterSystem: React.FC<HouseholdFilterSystemProps> = ({
     return (
       <div className="col-xl-12">
         <div className="row g-3 mb-4">
-          <div className="col-auto">
+          {/* <div className="col-auto">
             <PrimaryInput
               name="query"
               placeholder="Search ..."
@@ -76,7 +75,7 @@ export const HouseholdFilterSystem: React.FC<HouseholdFilterSystemProps> = ({
                 border: 0,
               }}
             />
-          </div>
+          </div> */}
           <div className="col-auto">
             <PrimarySelect 
               name="state"

@@ -158,7 +158,7 @@ export const RegisterFarmers = () => {
                     className={"fw-light"}
                     fontSize={"sm"}
                     backgroundColor={"#2A4153"}
-                    color={"#ffffff"}
+                    color={"#000000"}
                     borderRadius={0}
                     padding={"16px, 48px, 16px, 48px"}
                   >

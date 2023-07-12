@@ -55,9 +55,6 @@ export const ThemeTable: React.FC<ThemeTableProps> = ({
         columns={columns as any}
         data={data}
         enableRowSelection
-        manualFiltering
-        manualPagination
-        manualSorting
         initialState={{ showColumnFilters: false }}
         onColumnFiltersChange={setColumnFilters}
         onGlobalFilterChange={setGlobalFilter}
