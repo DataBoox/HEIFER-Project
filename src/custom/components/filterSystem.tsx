@@ -1,12 +1,11 @@
 import { PrimaryInput, PrimarySelect } from "components/inputs";
+import { useFormik } from "formik";
+import { useEffect } from "react";
 import { FaSearch } from "react-icons/fa";
 import { useGetGroupsQuery } from "store/group";
 import { useGetInterventionsQuery } from "store/intervention";
-import { AddGroupScheme } from "validations/group";
-import { useFormik } from "formik";
 import { useProject } from "store/projects";
-import { states, localGov, communities } from "utilities";
-import { useEffect, useState } from "react";
+import { communities, localGov, states } from "utilities";
 
 export interface FilterSystemProps {
   query?: (value?: string) => void;
@@ -52,7 +51,7 @@ export const FilterSystem: React.FC<FilterSystemProps>= ({
     return (
       <div className="col-xl-12">
         <div className="row g-3 mb-4">
-          <div className="col-auto">
+          {/* <div className="col-auto">
             <PrimaryInput
               name="search"
               placeholder="Search ..."
@@ -66,7 +65,7 @@ export const FilterSystem: React.FC<FilterSystemProps>= ({
                 border: 0,
               }}
             />
-          </div>
+          </div> */}
           <div className="col-auto">
             <PrimarySelect 
               name="state"

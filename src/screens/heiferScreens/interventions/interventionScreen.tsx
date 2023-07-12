@@ -60,21 +60,6 @@ export const InterventionScreen = () => {
       rightCardHeaderComponent={
         <div className="row g-3 mb-0 align-items-center">
           <div className="col-auto">
-            <PrimaryInput
-              name="search"
-              placeholder="Search..."
-              size={"lg"}
-              rightComponent={<FaSearch color={"grey"} />}
-              onChange={({ target }) => setQuery(target.value)}
-              isDisabled={isLoading}
-              style={{
-                backgroundColor: "#ffff",
-                borderRadius: 0,
-                border: 0,
-              }}
-            />
-          </div>
-          <div className="col-auto">
             <AddInterventionDialog
               useButton={true}
               buttonProps={{

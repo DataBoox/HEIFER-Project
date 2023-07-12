@@ -1,17 +1,13 @@
-import { CustomPasswordInput } from "components";
-import { FaPen, FaTrash } from "react-icons/fa";
-import { Button } from "@chakra-ui/react";
-import { useNavigate } from "react-router-dom";
-import { ContentBodyContainer } from "../../home";
-import _ from "lodash";
-import { resolveApiError } from "utilities";
-import { useToast, } from "@chakra-ui/react";
-import { ResetPasswordValidationSchema } from "validations";
+import { Button, useToast } from "@chakra-ui/react";
+import { CustomPasswordInput, EditInput } from "components";
 import { useFormik } from "formik";
-import { EditInput } from "components";
+import { useEffect } from "react";
+import { FaPen } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "store/auth";
 import { useChangePasswordMutation, useEditUserMutation, useGetUserInfoQuery } from "store/user";
-import { useEffect } from "react";
+import { resolveApiError } from "utilities";
+import { ContentBodyContainer } from "../../home";
 
 
 export const ViewProfile = () => {
