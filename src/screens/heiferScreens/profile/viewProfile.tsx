@@ -55,7 +55,7 @@ export const ViewProfile = () => {
 
   return (
     <ContentBodyContainer
-      title="View Profile"
+      title="Edit Profile"
       routesRule={"viewProfile"}
     >
       <div className="row g-2">
@@ -192,7 +192,7 @@ export const ViewProfile = () => {
                       <FaPen size={13} />
                     }
                     className={"fw-bold"}
-                    fontSize={"sm"}
+                    fontSize={"lg"}
                     backgroundColor={"#7AD0E2"}
                     color={"#fff"}
                     borderRadius={0}
