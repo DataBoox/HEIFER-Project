@@ -6,9 +6,12 @@ import { ContentBodyContainer } from "../../home";
 import { useGetUserInfoQuery } from "store/user";
 import _ from "lodash";
 import { useLocation } from "react-router-dom";
-import { useDisableUserMutation, useEnableUserMutation } from "store/user";
+import { useDisableUserMutation, useEnableUserMutation, useEditUserMutation } from "store/user";
 import { resolveApiError } from "utilities";
 import { useToast, } from "@chakra-ui/react";
+import { EditInput } from "components";
+import { useFormik } from "formik";
+import { useEffect } from "react";
 
 export const ViewUsers = () => {
   const navigate = useNavigate();
@@ -19,6 +22,8 @@ export const ViewUsers = () => {
   const [disableUser] = useDisableUserMutation();
   const [enableUser] = useEnableUserMutation();
   const toast = useToast({ position: "top-right" });
+  const [editUser] = useEditUserMutation();
+
 
   const initDisable = (user: number) => {
     disableUser({users: [user]}).unwrap().then((response) => {
@@ -41,6 +46,30 @@ export const ViewUsers = () => {
       toast({ title: "Request Failed", description: msg, status: "error"})
     });
   }
+
+  const { values, handleChange, setFieldValue } = useFormik({
+    initialValues: { ...data?.data, ...{ uid: userId }},
+    onSubmit: () => editUserRequest(),
+  });
+
+
+  useEffect(() => {
+    if (data?.data) Object.keys(data?.data).forEach((key) => setFieldValue(key, data?.data[key]))
+    if (data?.data?.user) setFieldValue("email", data?.data?.user?.email)
+    if (data?.data?.user) setFieldValue("role", data?.data?.user?.account_type)
+  }, [data])
+
+  const editUserRequest = () => {
+    let discard = ["creator", "user", "projects"]
+    discard.map(data => delete values[data])
+
+    editUser(values).unwrap().then((res) => {
+      refetch()
+      toast({ title: "User", description: res?.response, status: "success" });
+    }).catch((error) => {
+        toast({ title: "Request Failed", description: resolveApiError(error), status: "error" });
+    });
+  };
 
   return (
     <ContentBodyContainer
@@ -119,35 +148,101 @@ export const ViewUsers = () => {
                     <td className="fw-bold" style={{ minWidth: "150px" }}>
                       Last Name
                     </td>
-                    <td className="p-2">{data?.data?.lname ?? '- - - - - - - - - - - - - - -'}</td>
+                    <td className="p-2">
+                      <EditInput
+                          isRequired
+                          name="lname"
+                          placeholder="Last name"
+                          onChange={handleChange}
+                          value={values?.lname}
+                      />
+                    </td>
+
                   </tr>
                   <tr>
                     <td className="fw-bold">First Name</td>
-                    <td className="p-2">{data?.data?.fname ?? '- - - - - - - - - - - - - - -'}</td>
+                    <td className="p-2">
+                      <EditInput
+                          isRequired
+                          name="fname"
+                          placeholder="First name"
+                          onChange={handleChange}
+                          value={values?.fname}
+                      />
+                    </td>
                   </tr>
                   <tr>
                     <td className="fw-bold">Email Address</td>
-                    <td className="p-2"> {data?.data?.user.email ?? '- - - - - - - - - - - - - - -'}</td>
+                    <td className="p-2">
+                      <EditInput
+                          isRequired
+                          name="email"
+                          type="email"
+                          placeholder="Email Address"
+                          onChange={handleChange}
+                          value={values?.email}
+                      />
+                    </td>
                   </tr>
                   <tr>
                     <td className="fw-bold">Gender</td>
-                    <td className="p-2">{data?.data?.gender ?? '- - - - - - - - - - - - - - -'}</td>
+                    <td className="p-2">
+                        <EditInput
+                          isRequired
+                          name="gender"
+                          placeholder="Gender"
+                          onChange={handleChange}
+                          value={values.gender}
+                        />
+                     </td>
                   </tr>
                   <tr>
                     <td className="fw-bold">State</td>
-                    <td className="p-2">{data?.data?.state ?? '- - - - - - - - - - - - - - -'}</td>
+                    <td className="p-2">
+                        <EditInput
+                          isRequired
+                          name="state"
+                          placeholder="State"
+                          onChange={handleChange}
+                          value={values.state}
+                        />
+                     </td>
                   </tr>
                   <tr>
                     <td className="fw-bold">Community</td>
-                    <td className="p-2">{data?.data?.community ?? '- - - - - - - - - - - - - - -'}</td>
+                    <td className="p-2">
+                        <EditInput
+                          isRequired
+                          name="community"
+                          placeholder="Community"
+                          onChange={handleChange}
+                          value={values.community}
+                        />
+                    </td>
                   </tr>
                   <tr>
                     <td className="fw-bold">Project</td>
-                    <td className="p-2">{data?.data?.project ?? '- - - - - - - - - - - - - - -'}</td>
+                    <td className="p-2">
+                        <EditInput
+                          isRequired
+                          name="project"
+                          placeholder="Project"
+                          onChange={handleChange}
+                          value={values.project}
+                        />
+                    </td>
                   </tr>
                   <tr>
                     <td className="fw-bold">Role</td>
-                    <td className="p-2 ">{data?.data?.user.account_type.replace('_', ' ').toUpperCase() ?? '- - - - - - - - - - - - - - -'}</td>
+                    <td className="p-2 ">
+                        <EditInput
+                          isRequired
+                          name="role"
+                          placeholder="Role"
+                          onChange={handleChange}
+                          value={values.role}
+                        />
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -157,7 +252,7 @@ export const ViewUsers = () => {
           <div className="col-auto">
             <Button
               colorScheme="teal"
-              onClick={() => navigate("/farmers/edit")}
+              onClick={() => editUserRequest()}
               leftIcon={
                 <FaPen size={13} />
               }
@@ -169,7 +264,7 @@ export const ViewUsers = () => {
               padding={"12px, 20px, 12px, 20px"}
               _hover={{ bg: "#bbc7ca" }}
               transition={"background-color 0.5s ease-in-out"}
-            >
+            >Edit
             </Button>
           </div>
         </div>

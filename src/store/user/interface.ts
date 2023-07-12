@@ -28,11 +28,11 @@ export interface AddUserPayload {
 }
 
 export interface EditUserPayload {
-    uid: number | undefined;
-    fname: string | undefined;
-    lname: string | undefined;
-    email: string | undefined;
-    gender: string | undefined;
+    uid: number;
+    fname: string;
+    lname: string;
+    email: string;
+    gender: string;
 }
 
 export interface DeleteUsersPayload {

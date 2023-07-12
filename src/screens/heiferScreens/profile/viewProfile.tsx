@@ -10,20 +10,19 @@ import { ResetPasswordValidationSchema } from "validations";
 import { useFormik } from "formik";
 import { EditInput } from "components";
 import { useAuth } from "store/auth";
-import { useChangePasswordMutation, useEditUserMutation } from "store/user";
+import { useChangePasswordMutation, useEditUserMutation, useGetUserInfoQuery } from "store/user";
+import { useEffect } from "react";
+
 
 export const ViewProfile = () => {
   const navigate = useNavigate();
-  const { user } = useAuth()
+  const userId = Number(useAuth().user?.user_info?.id)
+  const { data: user, refetch } = useGetUserInfoQuery({ uid: userId   });
   const toast = useToast({ position: "top-right" });
   const [changePassword] = useChangePasswordMutation();
   const [editProfile] = useEditUserMutation();
-  const { values, errors, handleChange, touched } = useFormik({
-    initialValues: { 
-      old: "", password: "", confirm: "", uid: user?.user_info.uid,
-      fname: user?.user_info?.fname, lname: user?.user_info?.lname,
-      email: user?.email, gender: user?.user_info?.gender, role: user?.account_type
-    },
+  const { values, errors, handleChange, touched, setFieldValue } = useFormik({
+    initialValues: { old: "", password: "", confirm: "", ...user?.data },
     onSubmit: () => changePasswordRequest(),
   });
 
@@ -35,9 +34,17 @@ export const ViewProfile = () => {
     });
   };
 
+  useEffect(() => {
+    if (user?.data) Object.keys(user?.data).forEach((key) => setFieldValue(key, user?.data[key]))
+    if (user?.data?.user) setFieldValue("email", user?.data?.user?.email)
+    if (user?.data?.user) setFieldValue("role", user?.data?.user?.account_type)
+  }, [user])
+
   const editProfileRequest = () => {
-    let payload: any = Object.fromEntries(Object.entries(values).slice(3))
-    editProfile(payload).unwrap().then((res) => {
+    let discard = ["old", "confirm", "password", "user", "creator", "projects"]
+    discard.map(data => delete values[data])
+
+    editProfile(values).unwrap().then((res) => {
       toast({ title: "Profile", description: res?.response, status: "success" });
     }).catch((error) => {
         toast({ title: "Request Failed", description: resolveApiError(error), status: "error" });
@@ -134,7 +141,7 @@ export const ViewProfile = () => {
                       name="state"
                       readOnly
                       placeholder="State"
-                      value={user?.user_info?.state ?? '- - - - - - - - - - - - - - -'}
+                      value={user?.data?.state ?? '- - - - - - - - - - - - - - -'}
                       error={false}
                     />
                   </tr>
@@ -145,7 +152,7 @@ export const ViewProfile = () => {
                       name="community"
                       readOnly
                       placeholder="Community"
-                      value={user?.user_info?.community ?? '- - - - - - - - - - - - - - -'}
+                      value={user?.data?.community ?? '- - - - - - - - - - - - - - -'}
                       error={false}
                     />
                   </tr>
@@ -156,7 +163,7 @@ export const ViewProfile = () => {
                       name="projects"
                       readOnly
                       placeholder="Project"
-                      value={user?.projects[0]?.name ?? '- - - - - - - - - - - - - - -'}
+                      value={user?.data?.projects[0]?.name ?? '- - - - - - - - - - - - - - -'}
                       error={false}
                     />
 
@@ -168,7 +175,7 @@ export const ViewProfile = () => {
                       readOnly
                       name="account_type"
                       placeholder="Account Type"
-                      value={user?.account_type.replace('_', ' ').toUpperCase() ?? '- - - - - - - - - - - - - - -'}
+                      value={user?.data?.user?.account_type.replace('_', ' ').toUpperCase() ?? '- - - - - - - - - - - - - - -'}
                       error={false}
                     />
 
@@ -192,8 +199,7 @@ export const ViewProfile = () => {
                     padding={"15px"}
                     _hover={{ bg: "#bbc7ca" }}
                     transition={"background-color 0.5s ease-in-out"}
-                  >
-                    Submit
+                  >Edit
                   </Button>
                 </div>
               </div>
@@ -222,7 +228,6 @@ export const ViewProfile = () => {
                 placeholder={"Enter your old password"}
                 value={values.old}
                 error={Boolean(errors.old && touched.old)}
-                bottomText={errors.password}
                 isRequired
                 onChange={handleChange}
                 style={{
@@ -239,7 +244,6 @@ export const ViewProfile = () => {
                 value={values.password}
                 isRequired
                 error={Boolean(errors.password && touched.password)}
-                bottomText={errors.password}
                 onChange={handleChange}
                 style={{
                   backgroundColor: "#F2FAFC",
@@ -255,7 +259,6 @@ export const ViewProfile = () => {
                 value={values.confirm}
                 isRequired
                 error={Boolean(errors.confirm && touched.confirm)}
-                bottomText={errors.confirm}
                 onChange={handleChange}
                 style={{
                   backgroundColor: "#F2FAFC",
