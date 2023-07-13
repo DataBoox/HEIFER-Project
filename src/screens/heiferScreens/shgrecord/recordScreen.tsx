@@ -1,6 +1,5 @@
 import { Button, useToast } from "@chakra-ui/react";
 import { ThemeTable } from "components";
-import { RecordFilter } from "custom";
 import { useState } from "react";
 import { Modal, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { FaEye, FaTrash } from "react-icons/fa";
@@ -85,12 +84,7 @@ export const RecordScreen = () => {
         </div>
       }
     >
-      <RecordFilter 
-        query={(target: any) => setQuery(target) }
-        state={(target: any) => setState(target) } 
-        lga={(target: any) => setLga(target) } 
-        community={(target: any) => setCommunity(target) } 
-      />
+      
       
       <div className="col-xl-12">
         <ThemeTable
