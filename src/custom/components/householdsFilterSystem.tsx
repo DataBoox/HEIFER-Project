@@ -5,7 +5,7 @@ import { FaPlus } from "react-icons/fa";
 import { useGetGroupsQuery } from "store/group";
 import { useGetInterventionsQuery } from "store/intervention";
 import { useProject } from "store/projects";
-import { communities, localGov, states } from "utilities";
+import { communities, locals, states } from "utilities";
 
 export interface HouseholdFilterSystemProps {
   gender?: (value?: string) => void;
@@ -81,7 +81,7 @@ export const HouseholdFilterSystem: React.FC<HouseholdFilterSystemProps> = ({
               name="state"
               value={values.state}
               placeholder="Select State"
-              options={ states }
+              options={ states() }
               onChange={handleChange}
               size={"lg"}
               isDisabled={isLoading}
@@ -94,7 +94,7 @@ export const HouseholdFilterSystem: React.FC<HouseholdFilterSystemProps> = ({
                 name="lga"
                 value={values.lga}
                 placeholder="Select Local Gov"
-                options={ localGov(values.state) }
+                options={ locals(values.state) }
                 onChange={handleChange}
                 size={"lg"}
                 isDisabled={isLoading}
