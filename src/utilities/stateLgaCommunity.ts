@@ -106,11 +106,11 @@ export const state = (index: string) => {
     return [{ text: filter[0].state.name, props: { value: filter[0].state.name }}]
 };
 
-export const local = (selectedState: string, selectedLga: string) => {
-    const states = NigeriaStates.filter((data) => data.state.name == selectedState);
+export const local = (state: string, lga: string) => {
+    const states = NigeriaStates.filter((data) => data.state.name == state);
     if(!states.length) return [];
 
-    const locals = states[0].state.locals.filter((data) => data.name == selectedLga);
+    const locals = states[0].state.locals.filter((data) => data.name == lga);
     if(!locals.length) return [];
 
     return [{ text: locals[0].name, props: { value: locals[0].name }}]
