@@ -22,6 +22,7 @@ import {
   StoriesUnderConstruction,
   InterventionScreen,
   ReportsScreen,
+  RecordScreen,
 } from "screens/heiferScreens";
 
 
@@ -30,15 +31,6 @@ export const RootNavigator = () => {
   return (
     <BrowserRouter>
       <Routes>
-        {/* <Route path="/" element={<AuthBoxedContainer />}>
-          <Route index element={<LoginScreen />} />
-          <Route path="login" element={<LoginScreen />} />
-          <Route path="register" element={<RegisterScreen />} />
-          <Route path="forgot" element={<ForgotScreen />} />
-          <Route path="reset/:token" element={<PasswordScreen />} />
-          <Route path="verify/email" element={<EmailVerification />} />
-        </Route> */}
-
         <Route path="/auth">
           <Route index element={<LoginScreen />} />
           <Route path="login" element={<LoginScreen />} />
@@ -49,7 +41,7 @@ export const RootNavigator = () => {
           <Route index element={<DashboardScreen />} />
           <Route path="register" element={<RegisterFarmers />} />
           <Route path="groups/add" element={<AddGroup />} />
-          <Route path="groups/sub" element={<ShgRecordForm />} />
+          <Route path="records/sub" element={<ShgRecordForm />} />
           <Route path="users" element={<UserScreen />} />
           <Route path="maps" element={<MapsScreen />} />
           <Route path="groups" element={<GroupScreen />} />
@@ -57,6 +49,7 @@ export const RootNavigator = () => {
           <Route path="forms" element={<FormsScreen />} />
           <Route path="farmers/view/:id" element={<ViewFarmers />} />
           <Route path="groups/view/:id" element={<ViewGroups />} />
+          <Route path="records" element={<RecordScreen />} />
           <Route path="users/view/:id" element={<ViewUsers />} />
           <Route path="profile/view" element={< ViewProfile />} />
           <Route path="interventions/view/:id" element={<ViewInterventions />} />
