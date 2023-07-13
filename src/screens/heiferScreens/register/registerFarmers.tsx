@@ -1,30 +1,28 @@
-import { Button, useToast } from "@chakra-ui/react";
+import { Button, ButtonProps, useToast } from "@chakra-ui/react";
 import {
-  AgeCategorySelect,
-  EducationLevelSelect,
+  PrimaryInput,
   GenderSelect,
+  MaritalStatusSelect,
+  AgeCategorySelect,
+  HouseholdHeadSelect,
+  EducationLevelSelect,
+  IdentificationSelect,
+  IdTypeSelect,
   GroupOrAssSelect,
   GroupTypeSelect,
-  HouseholdHeadSelect,
-  HouseholdTypeSelect,
-  IdTypeSelect,
-  IdentificationSelect,
-  MaritalStatusSelect,
-  PrimaryInput,
   PrimarySelect,
+  HouseholdTypeSelect,
 } from "components";
-import { useFormik } from "formik";
-import { useState } from "react";
-<<<<<<< HEAD
+import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-=======
+import { DashboardCardContainer } from "../../home";
+import { useFormik } from "formik";
+import { AddRegisterFarmerScheme } from "validations";
+import { resolveApiError } from "utilities";
+import { useState } from "react";
 import { states, locals, communities } from "utilities";
->>>>>>> b81ce2709f7624af1b51ef7203826ae087b29f24
 import { useAddFarmerMutation } from "store/farmers";
 import { useProject } from "store/projects";
-import { communities, localGov, resolveApiError, states } from "utilities";
-import { AddRegisterFarmerScheme } from "validations";
-import { DashboardCardContainer } from "../../home";
 
 export const RegisterFarmers = () => {
   const {project} = useProject();
