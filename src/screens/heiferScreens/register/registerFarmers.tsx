@@ -15,7 +15,11 @@ import {
 } from "components";
 import { useFormik } from "formik";
 import { useState } from "react";
+<<<<<<< HEAD
 import { useNavigate } from "react-router-dom";
+=======
+import { states, locals, communities } from "utilities";
+>>>>>>> b81ce2709f7624af1b51ef7203826ae087b29f24
 import { useAddFarmerMutation } from "store/farmers";
 import { useProject } from "store/projects";
 import { communities, localGov, resolveApiError, states } from "utilities";
@@ -315,7 +319,7 @@ export const RegisterFarmers = () => {
               name="state"
               placeholder="Select"
               label="Select State"
-              options={ states }
+              options={ states() }
               onChange={handleChange}
               size={"md"}
               isDisabled={isLoading}
@@ -331,7 +335,7 @@ export const RegisterFarmers = () => {
               <PrimarySelect 
                 name="lga"
                 placeholder="Select Local Gov"
-                options={ localGov(values.state) }
+                options={ locals(values.state) }
                 onChange={handleChange}
                 size={"md"}
                 isDisabled={isLoading}

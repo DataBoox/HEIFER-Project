@@ -9,7 +9,7 @@ import { useState } from "react";
 import { useAddGroupMutation } from "store/group";
 import { useGetFarmersQuery } from "store/farmers";
 import { useProject } from "store/projects";
-import { states, localGov, communities } from "utilities";
+import { states, locals, communities } from "utilities";
 
 export const AddGroup = () => {
   const [show, setShow] = useState(false);
@@ -219,7 +219,7 @@ export const AddGroup = () => {
                         name="state"
                         label="Select State"
                         placeholder="Select State"
-                        options={ states }
+                        options={ states() }
                         onChange={handleChange}
                         isDisabled={isLoading}
                         style={{
@@ -236,7 +236,7 @@ export const AddGroup = () => {
                             name="lga"
                             label="Select Local Gov"
                             placeholder="Select Local Gov"
-                            options={ localGov(values.state) }
+                            options={ locals(values.state) }
                             onChange={handleChange}
                             size={"md"}
                             isDisabled={isLoading}
