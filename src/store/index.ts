@@ -11,6 +11,7 @@ import { uploadApi } from './uploads';
 import { projectApi } from './projects';
 import { profileApi } from './profile';
 import { interventionApi } from './intervention';
+import { reportApi } from './reports';
 
 
 export const store = configureStore({
@@ -24,6 +25,7 @@ export const store = configureStore({
         [projectApi.reducerPath]: projectApi.reducer,
         [profileApi.reducerPath]: profileApi.reducer,
         [interventionApi.reducerPath]: interventionApi.reducer,
+        [reportApi.reducerPath]: reportApi.reducer,
         [farmerApi.reducerPath]: farmerApi.reducer,
         [dashboardApi.reducerPath]: dashboardApi.reducer,
         auth: authReducer,
@@ -42,6 +44,7 @@ export const store = configureStore({
             projectApi.middleware,
             profileApi.middleware,
             interventionApi.middleware,
+            reportApi.middleware,
             farmerApi.middleware,
             dashboardApi.middleware,
         )
