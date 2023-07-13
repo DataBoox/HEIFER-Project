@@ -14,7 +14,7 @@ import { useEffect, useState } from "react";
 import { ChakraProviderLoader } from "providers";
 import { useAddUserMutation } from "store/user";
 import { User } from "@store/user";
-import { states, localGov, communities } from "utilities";
+import { states, locals, communities } from "utilities";
 import { useProject } from "store/projects";
 
 export interface AddUserDialogProps extends ChakraAlertDialogProps {
@@ -197,7 +197,7 @@ export const AddUserDialog: React.FC<AddUserDialogProps> = ({
             <PrimarySelect 
               name="state"
               placeholder="Select State"
-              options={ states }
+              options={ states() }
               onChange={handleChange}
               size={"md"}
               isDisabled={isLoading}
@@ -213,7 +213,7 @@ export const AddUserDialog: React.FC<AddUserDialogProps> = ({
               <PrimarySelect 
                 name="lga"
                 placeholder="Select Local Gov"
-                options={ localGov(values.state) }
+                options={ locals(values.state) }
                 onChange={handleChange}
                 size={"md"}
                 isDisabled={isLoading}

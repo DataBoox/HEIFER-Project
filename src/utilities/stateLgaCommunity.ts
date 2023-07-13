@@ -1,3 +1,5 @@
+import { textCapitalize } from "utilities"
+
 const NigeriaStates = [
     { "state": { "name": "Benue State", "id" :1, "locals": [
         { "name": "Agatu", "id" :1, "communities": [{ "name": "Obagaji"},{ "name": "Ichogologwu"}] },
@@ -91,11 +93,32 @@ const NigeriaStates = [
     }
 ]
 
-export const states = NigeriaStates.map((data) => ({ 
-    text: data.state.name, props: { value: data.state.name }
-}));
+export const states = (index?: string) => {
+    if (index?.length) return state(index)
+    return NigeriaStates.map((data) => ({ text: data.state.name, props: { value: data.state.name }}))
+}
 
-export const localGov = (state: string)  => {
+export const state = (index: string) => {
+    const state = textCapitalize(index)
+    const filter = NigeriaStates.filter((data) => data.state.name.includes(state));
+    if(!filter.length) return [];
+
+    return [{ text: filter[0].state.name, props: { value: filter[0].state.name }}]
+};
+
+export const local = (selectedState: string, selectedLga: string) => {
+    const states = NigeriaStates.filter((data) => data.state.name == selectedState);
+    if(!states.length) return [];
+
+    const locals = states[0].state.locals.filter((data) => data.name == selectedLga);
+    if(!locals.length) return [];
+
+    return [{ text: locals[0].name, props: { value: locals[0].name }}]
+};
+
+export const locals = (state: string, lga?: string)  => {
+    if (lga?.length) return local(state, lga)
+
     const states = NigeriaStates.filter((data) => data.state.name == state);
     if(!states.length) return [];
 

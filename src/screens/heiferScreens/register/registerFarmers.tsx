@@ -20,7 +20,7 @@ import { useFormik } from "formik";
 import { AddRegisterFarmerScheme } from "validations";
 import { resolveApiError } from "utilities";
 import { useState } from "react";
-import { states, localGov, communities } from "utilities";
+import { states, locals, communities } from "utilities";
 import { useAddFarmerMutation } from "store/farmers";
 import { useProject } from "store/projects";
 
@@ -317,7 +317,7 @@ export const RegisterFarmers = () => {
               name="state"
               placeholder="Select"
               label="Select State"
-              options={ states }
+              options={ states() }
               onChange={handleChange}
               size={"md"}
               isDisabled={isLoading}
@@ -333,7 +333,7 @@ export const RegisterFarmers = () => {
               <PrimarySelect 
                 name="lga"
                 placeholder="Select Local Gov"
-                options={ localGov(values.state) }
+                options={ locals(values.state) }
                 onChange={handleChange}
                 size={"md"}
                 isDisabled={isLoading}

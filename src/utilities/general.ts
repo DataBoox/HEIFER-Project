@@ -76,3 +76,9 @@ export const convertObjectToURLParams = (data: any) => {
     // console.log(params)
     return params;
 }
+
+export const textCapitalize = (text: string) => {
+    const split = text.split(' ')
+    const capitalize = (word: string) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+    return split.map((string) => capitalize(string)).join(" ")
+}
