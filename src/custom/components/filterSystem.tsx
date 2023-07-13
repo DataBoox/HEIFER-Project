@@ -44,7 +44,7 @@ export const FilterSystem: React.FC<FilterSystemProps>= ({
 
   const userId = Number(useAuth().user?.user_info?.id)
   const { data: user } = useGetUserInfoQuery({ uid: userId });
-  const[userState, setUserState] = useState("")
+  const[userState, setUserState] = useState("_")
   const userRole = user?.data?.user?.account_type;
 
   useEffect(() => {

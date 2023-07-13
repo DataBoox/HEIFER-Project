@@ -46,7 +46,7 @@ export const HouseholdFilterSystem: React.FC<HouseholdFilterSystemProps> = ({
 
     const userId = Number(useAuth().user?.user_info?.id)
     const { data: user, isLoading } = useGetUserInfoQuery({ uid: userId });
-    const[userState, setUserState] = useState("")
+    const[userState, setUserState] = useState("_")
     const userRole = user?.data?.user?.account_type;
 
     useEffect(() => {
@@ -96,31 +96,30 @@ export const HouseholdFilterSystem: React.FC<HouseholdFilterSystemProps> = ({
               style={{ backgroundColor: "#fff", border: "none", borderRadius: 0 }}
             />
           </div>
-          {(values.state.length ? 
-            <div className="col-auto">
-              <PrimarySelect 
-                name="lga"
-                placeholder="Select Local Gov"
-                options={ locals(values.state, values.lga) }
-                onChange={handleChange}
-                size={"lg"}
-                isDisabled={isLoading}
-                style={{ backgroundColor: "#fff", border: "none", borderRadius: 0 }}
-              />
-            </div> : <></> )}
+          
+          <div className="col-auto">
+            <PrimarySelect 
+              name="lga"
+              placeholder="Select Local Gov"
+              options={ locals(values.state, values.lga) }
+              onChange={handleChange}
+              size={"lg"}
+              isDisabled={isLoading}
+              style={{ backgroundColor: "#fff", border: "none", borderRadius: 0 }}
+            />
+          </div>
 
-            {(values.state.length && values.lga.length ? 
-              <div className="col-auto">
-                <PrimarySelect
-                  name="community"
-                  placeholder="Select Community"
-                  options={ communities(values.state, values.lga) }
-                  onChange={handleChange}
-                  size={"lg"}
-                  isDisabled={isLoading}
-                  style={{ backgroundColor: "#fff", borderRadius: 0, border: 0 }}
-                />
-              </div> : <></> )}
+          <div className="col-auto">
+            <PrimarySelect
+              name="community"
+              placeholder="Select Community"
+              options={ communities(values.state, values.lga) }
+              onChange={handleChange}
+              size={"lg"}
+              isDisabled={isLoading}
+              style={{ backgroundColor: "#fff", borderRadius: 0, border: 0 }}
+            />
+          </div>
 
               <div className="col-3">
                 <AgeCategorySelect
