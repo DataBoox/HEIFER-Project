@@ -92,7 +92,7 @@ export const ShgRecordForm = () => {
                             <PrimaryInput
                                 isRequired
                                 name="entity_name"
-                                label="Name of Entity/Self Help Group"
+                                label="Name Your Record"
                                 placeholder="Enter the name"
                                 value={values.entity_name}
                                 error={Boolean(touched.entity_name && errors.entity_name)}

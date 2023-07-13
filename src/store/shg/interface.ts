@@ -6,24 +6,23 @@ export interface RequiresShgID {
 }
 
 export interface ShgInfo {
-
-   
+    name: string;
     entity_name: string,
-            financial: string,
-            business_plan: string,
-            hold_meeting: string,
-            cash: string,
-            asset: string,
-            financial_services: string,
-            how_much_was_accessed: string,
-            service_provider: string,
-            conduct_sales: string,
-            commodity_sold: string,
-            quantity_sold: number,
-            measurement_unit: string,
-            price: number,
-            value: number,
-            comment: string,
+    financial: string,
+    business_plan: string,
+    hold_meeting: string,
+    cash: string,
+    asset: string,
+    financial_services: string,
+    how_much_was_accessed: string,
+    service_provider: string,
+    conduct_sales: string,
+    commodity_sold: string,
+    quantity_sold: number,
+    measurement_unit: string,
+    price: number,
+    value: number,
+    comment: string,
 }
 
 export interface AddShgPayload {
@@ -43,10 +42,13 @@ export interface DeleteShgsPayload {
 export interface FetchShgsPayload extends PaginatedPayload {
     project_id?: number;
     shgs?: (number | string)[]
+    state?: string, 
+    lga?: string, 
+    community?: string,
 }
 
 
-export interface BaseShg{
+export interface BaseShg {
     id: number;
     church_id: number;
     ref: string;

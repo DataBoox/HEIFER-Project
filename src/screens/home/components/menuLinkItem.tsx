@@ -1,17 +1,17 @@
-import {
-    FaUser,
-    FaShapes,
-} from "react-icons/fa";
-import { MdNoteAdd, MdMyLocation } from "react-icons/md";
-import { GiFarmer } from "react-icons/gi";
-import { RiHomeFill, RiSettings4Fill } from "react-icons/ri";
-import { HiUserAdd, HiMail, HiDocument } from "react-icons/hi";
 import { BiCalendar } from "react-icons/bi";
 import {
-    BsGridFill,
   BsFillCameraFill,
+  BsFillClipboardDataFill,
   BsFillPatchCheckFill,
+  BsGridFill,
 } from "react-icons/bs";
+import {
+  FaUser
+} from "react-icons/fa";
+import { GiFarmer } from "react-icons/gi";
+import { HiDocument, HiMail } from "react-icons/hi";
+import { MdMyLocation, MdNoteAdd } from "react-icons/md";
+import { RiHomeFill } from "react-icons/ri";
 import { LinkItemProps } from "../interface";
 
 export const AdminMenuLinkItem: Array<LinkItemProps> = [
@@ -20,6 +20,7 @@ export const AdminMenuLinkItem: Array<LinkItemProps> = [
   { name: "Forms", icon: MdNoteAdd, path: "forms" },
   { name: "Households", icon: GiFarmer, path: "farmers" },
   { name: "Groups", icon: BsGridFill, path: "groups" },
+  { name: "Record Tracking", icon: BsFillClipboardDataFill, path: "records" },
   { name: "Interventions", icon: BsFillPatchCheckFill, path: "interventions" },
   { name: "Users", icon: FaUser, path: "users" },
   { name: "Reports", icon: HiDocument, path: "reports" },
