@@ -9,12 +9,14 @@ export interface ReportInfo {
     report_id: number;
     project_id: number;
     farmer_id: number,
+    uploaded_by: string;
     community_name: string;
     date_uploaded: string;
     shf_target: (number | string)[],
     shf_achievement: (number | string)[],
     shg_target: (number | string)[],
     shg_achievement: (number | string)[],
+    activity: string;
     outcomes: string;
     challenges: string;
     no_male_farmers: string;

@@ -9,17 +9,21 @@ export const useAllReportsColumn = () => {
     return useMemo<MRT_ColumnDef<ReportInfo>[]>(
       () => [
         {
-          header: "Farmers' Target",
-          accessorFn: (row) => `${row.shf_target}`,
+          header: "Uploaded By",
+          accessorFn: (row) => `${row.uploaded_by}`,
           Cell: ({ row }) => (
             <Link
               to={"/records/view/" + (row.original as unknown as Report).id}
               state={{ member: row.original }}
               className="text-decoration-underline"
             >
-              {row.original.shf_target}
+              {row.original.uploaded_by}
             </Link>
           ),
+        },
+        {
+          header: "Farmers' Target",
+          accessorFn: (row) => `${row.shf_target}`,
         },
         {
           header: "Farmers' Achievement",

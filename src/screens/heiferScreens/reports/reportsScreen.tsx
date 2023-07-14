@@ -6,7 +6,6 @@ import { FaEye, FaTrash } from "react-icons/fa";
 import { MdOutlineAddCircleOutline } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import { useProject } from "store/projects";
-import { FilterSystem } from "custom";
 import { Report, useDeleteReportMutation, useGetReportsQuery } from "store/reports";
 import { resolveApiError } from "utilities";
 import { ContentBodyContainer } from "../../home";
@@ -63,13 +62,6 @@ export const ReportsScreen = () => {
       title="All Reports"
       routesRule={"createReport"}
     >
-       <FilterSystem 
-        query={(target: any) => setQuery(target) }
-        state={(target: any) => setState(target) } 
-        lga={(target: any) => setLga(target) } 
-        community={(target: any) => setCommunity(target) } 
-        intervention={(target: any) => setIntervention(target) }  
-      />
       
       
       <div className="col-xl-12">

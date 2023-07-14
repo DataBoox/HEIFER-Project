@@ -1,28 +1,27 @@
-import { Button, ButtonProps, useToast } from "@chakra-ui/react";
+import { Button, useToast } from "@chakra-ui/react";
 import {
-  PrimaryInput,
-  GenderSelect,
-  MaritalStatusSelect,
   AgeCategorySelect,
-  HouseholdHeadSelect,
   EducationLevelSelect,
-  IdentificationSelect,
-  IdTypeSelect,
+  GenderSelect,
   GroupOrAssSelect,
   GroupTypeSelect,
-  PrimarySelect,
+  HouseholdHeadSelect,
   HouseholdTypeSelect,
+  IdTypeSelect,
+  IdentificationSelect,
+  MaritalStatusSelect,
+  PrimaryInput,
+  PrimarySelect,
 } from "components";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
-import { DashboardCardContainer } from "../../home";
 import { useFormik } from "formik";
-import { AddRegisterFarmerScheme } from "validations";
-import { resolveApiError } from "utilities";
 import { useState } from "react";
-import { states, locals, communities } from "utilities";
+import { FaPen } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 import { useAddFarmerMutation } from "store/farmers";
 import { useProject } from "store/projects";
+import { communities, locals, resolveApiError, states } from "utilities";
+import { AddRegisterFarmerScheme } from "validations";
+import { DashboardCardContainer } from "../../home";
 
 export const RegisterFarmers = () => {
   const {project} = useProject();
@@ -156,9 +155,10 @@ export const RegisterFarmers = () => {
                     colorScheme="teal"
                     onClick={() => initRequest()} 
                     className={"fw-light"}
+                    leftIcon={ <FaPen size={13} />}
                     fontSize={"sm"}
                     backgroundColor={"#2A4153"}
-                    color={"#000000"}
+                    color={"#ffffff"}
                     borderRadius={0}
                     padding={"16px, 48px, 16px, 48px"}
                   >

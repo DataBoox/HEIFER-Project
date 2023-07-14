@@ -1,15 +1,15 @@
 import { Button, useToast } from "@chakra-ui/react";
-import { MdOutlineAddCircleOutline } from "react-icons/md";
-import { PrimaryInput, YesNoSelect, EntitySelect, PrimaryTextarea, FinancialServicesSelect, ServiceProviderSelect, MeasurementUnitSelect } from "components";
-import { useNavigate } from "react-router-dom";
-import { ContentBodyContainer, DashboardCardContainer } from "../../home";
+import { PrimaryInput, PrimarySelect, PrimaryTextarea } from "components";
 import { useFormik } from "formik";
-import { resolveApiError } from "utilities";
-import { AddReportScheme } from "validations";
-import { useGetReportsQuery, useAddReportMutation } from "store/reports";
+import { FaFile } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 import { useProject } from "store/projects";
+import { useAddReportMutation, useGetReportsQuery } from "store/reports";
+import { communities, locals, resolveApiError, states } from "utilities";
+import { AddReportScheme } from "validations";
+import { ContentBodyContainer, DashboardCardContainer } from "../../home";
 
-export const ReportRecordForm = () => {
+export const ReportForm = () => {
     const navigate = useNavigate();
     const projectId: number = useProject().project?.id;
     const { isLoading } = useGetReportsQuery({
@@ -35,6 +35,7 @@ export const ReportRecordForm = () => {
             shf_achievement: "",
             shg_target: "",
             shg_achievement: "",
+            activity: "",
             outcomes: "",
             challenges: "",
             no_male_farmers: "",
@@ -59,7 +60,7 @@ export const ReportRecordForm = () => {
             .then((res) => {
                 console.log(payload);
                 toast({
-                    title: "Form Added",
+                    title: "Form Added, Your Manager Has Been Notified",
                     description: res?.response,
                     status: "success",
                 });
@@ -73,22 +74,83 @@ export const ReportRecordForm = () => {
                     status: "error",
                 });
             });
-
-        // navigate to groups after clicking register
-        navigate("/groups");
     };
 
 
 
     return (
         <ContentBodyContainer
-            title="Groups Sub Forms"
-            routesRule={"formsOne"}
+            title="Monthly Report Form"
+            routesRule={"createReport"}
         >
-            <DashboardCardContainer title="Small Holder Groups Record Form" bodyClassName="p-3">
+            <DashboardCardContainer title="Fill This Form Accurately" bodyClassName="p-3"   rightCardHeaderComponent={
+                <div className="col-auto text-end mb-4">
+                  <Button
+                    colorScheme="teal"
+                    onClick={() => initRequest()} 
+                    className={"fw-light"}
+                    leftIcon={ <FaFile size={13} />}
+                    fontSize={"sm"}
+                    backgroundColor={"#2A4153"}
+                    color={"#ffffff"}
+                    borderRadius={0}
+                    padding={"16px, 48px, 16px, 48px"}
+                  >
+                    File Report
+                  </Button>
+                </div>
+              }>
                 <div className="row g-2" >
                     <div className="col-lg-6 col-md-12">
-                        
+                        <div className="col-auto mb-4">
+                            <PrimarySelect
+                                name="state"
+                                placeholder="Select"
+                                label="Select State"
+                                options={states()}
+                                onChange={handleChange}
+                                size={"md"}
+                                isDisabled={isLoading}
+                                style={{
+                                    backgroundColor: "#F2FAFC",
+                                    borderRadius: 0,
+                                    borderColor: "#CAECF3",
+                                }}
+                            />
+                        </div>
+                        {(values.state.length ?
+                            <div className="col-auto mb-4">
+                                <PrimarySelect
+                                    name="lga"
+                                    placeholder="Select Local Gov"
+                                    options={locals(values.state)}
+                                    onChange={handleChange}
+                                    size={"md"}
+                                    isDisabled={isLoading}
+                                    style={{
+                                        backgroundColor: "#F2FAFC",
+                                        borderRadius: 0,
+                                        borderColor: "#CAECF3",
+                                    }}
+                                />
+                            </div> : <></>)}
+
+                        {(values.state.length && values.lga.length ?
+                            <div className="col-auto mb-4">
+                                <PrimarySelect
+                                    name="community"
+                                    placeholder="Select Community"
+                                    options={communities(values.state, values.lga)}
+                                    onChange={handleChange}
+                                    size={"md"}
+                                    isDisabled={isLoading}
+                                    style={{
+                                        backgroundColor: "#F2FAFC",
+                                        borderRadius: 0,
+                                        borderColor: "#CAECF3",
+                                    }}
+                                />
+                            </div> : <></>)}
                         <div className="col-auto mb-3">
                             <PrimaryInput
                                 isRequired
@@ -107,303 +169,234 @@ export const ReportRecordForm = () => {
                                 }}
                             />
                         </div>
-                        <div className="col-auto mb-3">
-                            <YesNoSelect
-                                isRequired
-                                name="business_plan"
-                                label="Does The Self Help Group Have A Business Plan?"
-                                placeholder="Select"
-                                value={values.business_plan}
-                                error={Boolean(touched.business_plan && errors.business_plan)}
-                                bottomText={errors.business_plan}
-                                onChange={handleChange}
-                                isDisabled={isLoading}
-                                style={{
-                                    backgroundColor: "#F2FAFC",
-                                    borderRadius: 0,
-                                    borderColor: "#CAECF3",
-                                }}
-                            />
-                        </div>
-                        <div className="col-auto mb-3">
-                            <YesNoSelect
-                                isRequired
-                                name="hold_meeting"
-                                label="Did The Entity Hold Meetings During The Month?"
-                                placeholder="Select"
-                                value={values.hold_meeting}
-                                error={Boolean(touched.hold_meeting && errors.hold_meeting)}
-                                bottomText={errors.hold_meeting}
-                                onChange={handleChange}
-                                isDisabled={isLoading}
-                                style={{
-                                    backgroundColor: "#F2FAFC",
-                                    borderRadius: 0,
-                                    borderColor: "#CAECF3",
-                                }}
-                            />
-                        </div>
-                        <div className="col-auto mb-3">
-                        <EntitySelect
-                            isRequired
-                            name="financial"
-                            label="Did Entity/SHG Access Any Financial Services?"
-                            placeholder="Select"
-                            value={values.financial}
-                            error={Boolean(touched.financial && errors.financial)}
-                            bottomText={errors.financial}
-                            onChange={handleChange}
-                            isDisabled={isLoading}
-                            style={{
-                                backgroundColor: "#F2FAFC",
-                                borderRadius: 0,
-                                borderColor: "#CAECF3",
-                            }}
-                        />
-                    </div>
-                    <div className="col-auto mb-3">
-                        <YesNoSelect
-                            isRequired
-                            name="cash"
-                            label="Was The Loan Received In Form Of Cash?"
-                            placeholder="Select"
-                            value={values.cash}
-                            error={Boolean(touched.cash && errors.cash)}
-                            bottomText={errors.cash}
-                            onChange={handleChange}
-                            isDisabled={isLoading}
-                            style={{
-                                backgroundColor: "#F2FAFC",
-                                borderRadius: 0,
-                                borderColor: "#CAECF3",
-                            }}
-                        />
-                    </div>
 
-                    <div className="col-auto mb-3">
-                        <YesNoSelect
-                            isRequired
-                            name="asset"
-                            label="Was The Loan Received In Form Of Input/Assets Credit?"
-                            placeholder="Select"
-                            value={values.asset}
-                            error={Boolean(touched.asset && errors.asset)}
-                            bottomText={errors.asset}
-                            onChange={handleChange}
-                            isDisabled={isLoading}
-                            style={{
-                                backgroundColor: "#F2FAFC",
-                                borderRadius: 0,
-                                borderColor: "#CAECF3",
-                            }}
-                        />
-                    </div>
-                    <div className="col-auto mb-3">
-                        <FinancialServicesSelect
-                            isRequired
-                            name="financial_services"
-                            label="What Was The Purpose Of The Financial Services?"
-                            placeholder="Select"
-                            value={values.financial_services}
-                            error={Boolean(touched.financial_services && errors.financial_services)}
-                            bottomText={errors.financial_services}
-                            onChange={handleChange}
-                            isDisabled={isLoading}
-                            style={{
-                                backgroundColor: "#F2FAFC",
-                                borderRadius: 0,
-                                borderColor: "#CAECF3",
-                            }}
-                        />
-                    </div>
-                    <div className="col-auto mb-3">
-                        <PrimaryInput
-                            isRequired
-                            name="how_much_was_accessed"
-                            label="How Much Was Accessed (In Local Currency)?"
-                            placeholder="Answer here"
-                            value={values.how_much_was_accessed}
-                            error={Boolean(touched.how_much_was_accessed && errors.how_much_was_accessed)}
-                            bottomText={errors.how_much_was_accessed}
-                            onChange={handleChange}
-                            isDisabled={isLoading}
-                            style={{
-                                backgroundColor: "#F2FAFC",
-                                borderRadius: 0,
-                                borderColor: "#CAECF3",
-                            }}
-                        />
-                    </div>
+                        <div className="col-auto mb-3">
+                            <PrimaryInput
+                                isRequired
+                                name="shf_target"
+                                label="Target for the month (SHF)"
+                                type="number"
+                                placeholder="Your answer here..."
+                                value={values.shf_target}
+                                error={Boolean(touched.shf_target && errors.shf_target)}
+                                bottomText={errors.shf_target}
+                                onChange={handleChange}
+                                isDisabled={isLoading}
+                                style={{
+                                    backgroundColor: "#F2FAFC",
+                                    borderRadius: 0,
+                                    borderColor: "#CAECF3",
+                                }}
+                            />
+                        </div>
+                        <div className="col-auto mb-3">
+                            <PrimaryInput
+                                isRequired
+                                name="shf_achievement"
+                                label="Achievement for the month (SHF)"
+                                type="number"
+                                placeholder="Your answer here..."
+                                value={values.shf_achievement}
+                                error={Boolean(touched.shf_achievement && errors.shf_achievement)}
+                                bottomText={errors.shf_achievement}
+                                onChange={handleChange}
+                                isDisabled={isLoading}
+                                style={{
+                                    backgroundColor: "#F2FAFC",
+                                    borderRadius: 0,
+                                    borderColor: "#CAECF3",
+                                }}
+                            />
+                        </div>
+                        <div className="col-auto mb-3">
+                            <PrimaryInput
+                                isRequired
+                                name="shg_target"
+                                label="Target for the month (SHG)"
+                                type="number"
+                                placeholder="Your answer here..."
+                                value={values.shg_target}
+                                error={Boolean(touched.shg_target && errors.shg_target)}
+                                bottomText={errors.shg_target}
+                                onChange={handleChange}
+                                isDisabled={isLoading}
+                                style={{
+                                    backgroundColor: "#F2FAFC",
+                                    borderRadius: 0,
+                                    borderColor: "#CAECF3",
+                                }}
+                            />
+                        </div>
+                        <div className="col-auto mb-3">
+                            <PrimaryInput
+                                isRequired
+                                name="shg_achievement"
+                                label="Achievement for the month (SHG)"
+                                type="number"
+                                placeholder="Your answer here..."
+                                value={values.shg_achievement}
+                                error={Boolean(touched.shg_achievement && errors.shg_achievement)}
+                                bottomText={errors.shg_achievement}
+                                onChange={handleChange}
+                                isDisabled={isLoading}
+                                style={{
+                                    backgroundColor: "#F2FAFC",
+                                    borderRadius: 0,
+                                    borderColor: "#CAECF3",
+                                }}
+                            />
+                        </div>
+                        <div className="col-auto mb-3">
+                            <PrimaryTextarea
+                                isRequired
+                                name="activity"
+                                label="What were the activities carried out?"
+                                placeholder="Your answer here..."
+                                value={values.activity}
+                                error={Boolean(touched.activity && errors.activity)}
+                                bottomText={errors.activity}
+                                onChange={handleChange}
+                                isDisabled={isLoading}
+                                style={{
+                                    backgroundColor: "#g2FAFC",
+                                    borderRadius: 0,
+                                    borderColor: "#CAECF3",
+                                }}
+                            />
+                        </div>
+
 
                     </div>
 
                     <div className="col-lg-6 col-md-12">
-                   
-                    
-                    <div className="col-auto mb-3">
-                        <ServiceProviderSelect
-                            isRequired
-                            name="service_provider"
-                            label="Type Of Service Provider?"
-                            placeholder="Select"
-                            value={values.service_provider}
-                            error={Boolean(touched.service_provider && errors.service_provider)}
-                            bottomText={errors.service_provider}
-                            onChange={handleChange}
-                            isDisabled={isLoading}
-                            style={{
-                                backgroundColor: "#F2FAFC",
-                                borderRadius: 0,
-                                borderColor: "#CAECF3",
-                            }}
-                        />
-                    </div>
-                    <div className="col-auto mb-3">
-                        <YesNoSelect
-                            isRequired
-                            name="conduct_sales"
-                            label="Did The Group Conduct Sales This Month?"
-                            placeholder="Select"
-                            value={values.conduct_sales}
-                            error={Boolean(touched.conduct_sales && errors.conduct_sales)}
-                            bottomText={errors.conduct_sales}
-                            onChange={handleChange}
-                            isDisabled={isLoading}
-                            style={{
-                                backgroundColor: "#F2FAFC",
-                                borderRadius: 0,
-                                borderColor: "#CAECF3",
-                            }}
-                        />
-                    </div>
-                    <div className="col-auto mb-3">
-                        <PrimaryInput
-                            isRequired
-                            name="commodity_sold"
-                            label="Type Of Commodity Sold"
-                            placeholder="Answer here"
-                            value={values.commodity_sold}
-                            error={Boolean(touched.commodity_sold && errors.commodity_sold)}
-                            bottomText={errors.commodity_sold}
-                            onChange={handleChange}
-                            isDisabled={isLoading}
-                            style={{
-                                backgroundColor: "#F2FAFC",
-                                borderRadius: 0,
-                                borderColor: "#CAECF3",
-                            }}
-                        />
-                    </div>
-                    <div className="col-auto mb-3">
-                        <PrimaryInput
-                            isRequired
-                            name="quantity_sold"
-                            label="How Much Was Sold?"
-                            type="number"
-                            placeholder="Answer here"
-                            value={values.quantity_sold}
-                            error={Boolean(touched.quantity_sold && errors.quantity_sold)}
-                            bottomText={errors.quantity_sold}
-                            onChange={handleChange}
-                            isDisabled={isLoading}
-                            style={{
-                                backgroundColor: "#F2FAFC",
-                                borderRadius: 0,
-                                borderColor: "#CAECF3",
-                            }}
-                        />
-                    </div>
-                    <div className="col-auto mb-3">
-                        <MeasurementUnitSelect
-                            isRequired
-                            name="measurement_unit"
-                            label="What Unit Of Measurement Was Used?"
-                            placeholder="Select"
-                            value={values.measurement_unit}
-                            error={Boolean(touched.measurement_unit && errors.measurement_unit)}
-                            bottomText={errors.measurement_unit}
-                            onChange={handleChange}
-                            isDisabled={isLoading}
-                            style={{
-                                backgroundColor: "#F2FAFC",
-                                borderRadius: 0,
-                                borderColor: "#CAECF3",
-                            }}
-                        />
-                    </div>
-                    <div className="col-auto mb-3">
-                        <PrimaryInput
-                            isRequired
-                            name="price"
-                            label="What Was The Unit Price?"
-                            type="number"
-                            placeholder="Answer here"
-                            value={values.price}
-                            error={Boolean(touched.price && errors.price)}
-                            bottomText={errors.price}
-                            onChange={handleChange}
-                            isDisabled={isLoading}
-                            style={{
-                                backgroundColor: "#F2FAFC",
-                                borderRadius: 0,
-                                borderColor: "#CAECF3",
-                            }}
-                        />
-                    </div>
-                    <div className="col-auto mb-3">
-                        <PrimaryInput
-                            isRequired
-                            name="value"
-                            label="The Total Value Of Sales?"
-                            type="number"
-                            placeholder="Answer here"
-                            value={values.value}
-                            error={Boolean(touched.value && errors.value)}
-                            bottomText={errors.value}
-                            onChange={handleChange}
-                            isDisabled={isLoading}
-                            style={{
-                                backgroundColor: "#F2FAFC",
-                                borderRadius: 0,
-                                borderColor: "#CAECF3",
-                            }}
-                        />
-                    </div>
-
-                    <div className="col-auto mb-3">
-                        <PrimaryTextarea
-                            name="comment"
-                            label="Highlight Any Major Achievements or Challenges"
-                            placeholder="Answer here"
-                            value={values.comment}
-                            error={Boolean(touched.comment && errors.comment)}
-                            bottomText={errors.comment}
-                            onChange={handleChange}
-                            isDisabled={isLoading}
-                            style={{
-                                backgroundColor: "#F2FAFC",
-                                borderRadius: 0,
-                                borderColor: "#CAECF3",
-                            }}
-                        />
-                    </div>
-                    <div className="col-auto text-end">
-                  <Button
-                    colorScheme="teal"
-                    leftIcon={
-                        <MdOutlineAddCircleOutline size={12} />
-                      }
-                    onClick={() => handleSubmit()}
-                    className={"fw-light"}
-                    fontSize={"sm"}
-                    backgroundColor={"#2A4153"}
-                    color={"#ffffff"}
-                    borderRadius={0}
-                    padding={"16px, 48px, 16px, 48px"}
-                  >
-                    Submit Response
-                  </Button>
-                </div>
+                        <div className="col-auto mb-3">
+                            <PrimaryTextarea
+                                isRequired
+                                name="outcomes"
+                                label="Outcomes"
+                                placeholder="Your answer here..."
+                                value={values.outcomes}
+                                error={Boolean(touched.outcomes && errors.outcomes)}
+                                bottomText={errors.outcomes}
+                                onChange={handleChange}
+                                isDisabled={isLoading}
+                                style={{
+                                    backgroundColor: "#g2FAFC",
+                                    borderRadius: 0,
+                                    borderColor: "#CAECF3",
+                                }}
+                            />
+                        </div>
+                        <div className="col-auto mb-3">
+                            <PrimaryTextarea
+                                isRequired
+                                name="challenges"
+                                label="What challenges did you face?"
+                                placeholder="Your answer here..."
+                                value={values.challenges}
+                                error={Boolean(touched.challenges && errors.challenges)}
+                                bottomText={errors.challenges}
+                                onChange={handleChange}
+                                isDisabled={isLoading}
+                                style={{
+                                    backgroundColor: "#g2FAFC",
+                                    borderRadius: 0,
+                                    borderColor: "#CAECF3",
+                                }}
+                            />
+                        </div>
+                        <div className="col-auto mb-3">
+                            <PrimaryInput
+                                isRequired
+                                name="no_male_farmers"
+                                label="Number of male farmers trained"
+                                type="number"
+                                placeholder="Your answer here..."
+                                value={values.no_male_farmers}
+                                error={Boolean(touched.no_male_farmers && errors.no_male_farmers)}
+                                bottomText={errors.no_male_farmers}
+                                onChange={handleChange}
+                                isDisabled={isLoading}
+                                style={{
+                                    backgroundColor: "#F2FAFC",
+                                    borderRadius: 0,
+                                    borderColor: "#CAECF3",
+                                }}
+                            />
+                        </div>
+                        <div className="col-auto mb-3">
+                            <PrimaryInput
+                                isRequired
+                                name="no_female_farmers"
+                                label="Number of female farmers trained"
+                                type="number"
+                                placeholder="Your answer here..."
+                                value={values.no_female_farmers}
+                                error={Boolean(touched.no_female_farmers && errors.no_female_farmers)}
+                                bottomText={errors.no_female_farmers}
+                                onChange={handleChange}
+                                isDisabled={isLoading}
+                                style={{
+                                    backgroundColor: "#F2FAFC",
+                                    borderRadius: 0,
+                                    borderColor: "#CAECF3",
+                                }}
+                            />
+                        </div>
+                        <div className="col-auto mb-3">
+                            <PrimaryInput
+                                isRequired
+                                name="training_duration"
+                                label="Training duration (x days)"
+                                type="number"
+                                placeholder="Your answer here..."
+                                value={values.training_duration}
+                                error={Boolean(touched.training_duration && errors.training_duration)}
+                                bottomText={errors.training_duration}
+                                onChange={handleChange}
+                                isDisabled={isLoading}
+                                style={{
+                                    backgroundColor: "#F2FAFC",
+                                    borderRadius: 0,
+                                    borderColor: "#CAECF3",
+                                }}
+                            />
+                        </div>
+                        <div className="col-auto mb-3">
+                            <PrimaryTextarea
+                                isRequired
+                                name="next_steps"
+                                label="Next Steps"
+                                placeholder="Your answer here..."
+                                value={values.next_steps}
+                                error={Boolean(touched.next_steps && errors.next_steps)}
+                                bottomText={errors.next_steps}
+                                onChange={handleChange}
+                                isDisabled={isLoading}
+                                style={{
+                                    backgroundColor: "#g2FAFC",
+                                    borderRadius: 0,
+                                    borderColor: "#CAECF3",
+                                }}
+                            />
+                        </div><div className="col-auto mb-3">
+                            <PrimaryTextarea
+                                isRequired
+                                name="remarks"
+                                label="Remarks"
+                                placeholder="Your answer here..."
+                                value={values.remarks}
+                                error={Boolean(touched.remarks && errors.remarks)}
+                                bottomText={errors.remarks}
+                                onChange={handleChange}
+                                isDisabled={isLoading}
+                                style={{
+                                    backgroundColor: "#g2FAFC",
+                                    borderRadius: 0,
+                                    borderColor: "#CAECF3",
+                                }}
+                            />
+                        </div>
                     </div>
                 </div>
             </DashboardCardContainer>
