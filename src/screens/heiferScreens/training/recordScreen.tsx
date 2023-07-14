@@ -6,37 +6,36 @@ import { FaEye, FaTrash } from "react-icons/fa";
 import { MdOutlineAddCircleOutline } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import { useProject } from "store/projects";
-import { Report, useDeleteReportMutation, useGetReportsQuery } from "store/reports";
+import { Shg, useDeleteShgMutation, useGetShgsQuery } from "store/shg";
 import { resolveApiError } from "utilities";
 import { ContentBodyContainer } from "../../home";
-import { useAllReportsColumn } from "./components/reportsColumns";
+import { useAllShgsColumn } from "./components/recordsColumns";
 
-export const ReportsScreen = () => {
+export const RecordScreen = () => {
   const navigate = useNavigate();
-  const columns = useAllReportsColumn();
+  const columns = useAllShgsColumn();
   const projectId: number = useProject().project?.id;
   const [query, setQuery] = useState("");
   const [state, setState] = useState("");
   const [lga, setLga] = useState("");
-  const [intervention, setIntervention] = useState([]);
   const [community, setCommunity] = useState("");
-  const { data, isLoading, refetch } = useGetReportsQuery({
+  const { data, isLoading, refetch } = useGetShgsQuery({
     page: 1, query: query, project_id: projectId,
     state: state, lga: lga, community: community, 
   });
   const toast = useToast({ position: "top-right" });
   const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const [deleteReport] = useDeleteReportMutation();
-  const [selectedReportId, setSelectedReportId] = useState(0);
+  const [deleteShg] = useDeleteShgMutation();
+  const [selectedShgId, setSelectedShgId] = useState(0);
 
 
   const handleDelete = (row: any) => {
-    setSelectedReportId(row.original.id);
+    setSelectedShgId(row.original.id);
     setShowDeleteModal(true);
   };
 
   const handleConfirmDelete = () => {
-    initDelete(selectedReportId);
+    initDelete(selectedShgId);
     setShowDeleteModal(false);
   };
 
@@ -44,9 +43,9 @@ export const ReportsScreen = () => {
     setShowDeleteModal(false);
   };
 
-  const initDelete = (report: number) => {
-    let payload = { project_id: projectId, reports: [report]}
-    deleteReport(payload).unwrap().then((response) => {
+  const initDelete = (shg: number) => {
+    let payload = { project_id: projectId, shgs: [shg]}
+    deleteShg(payload).unwrap().then((response) => {
       let msg = "Record has been deleted successfully"
       toast({ title: "Record Deleted", description: msg, status: "success" })
       refetch();
@@ -59,8 +58,31 @@ export const ReportsScreen = () => {
 
   return (
     <ContentBodyContainer
-      title="All Reports"
-      routesRule={"createReport"}
+      title="Records"
+      routesRule={"createRecord"}
+      rightCardHeaderComponent={
+        <div className="row g-3 mb-0 align-items-center">
+          <div className="col-auto">
+            <Button
+              colorScheme="teal"
+              onClick={() => navigate("/records/sub")}
+              leftIcon={
+                <MdOutlineAddCircleOutline className="svg-dark" size={12} />
+              }
+              className={"fw-bold"}
+              fontSize={"sm"}
+              backgroundColor={"#7AD0E2"}
+              color={"#000000"}
+              borderRadius={0}
+              padding={"12px, 20px, 12px, 20px"}
+              _hover={{ bg: "#bbc7ca" }}
+              transition={"background-color 0.5s ease-in-out"}
+            >
+              Fill Record
+            </Button>
+          </div>
+        </div>
+      }
     >
       
       
@@ -74,16 +96,16 @@ export const ReportsScreen = () => {
           positionActionsColumn="last"
           renderRowActions={({row}) => (
             <div className="d-flex justify-content-evenly">
-              {/* <div className="touchable pe-2">
+              <div className="touchable pe-2">
                 <OverlayTrigger
                   placement="top"
                   overlay={<Tooltip id="view-tooltip">View</Tooltip>}
                 >
-                  <Button onClick={() => navigate(`/groups/subs/view/` + (row.original as Report).id)}>
+                  <Button onClick={() => navigate(`/groups/subs/view/` + (row.original as Shg).id)}>
                     <FaEye size={16} color="#7F8C9F" />
                   </Button>
                 </OverlayTrigger>
-              </div> */}
+              </div>
               <div className="touchable" onClick={() => handleDelete(row)}>
                 <OverlayTrigger
                   placement="top"

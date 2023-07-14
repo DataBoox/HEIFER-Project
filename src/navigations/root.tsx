@@ -22,6 +22,7 @@ import {
   StoriesUnderConstruction,
   InterventionScreen,
   ReportsScreen,
+  ReportForm,
   RecordScreen,
 } from "screens/heiferScreens";
 
@@ -55,6 +56,7 @@ export const RootNavigator = () => {
           <Route path="interventions/view/:id" element={<ViewInterventions />} />
           <Route path="interventions" element={<InterventionScreen />} />
           <Route path="reports" element={<ReportsScreen />} />
+          <Route path="reports/form" element={<ReportForm />} />
           <Route path="communication" element={<UnderConstruction />} />
           <Route path="schedule" element={<ScheduleUnderConstruction />} />
           <Route path="stories" element={<StoriesUnderConstruction />} />
